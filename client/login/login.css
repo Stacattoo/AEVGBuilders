@@ -1,0 +1,15 @@
+.form-container {
+
+    width: 450px;
+    margin: 140px auto;
+    font-size: 15px;
+    margin-bottom: 0px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.form-container h2 {
+    margin: 50px 0 50px;
+
+}
