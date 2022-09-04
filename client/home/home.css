@@ -1,0 +1,5 @@
+.backimage {
+    background-image: url('../image/image1.jpg');
+    background-repeat: no-repeat;
+    height: 100vh;
+}

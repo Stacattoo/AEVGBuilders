@@ -32,6 +32,76 @@ class dbHandler
         return mysqli_num_rows($result);
     }
 
+    function checkIfAccountExist($key)
+    {
+        if ($this->isEmailExist($key) || $this->isStudentNoExist($key)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isEmailExist($email)
+    {
+        $sql = "SELECT id FROM client WHERE email='$email'";
+        $result = mysqli_query($this->conn, $sql);
+        return mysqli_num_rows($result);
+    }
+    function isStudentNoExist($username)
+    {
+        $sql = "SELECT id FROM client WHERE username='$username'";
+        $result = mysqli_query($this->conn, $sql);
+        return mysqli_num_rows($result);
+    }
+
+
+    function getAttempt($key)
+    {
+        $query = "SELECT login_attempt FROM client WHERE email = '$key' OR username = '$key'";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['login_attempt'];
+        } else {
+            return 0;
+        }
+    }
+
+    function updateStatusToBlock($key)
+    {
+        $query = "UPDATE client SET status='block' WHERE email='$key' OR username='$key'";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function updateAttempt($key, $attempt)
+    {
+        $query = "UPDATE client SET login_attempt=$attempt WHERE email='$key' OR username='$key'";
+        return mysqli_query($this->conn, $query);
+    }
+
+
+    function checkAccount($key, $password)
+    {
+        $query = "SELECT * FROM client WHERE (email = '$key' OR username = '$key')  AND  password ='$password'";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                if ($row["status"] == "active") {
+                    if ($this->updateAttempt($key, 3)) {
+                        $_SESSION['id'] = $row["id"];
+                        $_SESSION['email'] = $row["email"];
+                        return true;
+                    }
+                }
+            }
+        } else {
+            $total_count = $this->getAttempt($key) - 1;
+            $this->updateAttempt($key, $total_count);
+            // echo "Email and Password not match. Remaining attempts: " . $total_count;
+            return false;
+        }
+    }
+
     function registerAccount($info)
     {
         $query = "INSERT INTO client(firstName, lastName, username, password, email, contact_no, house_no, street, baranggay, municipality, province) 

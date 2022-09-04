@@ -14,13 +14,15 @@
 <body>
     <div class="form-container text-center p-5">
         <div class="display-1 mb-5">
-        <h4>AEVG BUILDERS</h4>
-        <h4>LOGIN</h4>
+            <h4>AEVG BUILDERS</h4>
+            <h4>LOGIN</h4>
         </div>
         <form id="loginForm">
             <input type="text" class="form-control mt-5" name="email" placeholder="Email">
-            <input type="text" class="form-control mt-2" name="password" placeholder="Password">
+            <input type="password" class="form-control mt-2" name="password" placeholder="Password">
             <button type="submit" class="btn btn-primary form-control mt-3">Login</button>
+            <div class="alert alert-danger mt-2" role="alert" id="alertError">
+            </div>
             <div class="d-flex justify-content-evenly mt-4">
                 <a href="">Forgot Password?</a>
                 <a href="../register/register.php">Create an Account</a>
