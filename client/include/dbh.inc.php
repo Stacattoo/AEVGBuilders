@@ -34,24 +34,11 @@ class dbHandler
 
     function checkIfAccountExist($key)
     {
-        if ($this->isEmailExist($key) || $this->isStudentNoExist($key)) {
+        if ($this->checkIfEmailExist($key) || $this->checkIfUsernameExist($key)) {
             return true;
         } else {
             return false;
         }
-    }
-
-    function isEmailExist($email)
-    {
-        $sql = "SELECT id FROM client WHERE email='$email'";
-        $result = mysqli_query($this->conn, $sql);
-        return mysqli_num_rows($result);
-    }
-    function isStudentNoExist($username)
-    {
-        $sql = "SELECT id FROM client WHERE username='$username'";
-        $result = mysqli_query($this->conn, $sql);
-        return mysqli_num_rows($result);
     }
 
 
@@ -65,6 +52,12 @@ class dbHandler
         } else {
             return 0;
         }
+    }
+
+    function updatePassword($email, $newPass)
+    {
+        $query = "UPDATE `userdata` SET `password`='$newPass' WHERE `email`='$email'";
+        return mysqli_query($this->conn, $query);
     }
 
     function updateStatusToBlock($key)

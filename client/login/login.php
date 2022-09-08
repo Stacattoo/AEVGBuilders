@@ -24,7 +24,7 @@
             <div class="alert alert-danger mt-2" role="alert" id="alertError">
             </div>
             <div class="d-flex justify-content-evenly mt-4">
-                <a href="">Forgot Password?</a>
+                <a href="../forgotPassword/forgotPassword.php">Forgot Password?</a>
                 <a href="../register/register.php">Create an Account</a>
             </div>
         </form>
