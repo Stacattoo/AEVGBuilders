@@ -39,6 +39,9 @@
 			</div>
 		</header>
 	</div>
+	<div class="container">
+		<h1 class="text-center">Projects</h1>
+	</div>
 	<div class="nav-scroller py-1 mb-2">
 		<nav class="nav d-flex justify-content-center">
 			<a class="p-2 link-secondary" href="#">All</a>
@@ -53,14 +56,14 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 
-				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-10">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-4">
 					<div class="col"><a href=""></a>
 						<div class="card text-bg-light">
 							<img src="../../images/q.png" class="card-img" alt="">
 							<div class="card-img-overlay">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-								<p class="card-text"><small>Last updated 3 mins ago</small></p>
+								<h5 class="card-title">Name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+								
 							</div>							
 						</div>
 					</div>
@@ -68,24 +71,54 @@
 
 				
 					<div class="col">
-						<div class="card text-bg-dark">
+						<div class="card text-bg-light">
 							<img src="../../images/q.png" class="card-img" alt="">
 							<div class="card-img-overlay">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-								<p class="card-text"><small>Last updated 3 mins ago</small></p>
+								<h5 class="card-title">Name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+							
 							</div>							
 						</div>
 					</div>
 				
 				
 					<div class="col">
-						<div class="card text-bg-dark">
+						<div class="card text-bg-light">
 							<img src="../../images/q.png" class="card-img" alt="">
 							<div class="card-img-overlay">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-								<p class="card-text"><small>Last updated 3 mins ago</small></p>
+								<h5 class="card-title">name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+							
+							</div>							
+						</div>
+					</div>
+					<div class="col">
+						<div class="card text-bg-light">
+							<img src="../../images/q.png" class="card-img" alt="">
+							<div class="card-img-overlay">
+								<h5 class="card-title">name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+							
+							</div>							
+						</div>
+					</div>
+					<div class="col">
+						<div class="card text-bg-light">
+							<img src="../../images/q.png" class="card-img" alt="">
+							<div class="card-img-overlay">
+								<h5 class="card-title">name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+								
+							</div>							
+						</div>
+					</div>
+					<div class="col">
+						<div class="card text-bg-light">
+							<img src="../../images/q.png" class="card-img" alt="">
+							<div class="card-img-overlay">
+								<h5 class="card-title">name</h5>
+								<p class="card-text"> This content is a little bit longer.</p>
+								
 							</div>							
 						</div>
 					</div>
