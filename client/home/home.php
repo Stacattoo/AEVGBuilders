@@ -31,8 +31,8 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-primary">Sign-up</button>
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
+                <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
 
             </div>
         </header>
