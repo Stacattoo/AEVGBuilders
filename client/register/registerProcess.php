@@ -21,6 +21,7 @@ if ($dbh->checkIfEmailExist($_POST['email'])) {
     
    $account = (object) [
         'firstName' => $_POST['firstName'],
+        'middleName' => $_POST['middleName'],
         'lastName' => $_POST['lastName'],
         'username' => $_POST['username'],
         'email' => $_POST['email'],

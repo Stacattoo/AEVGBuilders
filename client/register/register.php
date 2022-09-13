@@ -20,6 +20,7 @@
         <form id="registerForm">
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-5" name="firstName" placeholder="First Name" required>
+                <input type="text" class="form-control mt-5" name="middleName" placeholder="Middle Name (optional)">
                 <input type="text" class="form-control mt-5" name="lastName" placeholder="Last Name" required>
             </div>
             <input type="text" class="form-control mt-2" name="username" placeholder="Username" required>

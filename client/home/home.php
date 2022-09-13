@@ -56,16 +56,18 @@ $dbh = new dbHandler;
                     <div class="dropdown">
 
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           <?php echo $dbh->getFullname($_SESSION['id']);?>
+                            <?php echo $dbh->getFullname($_SESSION['id']); ?>
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-dark">
+
                             <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
                             <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+                            
                         </ul>
                     </div>
 
