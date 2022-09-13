@@ -41,7 +41,6 @@ class dbHandler
         }
     }
 
-
     function getAttempt($key)
     {
         $query = "SELECT login_attempt FROM client WHERE email = '$key' OR username = '$key'";
@@ -103,6 +102,19 @@ class dbHandler
         //$this->addActivities($info->firstName + ' ' + $info->lastName, "Account", "Creat an account with student number $info->username");
         return mysqli_query($this->conn, $query);
     }
+
+    function getFullname($id)
+    {
+        $sql = "SELECT CONCAT(firstName, ' ', lastName) AS fullName FROM client WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['fullName'];
+        } else {
+            return '';
+        }
+    }
+
     function __destroy()
     {
         $this->conn->close();
