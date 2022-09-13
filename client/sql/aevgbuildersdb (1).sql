@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2022 at 03:46 AM
+-- Generation Time: Sep 13, 2022 at 01:19 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -24,27 +24,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientuserdata`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `clientuserdata` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `employee_id` varchar(255) NOT NULL,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  `company` varchar(255) NOT NULL,
-  `contactNo` varchar(255) NOT NULL,
-  `telephoneNo` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `houseNo` varchar(255) NOT NULL,
-  `street` varchar(255) NOT NULL,
-  `baranggay` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `attempt` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client`
+--
+
+CREATE TABLE `client` (
+  `id` int(11) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `middleName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contact_no` varchar(255) NOT NULL,
+  `house_no` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `barangay` varchar(255) NOT NULL,
   `municipality` varchar(255) NOT NULL,
   `province` varchar(255) NOT NULL,
-  `appointmentSched` varchar(255) NOT NULL,
+  `login_attempt` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`id`, `firstName`, `middleName`, `lastName`, `username`, `password`, `email`, `contact_no`, `house_no`, `street`, `barangay`, `municipality`, `province`, `login_attempt`, `status`) VALUES
+(1, 'Gaeb', NULL, 'Pangan', 'gaebpangan', '123', 'gaebpangan@gmail.com', '09066169396', '7', 'purok1', 'San Pablo', 'Hagonoy', 'Bulacan', '2', 'active'),
+(2, 'aaa', NULL, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '09086701605', '0007', 'aaa', 'san agustin', 'hagonoy', 'Bulacan', '', ''),
+(3, 'harold', NULL, 'de leon', 'haroldski', '111', 'harold@gmail.com', '09123456789', '77', 'ewankoe', 'Basta lugar', 'Malapit sa Jeds', 'Bulacan', '', ''),
+(4, 'Brit', NULL, 'Macahilig', 'britaa', 'aaa', 'sdada@gmail.com', '09123456789', '22', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -69,18 +93,20 @@ CREATE TABLE `design` (
 
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
+  `employee_id` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `contactNo` varchar(255) NOT NULL,
+  `telephoneNo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `contact_no` varchar(255) NOT NULL,
-  `house_no` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `houseNo` varchar(255) NOT NULL,
   `street` varchar(255) NOT NULL,
   `baranggay` varchar(255) NOT NULL,
   `municipality` varchar(255) NOT NULL,
   `province` varchar(255) NOT NULL,
-  `login_attempt` varchar(255) NOT NULL,
+  `appointmentSched` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,10 +146,17 @@ CREATE TABLE `portfolio` (
 --
 
 --
--- Indexes for table `clientuserdata`
+-- Indexes for table `admin`
 --
-ALTER TABLE `clientuserdata`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`,`email`);
 
 --
 -- Indexes for table `employee`
@@ -148,10 +181,16 @@ ALTER TABLE `portfolio`
 --
 
 --
--- AUTO_INCREMENT for table `clientuserdata`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `clientuserdata`
+ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `client`
+--
+ALTER TABLE `client`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee`
