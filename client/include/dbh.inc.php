@@ -96,9 +96,9 @@ class dbHandler
 
     function registerAccount($info)
     {
-        $query = "INSERT INTO client(firstName, middleName, lastName, username, password, email, contact_no, house_no, street, baranggay, municipality, province) 
+        $query = "INSERT INTO client(firstName, middleName, lastName, username, password, email, contact_no, house_no, street, barangay, municipality, province) 
         VALUES ('$info->firstName' ,'$info->middleName', '$info->lastName', '$info->username',
-        '$info->password', '$info->email', '$info->contact', '$info->houseNo', '$info->street', '$info->baranggay', '$info->municipality', '$info->province')";
+        '$info->password', '$info->email', '$info->contact', '$info->houseNo', '$info->street', '$info->barangay', '$info->municipality', '$info->province')";
         //$this->addActivities($info->firstName + ' ' + $info->lastName, "Account", "Creat an account with student number $info->username");
         return mysqli_query($this->conn, $query);
     }
@@ -112,6 +112,18 @@ class dbHandler
             return $row['fullName'];
         } else {
             return '';
+        }
+    }
+
+    function getValueByID($value, $id, $table = "client")
+    {
+        $sql = "SELECT `$value` FROM $table WHERE id=$id";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return $row[$value];
+                // return $sql;
+            }
         }
     }
 

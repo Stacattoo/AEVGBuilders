@@ -31,7 +31,7 @@
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-2" name="houseNo" placeholder="House No. (optional)">
                 <input type="text" class="form-control mt-2" name="street" placeholder="Street (optional)">
-                <input type="text" class="form-control mt-2" name="baranggay" placeholder="Baranggay" required>
+                <input type="text" class="form-control mt-2" name="barangay" placeholder="Baranggay" required>
             </div>
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-2" name="municipality" placeholder="Municipality" required>
@@ -40,9 +40,9 @@
             <input type="password" class="form-control mt-2" name="password" placeholder="Password" required>
             <input type="password" class="form-control mt-2" name="confirmPassword" placeholder="Confirm Password" required>
 
-            <div class="alert alert-danger" role="alert" id="alertError">
+            <div class="alert alert-danger mt-3" role="alert" id="alertError">
             </div>
-            <div class="alert alert-success" role="alert" id="alertSuccess">
+            <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
             </div>
             <button type="submit" class="btn btn-primary form-control mt-3">Sign Up</button>
             <div class="d-flex justify-content-evenly mt-4">

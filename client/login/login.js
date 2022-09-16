@@ -23,4 +23,9 @@
             }
         });
     });
+
+    $('#loginForm').change(function(event) {
+        $("#alertError").hide();
+    });
+
 });

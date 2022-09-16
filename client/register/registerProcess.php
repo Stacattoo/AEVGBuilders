@@ -28,7 +28,7 @@ if ($dbh->checkIfEmailExist($_POST['email'])) {
         'contact' => $_POST['contact'],
         'houseNo' => $_POST['houseNo'],
         'street' => $_POST['street'],
-        'baranggay' => $_POST['baranggay'],
+        'barangay' => $_POST['barangay'],
         'municipality' => $_POST['municipality'],
         'province' => $_POST['province'],
         'password' => $_POST['password']

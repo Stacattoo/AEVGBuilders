@@ -70,11 +70,11 @@
 
 ### 1. Log in
 
-- 
+- (Frontend) ~~(Backend)~~
 
 ### 2. Registration 
 
-- 
+- (Frontend) ~~(Backend)~~
 
 ### 3. Home page
 

@@ -12,18 +12,25 @@ $(document).ready(function () {
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                //console.log(response);
+                console.log(response);
                 if (response.status == 'error') {
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
                 } else {
+                    console.log(response);
                     $("#alertError").hide();
+                    $("#alertSuccess").html(response.msg);
                     $("#alertSuccess").show();
-                    //$("#alertSuccess").html(response.msg);
                     $('#registerForm').trigger("reset");
+                    
 
                 }
             }
         });
+    });
+    
+    $('#registerForm').change(function(event) {
+        $("#alertError").hide();
+        $("#alertSuccess").hide();
     });
 });
