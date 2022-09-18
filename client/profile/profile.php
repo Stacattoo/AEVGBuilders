@@ -8,7 +8,7 @@ $dbh = new dbHandler;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../include/style.css">
     <link rel="stylesheet" href="profile.css">
 
@@ -74,65 +74,42 @@ $dbh = new dbHandler;
         </header>
     </div>
 
-
-
-    <div class="form-container text-center p-5">
+    <div class="form-container text-center p-5 mt-3">
         <div class="display-1 mb-2">
-            <h4>AEVG BUILDERS</h4>
-            <h4>Register</h4>
+            <h4>Edit Profile</h4>
         </div>
-        <form id="registerForm">
+        <form id="profileForm">
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
                 <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
-                <input type="text" class="form-control mt-5" name="lastName" placeholder="Last Name" required>
+                <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
             </div>
-            <input type="text" class="form-control mt-2" name="username" placeholder="Username" required>
+            <input type="text" class="form-control mt-2" name="username" value="<?php echo $dbh->getValueByID('username', $_SESSION['id']); ?>">
             <div class="d-flex justify-content-evenly">
-                <input type="email" class="form-control mt-2" name="email" placeholder="Email" required>
-                <input type="text" class="form-control mt-2" name="contact" placeholder="Contact Number" required>
-            </div>
-            <div class="d-flex justify-content-evenly">
-                <input type="text" class="form-control mt-2" name="houseNo" placeholder="House No. (optional)">
-                <input type="text" class="form-control mt-2" name="street" placeholder="Street (optional)">
-                <input type="text" class="form-control mt-2" name="barangay" placeholder="Baranggay" required>
+                <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
+                <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
             </div>
             <div class="d-flex justify-content-evenly">
-                <input type="text" class="form-control mt-2" name="municipality" placeholder="Municipality" required>
-                <input type="text" class="form-control mt-2" name="province" placeholder="Province" required>
+                <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No. (optional)">
+                <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
+                <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>">
             </div>
-            <input type="password" class="form-control mt-2" name="password" placeholder="Password" required>
-            <input type="password" class="form-control mt-2" name="confirmPassword" placeholder="Confirm Password" required>
-
+            <div class="d-flex justify-content-evenly">
+                <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>">
+                <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>">
+            </div>
             <div class="alert alert-danger mt-3" role="alert" id="alertError">
             </div>
             <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
             </div>
-            <button type="submit" class="btn btn-primary form-control mt-3">Sign Up</button>
-            <div class="d-flex justify-content-evenly mt-4">
-                <a href="../login/login.php">Already Have an Account?</a>
-            </div>
+            <button type="submit" class="btn btn-primary form-control mt-3">Save Changes</button>
+           
         </form>
 
     </div>
 
 </body>
-<!-- <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-    <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="fw-5 fw-normal">Edit Profile </h1>
-    </div>
-    <div class="form-container text-center p-5">
 
-        <div class="d-flex justify-content-evenly">
-            <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
-            <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middletName', $_SESSION['id']); ?>">
-            <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
-        </div>
-
-    </div>
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-</div> -->
 <div class="container">
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
