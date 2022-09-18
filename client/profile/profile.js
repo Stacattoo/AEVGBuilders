@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     $("#alertError").hide();
     $("#alertSuccess").hide();
+
     $("#profileForm").submit(function (event) {
         // console.log('test lang');
         event.preventDefault();
@@ -12,13 +13,49 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             processData: false,
+            dataType: 'json',
             success: function (result) {
                 console.log(result);
                 //alert("Record successfully updated");
-
+                if (result.status == 'error') {
+                    $("#alertError").html(result.msg);
+                    $("#alertError").fadeIn();
+                } else {
+                    $("#alertSuccess").html(result.msg);
+                    $("#alertSuccess").fadeIn();
+                }
+            },
+            error: function (result) {
+                console.log("error");
+                console.log(result);
             }
         });
     });
+
+    $('#profileForm').change(function () {
+
+        $("#alertError").hide();
+        $("#alertSuccess").hide();
+
+    });
+
+    $('#profileForm').change(function (){
+
+        var file = $("input[type=file]").get(0).files[0];
+ 
+        if(file){
+
+            var reader = new FileReader();
+ 
+            reader.onload = function(){
+                $("#profileImg").attr("src", reader.result);
+            }
+ 
+            reader.readAsDataURL(file);
+        }
+
+    });
+
     // $("#changePass").hide();
     // $("#errorAlert").hide();
     // $("#changePassForm").hide();

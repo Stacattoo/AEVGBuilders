@@ -100,7 +100,7 @@
 
 ### 7. Profile (After Log in)
 
-- Can edit user information. (Frontend) (Backend)
+- Can edit user information. (Frontend) ~~(Backend)~~
 
 ### 8. Order
 

@@ -14,6 +14,7 @@ $dbh = new dbHandler;
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-replace-svg></script>
     <script src="profile.js"></script>
 </head>
 
@@ -74,38 +75,57 @@ $dbh = new dbHandler;
         </header>
     </div>
 
-    <div class="form-container text-center p-5 mt-3">
-        <div class="display-1 mb-2">
-            <h4>Edit Profile</h4>
-        </div>
-        <form id="profileForm">
-            <div class="d-flex justify-content-evenly">
-                <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
-                <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
-                <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
-            </div>
-            <input type="text" class="form-control mt-2" name="username" value="<?php echo $dbh->getValueByID('username', $_SESSION['id']); ?>">
-            <div class="d-flex justify-content-evenly">
-                <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
-                <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
-            </div>
-            <div class="d-flex justify-content-evenly">
-                <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No. (optional)">
-                <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
-                <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>">
-            </div>
-            <div class="d-flex justify-content-evenly">
-                <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>">
-                <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>">
-            </div>
-            <div class="alert alert-danger mt-3" role="alert" id="alertError">
-            </div>
-            <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-            </div>
-            <button type="submit" class="btn btn-primary form-control mt-3">Save Changes</button>
-           
-        </form>
+    <div class="form-container p-5 mt-3">
 
+        <form id="profileForm">
+            <div class="row">
+
+                <div class="col-9 fw-bold fs-3">
+                    Profile
+                </div>
+
+
+                <div class="col-4">
+
+                    <div id="imgForm" class="text-center mt-5">
+                        <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
+                        <input type="file" class="btn btn-dark mt-2 form-control" name="image">
+
+                    </div>
+
+                </div>
+                <div class="col-6">
+
+
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
+                        <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
+                    </div>
+                    <input type="text" class="form-control mt-2" name="username" value="<?php echo $dbh->getValueByID('username', $_SESSION['id']); ?>">
+                    <div class="d-flex justify-content-evenly">
+                        <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No. (optional)">
+                        <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
+                        <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="alert alert-danger mt-3" role="alert" id="alertError">
+                    </div>
+                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                    </div>
+                    <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
+
+
+                </div>
+            </div>
+        </form>
     </div>
 
 </body>

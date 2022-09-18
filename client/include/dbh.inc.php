@@ -74,7 +74,8 @@ class dbHandler
     function profileUpdate($value, $id)
     {
         $sql = "UPDATE `client` SET firstName='$value->firstName', middleName='$value->middleName', lastName='$value->lastName', username='$value->username', email='$value->email',
-         contact_no='$value->contact', house_no='$value->house_no', street='$value->street', barangay='$value->barangay', municipality='$value->municipality', province='$value->province' WHERE id=$id";
+         contact_no='$value->contact_no', house_no='$value->house_no', street='$value->street', barangay='$value->barangay', municipality='$value->municipality', 
+         province='$value->province', image='$value->image' WHERE id=$id";
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
