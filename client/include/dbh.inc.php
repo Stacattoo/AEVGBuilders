@@ -135,6 +135,24 @@ class dbHandler
         }
     }
 
+    function getSpecificInfo($id, $col)
+    {
+        $sql = "SELECT $col FROM client WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row[$col];
+        } else {
+            return 0;
+        }
+    }
+    
+    function updateSpecificInfo($id, $col, $value)
+    {
+        $sql = "UPDATE `client` SET $col='$value' WHERE id=$id";
+        return mysqli_query($this->conn, $sql);
+    }
+
     function __destroy()
     {
         $this->conn->close();

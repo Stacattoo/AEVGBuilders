@@ -77,25 +77,30 @@ $dbh = new dbHandler;
 
     <div class="form-container p-5 mt-3">
 
-        <form id="profileForm">
-            <div class="row">
+        <div class="row">
+            <div class="col-9 fw-bold fs-3">
+                Profile
+            </div>
 
-                <div class="col-9 fw-bold fs-3">
-                    Profile
-                </div>
+            <div class="col-4">
 
-
-                <div class="col-4">
-
-                    <div id="imgForm" class="text-center mt-5">
-                        <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
-                        <input type="file" class="btn btn-dark mt-2 form-control" name="image">
-
-                    </div>
+                <div id="imgForm" class="text-center mt-5">
+                    <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
+                    <input type="file" class="btn btn-dark mt-2 form-control" name="image">
 
                 </div>
-                <div class="col-6">
 
+            </div>
+            <div class="col-6">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" type="button" id="passBtn">Change Password</a>
+                    </li>
+                </ul>
+                <form id="profileForm">
 
                     <div class="d-flex justify-content-evenly">
                         <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
@@ -123,9 +128,32 @@ $dbh = new dbHandler;
                     <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
 
 
-                </div>
+                </form>
+
+                <form id="changePassForm" class="row g-3 p-3">
+
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Current Password:</label>
+                        <input type="password" class="password form-control" id="inputAddress" name="oldPass" required>
+                    </div>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">New Password:</label>
+                        <input type="password" class="password form-control" id="inputAddress" name="newPass" required>
+                    </div>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Confirm Password:</label>
+                        <input type="password" class="password form-control" id="inputAddress" name="confirmPass" required>
+                    </div>
+                    
+                    <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass">
+                    </div>
+                    
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary mt-3 mb-5" id="savepass" name="savepass">Save changes</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 
 </body>

@@ -35,7 +35,7 @@ $dbh = new dbHandler;
                 <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../services/services.php" class="nav-link px-2 link-dark">Services</a></li>
-                <li><a href="../Projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
+                <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 
             </ul>
@@ -44,8 +44,8 @@ $dbh = new dbHandler;
             <div class="col-md-3 text-end">
 
                 <!-- Checking if the session is set -->
-
                 <?php if (!isset($_SESSION['id'])) { ?>
+
 
                     <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
                     <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
@@ -62,11 +62,12 @@ $dbh = new dbHandler;
 
                             <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
                             <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                            <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
-                            
+
                         </ul>
                     </div>
 

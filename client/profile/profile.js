@@ -39,71 +39,74 @@ $(document).ready(function () {
 
     });
 
-    $('#profileForm').change(function (){
+    $('#profileForm').change(function () {
 
         var file = $("input[type=file]").get(0).files[0];
- 
-        if(file){
+
+        if (file) {
 
             var reader = new FileReader();
- 
-            reader.onload = function(){
+
+            reader.onload = function () {
                 $("#profileImg").attr("src", reader.result);
             }
- 
+
             reader.readAsDataURL(file);
         }
 
     });
 
-    // $("#changePass").hide();
-    // $("#errorAlert").hide();
-    // $("#changePassForm").hide();
-    // $("#changebtn").click(function(event) {
-    //     $("#changePass").show();
-});
+    $("#errorPass").hide();
+    $("#changePassForm").hide();
 
+    $("#profileInfo").click(function () {
 
-    // $("#changePassForm").submit(function(event) {
-    //     // console.log('test lang');
-    //     event.preventDefault();
-    //     $.ajax({
-    //         url: "changeForm.php",
-    //         type: "POST",
-    //         dataType: "json",
-    //         data: new FormData(this),
-    //         contentType: false,
-    //         cache: false,
-    //         processData: false,
-    //         success: function(result) {
-    //             console.log(result);
-    //             if (result.status == "error") {
-    //                 $("#errorAlert").html(result.msg);
-    //                 $("#errorAlert").show();
-    //             } else {
-    //                 alert("Password Changed Succesfully");
-    //                 $("#changePass").hide();
-    //                 $("#errorAlert").hide();
-    //                 $('#changePassForm').trigger("reset");
+        $(this).addClass("active");
+        $("#passBtn").removeClass("active");
+        $("#profileForm").show();
+        $("#changePassForm").hide();
 
-    //             }
+    });
 
-    //         }
-    //     });
-    // });
+    $("#passBtn").click(function () {
+       
+        $(this).addClass("active");
+        $("#profileInfo").removeClass("active");
+        $("#changePassForm").show();
+        $("#profileForm").hide();
 
-    // $("#changeInfoBtn").click(function () {
-    //     $(this).addClass("active");
-    //     $("#changePasswordBtn").removeClass("active");
-    //     $("#passForm").show();
-    //     $("#changePassForm").hide();
-    // });
+    });
 
-    // $("#changePasswordBtn").click(function () {
-    //     $(this).addClass("active");
-    //     $("#changeInfoBtn").removeClass("active");
-    //     $("#changePassForm").show();
-    //     $("#passForm").hide();
-    // });
+    $("#changePassForm").submit(function (event) {
+        // console.log('test lang');
+        event.preventDefault();
+        $.ajax({
+            url: "changePassProcess.php",
+            type: "POST",
+            dataType: "json",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);
+                if (result.status == "error") {
+                    $("#errorPass").html(result.msg);
+                    $("#errorPass").show();
+                } else {
+                    alert("Password Changed Succesfully");
+                    $("#changePass").hide();
+                    $("#errorPass").hide();
+                    $('#changePassForm').trigger("reset");
 
-//}); // end of document ready function
+                }
+
+            }
+        });
+    });
+
+    $('#changePassForm').click(function (){
+        $("#errorPass").hide();
+    });
+
+}); // end of document ready function

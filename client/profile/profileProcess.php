@@ -2,7 +2,7 @@
 include_once('../include/dbh.inc.php');
 $dbh = new dbHandler;
 
-
+//Profile Edit Info
 if(isset($_POST['firstName'])){
 
     $img_path = "image/".basename($_FILES['image']['name']);
@@ -37,4 +37,5 @@ if(isset($_POST['firstName'])){
         ));
     }
     
+
 ?>
