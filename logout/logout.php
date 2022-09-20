@@ -4,5 +4,5 @@ unset($_SESSION['IS_LOGIN']);
 session_destroy();
 ?>
 <script>
-window.location.href='../home/home.php';
+window.location.href='../client/home/home.php';
 </script>
