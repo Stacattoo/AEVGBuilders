@@ -18,6 +18,24 @@ class dbHandler
         }
     }
 
+    function getAllMaterials() {
+        $query = "SELECT * FROM material";
+        $result = mysqli_query($this->conn, $query);
+        $materials = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+               $materials[] = (object)[
+                "id" => $row["id"],
+                "name" => $row["name"],
+                "description" => $row["description"],
+                "category" => $row["category"],
+                "image" => $row["image"],
+               ];
+            }
+        }
+        return $materials;
+    }
+
     function checkIfEmailExist($email)
     {
         $sql = "SELECT id FROM client WHERE email='$email'";
