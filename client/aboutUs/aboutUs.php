@@ -23,10 +23,11 @@
       </a>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
+        <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
         <li><a href="#" class="nav-link px-2 link-secondary">About Us</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Services</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Projects</a></li>
+        <li><a href="../Services/services.php" class="nav-link px-2 link-dark">Services</a></li>
+        <li><a href="../Projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
+        <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 
       </ul>
 
@@ -42,7 +43,8 @@
     <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
       <div class="col-md-6 px-0">
         <h1 class="display-4">AEVG BUILDERS</h1>
-        <p class="lead my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae laborum quis autem incidunt in dolores maxime id odit? Animi reiciendis sequi id quasi ducimus itaque magni culpa optio illum tenetur?</p>
+        <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.  
+</p>
         <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
       </div>
     </div>
@@ -52,8 +54,8 @@
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary">Architect</strong>
-            <h3 class="mb-0">Name</h3>
-            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus aliquam doloremque in similique architecto nam? Officia beatae odit ipsum cumque, nesciunt laborum reprehenderit nostrum corrupti accusantium numquam debitis ex voluptatem. </p>
+            <h3 class="mb-0">Yel Villalon Galang</h3>
+            <p class="card-text mb-auto">Founder of AEVG builders. After 2 years of working in Singapore Architect Galang decided to start his design and construction company in San Pablo, Hagonoy Bulacan. </p>
 
           </div>
           <div class="col-auto d-none d-lg-block">
@@ -109,7 +111,7 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
         </ul>
-        <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
+        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
 
       </footer>
     </div>
