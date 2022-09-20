@@ -18,6 +18,24 @@ class dbHandler
         }
     }
 
+    function getAllMaterials() {
+        $query = "SELECT * FROM material";
+        $result = mysqli_query($this->conn, $query);
+        $materials = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+               $materials[] = (object)[
+                "id" => $row["id"],
+                "name" => $row["name"],
+                "description" => $row["description"],
+                "category" => $row["category"],
+                "image" => $row["image"],
+               ];
+            }
+        }
+        return $materials;
+    }
+
     function checkIfEmailExist($email)
     {
         $sql = "SELECT id FROM client WHERE email='$email'";
@@ -41,9 +59,9 @@ class dbHandler
         }
     }
 
-    function getAttempt($key)
+    function getAttempt($key, $col)
     {
-        $query = "SELECT login_attempt FROM client WHERE email = '$key' OR username = '$key'";
+        $query = "SELECT login_attempt FROM $col WHERE email = '$key' OR username = '$key'";
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result)) {
             $row = mysqli_fetch_assoc($result);
@@ -55,13 +73,13 @@ class dbHandler
 
     function updatePassword($email, $newPass)
     {
-        $query = "UPDATE `userdata` SET `password`='$newPass' WHERE `email`='$email'";
+        $query = "UPDATE `client` SET `password`='$newPass' WHERE `email`='$email'";
         return mysqli_query($this->conn, $query);
     }
 
-    function updateStatusToBlock($key)
+    function updateStatusToBlock($key, $table)
     {
-        $query = "UPDATE client SET status='block' WHERE email='$key' OR username='$key'";
+        $query = "UPDATE $table SET status='block' WHERE email='$key' OR username='$key'";
         return mysqli_query($this->conn, $query);
     }
 
@@ -80,9 +98,9 @@ class dbHandler
         return $result;
     }
 
-    function checkAccount($key, $password)
+    function checkAccount($key, $password, $col)
     {
-        $query = "SELECT * FROM client WHERE (email = '$key' OR username = '$key')  AND  password ='$password'";
+        $query = "SELECT * FROM $col WHERE (email = '$key' OR username = '$key')  AND  password ='$password'";
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
@@ -95,7 +113,7 @@ class dbHandler
                 }
             }
         } else {
-            $total_count = $this->getAttempt($key) - 1;
+            $total_count = $this->getAttempt($key, 'client') - 1;
             $this->updateAttempt($key, $total_count);
             // echo "Email and Password not match. Remaining attempts: " . $total_count;
             return false;
@@ -146,13 +164,15 @@ class dbHandler
             return 0;
         }
     }
-    
+
     function updateSpecificInfo($id, $col, $value)
     {
         $sql = "UPDATE `client` SET $col='$value' WHERE id=$id";
         return mysqli_query($this->conn, $sql);
     }
 
+
+     
     function __destroy()
     {
         $this->conn->close();
