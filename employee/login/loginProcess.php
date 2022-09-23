@@ -1,5 +1,5 @@
 <?php 
-include('../include/dbh.inc.php');
+include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
 

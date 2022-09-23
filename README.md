@@ -69,7 +69,7 @@
 
 ### 1. Log in
 
-- Employees can be blocked. (Frontend) ~(Backend)~
+- Employees can be blocked. (Frontend) ~~(Backend)~~
 
 ### 2. Client
 

@@ -65,11 +65,11 @@ class dbHandler
 
     function getAttempt($key, $col)
     {
-        $query = "SELECT login_attempt FROM $col WHERE email = '$key' OR username = '$key'";
+        $query = "SELECT attempt FROM $col WHERE email = '$key' OR username = '$key'";
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result)) {
             $row = mysqli_fetch_assoc($result);
-            return $row['login_attempt'];
+            return $row['attempt'];
         } else {
             return 0;
         }
@@ -77,7 +77,7 @@ class dbHandler
 
     function updateAttempt($key, $attempt)
     {
-        $query = "UPDATE employee SET login_attempt=$attempt WHERE email='$key' OR username='$key'";
+        $query = "UPDATE employee SET attempt=$attempt WHERE email='$key' OR username='$key'";
         return mysqli_query($this->conn, $query);
     }
 
@@ -91,5 +91,19 @@ class dbHandler
         } else {
             return '';
         }
+    }
+
+    function uploadProduct($info)
+    {
+        $query = "INSERT INTO material(code, name, image, category, description, remaining_stock, initial_stock) 
+        VALUES ('$info->code' ,'$info->name', '$info->image', '$info->category', '$info->description', '$info->stock', '$info->stock')";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function checkIfProductExist($key, $col)
+    {
+        $sql = "SELECT id FROM material WHERE $col='$key'";
+        $result = mysqli_query($this->conn, $sql);
+        return mysqli_num_rows($result);
     }
 }
