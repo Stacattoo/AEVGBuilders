@@ -53,28 +53,59 @@
 
 - Can edit user information. (Frontend) (Backend)
 
-### ~~8. Appointment~~
+### 8. Appointment
+
+- Schedule appointment. (Frontend) (Backend)
+- Calendar. (Frontend) (Backend)
+
+### 9. Block
+
+- Can be able to block/ unlock employee (Frontend) (Backend)
+- Can show list block of employee (Frontend) (Backend)
+
+
 
 ## Employee 
 
 ### 1. Log in
 
-- Employees can be blocked.
+- Employees can be blocked. (Frontend) ~(Backend)~
 
+### 2. Client
 
-### 2. Profile
+- Can view list of clients. (Frontend) (Backend)
+- Employee will be able to message the client. (Frontend) (Backend)
+- Can view list pending clients. (Frontend) (Backend)
+- Assign a client, or unassign to itself. (Frontend) (Backend)
+- Filter/ search for client. (Frontend) (Backend)
+- View order of client. (Frontend) (Backend)
+
+### 3. Profile
 
 - Can edit user information. (Frontend) (Backend)
+
+### 4. Project
+
+- Can view and edit previous design uploads. (Frontend) (Backend)
+- Can upload design/ projects. (Frontend) ~(Backend)~
+<!-- ### 4. Materials
+- Can upload materials (Frontend) ~(Backend)~ -->
+
+### 5. Dashboard
+
+- Can view list of available inventory materials. (Frontend) (Backend)
+
+
 
 ## Client
 
 ### 1. Log in
 
-- (Frontend) ~~(Backend)~~
+- (Frontend) ~(Backend)~
 
 ### 2. Registration 
 
-- (Frontend) ~~(Backend)~~
+- (Frontend) ~(Backend)~
 
 ### 3. Home page
 
@@ -100,7 +131,7 @@
 
 ### 7. Profile (After Log in)
 
-- Can edit user information. (Frontend) ~~(Backend)~~
+- Can edit user information. (Frontend) ~(Backend)~
 
 ### 8. Order
 
@@ -110,9 +141,5 @@
 
 ### 9. Message and Notif
 
-- Can message 
-
-
-
-
-
+- Can message an employee. (Frontend) (Backend)
+- Can request an appointment. (Frontend) (Backend)
