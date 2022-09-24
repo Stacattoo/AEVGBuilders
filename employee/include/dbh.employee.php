@@ -100,9 +100,16 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    function checkIfProductExist($key, $col)
+    function uploadProject($info)
     {
-        $sql = "SELECT id FROM material WHERE $col='$key'";
+        $query = "INSERT INTO projects(title, image, category, description) 
+        VALUES ('$info->title' ,'$info->image', '$info->category', '$info->description')";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function checkIfSomeAlrExist($key, $table, $col)
+    {
+        $sql = "SELECT id FROM $table WHERE $col='$key'";
         $result = mysqli_query($this->conn, $sql);
         return mysqli_num_rows($result);
     }

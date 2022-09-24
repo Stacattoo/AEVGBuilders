@@ -2,7 +2,7 @@
 include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
-    if ($dbh->checkIfProductExist($_POST['code'], 'code')) {
+    if ($dbh->checkIfSomeAlrExist($_POST['code'], 'material', 'code')) {
 
         echo json_encode(array(
             "status" => 'error',

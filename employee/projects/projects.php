@@ -7,12 +7,12 @@ $dbh = new dbHandler;
 <script src="../projects/projects.js"></script>
 
 <div class="container-fluid">
-    <h3><i class="fal fa-analytics me-2"></i>Upload Materials</h3>
+    <h3><i class="fal fa-analytics me-2"></i>Upload Project</h3>
     <hr>
     <div class="container-fluid">
         <form id="uploadProjects">
             <div class="input-group mb-3 mt-5">
-                <h5>Title of Project: &nbsp;</h4><input type="text" class="" name="project" placeholder="Project" aria-label="project" aria-describedby="basic-addon1" required>
+                <h5>Title of Project: &nbsp;</h4><input type="text" class="" name="title" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1" required>
             </div>
             <div class="input-group mb-3">
                 <h5>Product Category: &nbsp;</h4><select class="" aria-label="Default select example" name="category" required>

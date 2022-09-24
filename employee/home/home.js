@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../projects/projects.php");
+    $("#content").load("../materials/materials.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
         $("#content").load("../client/client.php");
     });
     //Materials
-    $("materialsNav").click(function (e) {
+    $("#materialsNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../materials/materials.php");
     });
