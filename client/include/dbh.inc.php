@@ -26,10 +26,12 @@ class dbHandler
             while ($row = mysqli_fetch_assoc($result)) {
                $materials[] = (object)[
                 "id" => $row["id"],
+                "code" => $row["code"],
                 "name" => $row["name"],
                 "description" => $row["description"],
                 "category" => $row["category"],
                 "image" => $row["image"],
+                "remaining_stock" => $row["remaining_stock"],
                ];
             }
         }

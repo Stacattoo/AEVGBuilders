@@ -87,7 +87,7 @@
 ### 4. Project
 
 - Can view and edit previous design uploads. (Frontend) (Backend)
-- Can upload design/ projects. (Frontend) ~(Backend)~
+- Can upload design/ projects. (Frontend) ~~(Backend)~~
 <!-- ### 4. Materials
 - Can upload materials (Frontend) ~(Backend)~ -->
 
@@ -101,11 +101,11 @@
 
 ### 1. Log in
 
-- (Frontend) ~(Backend)~
+- (Frontend) ~~(Backend)~~
 
 ### 2. Registration 
 
-- (Frontend) ~(Backend)~
+- (Frontend) ~~(Backend)~~
 
 ### 3. Home page
 
@@ -131,7 +131,7 @@
 
 ### 7. Profile (After Log in)
 
-- Can edit user information. (Frontend) ~(Backend)~
+- Can edit user information. (Frontend) ~~(Backend)~~
 
 ### 8. Order
 
