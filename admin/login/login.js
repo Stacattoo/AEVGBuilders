@@ -3,7 +3,6 @@ $(document).ready(function () {
     $("#errorAlertFP").hide();
     $("#successAlertFP").hide();
     $("#registerSpinner").hide();
-
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         $.ajax({

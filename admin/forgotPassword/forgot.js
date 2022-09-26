@@ -32,7 +32,7 @@ $(document).ready(function() {
                     $("#errorAlertFP").html(response.msg);
                     $("#errorAlertFP").show();
                 } else {
-                    $("#spinner").hide();
+                    $("#fPSpinner").hide();
                     $("#load").hide();
                     $("#send").show();
                     $("#successAlertFP").html(response.msg);
