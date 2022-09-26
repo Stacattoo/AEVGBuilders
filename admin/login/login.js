@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    
+    $("#registerSpinner").hide();
+    $("#fPSpinner").hide();
+    $("#errorAlert").hide();
+    $("#errorAlertFP").hide();
+    $("#successAlertFP").hide();
+
+    $('#forgotPasswordModal').on('show.bs.modal', function (e) {
+        $("#errorAlertFP").hide();
+        $("#successAlertFP").hide();
+        $("#forgotPasswordForm").trigger("reset");
+    })
+
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         $.ajax({
