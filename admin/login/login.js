@@ -1,16 +1,8 @@
 $(document).ready(function () {
     $("#errorAlert").hide();
-<<<<<<< Updated upstream
     $("#errorAlertFP").hide();
     $("#successAlertFP").hide();
-=======
-<<<<<<< HEAD
-    $("#registerSpinner").hide();
-=======
-    $("#errorAlertFP").hide();
-    $("#successAlertFP").hide();
->>>>>>> 2bf6afe057b6cd94b4a289944fb7ca4a1c48e855
->>>>>>> Stashed changes
+
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         $.ajax({
