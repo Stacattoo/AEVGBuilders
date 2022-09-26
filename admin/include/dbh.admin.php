@@ -35,6 +35,19 @@ class dbHandler
         }
     }
 
+    function checkIfEmailExist($email)
+    {
+        $sql = "SELECT id FROM admin WHERE email='$email'";
+        $result = mysqli_query($this->conn, $sql);
+        return mysqli_num_rows($result);
+    }
+
+    function updatePassword($email, $newPass)
+    {
+        $query = "UPDATE `admin` SET `password`='$newPass' WHERE `email`='$email'";
+        return mysqli_query($this->conn, $query);
+    }
+
     function getAllInfoByID($id){
         $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
         CONCAT(houseNo, ' ', street, ' ', baranggay, ' ', municipality, ' ', province) AS address
