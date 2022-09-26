@@ -48,6 +48,7 @@
 - Can print all Employee information. (Frontend) (Backend)
 - Filter employees info by name, etc. (Frontend) (Backend)
 - List of all client by filter. (Frontend) (Backend)
+- Transactions and Materials, broken (Frontend) (Backend)
 
 ### 7. Profile
 

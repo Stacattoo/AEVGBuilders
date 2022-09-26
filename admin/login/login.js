@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#errorAlert").hide();
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         $.ajax({
