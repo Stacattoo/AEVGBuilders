@@ -10,7 +10,7 @@ $(document).ready(function() {
         event.preventDefault();
         $.ajax({
             type: 'post',
-            url: 'forgotProcess.php',
+            url: '../forgotPassword/forgotProcess.php',
             data: new FormData(this),
             contentType: false,
             cache: false,

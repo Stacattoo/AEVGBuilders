@@ -18,8 +18,7 @@ if (isset($_POST["fpEmail"])) {
             //echo "Registered";
             echo json_encode(array(
                 "status" => 'success',
-                'msg' => "A new password was successfully sent on your email.
-                <a href=".'../login/login.php">Login</a>'.""
+                'msg' => "A new password was successfully sent on your email."
             ));
             $dbh->updatePassword($email, $newPass);
         }
