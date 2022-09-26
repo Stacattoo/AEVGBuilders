@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2022 at 02:52 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Sep 26, 2022 at 03:09 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
-(1, 'admin', 'sagunhannaclarisse@gmail.com', 'admin123');
+(1, 'admin', 'sagunhannaclarisse@gmail.com', 'admin123'),
+(2, 'admin2', 'cedmartin031@gmail.com', 'admin1234');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,12 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`id`, `employee_id`, `firstName`, `middleName`, `lastName`, `company`, `password`, `email`, `contact_no`, `telephone_no`, `house_no`, `street`, `barangay`, `municipality`, `province`, `image`, `appointment_sched`, `status`) VALUES
 (1, 0, 'Elle', '', 'Pangan', 'gaebpangan', '111', 'gaebpangan@gmail.com', '', '', '7', 'purok1', 'San Pablo', 'Hagonoy', 'Bulacan', 'image/ad6528e9dfdd7bd7257875bad42abc23.jpg', '3', 'active'),
 (2, 0, 'aaa', NULL, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '09086701605', '', '0007', 'aaa', 'san agustin', 'hagonoy', 'Bulacan', 'image/user.png', '3', 'active'),
-(3, 0, 'harold', NULL, 'de leon', 'haroldski', '111', 'harold@gmail.com', '09123456789', '', '77', 'ewankoe', 'Basta lugar', 'Malapit sa Jeds', 'Bulacan', 'image/user.png', '2', 'active');
+(3, 0, 'harold', NULL, 'de leon', 'haroldski', '111', 'harold@gmail.com', '09123456789', '', '77', 'ewankoe', 'Basta lugar', 'Malapit sa Jeds', 'Bulacan', 'image/user.png', '2', 'active'),
+(4, 0, 'Ricardo', 'M.', 'Dela Cruz', 'Rickyz', 'ricardo123', 'ricardo123@gmail.com', '09393483201', '0449318992', '25', 'Dona Irenia St. Sucat', 'Warehouse H, Filipinas Benson Compound,', 'Caloocan', 'Manila', 'image/user.png', NULL, 'active'),
+(5, 0, 'Alex', 'K.', 'Dimagiba', 'DMC', 'alex123', 'alex123@gmail.com', '09495813231', '0448917522', '129', 'Aguirre Building', 'Aguire', 'Makati', 'Manila', 'image/user.png', NULL, 'active'),
+(6, 0, 'Rex', 'A.', 'Matias', 'RHS', 'rex123', 'rex00@gmail.com', '09395868909', '0448317622', '31', 'Delta Building', 'Poblacion', 'Navotas', 'Manila', 'image/user.png', NULL, 'active'),
+(7, 0, 'Adrian', 'R.', 'Delo Santos', 'ZKKS', 'adrian123', 'adrian123@gmail.com', '09298957695', '04493165433', '51', 'MC Home Depot, Ortigas Avenue Corner A. Rodriguez Avenue', 'Ibayo', 'Pasig City', 'Manila', 'image/user.png', NULL, 'active'),
+(8, 0, 'Louis', 'A.', 'Zapanta', 'DHL', 'louis123', 'louis00@gmail.com', '09385769875', '0447430768', '58', '810 Oroquieta Street ', 'Ilang ilang', 'San Juan', 'Manila', 'image/user.png', NULL, 'active');
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `firstName`, `middleName`, `lastName`, `username`, `contactNo`, `email`, `password`, `houseNo`, `street`, `baranggay`, `municipality`, `province`, `attempt`, `status`) VALUES
-(1, 'hanna clarisse', NULL, 'sagun', 'bsu', '12345', 'sagunhannaclarisse@gmail.com', '123', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 3, 'active');
+(1, 'hanna clarisse', NULL, 'sagun', 'bsu', '12345', 'sagunhannaclarisse@gmail.com', '123', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 3, 'active'),
+(2, 'Zach', 'DC.', 'Anderson', 'zach00', '09786543489', 'zach00@gmail.com', 'zach123', '32', 'Bagumbayan Street', 'Tambunting', 'Bulakan', 'Bulacan', 3, 'active'),
+(3, 'Jerwin', 'A.', 'Pascual', 'jerwin00', '09896754356', 'jerwin00@gmail.com', 'jerwin123', '32', 'Purok 3', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
+(4, 'Jefferson', 'K.', 'Cailipan', 'jefferson00', '09784138769', 'jefferson00@gmail.com', 'jefferson123', '32', 'Purok 4', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
+(5, 'Keith', 'M.', 'Balagtas', 'keith00', '09786912845', 'keith00@gmail.com', 'keith123', '67', 'Purok 5', 'Longos', 'Malolos', 'Bulacan', 3, 'active'),
+(6, 'Lincoln', 'M.', 'Arellano', 'lincoln00', '09786572967', 'lincoln00@gmail.com', 'lincoln123', '78', 'Purok 1', 'Sto Rosario', 'Paombong', 'Bulacan', 3, 'active');
 
 -- --------------------------------------------------------
 
@@ -214,7 +225,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -226,7 +237,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `material`
