@@ -1,5 +1,7 @@
 $(document).ready(function () {
     $("#errorAlert").hide();
+    $("#errorAlertFP").hide();
+    $("#successAlertFP").hide();
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         $.ajax({
