@@ -26,20 +26,19 @@ $(document).ready(function () {
                 }
             },
             error: function (result) {
-                console.log("error");
-                console.log(result);
+                console.error(result);
             }
         });
     });
 
-    $('#profileForm').change(function () {
-
-        $("#alertError").hide();
-        $("#alertSuccess").hide();
+    $('input').focus(function (e) {
+        e.preventDefault();
+        $("#alertError").fadeOut();
+        $("#alertSuccess").fadeOut();
 
     });
 
-    $('#profileForm').change(function () {
+    $('#imgBtn').change(function () {
 
         var file = $("input[type=file]").get(0).files[0];
 

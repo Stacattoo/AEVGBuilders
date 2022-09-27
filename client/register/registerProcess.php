@@ -7,11 +7,11 @@ if ($dbh->checkIfEmailExist($_POST['email'])) {
         "status" => 'error',
         "msg" => "<b>Email address</b> is already exist"
     ));
-} else if ($dbh->checkIfUsernameExist($_POST['username'])) {
-    echo json_encode(array(
-        "status" => 'error',
-        "msg" => "<b>Username</b> is already exist"
-    ));
+// } else if ($dbh->checkIfUsernameExist($_POST['username'])) {
+//     echo json_encode(array(
+//         "status" => 'error',
+//         "msg" => "<b>Username</b> is already exist"
+//     ));
 } else if ($_POST['password'] != $_POST['confirmPassword']) {
     echo json_encode(array(
         "status" => 'error',
@@ -23,7 +23,7 @@ if ($dbh->checkIfEmailExist($_POST['email'])) {
         'firstName' => $_POST['firstName'],
         'middleName' => $_POST['middleName'],
         'lastName' => $_POST['lastName'],
-        'username' => $_POST['username'],
+        // 'username' => $_POST['username'],
         'email' => $_POST['email'],
         'contact' => $_POST['contact'],
         'houseNo' => $_POST['houseNo'],

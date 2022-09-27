@@ -13,7 +13,7 @@ $dbh = new dbHandler;
         //     "status" => 'success',
         //     'msg' => "Product Dont Exist!"
         // ));
-        $img_path = "../image/" . basename($_FILES['image']['name']);
+        $img_path = "../../images/" . basename($_FILES['image']['name']);
         $info = (object) [
             'code' => $_POST['code'],
             'name' => $_POST['name'],

@@ -23,7 +23,7 @@
                 <input type="text" class="form-control mt-5" name="middleName" placeholder="Middle Name (optional)">
                 <input type="text" class="form-control mt-5" name="lastName" placeholder="Last Name" required>
             </div>
-            <input type="text" class="form-control mt-2" name="username" placeholder="Username" required>
+            <!-- <input type="text" class="form-control mt-2" name="username" placeholder="Username" required> -->
             <div class="d-flex justify-content-evenly">
                 <input type="email" class="form-control mt-2" name="email" placeholder="Email" required>
                 <input type="text" class="form-control mt-2" name="contact" placeholder="Contact Number" required>

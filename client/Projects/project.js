@@ -33,7 +33,7 @@ $(document).ready(function () {
                 content += `
                  <div class="col"><a href=""></a>
                     <div class="card text-bg-light">
-                        <img src="${data.image}" class="card-img" alt="">
+                        <img src="../../${data.image}" class="card-img" alt="">
                         <div class="card-img-overlay">
                             <h5 class="card-title">${data.id}</h5>
                             <p class="card-text">${data.description}</p>
@@ -42,7 +42,6 @@ $(document).ready(function () {
                 </div>
                  `;
             });
-
             $("#materials").html(content);
             // console.log(response);
         },

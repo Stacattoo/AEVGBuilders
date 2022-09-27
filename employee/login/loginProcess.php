@@ -28,7 +28,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             } else {
                 echo json_encode(array(
                     "status" => 'error',
-                    'msg' => "Incorrect Email or Password!"
+                    'msg' => "Incorrect Password! Please Try again"
                 ));
             }
         }
@@ -36,7 +36,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         //echo "hinde";
         echo json_encode(array(
             "status" => 'error',
-            'msg' => "Incorrect Email or Password!"
+            'msg' => "Incorrect Email! Please Try Again."
         ));
     }
     

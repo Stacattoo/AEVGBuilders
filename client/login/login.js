@@ -12,7 +12,7 @@
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                //console.log(response);
+                console.log(response);
                 if (response.status == 'error') {
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
