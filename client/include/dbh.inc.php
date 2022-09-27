@@ -38,6 +38,24 @@ class dbHandler
         return $materials;
     }
 
+    function getAllProjects() {
+        $query = "SELECT * FROM projects";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+               $projects[] = (object)[
+                "id" => $row["id"],
+                "title" => $row["title"],
+                "description" => $row["description"],
+                "category" => $row["category"],
+                "image" => $row["image"],
+               ];
+            }
+        }
+        return $projects;
+    }
+
     function checkIfEmailExist($email)
     {
         $sql = "SELECT id FROM client WHERE email='$email'";

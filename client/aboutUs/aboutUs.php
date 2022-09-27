@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login </title>
+  <title>About Us</title>
   <link rel="stylesheet" href="../include/style.css">
   <link rel="stylesheet" href="aboutUs.css">
 
@@ -25,27 +25,59 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
         <li><a href="#" class="nav-link px-2 link-secondary">About Us</a></li>
-        <li><a href="../Services/services.php" class="nav-link px-2 link-dark">Services</a></li>
         <li><a href="../Projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-primary">Sign-up</button>
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
 
-      </div>
+<!-- Checking if the session is set -->
+<?php if (!isset($_SESSION['id'])) { ?>
+
+
+    <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
+    <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+
+<?php } else { ?>
+
+    <div class="dropdown">
+
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $dbh->getFullname($_SESSION['id']); ?>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark">
+
+            <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+            <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+            <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+
+        </ul>
+    </div>
+
+<?php } ?>
+
+</div>
     </header>
   </div>
 
   <main class="container">
-    <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+    <div class="background-img">
+    <div class="blur-effect">
+    <div class="p-4 p-md-5 mb-4 rounded text-light">
+    
       <div class="col-md-6 px-0">
         <h1 class="display-4">AEVG BUILDERS</h1>
-        <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.  
-</p>
+        <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
+        </p>
         <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+      </div>
+      </div>
       </div>
     </div>
 
@@ -88,23 +120,22 @@
     <hr class="featurette-divider">
 
     <div class="row ">
-      <div class="col-md-7 d-flex align-items-center ">
+      <div class="col-md-4 d-flex align-items-center ">
         <div>
 
-          <h2 class="s">First heading. <span class=" text-muted">It’ll blow your mind.</span></h2>
-          <p></p>
-          <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero autem molestiae error nihil consequuntur, ducimus aperiam perferendis doloribus ullam blanditiis quo ea quod quas porro veritatis modi veniam laboriosam harum. .</p>
+          <h1 class="display-4">AEVG BUILDERS</h1>
+        
+          <p class="lead mb-2"> <i class="mx-2 fas fa-map-marker-alt"></i> 002 San Pablo, Hagonoy Bulacan .</p>
+          <p class="lead mb-2"> <i class="mx-2 fas fa-phone-alt"></i> +63 977 852 7307.</p>
+          <p class="lead "><i class="mx-2   fas fa-envelope"></i> evgalangdesign@gmail.com</p>
         </div>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
-        </svg>
-
+      <div class="col-md-8">
+    
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100"  height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
-    
+
 
     <div class="container">
       <footer class="py-3 my-4">

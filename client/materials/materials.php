@@ -8,7 +8,7 @@ $dbh = new dbHandler;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Materials</title>
     <link rel="stylesheet" href="../include/style.css">
     <link rel="stylesheet" href="home.css">
 
@@ -30,11 +30,10 @@ $dbh = new dbHandler;
 
 
 
-                <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
-                <li><a href="../services/services.php" class="nav-link px-2 link-dark">Services</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-                <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
+                <li><a href="../materials/materials.php" class="nav-link px-2 link-secondarys">Materials</a></li>
 
             </ul>
 
@@ -77,7 +76,7 @@ $dbh = new dbHandler;
         <div class="b-example-divider"></div>
 
   <div class="container px-4 py-5" id="custom-cards">
-    <h2 class="text-center pb-2 border-bottom ">Materials</h2>
+    <h2 class="text-center pb-2 border-bottom fw-bolds">Materials</h2>
     
 		<nav class="nav d-flex justify-content-center">
 			<a class="p-2 link-secondary" href="#">All</a>
@@ -97,7 +96,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor. </h3>
         
           </div>
         </div>
@@ -106,7 +105,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
            <!-- <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
@@ -127,7 +126,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -135,7 +134,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-60 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -143,7 +142,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -151,7 +150,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -159,7 +158,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -167,7 +166,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>
@@ -175,7 +174,7 @@ $dbh = new dbHandler;
       <div class="col">
         <div class="card card-cover h-60 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lorem ipsum dolor.</h3>
         
           </div>
         </div>

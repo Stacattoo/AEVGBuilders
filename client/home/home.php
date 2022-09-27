@@ -20,8 +20,8 @@ $dbh = new dbHandler;
 
 <body>
 
-    <div class="container-fluid">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="container-fluid fixed-top px-0">
+        <header class=" bg-light d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <img src="../../images/aevg.png" class="" height="45">
             </a>
@@ -34,7 +34,6 @@ $dbh = new dbHandler;
 
                 <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
-                <li><a href="../services/services.php" class="nav-link px-2 link-dark">Services</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 
@@ -76,76 +75,185 @@ $dbh = new dbHandler;
             </div>
         </header>
     </div>
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../../images/e.png" class="d-block w-100 img-fluid bg-carousel">
 
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Example headline.</h1>
-                        <p>Some representative placeholder content for the first slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+
+    <main>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../images/e.png" class="d-block w-100 img-fluid bg-carousel vh-100">
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1 class="display-4">HOUSES</h1>
+
+                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../../images/q.png" class="d-block w-100 img-fluid  bg-carousel">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                <div class="carousel-item">
+                    <img src="../../images/interior.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
+
+                    </svg>
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1 class="display-4">INTERIOR DESIGN</h1>
+
+                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects </a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../../images/w.png" class="d-block w-100 img-fluid  bg-carousel">
-                <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>One more for good measure.</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                <div class="carousel-item">
+                    <img src="../../images/pool.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
+
+                    </svg>
+
+                    <div class="container">
+                        <div class="container">
+                            <div class="carousel-caption text-start">
+                                <h1 class="display-4 ">RESORTS</h1>
+
+                                <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 
-    <!-- <div class=" p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Lorem ipsum </h1>
-            <p class="lead fw-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, quas ipsam maxime at quaerat, ratione eum quod vero enim incidunt nam maiores dolore ipsum officiis magnam facere natus inventore eos!</p>
-            <a class="btn btn-outline-secondary" href="#">Coming soon</a>
-        </div>
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-    </div> -->
+
+            <!-- Marketing messaging and featurettes
+  ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+
+            <div class="container marketing">
+
+                <!-- Three columns of text below the carousel -->
 
 
 
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <!-- START THE FEATURETTES -->
 
-            </ul>
-            <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+                <hr>
 
-        </footer>
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-4">
+                        <h2 class="featurette-heading fw-normal lh-1s">CONSULTATION</h2>
+                        <p class="lead">We offer high-quality construction services to clients, and a key part of this involves providing accurate projections and project costing.</p>
+                    </div>
+                    <div class="col-md-8 ">
+
+                        <img class="img-fluid" src="../../images/interior.jpg">
+
+
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-8">
+                        <img class="img-fluid" src="../../images/interior.jpg">
+
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="fw-normal lh-1">INTERIOR DESIGN</h2>
+                        <p class="lead">Planning and design of man-made spaces, a part of environmental design and closely related to architecture.</p>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-4">
+                        <h2 class="featurette-heading fw-normal lh-1">BUDGET ESTIMATION</h2>
+                        <p class="lead"> Approximates the time and resources needed to plan and complete a project and develop and implement a viable budget.</p>
+                    </div>
+                    <div class="col-md-8">
+                        <img class="img-fluid" src="../../images/budget.jpg">
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-4 ">
+                        <img class="img-fluid" src="../../images/pm.jpg">
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class=" fw-normal lh-1">PROJECT MANAGEMENT</h2>
+                        <p class="lead">Project documentation, planning, tracking, and communication—all with the goal of delivering work successfully</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-4">
+                        <h2 class="featurette-heading fw-normal lh-1">CONSTRUCTION</h2>
+                        <p class="lead">Manufacture and trade based on the building, maintaining, and repairing structures.</p>
+                    </div>
+                    <div class="col-md-8">
+                        <img class="img-fluid" src="../../images/construction.jpg">
+
+                    </div>
+                </div>
+                <hr class="featurette-divider">
+
+                <!-- /END THE FEATURETTES -->
+
+            </div><!-- /.container -->
+
+
+            <div class="container-slider h-100">
+                <div class="row align-items-center h-100">
+                    <div class="container rounded">
+                        <h1 class="mb-2 text-center">Our Clients</h1>
+                        <div class="slider">
+                            <div class="logos">
+                                <i class="fab fa-js fa-4x"></i>
+                                <i class="fab fa-linkedin-in fa-4x"></i>
+                                <i class="fab fa-dribbble fa-4x"></i>
+                                <i class="fab fa-medium-m fa-4x"></i>
+                                <i class="fab fa-github fa-4x"></i>
+                            </div>
+                            <div class="logos">
+                                <i class="fab fa-js fa-4x"></i>
+                                <i class="fab fa-linkedin-in fa-4x"></i>
+                                <i class="fab fa-dribbble fa-4x"></i>
+                                <i class="fab fa-medium-m fa-4x"></i>
+                                <i class="fab fa-github fa-4x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container">
+                <footer class="py-3 my-4">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+
+                    </ul>
+                    <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+
+                </footer>
 
 </body>
+
 
 </html>

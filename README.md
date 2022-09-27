@@ -110,15 +110,15 @@
 
 ### 3. Home page
 
-- Home page static carousel. (Frontend)
-- List of Client. (Frontend)
-- List of Services. (Frontend)
+~~- Home page static carousel. (Frontend)~~
+~~-- List of Client. (Frontend)~~
+~~- List of Services. (Frontend)~~
 
 ### 4. About us
 
 - About AEVG Builders. (Frontend)
-- Location. (Google Maps) (Frontend)
-- Contact info. (Frontend)
+~~- Location. (Google Maps) (Frontend)~~
+~~- Contact info. (Frontend)~~
 
 ### 5. Projects
 
