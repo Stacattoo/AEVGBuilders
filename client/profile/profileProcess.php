@@ -3,13 +3,17 @@ include_once('../include/dbh.inc.php');
 $dbh = new dbHandler;
 
 //Profile Edit Info
-if (isset($_POST['firstName'])) {
+$img_path = "image/" . basename($_FILES['image']['name']);
 
     if (isset($_FILES['image']['name'])) {
         $img_path = "image/" . basename($_FILES['image']['name']);
     } else {
         $img_path = $_POST["file_path"];
     }
+    
+if (isset($_POST['firstName'])) {
+
+
     $info = (object) [
         'firstName' => $_POST['firstName'],
         'middleName' => $_POST['middleName'],
@@ -43,12 +47,10 @@ if (isset($_POST['firstName'])) {
     }
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $img_path)) {
-        if ($dbh->profileUpdate($info, $_SESSION['id'])) {
             echo json_encode(array(
                 "status" => 'success',
                 "msg" => 'Profile Update Successfully.'
             ));
-        }
     } else {
         echo json_encode(array(
             "status" => 'error',

@@ -77,84 +77,92 @@ $dbh = new dbHandler;
 
     <div class="form-container p-5 mt-3">
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-9 fw-bold fs-3">
                 Profile
+            </div> -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" type="button" id="passBtn">Change Password</a>
+            </li>
+        </ul>
+
+        <form id="profileForm">
+            <div class="row mt-3" >
+                <div class="col-4">
+
+                    <div id="imgForm" class="text-center mt-5">
+                        <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
+                        <input type="file" id="imgBtn" class="btn btn-dark mt-2 form-control" name="image">
+                        <input type="hidden" name="file_path" value="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>">
+                    </div>
+
+                </div>
+                <div class="col-6">
+
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
+                        <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
+                    </div>
+
+                    <div class="d-flex justify-content-evenly">
+                        <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No. (optional)">
+                        <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
+                        <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="alert alert-danger mt-3" role="alert" id="alertError">
+                    </div>
+                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                    </div>
+                    <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
+                </div>
             </div>
+        </form>
 
-            <form id="profileForm">
-                <div class="row">
-                    <div class="col-4">
+        <form id="changePassForm" class="row g-3 p-3">
+            <div class="row mt-3">
+                <div class="col-4">
+                </div>
+                <div class="col-6">
 
-                        <div id="imgForm" class="text-center mt-5">
-                            <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
-                            <input type="file" id="imgBtn" class="btn btn-dark mt-2 form-control" name="image">
-                            <input type="hidden" name="file_path" value="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>">
-                        </div>
-
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Current Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressOld" name="oldPass" required>
                     </div>
-                    <div class="col-6">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Info</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" type="button" id="passBtn">Change Password</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-flex justify-content-evenly">
-                            <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
-                            <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
-                            <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
-                        </div>
-
-                        <div class="d-flex justify-content-evenly">
-                            <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
-                            <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
-                        </div>
-                        <div class="d-flex justify-content-evenly">
-                            <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No. (optional)">
-                            <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
-                            <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>">
-                        </div>
-                        <div class="d-flex justify-content-evenly">
-                            <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>">
-                            <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>">
-                        </div>
-                        <div class="alert alert-danger mt-3" role="alert" id="alertError">
-                        </div>
-                        <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-                        </div>
-                        <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">New Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressNew" name="newPass" required>
                     </div>
-            </form>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Confirm Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressConfirm" name="confirmPass" required>
+                    </div>
 
-            <form id="changePassForm" class="row g-3 p-3">
+                    <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass">
+                    </div>
 
-                <div class="col-12 fw-bold">
-                    <label for="inputAddress" class="form-label">Current Password:</label>
-                    <input type="password" class="password form-control" id="inputAddressOld" name="oldPass" required>
-                </div>
-                <div class="col-12 fw-bold">
-                    <label for="inputAddress" class="form-label">New Password:</label>
-                    <input type="password" class="password form-control" id="inputAddressNew" name="newPass" required>
-                </div>
-                <div class="col-12 fw-bold">
-                    <label for="inputAddress" class="form-label">Confirm Password:</label>
-                    <input type="password" class="password form-control" id="inputAddressConfirm" name="confirmPass" required>
-                </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary mt-3 mb-5" id="savepass" name="savepass">Save changes</button>
+                    </div>
 
-                <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass">
                 </div>
-
-                <div class="mt-2">
-                    <button type="submit" class="btn btn-primary mt-3 mb-5" id="savepass" name="savepass">Save changes</button>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    </div>
+
+
 
 </body>
 
