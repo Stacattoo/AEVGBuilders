@@ -52,7 +52,7 @@ $(document).ready(function () {
         $("#errorAlert").hide();
         $.ajax({
             type: "POST",
-            url: "profileProcess.php",
+            url: "profileProcess.php", //
             data: { getAdminInfo: true },
             dataType: "JSON",
             success: function (data) {
@@ -62,7 +62,7 @@ $(document).ready(function () {
             error: function (response) {
                 console.log(response.responseText);
                 alert("SESSION expired login again");
-                window.location.href = 'index.html';
+                window.location.href = 'login/login.php';
             }
         });
     });
@@ -71,7 +71,7 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             type: "POST",
-            url: "profileProcess.php",
+            url: "profileProcess.php", //wala pa to
             data: new FormData(this),
             contentType: false,
             cache: false,

@@ -120,4 +120,18 @@ class dbHandler
         $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
         return mysqli_query($this->conn, $sql);
     }
+
+    function getAllAdminInfo($id){
+        $sql = "SELECT * FROM admin WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return (object) [
+                    'username' => $row['username'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                ];
+            }
+        }
+    }
 }
