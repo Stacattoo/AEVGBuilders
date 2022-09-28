@@ -77,15 +77,6 @@ $(document).ready(function () {
     });
 
 
-    $("#passBtn2").click(function () {
-       
-        $(this).addClass("active");
-        $("#profileInfo2").removeClass("active");
-        $("#changePassForm").show();
-        $("#profileForm").hide();
-
-    });
-
     $("#changePassForm").submit(function (event) {
         // console.log('test lang');
         event.preventDefault();

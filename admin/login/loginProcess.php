@@ -10,7 +10,7 @@ if (isset($_POST['email']) && isset($_POST['password'])){
             echo json_encode(array(
                 "status" => 'success'
             ));
-            // $_SESSION['admin_id'] = $id;
+            $_SESSION['admin_id'] = $id;
         } else {
             echo json_encode(array(
                 "status" => 'error',

@@ -60,7 +60,7 @@ $(document).ready(function () {
                 $("#email").val(data.email);
             },
             error: function (response) {
-                console.log(response.responseText);
+                console.error(response.responseText);
                 alert("SESSION expired login again");
                 window.location.href = 'login/login.php';
             }
