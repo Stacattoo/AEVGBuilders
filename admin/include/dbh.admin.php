@@ -134,4 +134,32 @@ class dbHandler
             }
         }
     }
+
+    function getAllBlocked(){
+        $query = "SELECT *, CONCAT(lastName,', ', firstName, ' ', middleName) AS fullName FROM employee WHERE status = 'block' ";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $blocked = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $blocked[] = (object) [
+                    "id" => $row['id'],
+                    "employee_id" => $row['employee_id'],
+                    "fullName" => $row['fullName'],
+                    "email" => $row['email'],
+                    
+                ];
+            }
+            return $blocked;
+        }
+    }
+
+    function updateStatustoUnblock($id){
+        $query = "UPDATE employee SET status='active', attempt='3' where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function updateStatustoBlock($key){
+        $query = "UPDATE employee SET status='block' WHERE email='$key' OR username='$key'";
+        return mysqli_query($this->conn, $query);
+    }
 }
