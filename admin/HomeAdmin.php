@@ -95,7 +95,7 @@ $dbh = new dbHandler();
         </div>
 
         <div id="content" class="pt-3">
-
+            
         </div>
 
     </div>
