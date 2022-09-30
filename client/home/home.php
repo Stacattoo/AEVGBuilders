@@ -23,7 +23,7 @@ $dbh = new dbHandler;
     <div class="container-fluid fixed-top px-0">
         <header class=" bg-light d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img src="../../images/aevg.png" class="" height="45">
+                <img src="../../images/aevg-nobg.png" class="" height="45">
             </a>
 
 
@@ -51,8 +51,8 @@ $dbh = new dbHandler;
 
                 <?php } else { ?>
 
+                    <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px">
                     <div class="dropdown">
-
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo $dbh->getFullname($_SESSION['id']); ?>
                         </button>
@@ -65,7 +65,7 @@ $dbh = new dbHandler;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../../../logout/logout.php">Logout</a></li>
 
                         </ul>
                     </div>
@@ -254,6 +254,23 @@ $dbh = new dbHandler;
                 </footer>
 
 </body>
+<!-- <script>
+    $(document).ready(function() {
 
+        var file = $("input[type=file]").get(0).files[0];
+
+        if (file) {
+
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                $("#profileImg").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script> -->
 
 </html>

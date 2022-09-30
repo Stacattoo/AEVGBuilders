@@ -1,6 +1,7 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@ $dbh = new dbHandler;
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  <!-- <script src="login.js"></script> -->
+  <script src="aboutUs.js"></script>
 </head>
 
 
@@ -36,52 +37,53 @@ $dbh = new dbHandler;
 
       <div class="col-md-3 text-end">
 
-<!-- Checking if the session is set -->
-<?php if (!isset($_SESSION['id'])) { ?>
+        <!-- Checking if the session is set -->
+        <?php if (!isset($_SESSION['id'])) { ?>
 
+          <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
+          <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
 
-    <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-    <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+        <?php } else { ?>
 
-<?php } else { ?>
+          <div class="dropdown">
 
-    <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php echo $dbh->getFullname($_SESSION['id']); ?>
+            </button>
 
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo $dbh->getFullname($_SESSION['id']); ?>
-        </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
 
-        <ul class="dropdown-menu dropdown-menu-dark">
-
-            <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-            <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-            <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
-            <li>
+              <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+              <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+              <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
+              <li>
                 <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+              </li>
+              <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
 
-        </ul>
-    </div>
+            </ul>
+          </div>
 
-<?php } ?>
+        <?php } ?>
 
-</div>
+      </div>
     </header>
   </div>
 
   <main class="container">
     <div class="background-img">
-    <div class="blur-effect">
-    <div class="p-4 p-md-5 mb-4 rounded text-light">
-    
-      <div class="col-md-6 px-0">
-        <h1 class="display-4">AEVG BUILDERS</h1>
-        <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
-        </p>
-        <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
-      </div>
-      </div>
+      <div class="blur-effect">
+        <div class="p-4 p-md-5 mb-4 rounded text-light">
+
+          <div class="col-md-6 px-0">
+            <h1 class="display-4">AEVG BUILDERS</h1>
+            <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
+            </p>
+            <p class="lead mb-0"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Schedule an Appointment.
+              </button></p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -128,15 +130,15 @@ $dbh = new dbHandler;
         <div>
 
           <h1 class="display-4">AEVG BUILDERS</h1>
-        
+
           <p class="lead mb-2"> <i class="mx-2 fas fa-map-marker-alt"></i> 002 San Pablo, Hagonoy Bulacan .</p>
           <p class="lead mb-2"> <i class="mx-2 fas fa-phone-alt"></i> +63 977 852 7307.</p>
           <p class="lead "><i class="mx-2   fas fa-envelope"></i> evgalangdesign@gmail.com</p>
         </div>
       </div>
       <div class="col-md-8">
-    
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100"  height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
 
@@ -151,6 +153,58 @@ $dbh = new dbHandler;
       </footer>
     </div>
 
+
+    <!-- Modal -->
+    <?php if ($dbh->getSched($_SESSION['id']) >= 1) { ?>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="card-header">
+              <h4 class="py-3 ms-4">Scheduling</h4>
+
+            </div>
+            <div class="modal-body text-start ps-5 px-5">
+              <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
+                You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
+              <h5 class="mt-3 mb-3">You are to be logged in to make an appointment. </h5>
+            </div>
+            <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <?php } else { ?>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="card-header">
+              <h4 class="py-3 ms-4">Scheduling</h4>
+
+            </div>
+            <div class="modal-body text-start ps-5 px-5">
+              <form id="scheduleForm">
+                <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
+                  You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
+                <h5 class="mt-3 mb-3">Title of the reason (optional): </h5>
+                <textarea class="form-control" aria-label="Reason for Scheduling" name="reason"></textarea>
+            </div>
+            <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <?php } ?>
 </body>
 
 </html>

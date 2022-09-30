@@ -191,8 +191,27 @@ class dbHandler
         return mysqli_query($this->conn, $sql);
     }
 
+    function insertSchedule($sched)
+    {
+        $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
+        //$fullName = $this->getFullname($sched->id);
+        // $this->addActivities($fullName, "Schedule", "Check your messages and email to see if your appointment is approved!");
+        return mysqli_query($this->conn, $sql);
+    }
 
-     
+    function getSched($id)
+    {
+        $sql = "SELECT `dateTime` FROM schedule WHERE user_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            $date = strtotime($row['dateTime']);
+            return date("M d, Y h:i A", $date);
+        } else {
+            return '';
+        }
+    }
+
     function __destroy()
     {
         $this->conn->close();
