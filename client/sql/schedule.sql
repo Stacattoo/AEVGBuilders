@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 03:28 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Generation Time: Oct 03, 2022 at 06:50 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,8 +41,12 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id`, `user_id`, `employee_id`, `dateTime`, `reason`, `status`) VALUES
-(1, 0, 0, '2022-09-30 08:38:35', 'dasda', 'pending'),
-(2, 1, 0, '2022-09-30 08:47:21', 'sa wakas huehue', 'pending');
+(1, 1, 1, '2022-09-30 08:38:35', 'dasda', 'pending'),
+(2, 2, 3, '2022-09-30 08:47:21', 'sa wakas huehue', 'pending'),
+(3, 3, 2, '2022-10-03 16:20:01', 'taburnok', 'pending'),
+(4, 4, 5, '2022-10-02 16:31:43', 'BUSY', 'pending'),
+(5, 5, 4, '2022-10-10 16:33:14', 'SUPErbusy', 'pending'),
+(6, 6, 6, '2022-10-05 04:34:32', 'BUSY MA IDOL', 'pending');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +66,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
