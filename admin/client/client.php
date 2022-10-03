@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client</title>
-</head>
-<body>
-    <h1>Client</h1>
-</body>
-</html>
+<script src="client/client.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<div class="container-fluid">
+    <h3><i class="fal fa-user-alt me-2"></i>Clients</h3>
+    <hr>
+    <div class="row g-2">
+        <div class="col-4">
+            <input type="search" name="search" id="search" class="form-control mb-2" placeholder="Search">
+            <div id="list" class="list-group"></div>
+        </div>
+        <div id="records" class="col"></div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        displayUsers();
+        $("#search").change(function(e) {
+            e.preventDefault();
+            displayUsers($(this).val());
+        });
+
+    });
+</script>

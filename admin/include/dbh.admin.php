@@ -75,6 +75,26 @@ class dbHandler
         }
     }
 
+
+    function getAllClientInfoByID($id){
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
+        FROM client WHERE id=$id";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)){
+            if ($row = mysqli_fetch_assoc($result)){
+                return (object)[
+                    'id' => $row['id'],
+                    'fullname' => $row['fullname'],
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address']
+                ];
+            }
+        }
+    }
+
     function getAllUserData(){
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
         CONCAT(houseNo, ' ', street, ' ', baranggay, ' ', municipality, ' ', province)
@@ -96,6 +116,26 @@ class dbHandler
             return $user;
         }
     }
+    function getAllUserClientData(){
+        $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
+        FROM client";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $user = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $user[] = (object) [
+                    "id" => $row['id'],
+                    "fullName" => $row['fullName'],
+                    "email" => $row['email'],
+                    "contact" => $row['contact_no'],
+                    "address" => $row['address'],
+                    
+                ];
+            }
+            return $user;
+        }
+    }
 
     function isUserAccountExist($id, $username, $email){
         $sql = "SELECT id FROM employee WHERE (username='$username' OR email='$email') AND id!='$id'";
@@ -103,8 +143,21 @@ class dbHandler
         return mysqli_num_rows($result);
     }
 
+    function isClientUserAccountExist($id, $username, $email){
+        $sql = "SELECT id FROM client WHERE (username='$username' OR email='$email') AND id!='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        return mysqli_num_rows($result);
+    }
+
     function updateUserInfo($value, $id){
         $sql = "UPDATE `employee` SET username='$value->username', firstName='$value->firstName', middleName='$value->middleName',
+             lastName='$value->lastName', email='$value->email', contact='$value->contact' WHERE id=$id";
+        $this->addActivities("Update User Info", "Admin update $value->firstName $value->lastName info with username $value->username");
+        return mysqli_query($this->conn, $sql);
+    }
+
+    function updateUserClientInfo($value, $id){
+        $sql = "UPDATE `client` SET username='$value->username', firstName='$value->firstName', middleName='$value->middleName',
              lastName='$value->lastName', email='$value->email', contact='$value->contact' WHERE id=$id";
         $this->addActivities("Update User Info", "Admin update $value->firstName $value->lastName info with username $value->username");
         return mysqli_query($this->conn, $sql);
@@ -117,6 +170,11 @@ class dbHandler
     }
 
     function updateSpecificInfo($id, $col, $value, $table = 'employee'){
+        $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
+        return mysqli_query($this->conn, $sql);
+    }
+
+    function updateSpecificClientInfo($id, $col, $value, $table = 'client'){
         $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
         return mysqli_query($this->conn, $sql);
     }
