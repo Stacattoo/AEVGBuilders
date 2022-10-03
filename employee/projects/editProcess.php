@@ -37,7 +37,4 @@ if(isset($_FILES['image']['name'])){
             ));
         }
 }
-        if(isset($_POST["getAllProjects_req"])) {
-            echo json_encode((array)$dbh->getAllProjects());
-            
-        }
+

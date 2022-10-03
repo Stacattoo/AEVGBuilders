@@ -119,19 +119,27 @@ class dbHandler
         return mysqli_num_rows($result);
     }
 
-    function getAllProjects() {
+    function deleteProject($id)
+    {
+        $sql = "DELETE FROM `projects` WHERE `id`=$id";
+        return mysqli_query($this->conn, $sql);
+        
+    }
+
+    function getAllProjects()
+    {
         $query = "SELECT * FROM projects";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
-               $projects[] = (object)[
-                "id" => $row["id"],
-                "title" => $row["title"],
-                "description" => $row["description"],
-                "category" => $row["category"],
-                "image" => explode(",", $row["image"]),
-               ];
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
+                    "category" => $row["category"],
+                    "image" => explode(",", $row["image"]),
+                ];
             }
         }
         return $projects;

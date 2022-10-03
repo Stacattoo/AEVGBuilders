@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     $("#alertError").hide();
     $("#alertSuccess").hide();
-
+    $("#alertErrorEdit").hide();
+    $("#alertSuccessEdit").hide();
+    refreshTable();
     $("#uploadProjects").submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -22,11 +24,14 @@ $(document).ready(function () {
                     $("#alertSuccess").html(response.msg);
                     $("#alertSuccess").show();
                     $("#uploadProjects").trigger("reset");
+                    refreshTable();
 
                 }
             }
         });
     });
+
+
 
     $('#uploadProjects').change(function (event) {
 
@@ -51,52 +56,97 @@ $(document).ready(function () {
         }
 
     });
+    function refreshTable() {
+        $.ajax({
+            type: "post",
+            url: "../projects/projectsProcess.php",
+            data: {
+                getAllProjects_req: true
+            },
+            dataType: "json",
+            success: function (response) {
 
-    $.ajax({
-        type: "post",
-        url: "../projects/projectsProcess.php",
-        data: {
-            getAllProjects_req: true
-        },
-        dataType: "json",
-        success: function (response) {
-            // var filter = response.filter(function (data) {
-            //         return data.category == "renovation";
-            // })
+                let content = ``;
 
-            let content = ``;
-            $.each(response, function (indexInArray, data) {
-                console.log(data);
-                content += `
-                    <tbody class="projectEditDiv" data-id="${data.id}">
-                        <tr>
+                $.each(response, function (indexInArray, data) {
+                    console.log(data);
+                    content += `
+                   
+                        <tr class="projectEditDiv" data-id="${data.id}">
                         <th scope="row">${data.id}</th>
-                        <td>${data.title}</td>
-                        <td>${data.category}</td>
-                        <td>${data.image}</td>
-                        <td>${data.description}</td>
+                        <td class="align-middle">${data.title}</td>
+                        <td class="align-middle">${data.category}</td>
+                        <td class="align-middle">${data.description}</td>
+
                         </tr>
-                    <tbody>
                  `;
-            });
-            $("#projects").html(content);
+
+                });
+                $("#projects").html(content);
+                $('.projectEditDiv').click(function (e) {
+                    e.preventDefault();
+
+                    projectId = $(this).data("id");
+                    dataFilter = response.filter(function (eachEditInfo) {
+                        console.log(eachEditInfo);
+
+                        return eachEditInfo.id == projectId;
+                    })[0];
+
+                    let contentEdit = ``;
+                    $.each(dataFilter.image, function (indexInArray, data) {
+                        console.log(data);
+                        contentEdit += `
+                                <div class="col">
+                                    <div class="border"><img src="../projects/${data}" class="d-block img-fluid img">
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                    </div>
+                                  </span>
+                                </div>
+                            `;
+                        $('#view-editImage').html(contentEdit);
+                    });
+
+                    $('#deleteBtn').attr("data-id", dataFilter.id);
+                    $('#edit-title').val(dataFilter.title);
+                    $('#edit-category').val(dataFilter.category);
+                    $('#edit-image').attr("src", dataFilter.image);
+                    $('#edit-description').html(dataFilter.description);
+                    $('#editProjectModal').modal("show");
+
+                });
+
+                // console.log(response);
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
 
 
-            // console.log(response);
-        },
-        error: function (response) {
-            console.error(response.responseText);
-        }
-
-
-    });
-
-    $('.projectEditDiv').click(function (e) {
+        });
+    }
+    $('#deleteBtn').click(function (e) {
         e.preventDefault();
+        deleteId = $(this).attr("data-id");
+        $.ajax({
+            type: "post",
+            url: "../projects/deleteProject.php",
+            data: {
+                deleteProjects_req: true,
+                id: deleteId
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#editProjectModal').modal("hide");
+                refreshTable();
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
 
-        console.log(projectId = $(this).data("id"));
-
-        // $('#edit-title').val(projectId.title);
-        // $('#edit-title').val(projectId.title);
+        });
     });
+
 });
