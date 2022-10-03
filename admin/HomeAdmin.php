@@ -65,7 +65,7 @@ $dbh = new dbHandler();
                         </li>
                         <li>
                             <button type="button" id="scheduleNav" class="nav-link text-white">
-                                <i class="fal fa-paperclip bi me-2"></i>
+                                <i class="fad fa-calendar-alt bi me-2"></i>
                                 <span class="d-none d-lg-inline">Schedule</span>
                             </button>
                         </li>

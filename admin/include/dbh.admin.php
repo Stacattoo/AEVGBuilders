@@ -220,4 +220,26 @@ class dbHandler
         $query = "UPDATE employee SET status='block' WHERE email='$key' OR username='$key'";
         return mysqli_query($this->conn, $query);
     }
+
+    function displayAllResult(){
+        $sql = "SELECT schedule.*, CONCAT( employee.firstName,' ', employee.lastName) AS employeeName, CONCAT( client.firstName,' ', client.lastName) AS clientName   FROM `schedule`
+        INNER JOIN  employee ON schedule.employee_id = employee.id INNER JOIN  client ON schedule.user_id = client.id";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)){
+         $res = array();
+         while ($row = mysqli_fetch_assoc($result)) {
+             $dateStart = strtotime($row['dateStart']);
+             $dateEnd = strtotime($row['dateEnd']);
+             $res[] = (object)[
+                 'id' => $row['id'],
+                 'dateStart' => date("M d, Y h:i A", $dateStart),
+                 'dateEnd' => date("M d, Y h:i A", $dateEnd),
+                 'status' => $row['status'],
+                 'employeeName' => $row['employeeName'],
+                 'clientName' => $row['clientName']
+             ];
+         }
+         return $res;
+     } 
+    }
 }
