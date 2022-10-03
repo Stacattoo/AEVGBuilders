@@ -11,7 +11,7 @@ $dbh = new dbHandler;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Project</title>
 	<link rel="stylesheet" href="../include/style.css">
-	<!-- <link rel="stylesheet" href="aboutus.css"> -->
+	<link rel="stylesheet" href="project.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -36,37 +36,37 @@ $dbh = new dbHandler;
 
 			<div class="col-md-3 text-end">
 
-<!-- Checking if the session is set -->
-<?php if (!isset($_SESSION['id'])) { ?>
+				<!-- Checking if the session is set -->
+				<?php if (!isset($_SESSION['id'])) { ?>
 
 
-	<a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-	<a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+					<a href="../register/register.php" class="btn btn-dark">Sign-up</a>
+					<a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
 
-<?php } else { ?>
+				<?php } else { ?>
 
-	<div class="dropdown">
+					<div class="dropdown">
 
-		<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			<?php echo $dbh->getFullname($_SESSION['id']); ?>
-		</button>
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<?php echo $dbh->getFullname($_SESSION['id']); ?>
+						</button>
 
-		<ul class="dropdown-menu dropdown-menu-dark">
+						<ul class="dropdown-menu dropdown-menu-dark">
 
-			<li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-			<li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-			<li><a class="dropdown-item" href="../order/order.php">Order</a></li>
-			<li>
-				<hr class="dropdown-divider">
-			</li>
-			<li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+							<li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+							<li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+							<li><a class="dropdown-item" href="../order/order.php">Order</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
 
-		</ul>
-	</div>
+						</ul>
+					</div>
 
-<?php } ?>
+				<?php } ?>
 
-</div>
+			</div>
 		</header>
 	</div>
 	<div class="container">
@@ -86,11 +86,38 @@ $dbh = new dbHandler;
 		<div class="album py-5 bg-light">
 			<div class="container">
 
-				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="materials">
-					
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 " id="materials">
+					<div class="col">
+						<div class="card">
+
+							<div id="carouselExampleInterval" class="carousel slide">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+									<img src="../../images/budget.jpg" class="d-block w-70 img-fluid img ">
+									</div>
+									<div class="carousel-item">
+									<img src="../../images/construction.jpg" class="d-block w-70 img-fluid img">
+									</div>
+									<div class="carousel-item">
+										<img src="../../images/cement.jpg" class="d-block w-70 img-fluid img">
+									</div>
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+							<div class="card-body">
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+
 				</div>
-
-
 				<div class="container">
 					<footer class="py-3 my-4">
 						<ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -99,6 +126,7 @@ $dbh = new dbHandler;
 						<p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
 
 					</footer>
+				</div>
 
 </body>
 

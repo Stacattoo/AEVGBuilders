@@ -8,7 +8,7 @@ $dbh = new dbHandler;
     for($i=0; $i<$imageCount; $i++){
         $file_name = $_FILES['image']['name'][$i];
         $file_tmp = $_FILES["image"]["tmp_name"][$i];
-        $img_path = "image/" . basename($file_name);
+        $img_path = "images/" . basename($file_name);
         $paths .= $img_path . ",";
 
     }

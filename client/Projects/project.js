@@ -24,26 +24,52 @@ $(document).ready(function () {
         },
         dataType: "json",
         success: function (response) {
+        console.log(response);
           // var filter = response.filter(function (data) {
         //         return data.category == "renovation";
             // })
             let content = ``;
             $.each(response, function (indexInArray, data) {
-                console.log(data);
+                console.log(data.image);
+                let images = ``;
+                $.each(data.image, function (indexInArray, path) {
+                    let active = '';
+                    if (indexInArray == 0) {
+                        active = "active";
+                    }
+                    images += `<div class="carousel-item ${active}">
+									<img src="../../${path}" class="d-block w-70 img-fluid img ">
+									</div>`;
+                });
+
+              
+
                 content += `
-                 <div class="col"><a href=""></a>
-                    <div class="card text-bg-light">
-                        <img src="../../${data.image}" class="card-img" alt="">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">${data.id}</h5>
-                            <p class="card-text">${data.description}</p>
-                        </div>							
-                    </div>
-                </div>
+                <div class="col">
+						<div class="card">
+
+							<div id="carouselExampleInterval${indexInArray}" class="carousel slide">
+								<div class="carousel-inner">
+									${images}
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval${indexInArray}" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval${indexInArray}" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+							<div class="card-body">
+								<p class="card-text">${data.description}</p>
+							</div>
+						</div>
+					</div>
                  `;
             });
             $("#materials").html(content);
-            // console.log(response);
+           
         },
         error: function (response) {
             console.error(response.responseText);
