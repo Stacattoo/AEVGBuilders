@@ -49,7 +49,7 @@ class dbHandler
                 "title" => $row["title"],
                 "description" => $row["description"],
                 "category" => $row["category"],
-                "image" => $row["image"],
+                "image" => explode(",", $row["image"]),
                ];
             }
         }

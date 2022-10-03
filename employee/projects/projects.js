@@ -34,4 +34,21 @@ $(document).ready(function () {
         $("#alertSuccess").hide();
 
     });
+
+    $('#imgBtn').change(function () {
+
+        var file = $("input[type=file]").get(0).files[0];
+
+        if (file) {
+
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                $("#profileImg").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+
+    });
 });
