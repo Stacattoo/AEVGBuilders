@@ -1,8 +1,7 @@
 <?php
 include('../include/dbh.employee.php');
 $dbh = new dbHandler;
-
-
+if(isset($_FILES['image']['name'])){
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
     for($i=0; $i<$imageCount; $i++){
@@ -36,5 +35,8 @@ $dbh = new dbHandler;
                 "msg" => 'There was a problem Uploading, Please try again.'
             ));
         }
-        
-    // }
+}
+        if(isset($_POST["getAllProjects_req"])) {
+            echo json_encode((array)$dbh->getAllProjects());
+            
+        }
