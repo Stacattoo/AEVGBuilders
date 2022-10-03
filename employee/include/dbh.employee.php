@@ -137,4 +137,15 @@ class dbHandler
         return $projects;
     }
 
+    function getValueByID($value, $id, $table = "projects")
+    {
+        $sql = "SELECT `$value` FROM $table WHERE id=$id";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return $row[$value];
+                // return $sql;
+            }
+        }
+    }
 }
