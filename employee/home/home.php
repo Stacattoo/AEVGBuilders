@@ -46,12 +46,6 @@ $dbh = new dbHandler;
                             </button>
                         </li>
                         <li>
-                            <button type="button" id="materialsNav" class="nav-link text-black">
-                                <i class="fab fa-product-hunt bi me-2"></i>
-                                <span class="d-none d-lg-inline">Materials</span>
-                            </button>
-                        </li>
-                        <li>
                             <button type="button" id="scheduleNav" class="nav-link text-black">
                                 <i class="fad fa-calendar-alt bi me-2"></i>
                                 <span class="d-none d-lg-inline">Schedule</span>

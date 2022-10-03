@@ -51,7 +51,7 @@ $dbh = new dbHandler;
 
                 <?php } else { ?>
 
-                    <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px">
+                    <!-- <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px"> -->
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo $dbh->getFullname($_SESSION['id']); ?>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../materials/materials.php");
+    $("#content").load("../projects/projects.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {

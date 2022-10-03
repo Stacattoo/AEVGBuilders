@@ -24,7 +24,7 @@ $dbh = new dbHandler;
                     </select>
             </div>
             <div class="input-group mb-3">
-                <h5>Product Image: &nbsp;</h4><input type="file" class="" name="image" placeholder="image" aria-label="image" aria-describedby="basic-addon1" required>
+                <h5>Product Image: &nbsp;</h4><input type="file" class="" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required>
             </div>
             <div class="input-group mb-3">
                 <h5>Product Description: &nbsp;</h4><textarea class="" name="description" placeholder="Description" aria-label="With textarea"></textarea>

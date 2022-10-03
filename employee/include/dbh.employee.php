@@ -107,6 +107,11 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    // function uploadImage($value){
+    //     $query = "INSERT INTO image(image) VALUES ($value)";
+    //     return mysqli_query($this->conn, $query);
+    // }
+
     function checkIfSomeAlrExist($key, $table, $col)
     {
         $sql = "SELECT id FROM $table WHERE $col='$key'";
