@@ -2,17 +2,6 @@
 include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
-// if ($dbh->checkIfSomeAlrExist($_POST['title'], 'projects', 'title')) {
-
-//     echo json_encode(array(
-//         "status" => 'error',
-//         'msg' => "Project Already Exist!"
-//     ));
-// } else {
-// echo json_encode(array(
-//     "status" => 'success',
-//     'msg' => "Product Dont Exist!"
-// ));
 
     $imageCount = count($_FILES['image']['name']);
     $paths = "";

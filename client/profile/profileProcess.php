@@ -5,28 +5,19 @@ $dbh = new dbHandler;
 //Profile Edit Info
 $img_path = "";
 
-if (!isset($_FILES['image']['name'])) {
-
-    // echo "hindi naka set";
+// var_dump($_FILES);
+if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+    
     $img_path = "image/" . basename($_FILES['image']['name']);
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $img_path)) {
+    move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
 
-        echo json_encode(array(
-            "status" => 'success',
-            "msg" => 'Profile Update Successfully.'
-        ));
-    } else {
-        echo json_encode(array(
-            "status" => 'error',
-            "msg" => 'There was a problem uploading, Please try again.'
-        ));
-    }
 
 } else {
 
     // echo "naka set";
     $img_path = $_POST["file_path"];
+    // echo $img_path;
 }
 
 if (isset($_POST['firstName'])) {
@@ -48,7 +39,8 @@ if (isset($_POST['firstName'])) {
 
 
     if ($dbh->profileUpdate($info, $_SESSION['id'])) {
-        move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
+        // echo $img_path;
+        // move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Profile Update Successfully.'

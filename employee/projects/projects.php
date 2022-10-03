@@ -42,7 +42,7 @@ $dbh = new dbHandler;
                 <button type="submit" class="btn btn-dark">Upload Product</button>
                 </div>
                 <div class="col-6">
-                <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
+                
                 </div>
             </form>
         </div>
