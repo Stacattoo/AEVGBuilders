@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 03:09 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 03, 2022 at 02:34 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,16 +31,17 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
-(1, 'admin', 'sagunhannaclarisse@gmail.com', 'admin123'),
-(2, 'admin2', 'cedmartin031@gmail.com', 'admin1234');
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `image`) VALUES
+(1, 'admin', 'sagunhannaclarisse@gmail.com', 'admin123', ''),
+(2, 'admin2', 'cedmartin031@gmail.com', 'admin1234', '');
 
 -- --------------------------------------------------------
 
@@ -110,6 +111,7 @@ CREATE TABLE `employee` (
   `middleName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `employee_id` varchar(255) NOT NULL,
   `contactNo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -126,13 +128,13 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `firstName`, `middleName`, `lastName`, `username`, `contactNo`, `email`, `password`, `houseNo`, `street`, `baranggay`, `municipality`, `province`, `attempt`, `status`) VALUES
-(1, 'hanna clarisse', NULL, 'sagun', 'bsu', '12345', 'sagunhannaclarisse@gmail.com', '123', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 3, 'active'),
-(2, 'Zach', 'DC.', 'Anderson', 'zach00', '09786543489', 'zach00@gmail.com', 'zach123', '32', 'Bagumbayan Street', 'Tambunting', 'Bulakan', 'Bulacan', 3, 'active'),
-(3, 'Jerwin', 'A.', 'Pascual', 'jerwin00', '09896754356', 'jerwin00@gmail.com', 'jerwin123', '32', 'Purok 3', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
-(4, 'Jefferson', 'K.', 'Cailipan', 'jefferson00', '09784138769', 'jefferson00@gmail.com', 'jefferson123', '32', 'Purok 4', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
-(5, 'Keith', 'M.', 'Balagtas', 'keith00', '09786912845', 'keith00@gmail.com', 'keith123', '67', 'Purok 5', 'Longos', 'Malolos', 'Bulacan', 3, 'active'),
-(6, 'Lincoln', 'M.', 'Arellano', 'lincoln00', '09786572967', 'lincoln00@gmail.com', 'lincoln123', '78', 'Purok 1', 'Sto Rosario', 'Paombong', 'Bulacan', 3, 'active');
+INSERT INTO `employee` (`id`, `firstName`, `middleName`, `lastName`, `username`, `employee_id`, `contactNo`, `email`, `password`, `houseNo`, `street`, `baranggay`, `municipality`, `province`, `attempt`, `status`) VALUES
+(1, 'hanna clarisse', NULL, 'sagun', 'admin', '2018101442', '12345', 'sagunhannaclarisse1@gmail.com', 'mori', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 3, 'block'),
+(2, 'Zach', 'DC.', 'Anderson', 'zach00', '', '09786543489', 'zach00@gmail.com', 'zach123', '32', 'Bagumbayan Street', 'Tambunting', 'Bulakan', 'Bulacan', 3, 'active'),
+(3, 'Jerwin', 'A.', 'Pascual', 'jerwin00', '', '09896754356', 'jerwin00@gmail.com', 'jerwin123', '32', 'Purok 3', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
+(4, 'Jefferson', 'K.', 'Cailipan', 'jefferson00', '', '09784138769', 'jefferson00@gmail.com', 'jefferson123', '32', 'Purok 4', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
+(5, 'Keith', 'M.', 'Balagtas', 'keith00', '', '09786912845', 'keith00@gmail.com', 'keith123', '67', 'Purok 5', 'Longos', 'Malolos', 'Bulacan', 3, 'active'),
+(6, 'Lincoln', 'M.', 'Arellano', 'lincoln00', '', '09786572967', 'lincoln00@gmail.com', 'lincoln123', '78', 'Purok 1', 'Sto Rosario', 'Paombong', 'Bulacan', 3, 'active');
 
 -- --------------------------------------------------------
 
@@ -182,6 +184,28 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`id`, `title`, `image`, `category`, `description`, `status`) VALUES
 (3, 'Dentist Offic', '../image/0ef6c28296c63e7a07184dfaedab049c.jpg', 'Interior', 'sadasdad', 'active');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(12) NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `dateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reason` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `user_id`, `dateTime`, `reason`, `status`) VALUES
+(1, 0, '2022-09-30 08:38:35', 'dasda', 'pending'),
+(2, 1, '2022-09-30 08:47:21', 'sa wakas huehue', 'pending');
+
 --
 -- Indexes for dumped tables
 --
@@ -218,6 +242,12 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -250,6 +280,12 @@ ALTER TABLE `material`
 --
 ALTER TABLE `projects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
