@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // $("#content").load("dashboard/dashboard.php");
-    $("#content").load("report/report.php");
+    $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $(".nav-link").click(function (e) {
         e.preventDefault();
@@ -23,9 +23,19 @@ $(document).ready(function () {
         $("#content").load("client/client.php");
     });
 
-    $("#reportNav").click(function (e) {
+    $("#projectNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("report/report.php");
+        $("#content").load("project/project.php");
+    });
+
+    $("#scheduleNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("schedule/schedule.php");
+    });
+
+    $("#materialsNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("materials/materials.php");
     });
 
     $("#blockedNav").click(function (e) {

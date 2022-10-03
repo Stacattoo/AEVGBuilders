@@ -5,6 +5,7 @@ $dbh = new dbHandler();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +21,9 @@ $dbh = new dbHandler();
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="moment.js"></script>
     <script src="admin.js"></script>
-    
+
 </head>
+
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="position-fixed d-print-none">
@@ -50,22 +52,29 @@ $dbh = new dbHandler();
                         </li>
                         <li>
                             <button type="button" id="clientNav" class="nav-link text-white">
-                                <i class="fad fa-calendar-alt bi me-2"></i>
+                                <!-- <i class="fad fa-calendar-alt bi me-2"></i> -->
+                                <i class="far fa-user-alt bi me-2"></i>
                                 <span class="d-none d-lg-inline">Client</span>
                             </button>
                         </li>
                         <li>
-                            <button type="button" id="reportNav" class="nav-link text-white">
-                                <i class="fal fa-paperclip bi me-2"></i>
-                                <span class="d-none d-lg-inline">Design</span>
+                            <button type="button" id="projectNav" class="nav-link text-white">
+                                <i class="fa-sharp fa-solid fa-folder-open"></i>
+                                <span class="d-none d-lg-inline">Project</span>
                             </button>
                         </li>
-                        <!-- <li>
-                            <button type="button" id="reportNav" class="nav-link text-white">
+                        <li>
+                            <button type="button" id="scheduleNav" class="nav-link text-white">
                                 <i class="fal fa-paperclip bi me-2"></i>
-                                <span class="d-none d-lg-inline">Design</span>
+                                <span class="d-none d-lg-inline">Schedule</span>
                             </button>
-                        </li> -->
+                        </li>
+                        <li>
+                            <button type="button" id="materialsNav" class="nav-link text-white">
+                                <i class="fal fa-paperclip bi me-2"></i>
+                                <span class="d-none d-lg-inline">Materials</span>
+                            </button>
+                        </li>
                         <li>
                             <button type="button" id="blockedNav" class="nav-link text-white">
                                 <i class="fas fa-ban bi me-2"></i>
@@ -95,7 +104,7 @@ $dbh = new dbHandler();
         </div>
 
         <div id="content" class="pt-3">
-            
+
         </div>
 
     </div>
@@ -110,7 +119,7 @@ $dbh = new dbHandler();
                 </div>
                 <form id="profileForm">
                     <div class="modal-body">
-                    <div class="form-floating mb-2">
+                        <div class="form-floating mb-2">
                             <input type="text" class="form-control" id="username" name="username" placeholder="username" minlength="5" required>
                             <label for="text">Username</label>
                         </div>
@@ -123,7 +132,7 @@ $dbh = new dbHandler();
                             <label for="password">Password</label>
                         </div>
                         <div id="pass" class="collapse">
-                        <div class="form-floating mb-2">
+                            <div class="form-floating mb-2">
                                 <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required disabled>
                                 <label for="newPassword">New Password</label>
                             </div>
@@ -146,4 +155,5 @@ $dbh = new dbHandler();
         </div>
     </div>
 </body>
+
 </html>
