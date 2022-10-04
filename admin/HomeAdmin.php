@@ -59,7 +59,7 @@ $dbh = new dbHandler();
                         </li>
                         <li>
                             <button type="button" id="projectNav" class="nav-link text-white">
-                                <i class="fa-sharp fa-solid fa-folder-open"></i>
+                                <i class="fad fa-folder-open bi me-2"></i>
                                 <span class="d-none d-lg-inline">Project</span>
                             </button>
                         </li>

@@ -25,11 +25,12 @@ class dbHandler
         return mysqli_num_rows($result);
     }
 
-    function checkAccount($key, $password){
+    function checkAccount($key, $password)
+    {
         $query = "SELECT * FROM admin WHERE (email = '$key' OR username = '$key')  AND  password ='$password'";
         $result = mysqli_query($this->conn, $query);
-        if (mysqli_num_rows($result)){
-            if ($row = mysqli_fetch_assoc($result)){
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
                 return $row["id"];
             }
         }
@@ -48,28 +49,48 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    function getAllInfoByID($id){
+    function getAllInfoByID($id)
+    {
         $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
-        CONCAT(houseNo, ' ', street, ' ', baranggay, ' ', municipality, ' ', province) AS address
-        FROM employee WHERE id=$id";
+            CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
+            FROM employee WHERE id=$id";
         $result = mysqli_query($this->conn, $query);
-        if (mysqli_num_rows($result)){
-            if ($row = mysqli_fetch_assoc($result)){
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"];
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $res = mysqli_query($this->conn, $sql);
+                $client = array();
+                if (mysqli_num_rows($res)) {
+                    while ($row_client = mysqli_fetch_assoc($res)) {
+                        $client[] = (object)[
+                            'id' => $row_client["id"],
+                            'name' => $row_client["fullname"],
+                            'email' => $row_client["email"],
+                            'contact_no' => $row_client["contact_no"],
+                            'status' => $row_client["status"],
+                        ];
+                    }
+                }
                 return (object)[
-                    'id' => $row['id'],
+                    'id' => $id,
                     'firstName' => $row['firstName'],
                     'lastName' => $row['lastName'],
+                    'middleName' => $row['middleName'],
+                    'fullName' => $row['fullname'],
                     'username' => $row['username'],
                     'contactNo' => $row['contactNo'],
                     'email' => $row['email'],
                     'password' => $row['password'],
+                    'address' => $row['address'],
                     'houseNo' => $row['houseNo'],
                     'street' => $row['street'],
-                    'baranggay' => $row['baranggay'],
+                    'barangay' => $row['barangay'],
                     'municipality' => $row['municipality'],
                     'province' => $row['province'],
                     'attempt' => $row['attempt'],
                     'status' => $row['status'],
+                    'clients' => $client
                 ];
             }
         }
@@ -97,8 +118,8 @@ class dbHandler
 
     function getAllUserData(){
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
-        CONCAT(houseNo, ' ', street, ' ', baranggay, ' ', municipality, ' ', province)
-        FROM employee WHERE status='active'";
+        CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ' ', province)
+        FROM employee WHERE status='active' ORDER BY id DESC";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $user = array();
@@ -108,9 +129,14 @@ class dbHandler
                     "username" => $row['username'],
                     "fullName" => $row['fullName'],
                     "email" => $row['email'],
-                    "contact" => $row['contact'],
-                    "address" => $row['address'],
-                    
+                    "contact" => $row['contactNo'],
+                    "houseNo" => $row['houseNo'],
+                    "street" => $row['street'],
+                    "barangay" => $row['barangay'],
+                    "municipality" => $row['municipality'],
+                    "province" => $row['province'],
+                    "profile_picture" => $row['profile_picture'],
+
                 ];
             }
             return $user;
@@ -137,7 +163,8 @@ class dbHandler
         }
     }
 
-    function isUserAccountExist($id, $username, $email){
+    function isUserAccountExist($id, $username, $email)
+    {
         $sql = "SELECT id FROM employee WHERE (username='$username' OR email='$email') AND id!='$id'";
         $result = mysqli_query($this->conn, $sql);
         return mysqli_num_rows($result);
@@ -152,24 +179,40 @@ class dbHandler
     function updateUserInfo($value, $id){
         $sql = "UPDATE `employee` SET username='$value->username', firstName='$value->firstName', middleName='$value->middleName',
              lastName='$value->lastName', email='$value->email', contact='$value->contact' WHERE id=$id";
-        $this->addActivities("Update User Info", "Admin update $value->firstName $value->lastName info with username $value->username");
         return mysqli_query($this->conn, $sql);
     }
 
     function updateUserClientInfo($value, $id){
         $sql = "UPDATE `client` SET username='$value->username', firstName='$value->firstName', middleName='$value->middleName',
              lastName='$value->lastName', email='$value->email', contact='$value->contact' WHERE id=$id";
-        $this->addActivities("Update User Info", "Admin update $value->firstName $value->lastName info with username $value->username");
         return mysqli_query($this->conn, $sql);
     }
 
-    function addActivities($activity, $details) {
-        $query = "INSERT INTO activities(user, activity, details) 
-            VALUES ('admin', '$activity', '$details')";
-        return mysqli_query($this->conn, $query);
+    function editEmployee($value)
+    {
+        $sql = "UPDATE `employee` SET `firstName`='$value->firstName',`middleName`='$value->middleName',`lastName`='$value->lastName',`contactNo`='$value->contactNo',`email`='$value->email',`houseNo`='$value->houseNo',`street`='$value->street',`barangay`='$value->barangay',`municipality`='$value->municipality',`province`='$value->province' WHERE id=$value->id";
+        
+        if (mysqli_query($this->conn, $sql)) {
+            return (object) ['status' => true, 'msg' => ''];
+        } else {
+            return (object) ['status' => false, 'sql' => $sql, 'msg' => "Error description: " . mysqli_error($this->conn)];
+        }
     }
 
-    function updateSpecificInfo($id, $col, $value, $table = 'employee'){
+    function addNewEmployee($details)
+    {
+        $query = "INSERT INTO `employee`(`firstName`, `middleName`, `lastName`, `username`, `contactNo`, `email`, `password`, `houseNo`, `street`, `barangay`, `municipality`, `province`) VALUES ('$details->firstName','$details->middleName','$details->lastName','$details->username','$details->contactNo','$details->email','$details->password','$details->houseNo','$details->street','$details->barangay','$details->municipality','$details->province')";
+        if (mysqli_query($this->conn, $query)) {
+            return (object) ['status' => true, 'msg' => ''];
+        } else {
+            return (object) ['status' => false, 'sql' => $query, 'msg' => "Error description: " . mysqli_error($this->conn)];
+        }
+    }
+
+    
+
+    function updateSpecificInfo($id, $col, $value, $table = 'employee')
+    {
         $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
         return mysqli_query($this->conn, $sql);
     }
@@ -193,7 +236,8 @@ class dbHandler
         }
     }
 
-    function getAllBlocked(){
+    function getAllBlocked()
+    {
         $query = "SELECT *, CONCAT(lastName,', ', firstName, ' ', middleName) AS fullName FROM employee WHERE status = 'block' ";
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result) > 0) {
@@ -204,19 +248,21 @@ class dbHandler
                     "employee_id" => $row['employee_id'],
                     "fullName" => $row['fullName'],
                     "email" => $row['email'],
-                    
+
                 ];
             }
             return $blocked;
         }
     }
 
-    function updateStatustoUnblock($id){
+    function updateStatustoUnblock($id)
+    {
         $query = "UPDATE employee SET status='active', attempt='3' where id='$id'";
         return mysqli_query($this->conn, $query);
     }
 
-    function updateStatustoBlock($key){
+    function updateStatustoBlock($key)
+    {
         $query = "UPDATE employee SET status='block' WHERE email='$key' OR username='$key'";
         return mysqli_query($this->conn, $query);
     }
