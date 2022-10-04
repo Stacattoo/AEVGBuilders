@@ -108,7 +108,7 @@ $(document).ready(function () {
                         $('#view-editImage').html(contentEdit);
                     });
                     
-                    $('.deleteImgBtn').attr("data-id", data);
+                    $('.deleteImgBtn').attr("data-id");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
                     $('#edit-category').val(dataFilter.category);
