@@ -126,6 +126,13 @@ class dbHandler
         
     }
 
+    function deleteImage($id)
+    {
+        $sql = "DELETE `image` FROM `projects` WHERE `id`=$id";
+        return mysqli_query($this->conn, $sql);
+        
+    }
+
     function getAllProjects()
     {
         $query = "SELECT * FROM projects";

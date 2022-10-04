@@ -98,22 +98,24 @@ $(document).ready(function () {
                         console.log(data);
                         contentEdit += `
                                 <div class="col">
-                                    <div class="border"><img src="../projects/${data}" class="d-block img-fluid img">
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
+                                    <div class="border">
+                                    <button class="deleteImgBtn" id="imageDeleteBtn${indexInArray}"  data-id="">
+                                    <img src="../projects/${data}" class="d-block img-fluid img">
+                                    </button>
                                     </div>
-                                  </span>
                                 </div>
                             `;
                         $('#view-editImage').html(contentEdit);
                     });
-
+                    
+                    $('.deleteImgBtn').attr("data-id", data);
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
                     $('#edit-category').val(dataFilter.category);
                     $('#edit-image').attr("src", dataFilter.image);
                     $('#edit-description').html(dataFilter.description);
                     $('#editProjectModal').modal("show");
+
 
                 });
 
@@ -141,6 +143,29 @@ $(document).ready(function () {
                 console.log(response);
                 $('#editProjectModal').modal("hide");
                 refreshTable();
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
+
+        });
+    });
+
+    $('.deleteImgBtn').click(function (e){
+        e.preventDefault();
+        deleteId = $(this).attr("data-id");
+        $.ajax({
+            type: "post",
+            url: "../projects/deleteProject.php",
+            data: {
+                deleteImage: true,
+                id: deleteId
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#editProjectModal').modal("show");
+                //refreshTable();
             },
             error: function (response) {
                 console.error(response.responseText);

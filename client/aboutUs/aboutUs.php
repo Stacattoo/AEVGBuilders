@@ -59,7 +59,7 @@ $dbh = new dbHandler;
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+              <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
 
             </ul>
           </div>
@@ -168,11 +168,10 @@ $dbh = new dbHandler;
                 You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
               <h5 class="mt-3 mb-3">You are to be logged in to make an appointment. </h5>
             </div>
-            <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
+            <div class="alert alert-success mt-3 col-12" role="alert" id="alertsched">
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
             </div>
 
           </div>
@@ -197,7 +196,7 @@ $dbh = new dbHandler;
             </div>
             <div class="modal-footer d-flex justify-content-end">
               <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
               </form>
             </div>
 

@@ -38,7 +38,7 @@ $(document).ready(function () {
                         active = "active";
                     }
                     images += `<div class="carousel-item ${active}">
-									<img src="../../${path}" class="d-block w-70 img-fluid img ">
+									<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
 									</div>`;
                 });
 

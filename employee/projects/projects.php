@@ -78,11 +78,11 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="input-group mb-3 mt-5">
-                        <h5>Title of Project: &nbsp;</h5><input type="text" class="form-control" id="edit-title" name="title" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1" required>
+                        <h5>Title of Project: &nbsp;</h5><input type="text" class="form-control" id="edit-title" name="title" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Category: &nbsp;</h4>
-                            <select class="form-control" aria-label="Default select example" id="edit-category" name="category" required>
+                            <select class="form-control" aria-label="Default select example" id="edit-category" name="category">
                                 <option selected>Catergory</option>
                                 <option value="Interior">Interior</option>
                                 <option value="Renovate">Renovate</option>
@@ -91,7 +91,7 @@ $dbh = new dbHandler;
                             </select>
                     </div>
                     <div class="input-group mb-3">
-                        <h5>Product Image: &nbsp;</h4><input type="file" id="edit-image" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required>
+                        <h5>Product Image: &nbsp;</h4><input type="file" id="edit-image" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Description: &nbsp;</h4><textarea class="form-control" id="edit-description" name="description" placeholder="Description" aria-label="With textarea"></textarea>
