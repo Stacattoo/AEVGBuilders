@@ -88,6 +88,7 @@ $dbh = new dbHandler;
 			<a class="p-2 link-secondary" href="#">Paints</a>
 			<a class="p-2 link-secondary" href="#">Roofs</a>
 			<a class="p-2 link-secondary" href="#">Lumbers</a>
+      <a class="p-2 link-secondary" href="#">Others</a>
 
             
         
