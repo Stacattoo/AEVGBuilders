@@ -6,11 +6,11 @@
 
 <!-- '~~' to strike -->
 
-### 1. Log in
+### ~~1. Log in~~
 
-- Admin can log in with username or email. (Frontend) (Backend)
-- Admin cannot be block by the system. (Frontend) (Backend)
-- Forget Password, admin must input a registered email. Send random password to email. (Frontend) (Backend)
+- ~~Admin can log in with username or email. (Frontend) (Backend)~~
+- ~~Admin cannot be block by the system. (Frontend) (Backend)~~
+- ~~Forget Password, admin must input a registered email. Send random password to email. (Frontend) (Backend)~~
 
 ### 2. Dashboard
 
@@ -19,12 +19,12 @@
 - List of total number of materials. (Frontend) (Backend)
 - List of total number of materials that are low in stock. (Frontend) (Backend)
 
-### 3. Employee
+### ~~3. Employee~~
 
-- CRUD employee account. (Frontend) (Backend)
-- View list of employeee. Search Bar: Name, Email, Contact Number, Employee Number. (Frontend) (Backend)
-- View list of Handled Client per Employee. (Frontend) (Backend)
-- Generate Username and Password upon creating an employee account. (Frontend) (Backend)
+- ~~CRUD employee account. (Frontend) (Backend)~~
+- ~~View list of employeee. Search Bar: Name, Email, Contact Number, Employee Number. (Frontend) (Backend)~~
+- ~~View list of Handled Client per Employee. (Frontend) (Backend)~~
+- ~~Generate Username and Password upon creating an employee account. (Frontend) (Backend)~~
 
 ### 4. Materials
 
@@ -37,7 +37,7 @@
 
 ### 5. Client 
 
-- View list of all clients. Search Bar: Name, Email, Contact Number, Employee Number. (Frontend) (Backend)
+- ~~View list of all clients. Search Bar: Name, Email, Contact Number. (Frontend) (Backend)~~
 - List of all order per client. (Frontend) (Backend)
 - View messages Employee to Client. (Frontend) (Backend)
 - Print Specific Clients Document. (Frontend) (Backend)
@@ -52,17 +52,16 @@
 
 ### 7. Profile
 
-- Can edit user information. (Frontend) (Backend)
+- ~~Can edit user information. (Frontend) (Backend)~~
 
 ### 8. Appointment
 
-- Schedule appointment. (Frontend) (Backend)
-- Calendar. (Frontend) (Backend)
+- ~~View Scheduled appointments. (Frontend) (Backend)~~
 
 ### 9. Block
 
-- Can be able to block/ unlock employee (Frontend) (Backend)
-- Can show list block of employee (Frontend) (Backend)
+- ~~Can be able to block/ unlock employee (Frontend) (Backend)~~
+- ~~Can show list block of employee (Frontend) (Backend)~~
 
 
 
@@ -83,12 +82,12 @@
 
 ### 3. Profile
 
-- Can edit user information. (Frontend) (Backend)
+- Can edit user information. (Frontend) (Backend) 
 
 ### 4. Project
 
 - Can view and edit previous design uploads. (Frontend) (Backend)
-- Can upload design/ projects. (Frontend) ~~(Backend)~~
+- ~~Can upload design/ projects.~~ (Frontend) ~~(Backend)~~
 <!-- ### 4. Materials
 - Can upload materials (Frontend) ~(Backend)~ -->
 
@@ -122,7 +121,7 @@
 
 ### 5. Projects
 
-- List of all projects. (Frontend)
+- ~~List of all projects. (Frontend)~~
 - Filter by category. (Frontend)
 - Limit of 15 latest Projects. (Frontend)
 
@@ -132,7 +131,7 @@
 
 ### 7. Profile (After Log in)
 
-- Can edit user information. (Frontend) ~~(Backend)~~
+- ~~Can edit user information. (Frontend) (Backend)~~
 
 ### 8. Order
 
