@@ -6,6 +6,16 @@ if (isset($_POST['displayUsers'])) {
     echo json_encode((array)$dbh->getAllUserClientData());
 }
 
+if(isset($_POST['getEmployee'])){
+    echo json_encode((array)$dbh->getAllUserData());
+}
+
+if(isset($_POST['employeeID'])){
+    echo json_encode((array)$dbh->assignEmployee($_POST['employeeID'], $_POST['clientID']));
+}
+
+
+
 if (isset($_POST['email'])) {
     $info = (object) [
         'id' => $_POST['id'],

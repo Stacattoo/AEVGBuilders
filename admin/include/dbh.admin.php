@@ -104,13 +104,22 @@ class dbHandler
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result)){
             if ($row = mysqli_fetch_assoc($result)){
+                $empName = "";
+                $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname FROM employee_client INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
+                $res = mysqli_query($this->conn, $sql);
+                if (mysqli_num_rows($result)){
+                    if ($row2 = mysqli_fetch_assoc($res)){
+                    $empName = $row2['fullname'];
+                    }
+                }
                 return (object)[
                     'id' => $row['id'],
                     'fullname' => $row['fullname'],
                     'contactNo' => $row['contact_no'],
                     'email' => $row['email'],
                     'password' => $row['password'],
-                    'address' => $row['address']
+                    'address' => $row['address'],
+                    'employeeName' => $empName,
                 ];
             }
         }
@@ -300,4 +309,11 @@ class dbHandler
         VALUES ('$info->code' ,'$info->name', '$info->image', '$info->category', '$info->description', '$info->stock', '$info->stock')";
         return mysqli_query($this->conn, $query);
     }
+
+    function assignEmployee($employeeID, $clientID){
+        $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
+        return mysqli_query($this->conn, $query);
+    }
+
+
 }
