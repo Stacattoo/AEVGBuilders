@@ -31,7 +31,7 @@
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-2" name="houseNo" placeholder="House No. (optional)">
                 <input type="text" class="form-control mt-2" name="street" placeholder="Street (optional)">
-                <input type="text" class="form-control mt-2" name="barangay" placeholder="Baranggay" required>
+                <input type="text" class="form-control mt-2" name="barangay" placeholder="Barangay" required>
             </div>
             <div class="d-flex justify-content-evenly">
                 <input type="text" class="form-control mt-2" name="municipality" placeholder="Municipality" required>

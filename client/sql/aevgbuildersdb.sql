@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 05:30 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Generation Time: Oct 04, 2022 at 06:09 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -117,9 +117,10 @@ CREATE TABLE `employee` (
   `password` varchar(255) NOT NULL,
   `houseNo` varchar(255) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
-  `baranggay` varchar(255) NOT NULL,
+  `barangay` varchar(255) NOT NULL,
   `municipality` varchar(255) NOT NULL,
   `province` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) NOT NULL DEFAULT 'images/defaultUserImage.jpg',
   `attempt` int(255) NOT NULL DEFAULT 3,
   `status` varchar(255) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -128,13 +129,33 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `firstName`, `middleName`, `lastName`, `username`, `employee_id`, `contactNo`, `email`, `password`, `houseNo`, `street`, `baranggay`, `municipality`, `province`, `attempt`, `status`) VALUES
-(1, 'hanna clarisse', NULL, 'sagun', 'admin', '2018101442', '12345', 'sagunhannaclarisse1@gmail.com', 'mori', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 3, 'block'),
-(2, 'Zach', 'DC.', 'Anderson', 'zach00', '', '09786543489', 'zach00@gmail.com', 'zach123', '32', 'Bagumbayan Street', 'Tambunting', 'Bulakan', 'Bulacan', 3, 'active'),
-(3, 'Jerwin', 'A.', 'Pascual', 'jerwin00', '', '09896754356', 'jerwin00@gmail.com', 'jerwin123', '32', 'Purok 3', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
-(4, 'Jefferson', 'K.', 'Cailipan', 'jefferson00', '', '09784138769', 'jefferson00@gmail.com', 'jefferson123', '32', 'Purok 4', 'Kapitangan', 'Paombong', 'Bulacan', 3, 'active'),
-(5, 'Keith', 'M.', 'Balagtas', 'keith00', '', '09786912845', 'keith00@gmail.com', 'keith123', '67', 'Purok 5', 'Longos', 'Malolos', 'Bulacan', 3, 'active'),
-(6, 'Lincoln', 'M.', 'Arellano', 'lincoln00', '', '09786572967', 'lincoln00@gmail.com', 'lincoln123', '78', 'Purok 1', 'Sto Rosario', 'Paombong', 'Bulacan', 3, 'active');
+INSERT INTO `employee` (`id`, `firstName`, `middleName`, `lastName`, `username`, `employee_id`, `contactNo`, `email`, `password`, `houseNo`, `street`, `barangay`, `municipality`, `province`, `profile_picture`, `attempt`, `status`) VALUES
+(1, 'hanna clarisse', NULL, 'sagun', 'admin', '2018101442', '12345', 'sagunhannaclarisse1@gmail.com', 'mori', '167', 'purok4', 'balite', 'calumpit', 'bulacan', 'images/defaultUserImage.jpg', 3, 'block'),
+(2, 'Zach', 'DC.', 'Anderson', 'zach00', '', '09786543489', 'zach00@gmail.com', 'zach123', '32', 'Bagumbayan Street', 'Tambunting', 'Bulakan', 'Bulacan', 'images/defaultUserImage.jpg', 3, 'active'),
+(3, 'Jerwin', 'A.', 'Pascual', 'jerwin00', '', '09896754356', 'jerwin00@gmail.com', 'jerwin123', '32', 'Purok 3', 'Kapitangan', 'Paombong', 'Bulacan', 'images/defaultUserImage.jpg', 3, 'active'),
+(4, 'Jefferson', 'K.', 'Cailipan', 'jefferson00', '', '09784138769', 'jefferson00@gmail.com', 'jefferson123', '32', 'Purok 4', 'Kapitangan', 'Paombong', 'Bulacan', 'images/defaultUserImage.jpg', 3, 'active'),
+(5, 'Keith', 'M.', 'Balagtas', 'keith00', '', '09786912845', 'keith00@gmail.com', 'keith123', '67', 'Purok 5', 'Longos', 'Malolos', 'Bulacan', 'images/defaultUserImage.jpg', 3, 'active'),
+(6, 'Lincoln', 'M.', 'Arellano', 'lincoln00', '', '09786572967', 'lincoln00@gmail.com', 'lincoln123', '78', 'Purok 1', 'Sto Rosario', 'Paombong', 'Bulacan', 'images/defaultUserImage.jpg', 3, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_client`
+--
+
+CREATE TABLE `employee_client` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employee_client`
+--
+
+INSERT INTO `employee_client` (`id`, `employee_id`, `client_id`, `status`) VALUES
+(1, 1, 1, 'ongoing');
 
 -- --------------------------------------------------------
 
@@ -187,6 +208,20 @@ INSERT INTO `projects` (`id`, `title`, `image`, `category`, `description`, `stat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quotation`
+--
+
+CREATE TABLE `quotation` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `materials` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`materials`)),
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -232,6 +267,13 @@ ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employee_client`
+--
+ALTER TABLE `employee_client`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_clientID_clientTbl` (`client_id`);
+
+--
 -- Indexes for table `material`
 --
 ALTER TABLE `material`
@@ -270,6 +312,12 @@ ALTER TABLE `client`
 --
 ALTER TABLE `employee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `employee_client`
+--
+ALTER TABLE `employee_client`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `material`
