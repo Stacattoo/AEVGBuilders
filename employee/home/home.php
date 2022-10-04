@@ -76,7 +76,7 @@ $dbh = new dbHandler;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item" href="../../logout/logoutEmployee.php">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             url: "../schedule/scheduleProcess.php",
+            //C:\xampp\htdocs\AEVGBuilders\client\schedule\scheduleProcess.php
             type: "POST",
             //dataType: "json",
             data: new FormData(this),

@@ -1,7 +1,6 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,9 +78,18 @@ $dbh = new dbHandler;
             <h1 class="display-4">AEVG BUILDERS</h1>
             <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
             </p>
-            <p class="lead mb-0"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Schedule an Appointment.
-              </button></p>
+            <?php if ($dbh->getSched($_SESSION['id']) >= '1') { ?>
+              <p class="lead mb-0">
+              <div class="alert alert-warning" role="alert">
+                <h5>Your request is upon approval, kindly wait for an employee to approve your request.</h5>
+              </div>
+              </p>
+            <?php } else { ?>
+
+              <p class="lead mb-0"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Schedule an Appointment.
+                </button></p>
+            <?php } ?>
           </div>
         </div>
       </div>
@@ -155,7 +163,33 @@ $dbh = new dbHandler;
 
 
     <!-- Modal -->
-    <?php if ($dbh->getSched($_SESSION['id']) >= 1) { ?>
+
+    <?php if (!isset($_SESSION['id'])) { ?>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="card-header">
+              <h4 class="py-3 ms-4">Scheduling</h4>
+
+            </div>
+            <div class="modal-body text-start ps-5 px-5">
+
+              <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
+                You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
+              <h5 class="mt-3 mb-3">You have to be logged in to set an appointment. </h5>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end">
+              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
+              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <?php } else { ?>
+
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -166,44 +200,25 @@ $dbh = new dbHandler;
             <div class="modal-body text-start ps-5 px-5">
               <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
                 You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
-              <h5 class="mt-3 mb-3">You are to be logged in to make an appointment. </h5>
-            </div>
-            <div class="alert alert-success mt-3 col-12" role="alert" id="alertsched">
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancel</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    <?php } else { ?>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="card-header">
-              <h4 class="py-3 ms-4">Scheduling</h4>
-
-            </div>
-            <div class="modal-body text-start ps-5 px-5">
+              <h5 class="mt-3 mb-3">Title of the reason (optional): </h5>
               <form id="scheduleForm">
-                <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
-                  You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
-                <h5 class="mt-3 mb-3">Title of the reason (optional): </h5>
                 <textarea class="form-control" aria-label="Reason for Scheduling" name="reason"></textarea>
-            </div>
-            <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
-            </div>
-            <div class="modal-footer d-flex justify-content-end">
-              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
-              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
+
+                <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                  <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+
               </form>
             </div>
 
           </div>
         </div>
       </div>
+
     <?php } ?>
+
 </body>
 
 </html>

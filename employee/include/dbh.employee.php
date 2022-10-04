@@ -126,10 +126,18 @@ class dbHandler
         
     }
 
-    function deleteImage($id)
+    function deleteImage($imgarr, $id)
     {
-        $sql = "DELETE `image` FROM `projects` WHERE `id`=$id";
-        return mysqli_query($this->conn, $sql);
+        $sql = "SELECT * FROM `projects` WHERE `id`=$id";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            $image = $row['image'];
+            $imageSpliced = $image.array_splice($imgarr, 1);
+            return $imageSpliced;
+        } else {
+            return '';
+        }
         
     }
 

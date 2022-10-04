@@ -67,7 +67,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 let content = ``;
-
                 $.each(response, function (indexInArray, data) {
                     console.log(data);
                     content += `
@@ -77,38 +76,43 @@ $(document).ready(function () {
                         <td class="align-middle">${data.title}</td>
                         <td class="align-middle">${data.category}</td>
                         <td class="align-middle">${data.description}</td>
-
                         </tr>
-                 `;
+                        `;
 
                 });
+
                 $("#projects").html(content);
+
                 $('.projectEditDiv').click(function (e) {
                     e.preventDefault();
 
                     projectId = $(this).data("id");
                     dataFilter = response.filter(function (eachEditInfo) {
                         console.log(eachEditInfo);
-
                         return eachEditInfo.id == projectId;
                     })[0];
+                    function imageRefresh() {
+                        let contentEdit = ``;
+                        $.each(dataFilter.image, function (indexInArray, data) {
 
-                    let contentEdit = ``;
-                    $.each(dataFilter.image, function (indexInArray, data) {
-                        console.log(data);
-                        contentEdit += `
+                            // removeItem = dataFilter.image.splice()
+                            console.log(data);
+                            contentEdit += `
                                 <div class="col">
                                     <div class="border">
-                                    <button class="deleteImgBtn" id="imageDeleteBtn${indexInArray}"  data-id="">
                                     <img src="../projects/${data}" class="d-block img-fluid img">
+                                    <button type="button" class="deleteImgBtn" id="imageDeleteBtn"  data-id="${indexInArray}">
+                                    DELETE
                                     </button>
                                     </div>
                                 </div>
                             `;
+                        });
                         $('#view-editImage').html(contentEdit);
-                    });
-                    
-                    $('.deleteImgBtn').attr("data-id");
+                    }
+                    imageRefresh();
+                    console.log(dataFilter.image);
+                    //$('.deleteImgBtn').attr("data-id");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
                     $('#edit-category').val(dataFilter.category);
@@ -116,6 +120,16 @@ $(document).ready(function () {
                     $('#edit-description').html(dataFilter.description);
                     $('#editProjectModal').modal("show");
 
+                    $('.deleteImgBtn').click(function (e) {
+                        e.preventDefault();
+                        deleteId = $(this).attr('data-id');
+                        imageSplice = dataFilter.image.splice(deleteId, 1);
+                        console.log(imageSplice);
+                        imageRefresh();
+
+                    });
+
+                    
 
                 });
 
@@ -127,10 +141,13 @@ $(document).ready(function () {
 
 
         });
-    }
+    } // End of Refresh Table :D
+
+
     $('#deleteBtn').click(function (e) {
         e.preventDefault();
         deleteId = $(this).attr("data-id");
+        console.log(deleteId);
         $.ajax({
             type: "post",
             url: "../projects/deleteProject.php",
@@ -143,29 +160,6 @@ $(document).ready(function () {
                 console.log(response);
                 $('#editProjectModal').modal("hide");
                 refreshTable();
-            },
-            error: function (response) {
-                console.error(response.responseText);
-            }
-
-        });
-    });
-
-    $('.deleteImgBtn').click(function (e){
-        e.preventDefault();
-        deleteId = $(this).attr("data-id");
-        $.ajax({
-            type: "post",
-            url: "../projects/deleteProject.php",
-            data: {
-                deleteImage: true,
-                id: deleteId
-            },
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-                $('#editProjectModal').modal("show");
-                //refreshTable();
             },
             error: function (response) {
                 console.error(response.responseText);

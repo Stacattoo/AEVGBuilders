@@ -10,7 +10,12 @@ if(isset($_FILES['image']['name'])){
         $file_tmp = $_FILES["image"]["tmp_name"][$i];
         $img_path = "image/" . basename($file_name);
         $paths .= $img_path . ",";
-
+        if (!move_uploaded_file($file_tmp, $img_path)) {
+            echo json_encode(array(
+                "status" => 'error',
+                "msg" => 'There was a problem Uploading, Please try again.'
+            ));
+        }
     }
 
     $trimmed_array = trim($paths, ",");
@@ -23,17 +28,11 @@ if(isset($_FILES['image']['name'])){
 
         ];
 
-        if (move_uploaded_file($file_tmp, $img_path)) {
-            if ($dbh->uploadProject($info)) {
-                echo json_encode(array(
-                    "status" => 'success',
-                    "msg" => 'Project Successfully Uploaded.'
-                ));
-            }
-        } else {
+        
+        if ($dbh->uploadProject($info)) {
             echo json_encode(array(
-                "status" => 'error',
-                "msg" => 'There was a problem Uploading, Please try again.'
+                "status" => 'success',
+                "msg" => 'Project Successfully Uploaded.'
             ));
         }
 }
