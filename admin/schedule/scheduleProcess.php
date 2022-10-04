@@ -1,7 +1,7 @@
 <?php
 include('../include/dbh.admin.php');
 $dbh = new dbHandler();
-// print_r($dbh->displayAllTestResult());
+
 if(isset($_POST['displayResults'])){
     echo json_encode((array)$dbh->displayAllResult());
 }

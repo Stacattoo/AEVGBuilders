@@ -8,7 +8,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <div class="card mb-2">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-        <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->address; ?></h5>
+        <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo " " ?></h5>
             <div class="dropdown m-0">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
@@ -22,6 +22,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         <h1><?php echo $userData->fullname; ?></h1>
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
+        <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
+        <div>Assigned Employee: <span class="fw-bolder"></span></div>
     </div>
 </div>
 
@@ -33,14 +35,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <h5 class="modal-title">Edit Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- <form id="editForm">
+            <form id="editForm">
 
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="studentno" name="studentno" placeholder="1234" required>
-                        <label for="studentno">Student Number</label>
-                    </div>
+                    
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="firstName" name="firstName" placeholder="1234" required>
                         <label for="firstName">First Name</label>
@@ -61,20 +60,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         <input type="text" class="form-control" id="contact" name="contact" placeholder="1234" required>
                         <label for="contact">Contact Number</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="strand" name="strand" placeholder="1234" required>
-                        <label for="strand">STRAND</label>
-                    </div>
-                    <div class="alert alert-danger py-2" role="alert" id="errorAlert">
-                        Student number or email address is already exist!
-                    </div>
+                    
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
-            </form> -->
+            </form>
         </div>
     </div>
 </div>

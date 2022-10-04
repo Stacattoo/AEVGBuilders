@@ -5,6 +5,8 @@ $dbh = new dbHandler;
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script src="../projects/projects.js"></script>
+<link rel="stylesheet" type="text/css" href="../projects/app.css">
+<script src="../projects/app.js"></script>
 
 <div class="container-fluid">
     <h3><i class="fal fa-analytics me-2"></i>Upload Project</h3>
@@ -29,7 +31,22 @@ $dbh = new dbHandler;
                             </select>
                     </div>
                     <div class="input-group mb-3">
-                        <h5>Product Image: &nbsp;</h4><input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required>
+                        <h5>Product Image: &nbsp;</h4>
+                            <!-- <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required> -->
+                            <div class="card" id="uploadReset">
+                                <div class="drag-area">
+                                    <span class="visible">
+                                        Drag & drop image here or
+                                        <span class="select" role="button">Browse</span>
+                                    </span>
+                                    <span class="on-drop">Drop images here</span>
+                                    <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1">
+                                </div>
+
+                                <!-- IMAGE PREVIEW CONTAINER -->
+                                <div class="container" id="imgCon"></div>
+                                
+                            </div>
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Description: &nbsp;</h4><textarea class="form-control" name="description" placeholder="Description" aria-label="With textarea"></textarea>
@@ -91,7 +108,8 @@ $dbh = new dbHandler;
                             </select>
                     </div>
                     <div class="input-group mb-3">
-                        <h5>Product Image: &nbsp;</h4><input type="file" id="edit-image" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                        <h5>Product Image: &nbsp;</h4>
+                            <input type="file" id="edit-image" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Description: &nbsp;</h4><textarea class="form-control" id="edit-description" name="description" placeholder="Description" aria-label="With textarea"></textarea>
@@ -107,8 +125,8 @@ $dbh = new dbHandler;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-alert" id="deleteBtn" data-id="">Delete</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

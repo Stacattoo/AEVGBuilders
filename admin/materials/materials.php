@@ -3,7 +3,7 @@ include("../include/dbh.admin.php");
 $dbh = new dbHandler;
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script src="../materials/materials.js"></script>
+<script src="materials/materials.js"></script>
 <div class="container-fluid">
     <h3><i class="fal fa-analytics me-2"></i>Upload Materials</h3>
     <hr>

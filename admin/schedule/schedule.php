@@ -8,7 +8,7 @@ $dbh = new dbHandler();
 <script src="schedule/schedule.js"></script>
 
 <div class="container-fluid">
-	<h3><i class="fad fa-calendar-alt bi me-2"></i></i>Report</h3>
+	<h3><i class="fad fa-calendar-alt bi me-2"></i></i>Schedule</h3>
 	<hr>
 	<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -20,10 +20,6 @@ $dbh = new dbHandler();
 			<h5 class="">Filter Range:</h5>
 			<div> <input type="date" class="form-control" name="startDate" id="startDate" /> </div>
 			<div><input type="date" class="form-control" name="endDate" id="endDate" /></div>
-			<!-- maglagay ka ng check btn. tapos gawa ka ng varaible dun sa report.js, tapos
-				pagkagawa mo ng variable i check mo kung pareho ba ung chineck mo dito dun sa test result na nasa dbh 
-				if else lang pag tama, return true
-		-->
 			<button type="submit" class="btn btn-primary">Apply</button>
 			
 		</div>
