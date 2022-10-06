@@ -4,6 +4,9 @@ $dbh = new dbHandler;
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script src="materials/materials.js"></script>
+<link rel="stylesheet" type="text/css" href="materials/app.css">
+<script src="materials/app.js"></script>
+
 <div class="container-fluid">
     <h3><i class="fal fa-analytics me-2"></i>Upload Materials</h3>
     <hr>
@@ -25,7 +28,22 @@ $dbh = new dbHandler;
                     </select>
             </div>
             <div class="input-group mb-3">
-                <h5>Product Image: &nbsp;</h4><input type="file" class="" name="image" placeholder="image" aria-label="image" aria-describedby="basic-addon1" required>
+                <h5>Product Image: &nbsp;</h4>
+                    <!-- <input type="file" class="" name="image" placeholder="image" aria-label="image" aria-describedby="basic-addon1" required> -->
+                    <div class="card" id="uploadReset">
+                        <div class="drag-area">
+                            <span class="visible">
+                                Drag & drop image here or
+                                <span class="select" role="button">Browse</span>
+                            </span>
+                            <span class="on-drop">Drop images here</span>
+                            <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1">
+                        </div>
+
+                        <!-- IMAGE PREVIEW CONTAINER -->
+                        <div class="container" id="imgCon"></div>
+
+                    </div>
             </div>
             <div class="input-group mb-3">
                 <h5>Product Description: &nbsp;</h4><textarea class="" name="description" placeholder="Description" aria-label="With textarea"></textarea>
@@ -39,7 +57,7 @@ $dbh = new dbHandler;
             <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
             </div>
 
-            <button type="submit" class="btn btn-dark" >Upload Product</button>
+            <button type="submit" class="btn btn-dark">Upload Product</button>
         </form>
     </div>
 
