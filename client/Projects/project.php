@@ -74,48 +74,20 @@ $dbh = new dbHandler;
 	</div>
 	<div class="nav-scroller py-1 mb-2">
 		<nav class="nav d-flex justify-content-center">
-			<a class="p-2 link-secondary" href="#">All</a>
-			<a class="p-2 link-secondary" href="#">Building</a>
-			<a class="p-2 link-secondary" href="#">Commercial</a>
-			<a class="p-2 link-secondary" href="#">Design</a>
-			<a class="p-2 link-secondary" href="#">Renovation</a>
-			<a class="p-2 link-secondary" href="#">Blueprints</a>
-			<a class="p-2 link-secondary" href="#">Residentials</a>
+			<button class="p-2 link-secondary btn btn-link category" href="#">All</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Building</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Commercial</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Design</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Renovation</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Blueprints</button>
+			<button class="p-2 link-secondary btn btn-link category" href="#">Residentials</button>
 
 		</nav>
 		<div class="album py-5 bg-light">
 			<div class="container">
 
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 " id="materials">
-					<div class="col">
-						<div class="card">
-
-							<div id="carouselExampleInterval" class="carousel slide">
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-									<img src="../../images/budget.jpg" class="d-block w-70 img-fluid img ">
-									</div>
-									<div class="carousel-item">
-									<img src="../../images/construction.jpg" class="d-block w-70 img-fluid img">
-									</div>
-									<div class="carousel-item">
-										<img src="../../images/cement.jpg" class="d-block w-70 img-fluid img">
-									</div>
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-							</div>
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
+					
 
 				</div>
 				<div class="container">

@@ -68,8 +68,8 @@ $dbh = new dbHandler;
                     <hr>
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fad fa-shield me-2"></i>
-                            <strong class="d-none d-lg-inline text-uppercase">Councilor</strong>
+                            <i class="fad fa-user me-2"></i>
+                            <strong class="d-none d-lg-inline text-uppercase">Employee</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>

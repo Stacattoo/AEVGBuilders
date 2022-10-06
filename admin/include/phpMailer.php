@@ -29,7 +29,7 @@ class Mail
             //pass haroldski16
             //email force2_backend@outlook.ph
             //Recipients
-            $mail->setFrom('force2_backend@outlook.ph', 'Forgot Password');
+            $mail->setFrom('force2_backend@outlook.ph', 'AEVG Builders');
             $mail->addAddress($receiver);     //Add a recipient
 
             //Content
