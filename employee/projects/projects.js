@@ -87,6 +87,7 @@ $(document).ready(function () {
                     e.preventDefault();
 
                     projectId = $(this).data("id");
+                    $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
                         console.log(eachEditInfo);
                         return eachEditInfo.id == projectId;
@@ -109,14 +110,15 @@ $(document).ready(function () {
                             `;
                         });
                         $('#view-editImage').html(contentEdit);
+                        $('#edit-image').val(dataFilter.image);
                     }
                     imageRefresh();
                     console.log(dataFilter.image);
                     //$('.deleteImgBtn').attr("data-id");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
+                    $('#hiddenId').data("id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
                     $('#edit-category').val(dataFilter.category);
-                    $('#edit-image').attr("src", dataFilter.image);
                     $('#edit-description').html(dataFilter.description);
                     $('#editProjectModal').modal("show");
 
@@ -129,7 +131,36 @@ $(document).ready(function () {
 
                     });
 
-                    
+                    $('#editUploadProjects').submit(function (e) {
+                        e.preventDefault();
+                        console.log(id);
+                        var dataform = $(this).serializeArray(); // Form Data Ginawang variable
+                        $.ajax({
+                            type: 'post',
+                            url: '../projects/editProfileProcess.php',
+                            data: new FormData(),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            dataType: "JSON",
+                            success: function (response) {
+                                console.log("sdas");
+                                console.log(response);
+                                if (response.status == 'error') {
+                                    $("#alertError").html(response.msg);
+                                    $("#alertError").show();
+                                } else {
+                                    $("#alertSuccess").html(response.msg);
+                                    $("#alertSuccess").show();
+                                    $("#uploadProjects").trigger("reset");
+                                    refreshTable();
+
+                                }
+                            }, error: function (response) {
+                                console.error(response);
+                            }
+                        });
+                    });
 
                 });
 

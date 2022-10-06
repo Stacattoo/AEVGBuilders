@@ -93,10 +93,10 @@ class dbHandler
         }
     }
 
-    function uploadProduct($info)
+    function updateProject($value, $id)
     {
-        $query = "INSERT INTO material(code, name, image, category, description, remaining_stock, initial_stock) 
-        VALUES ('$info->code' ,'$info->name', '$info->image', '$info->category', '$info->description', '$info->stock', '$info->stock')";
+        $query = "UPDATE `project` SET title='$value->title', category='$value->category', 
+        image='$value->image',  description='$value->description' WHERE id=$id";
         return mysqli_query($this->conn, $query);
     }
 
@@ -107,10 +107,7 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    // function uploadImage($value){
-    //     $query = "INSERT INTO image(image) VALUES ($value)";
-    //     return mysqli_query($this->conn, $query);
-    // }
+
 
     function checkIfSomeAlrExist($key, $table, $col)
     {
@@ -126,20 +123,6 @@ class dbHandler
         
     }
 
-    function deleteImage($imgarr, $id)
-    {
-        $sql = "SELECT * FROM `projects` WHERE `id`=$id";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_num_rows($result)) {
-            $row = mysqli_fetch_assoc($result);
-            $image = $row['image'];
-            $imageSpliced = $image.array_splice($imgarr, 1);
-            return $imageSpliced;
-        } else {
-            return '';
-        }
-        
-    }
 
     function getAllProjects()
     {
@@ -160,14 +143,13 @@ class dbHandler
         return $projects;
     }
 
-    function getValueByID($value, $id, $table = "projects")
+    function getValueByID($value, $id)
     {
-        $sql = "SELECT `$value` FROM $table WHERE id=$id";
+        $sql = "SELECT `$value` FROM projects WHERE `id`=$id";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
                 return $row[$value];
-                // return $sql;
             }
         }
     }

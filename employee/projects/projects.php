@@ -73,6 +73,7 @@ $dbh = new dbHandler;
             </div>
             <div class="modal-body">
                 <form id="editUploadProjects">
+                    <input type="hidden" id="hiddenId">
                     <div class="container text-center">
                         <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3" id="view-editImage">
                         </div>
@@ -91,7 +92,9 @@ $dbh = new dbHandler;
                             </select>
                     </div>
                     <div class="input-group mb-3">
-                        <h5>Product Image: &nbsp;</h4><input type="file" id="edit-image" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                        
+                    <h5>Add Image: &nbsp;</h4><input type="file" id="" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                       <input type="hidden" id="edit-image">
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Description: &nbsp;</h4><textarea class="form-control" id="edit-description" name="description" placeholder="Description" aria-label="With textarea"></textarea>
@@ -108,7 +111,7 @@ $dbh = new dbHandler;
             <div class="modal-footer">
                 <button type="button" class="btn btn-alert" id="deleteBtn" data-id="">Delete</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>

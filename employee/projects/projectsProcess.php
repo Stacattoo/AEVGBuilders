@@ -25,9 +25,7 @@ if(isset($_FILES['image']['name'])){
             'category' => $_POST['category'],
             'image' => $trimmed_array,
             'description' => $_POST['description'],
-
         ];
-
         
         if ($dbh->uploadProject($info)) {
             echo json_encode(array(
