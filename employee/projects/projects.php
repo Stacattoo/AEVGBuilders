@@ -4,8 +4,8 @@ $dbh = new dbHandler;
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script src="../projects/projects.js"></script>
 <link rel="stylesheet" type="text/css" href="../projects/app.css">
+<script src="../projects/projects.js"></script>
 <script src="../projects/app.js"></script>
 
 <div class="container-fluid">
@@ -40,7 +40,7 @@ $dbh = new dbHandler;
                                         <span class="select" role="button">Browse</span>
                                     </span>
                                     <span class="on-drop">Drop images here</span>
-                                    <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1">
+                                    <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                                 </div>
 
                                 <!-- IMAGE PREVIEW CONTAINER -->
@@ -90,17 +90,17 @@ $dbh = new dbHandler;
             </div>
             <div class="modal-body">
                 <form id="editUploadProjects">
-                    <input type="hidden" id="hiddenId">
+                    <input type="hidden" id="hiddenId" name="hiddenId">
                     <div class="container text-center">
                         <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3" id="view-editImage">
                         </div>
                     </div>
                     <div class="input-group mb-3 mt-5">
-                        <h5>Title of Project: &nbsp;</h5><input type="text" class="form-control" id="edit-title" name="title" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1">
+                        <h5>Title of Project: &nbsp;</h5><input type="text" class="form-control" id="edit-title" name="titleEdit" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <h5>Product Category: &nbsp;</h4>
-                            <select class="form-control" aria-label="Default select example" id="edit-category" name="category">
+                            <select class="form-control" aria-label="Default select example" id="edit-category" name="categoryEdit">
                                 <option selected>Catergory</option>
                                 <option value="Interior">Interior</option>
                                 <option value="Renovate">Renovate</option>
@@ -110,19 +110,20 @@ $dbh = new dbHandler;
                     </div>
                     <div class="input-group mb-3">
                         
-                    <h5>Add Image: &nbsp;</h4><input type="file" id="" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
-                       <input type="hidden" id="edit-image">
+                    <h5>Add Image: &nbsp;</h4><input type="file" id="" class="form-control" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                       <input type="hidden" id="edit-image" name="imageEditStore">
                     </div>
                     <div class="input-group mb-3">
-                        <h5>Product Description: &nbsp;</h4><textarea class="form-control" id="edit-description" name="description" placeholder="Description" aria-label="With textarea"></textarea>
+                        <h5>Product Description: &nbsp;</h4><textarea class="form-control" id="edit-description" name="descriptionEdit" placeholder="Description" aria-label="With textarea"></textarea>
                     </div>
 
                     <div class="alert alert-danger mt-3" role="alert" id="alertErrorEdit">
                     </div>
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
-
-                    <button type="submit" class="btn btn-dark text-end">Edit Project</button>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-dark">Save Changes</button>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

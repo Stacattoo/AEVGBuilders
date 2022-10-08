@@ -71,7 +71,7 @@ $(document).ready(function () {
 
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
-                    console.log(data);
+                    //console.log(data);
                     content += `
                    
                         <tr class="projectEditDiv" data-id="${data.id}">
@@ -92,7 +92,7 @@ $(document).ready(function () {
                     projectId = $(this).data("id");
                     $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
-                        console.log(eachEditInfo);
+                        //console.log(eachEditInfo);
                         return eachEditInfo.id == projectId;
                     })[0];
                     function imageRefresh() {
@@ -116,7 +116,7 @@ $(document).ready(function () {
                         $('#edit-image').val(dataFilter.image);
                     }
                     imageRefresh();
-                    console.log(dataFilter.image);
+                    //console.log(dataFilter.image);
                     //$('.deleteImgBtn').attr("data-id");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);
@@ -136,8 +136,8 @@ $(document).ready(function () {
 
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
-                        console.log(id);
-                        var dataform = $(this).serializeArray(); // Form Data Ginawang variable
+                        //console.log(id);
+                        //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
                             url: '../projects/editProfileProcess.php',
@@ -145,17 +145,16 @@ $(document).ready(function () {
                             contentType: false,
                             cache: false,
                             processData: false,
-                            dataType: "JSON",
+                            //dataType: "JSON",
                             success: function (response) {
-                                console.log("sdas");
                                 console.log(response);
                                 if (response.status == 'error') {
-                                    $("#alertError").html(response.msg);
-                                    $("#alertError").show();
+                                    $("#alertErrorEdit").html(response.msg);
+                                    $("#alertErrorEdit").show();
                                 } else {
-                                    $("#alertSuccess").html(response.msg);
-                                    $("#alertSuccess").show();
-                                    $("#uploadProjects").trigger("reset");
+                                   // $("#alertSuccessEditSuccess").html(response.msg);
+                                    //$("#alertSuccessEdit").show();
+                                    //$("#uploadProjects").trigger("reset");
                                     refreshTable();
 
                                 }

@@ -2,7 +2,10 @@
 include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
-if(isset($_FILES['image']['name'])){
+
+$trimmed_array='';
+
+if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ''){
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
     for($i=0; $i<$imageCount; $i++){
@@ -34,6 +37,7 @@ if(isset($_FILES['image']['name'])){
             ));
         }
 }
+
         if(isset($_POST["getAllProjects_req"])) {
             echo json_encode((array)$dbh->getAllProjects());
             

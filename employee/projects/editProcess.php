@@ -2,39 +2,47 @@
 include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
-if(isset($_FILES['image']['name'])){
+$trimmed_array = "";
+
+if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
-    for($i=0; $i<$imageCount; $i++){
+    for ($i = 0; $i < $imageCount; $i++) {
         $file_name = $_FILES['image']['name'][$i];
         $file_tmp = $_FILES["image"]["tmp_name"][$i];
         $img_path = "image/" . basename($file_name);
         $paths .= $img_path . ",";
-
-    }
-
-    $trimmed_array = trim($paths, ",");
-    
-        $info = (object) [
-            'title' => $_POST['title'],
-            'category' => $_POST['category'],
-            'image' => $trimmed_array,
-            'description' => $_POST['description'],
-
-        ];
-
-        if (move_uploaded_file($file_tmp, $img_path)) {
-            if ($dbh->uploadProject($info)) {
-                echo json_encode(array(
-                    "status" => 'success',
-                    "msg" => 'Project Successfully Uploaded.'
-                ));
-            }
-        } else {
+        if (!move_uploaded_file($file_tmp, $img_path)) {
             echo json_encode(array(
                 "status" => 'error',
                 "msg" => 'There was a problem Uploading, Please try again.'
             ));
         }
-}
+    }
+    $trimmed_array = trim($paths, ",");
+} else {
 
+    // echo "naka set";
+    $trimmed_array = $_POST["file_path"];
+    // echo $img_path;
+}
+var_dump($_FILES);
+if (isset($_POST['editForm'])) {
+    echo "asd";
+    $info = (object) [
+        'id' => $_POST['id'],
+        'title' => $_POST['title'],
+        'category' => $_POST['category'],
+        'image' => $trimmed_array,
+        'description' => $_POST['description'],
+
+    ];
+
+
+    if ($dbh->updateProject($info, $info->id)) {
+        echo json_encode(array(
+            "status" => 'success',
+            "msg" => 'Project Successfully Uploaded.'
+        ));
+    }
+}
