@@ -93,11 +93,12 @@ class dbHandler
         }
     }
 
-    function updateProject($value, $id)
+    function updateProject($value)
     {
         $query = "UPDATE `projects` SET title='$value->title', category='$value->category', 
-        image='$value->image',  description='$value->description' WHERE id=$id";
-        return mysqli_query($this->conn, $query);
+        image='$value->image',  description='$value->description' WHERE id='$value->id'";
+        $result = mysqli_query($this->conn, $query);
+        return $result;
     }
 
     function uploadProject($info)

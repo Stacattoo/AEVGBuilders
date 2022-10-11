@@ -2,18 +2,22 @@
 include('../include/dbh.admin.php');
 $dbh = new dbHandler;
 
-    if ($dbh->checkIfSomeAlrExist($_POST['code'], 'material', 'code')) {
+if ($dbh->checkIfSomeAlrExist($_POST['code'], 'material', 'code')) {
 
-        echo json_encode(array(
-            "status" => 'error',
-            'msg' => "Product Already Exist!"
-        ));
-    } else {
-        // echo json_encode(array(
-        //     "status" => 'success',
-        //     'msg' => "Product Dont Exist!"
-        // ));
+    echo json_encode(array(
+        "status" => 'error',
+        'msg' => "Product Already Exist!"
+    ));
+} else {
+
+    if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
         $img_path = "../../images/" . basename($_FILES['image']['name']);
+        if (!move_uploaded_file($_FILES['image']['tmp_name'], $img_path)) {
+            echo json_encode(array(
+                "status" => 'error',
+                "msg" => 'There was a problem Uploading, Please try again.'
+            ));
+        }
         $info = (object) [
             'code' => $_POST['code'],
             'name' => $_POST['name'],
@@ -24,20 +28,11 @@ $dbh = new dbHandler;
 
         ];
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $img_path)) {
-            if ($dbh->uploadProduct($info)) {
-                echo json_encode(array(
-                    "status" => 'success',
-                    "msg" => 'Product Successfully Uploaded.'
-                ));
-            }
-        } else {
+        if ($dbh->uploadProduct($info)) {
             echo json_encode(array(
-                "status" => 'error',
-                "msg" => 'There was a problem Uploading, Please try again.'
+                "status" => 'success',
+                "msg" => 'Product Successfully Uploaded.'
             ));
         }
-        
     }
-
-
+}

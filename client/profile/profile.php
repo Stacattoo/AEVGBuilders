@@ -314,13 +314,13 @@ $dbh = new dbHandler;
                                         <div class="col">
                                             <div class="mb-3 ">
                                                 <label for="lastName" class="form-label">*Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>" required>
+                                                <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3 ">
                                                 <label for="firstName" class="form-label">*First Name</label>
-                                                <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>" required>
+                                                <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
                                             </div>
 
 
@@ -341,13 +341,13 @@ $dbh = new dbHandler;
                                         <div class="col">
                                             <div class="mb-3 ">
                                                 <label for="Email" class="form-label">*Email Address </label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>" required>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3 ">
                                                 <label for="ContactNumber" class="form-label">*Contact Number </label>
-                                                <input type="text" class="form-control " name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" required>
+                                                <input type="text" class="form-control " name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" >
                                             </div>
                                         </div>
                                     </div>

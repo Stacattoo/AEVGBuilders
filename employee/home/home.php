@@ -72,7 +72,7 @@ $dbh = new dbHandler;
                             <strong class="d-none d-lg-inline text-uppercase">Employee</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
+                            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" id="profileNav">Profile</button></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

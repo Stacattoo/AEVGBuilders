@@ -2,37 +2,36 @@ $(document).ready(function () {
 
     $("#alertError").hide();
     $("#alertSuccess").hide();
-    $("#alertErrorEdit").hide();
-    $("#alertSuccessEdit").hide();
+
     refreshTable();
-        $("#uploadProjects").submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: '../projects/projectsProcess.php',
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                dataType: "JSON",
-                success: function (response) {
-                    console.log(response);
-                    if (response.status == 'error') {
-                        $("#alertError").html(response.msg);
-                        $("#alertError").show();
-                    } else {
-                        $("#alertSuccess").html(response.msg);
-                        $("#imgCon").html("");
-                        $("#alertSuccess").show();
-                        $("#uploadProjects").trigger("reset");
-                        refreshTable();
-    
-                    }
+    $("#uploadProjects").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: '../projects/projectsProcess.php',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "JSON",
+            success: function (response) {
+                console.log(response);
+                if (response.status == 'error') {
+                    $("#alertError").html(response.msg);
+                    $("#alertError").show();
+                } else {
+                    $("#alertSuccess").html(response.msg);
+                    $("#imgCon").html("");
+                    $("#alertSuccess").show();
+                    $("#uploadProjects").trigger("reset");
+                    refreshTable();
+
                 }
-            });
+            }
         });
-    
-   
+    });
+
+
 
 
 
@@ -117,7 +116,7 @@ $(document).ready(function () {
                     }
                     imageRefresh();
                     //console.log(dataFilter.image);
-                    //$('.deleteImgBtn').attr("data-id");
+                    // $('#unset').val("");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
@@ -133,7 +132,8 @@ $(document).ready(function () {
                         imageRefresh();
 
                     });
-
+                    $("#alertErrorEdit").hide();
+                    $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
                         //console.log(id);
@@ -141,25 +141,22 @@ $(document).ready(function () {
                         $.ajax({
                             type: 'post',
                             url: '../projects/editProfileProcess.php',
-                            data: new FormData(),
+                            data: new FormData(this),
                             contentType: false,
                             cache: false,
                             processData: false,
-                            //dataType: "JSON",
+                            dataType: "JSON",
                             success: function (response) {
                                 console.log(response);
-                                if (response.status == 'error') {
+                                if (response.status == 'success') {
+                                    $("#alertSuccessEdit").html(response.msg);
+                                    $("#alertSuccessEdit").show();
+                                    $('#editProjectModal').modal("hide");
+                                    refreshTable();
+                                } else {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
-                                } else {
-                                   // $("#alertSuccessEditSuccess").html(response.msg);
-                                    //$("#alertSuccessEdit").show();
-                                    //$("#uploadProjects").trigger("reset");
-                                    refreshTable();
-
                                 }
-                            }, error: function (response) {
-                                console.error(response);
                             }
                         });
                     });
@@ -167,10 +164,8 @@ $(document).ready(function () {
                 });
 
                 // console.log(response);
-            },
-            error: function (response) {
-                console.error(response.responseText);
             }
+            
 
 
         });

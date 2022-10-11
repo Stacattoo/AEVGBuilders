@@ -39,5 +39,9 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../projects/projects.php");
     });
+    $("#profileNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../projects/projects.php");
+    });
 
 });

@@ -103,11 +103,6 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    // function updateAttempt($key, $attempt)
-    // {
-    //     $query = "UPDATE client SET login_attempt=$attempt WHERE email='$key'";
-    //     return mysqli_query($this->conn, $query);
-    // }
 
     function profileUpdate($value, $id)
     {
