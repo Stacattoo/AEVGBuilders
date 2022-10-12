@@ -41,6 +41,7 @@ class dbHandler
         }
     }
 
+
     function checkAccount($key, $password, $col)
     {
         $query = "SELECT * FROM $col WHERE (email = '$key' OR username = '$key')  AND  password ='$password'";
@@ -93,12 +94,11 @@ class dbHandler
         }
     }
 
-    function updateProject($value)
+    function updateProject($value, $id)
     {
         $query = "UPDATE `projects` SET title='$value->title', category='$value->category', 
-        image='$value->image',  description='$value->description' WHERE id='$value->id'";
-        $result = mysqli_query($this->conn, $query);
-        return $result;
+        image='$value->image',  description='$value->description' WHERE id=$id";
+        return mysqli_query($this->conn, $query);
     }
 
     function uploadProject($info)
@@ -144,6 +144,8 @@ class dbHandler
         return $projects;
     }
 
+    
+
     function getValueByID($value, $id)
     {
         $sql = "SELECT `$value` FROM projects WHERE `id`=$id";
@@ -154,4 +156,26 @@ class dbHandler
             }
         }
     }
+
+
+//profile
+    function getAllEmployeeInfo($id){
+        $sql = "SELECT * FROM employee WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return (object) [
+                    'username' => $row['username'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                ];
+            }
+        }
+    }
+    function updateInfo($id, $col, $value, $table ='employee')
+{
+    $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
+    return mysqli_query($this->conn, $sql);
 }
+}
+

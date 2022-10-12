@@ -39,9 +39,38 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../projects/projects.php");
     });
-    $("#profileNav").click(function (e) {
-        e.preventDefault();
-        $("#content").load("../projects/projects.php");
+    //profile
+     $("#pass").on("show.bs.collapse", function () {
+        $("#confirmPassword").removeAttr("disabled");
+        $("#newPassword").removeAttr("disabled");
     });
+
+    $("#pass").on("hidden.bs.collapse", function () {
+        $("#newPassword").attr("disabled", "disabled");
+        $("#confirmPassword").attr("disabled", "disabled");
+    });
+
+  
+    $("#updateProfileModal").on("show.bs.modal", function () {
+        $("#profileForm").trigger("reset");
+        $("#errorAlert").hide();
+        $.ajax({
+            type: "POST",
+            url: "profileProcess.php",
+            data: { getEmployeeInfo: true },
+            dataType: "JSON",
+            success: function (data) {
+                $("#username").val(data.username);
+                $("#email").val(data.email);
+            },
+          
+            error: function (response) {
+                console.error(response.responseText);
+                alert("SESSION expired login again");
+                window.location.href = 'login/login.php';
+            }
+        });
+    });
+
 
 });

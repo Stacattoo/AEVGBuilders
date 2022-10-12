@@ -72,7 +72,7 @@ $dbh = new dbHandler;
                             <strong class="d-none d-lg-inline text-uppercase">Employee</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" id="profileNav">Profile</button></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -89,6 +89,53 @@ $dbh = new dbHandler;
 
         </div>
 
+    </div>
+
+
+    <!-- UPDATE PROFILE -->
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="profileForm">
+                    <div class="modal-body">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="username" minlength="5" required>
+                            <label for="text">Username</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" email required>
+                            <label for="email">Email address</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div id="pass" class="collapse">
+                            <div class="form-floating mb-2">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required disabled>
+                                <label for="newPassword">New Password</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Password" required disabled>
+                                <label for="confirmPassword">Re-type New Password</label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="collapse" data-bs-target="#pass">Change Password</button>
+                        <div class="alert alert-danger mt-2 py-2 text-center" role="alert" id="errorAlert">
+                            {{ errorMessage }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 </body>
