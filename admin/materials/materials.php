@@ -79,63 +79,22 @@ $dbh = new dbHandler;
 
         </tbody>
     </table>
-
-    <!-- <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">CODE</th>
-                <th scope="col">NAME</th>
-                <th scope="col">CATEGORY</th>
-                <th scope="col">DESCRIPTION</th>
-            </tr>
-        </thead>
-        <tbody class = "table-hover">
-            <tr>
-                <th scope="row">6363</th>
-                <td>Sementoaur</td>
-                <td>Cement</td>
-                <td>sementaur naur!~</td>
-            </tr>
-            <tr>
-                <th scope="row">0203</th>
-                <td>Nail</td>
-                <td>Nails</td>
-                <td>Purr</td>
-            </tr>
-            <tr>
-                <th scope="row">sampleCode</th>
-                <td>sampleName</td>
-                <td>Concrete</td>
-                <td>asd</td>
-            </tr>
-            <tr>
-                <th scope="row">hannaSample</th>
-                <td>Hanna Sagun</td>
-                <td>Concrete</td>
-                <td>asdasd</td>
-            </tr>
-            <tr>
-                <th scope="row">sheesh</th>
-                <td>asda</td>
-                <td>Nails</td>
-                <td>aaaaaafsdfnooooo</td>
-            </tr>
-        </tbody>
-    </table> -->
 </div>
 
 <script>
+    // console.log("hello");
     $(document).ready(function() {
+        // console.log("hi");
         $.ajax({
             
             type: "POST",
-            url: "materials/materialsProcess.php",
+            url: "materials/dispMaterials.php",
             data: {
                 displayMaterials: true
             },
             dataType: "JSON",
             success: function(response) {
-                console.log("asd");
+                console.log("harold");
                 var content = ``;
                 $.each(response, function(i, val) {
                      console.log(val.id);
@@ -158,6 +117,9 @@ $dbh = new dbHandler;
                     $('#table tr').removeClass("table-primary");
                     $(this).addClass("table-primary");
                 })
+            }, error: function(response){
+                console.log("hello");
+                console.log(response);
             }
         });
 

@@ -321,7 +321,7 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             $materials = array();
             while ($row = mysqli_fetch_assoc($result)) {
-                $materials[] = (object) [
+                $materials[] = (object)[
                     "id" => $row['id'],
                     "code" => $row['code'],
                     "name" => $row['name'],
