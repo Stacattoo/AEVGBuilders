@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#alertSuccess").hide();
 
     $("#uploadMaterials").submit(function (event) {
+        console.log("kahit ano");
         event.preventDefault();
         $.ajax({
             type: 'post',

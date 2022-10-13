@@ -315,5 +315,22 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function getAllMaterials (){
+        $sql = "SELECT * FROM material ORDER BY id DESC";
+        $result =  mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $materials = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $materials[] = (object) [
+                    "id" => $row['id'],
+                    "code" => $row['code'],
+                    "name" => $row['name'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                ];
+            }
+            return $materials;
+        }
+    }
 
 }

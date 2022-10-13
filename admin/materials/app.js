@@ -9,7 +9,7 @@ select = document.querySelector('.drag-area .select'),
 container = document.querySelector('.container');
 
 /** CLICK LISTENER */
-select.addEventListener('click', () => input.click());
+// select.addEventListener('click', () => input.click());
 
 /* INPUT CHANGE EVENT */
 input.addEventListener('change', () => {
