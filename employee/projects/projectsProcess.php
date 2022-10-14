@@ -3,12 +3,12 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
 
-$trimmed_array='';
+$trimmed_array = '';
 
-if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ''){
+if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
-    for($i=0; $i<$imageCount; $i++){
+    for ($i = 0; $i < $imageCount; $i++) {
         $file_name = $_FILES['image']['name'][$i];
         $file_tmp = $_FILES["image"]["tmp_name"][$i];
         $img_path = "image/" . basename($file_name);
@@ -22,23 +22,22 @@ if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ''){
     }
 
     $trimmed_array = trim($paths, ",");
-    
-        $info = (object) [
-            'title' => $_POST['title'],
-            'category' => $_POST['category'],
-            'image' => $trimmed_array,
-            'description' => $_POST['description'],
-        ];
-        
-        if ($dbh->uploadProject($info)) {
-            echo json_encode(array(
-                "status" => 'success',
-                "msg" => 'Project Successfully Uploaded.'
-            ));
-        }
+
+    $info = (object) [
+        'title' => $_POST['title'],
+        'category' => $_POST['category'],
+        'image' => $trimmed_array,
+        'description' => $_POST['description'],
+    ];
+
+    if ($dbh->uploadProject($info)) {
+        echo json_encode(array(
+            "status" => 'success',
+            "msg" => 'Project Successfully Uploaded.'
+        ));
+    }
 }
 
-        if(isset($_POST["getAllProjects_req"])) {
-            echo json_encode((array)$dbh->getAllProjects());
-            
-        }
+if (isset($_POST["getAllProjects_req"])) {
+    echo json_encode((array)$dbh->getAllProjects());
+}

@@ -53,4 +53,3 @@ if (isset($_POST['titleEdit'])) {
         ));
     }
 }
-var_dump($info);

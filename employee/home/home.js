@@ -39,15 +39,9 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../projects/projects.php");
     });
-    //profile
-     $("#pass").on("show.bs.collapse", function () {
-        $("#confirmPassword").removeAttr("disabled");
-        $("#newPassword").removeAttr("disabled");
-    });
-
-    $("#pass").on("hidden.bs.collapse", function () {
-        $("#newPassword").attr("disabled", "disabled");
-        $("#confirmPassword").attr("disabled", "disabled");
+    $("#profileNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../profile/profile.php");
     });
 
   

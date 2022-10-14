@@ -1,6 +1,7 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+
 ?>
 <!DOCTYPE html>
 <html>

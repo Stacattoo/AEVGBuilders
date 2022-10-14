@@ -79,17 +79,6 @@ class dbHandler
         }
     }
 
-    // function getAttempt($key, $col)
-    // {
-    //     $query = "SELECT login_attempt FROM $col WHERE email = '$key'";
-    //     $result = mysqli_query($this->conn, $query);
-    //     if (mysqli_num_rows($result)) {
-    //         $row = mysqli_fetch_assoc($result);
-    //         return $row['login_attempt'];
-    //     } else {
-    //         return 0;
-    //     }
-    // }
 
     function updatePassword($email, $newPass)
     {
@@ -128,9 +117,6 @@ class dbHandler
                 }
             }
         } else {
-            // $total_count = $this->getAttempt($key, 'client') - 1;
-            // $this->updateAttempt($key, $total_count);
-            // echo "Email and Password not match. Remaining attempts: " . $total_count;
             return false;
         }
     }

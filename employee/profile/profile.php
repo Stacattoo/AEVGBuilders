@@ -9,74 +9,76 @@ $dbh = new dbHandler;
 <script src="../projects/app.js"></script>
 
 <div class="container-fluid">
-    <h3><i class="fal fa-analytics me-2"></i>Upload Project</h3>
-    <hr>
-    <div class="container-fluid">
+    <div class="form-container p-5 mt-3">
 
-        <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" type="button" id="passBtn">Change Password</a>
+            </li>
+        </ul>
 
-            <div class="col-4">
-                <form id="uploadProjects">
-                    <div class="input-group mb-3 mt-5">
-                        <h5>Title of Project: &nbsp;</h4><input type="text" class="form-control" name="title" placeholder="Title of Project" aria-label="title" aria-describedby="basic-addon1" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <h5>Product Category: &nbsp;</h4>
-                            <select class="form-control" aria-label="Default select example" name="category" required>
-                                <option selected>Catergory</option>
-                                <option value="Interior">Interior</option>
-                                <option value="Renovate">Renovate</option>
-                                <option value="Bungalo">Bungalo</option>
-                                <option value="Modern">Modern</option>
-                            </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <h5>Product Image: &nbsp;</h4>
-                            <!-- <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required> -->
-                            <div class="card" id="uploadReset">
-                                <div class="drag-area">
-                                    <span class="visible">
-                                        Drag & drop image here or
-                                        <span class="select" role="button">Browse</span>
-                                    </span>
-                                    <span class="on-drop">Drop images here</span>
-                                    <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
-                                </div>
+        <form id="profileForm">
+            <div class="row mt-3">
+                <div class="col-4">
 
-                                <!-- IMAGE PREVIEW CONTAINER -->
-                                <div class="container" id="imgCon"></div>
-                                
-                            </div>
+                    <div id="imgForm" class="text-center mt-5">
+                        <img id="profileImg" src="../profile/<?php echo $dbh->getValueByProfileID('profile_picture', $_SESSION['id']); ?>" style="max-height: 150px;">
+                        <!-- //C:\xampp\htdocs\AEVGBuilders\employee\profile\image -->
+                        <input type="file" id="imgBtn" class="btn btn-dark mt-2 form-control" name="image">
+                        <input type="hidden" name="file_path" value="<?php echo $dbh->getValueByProfileID('profile_picture', $_SESSION['id']); ?>">
                     </div>
-                    <div class="input-group mb-3">
-                        <h5>Product Description: &nbsp;</h4><textarea class="form-control" name="description" placeholder="Description" aria-label="With textarea"></textarea>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-5" name="firstName" value="<?php echo $dbh->getValueByProfileID('firstName', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-5" name="middleName" value="<?php echo $dbh->getValueByProfileID('middleName', $_SESSION['id']); ?>" placeholder="Middle Name (optional)">
+                        <input type="text" class="form-control mt-5" name="lastName" value="<?php echo $dbh->getValueByProfileID('lastName', $_SESSION['id']); ?>">
                     </div>
-
+                    <div class="d-flex justify-content-evenly">
+                        <input type="email" class="form-control mt-2" name="email" value="<?php echo $dbh->getValueByProfileID('email', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="contact_no" value="<?php echo $dbh->getValueByProfileID('contactNo', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="house_no" value="<?php echo $dbh->getValueByProfileID('houseNo', $_SESSION['id']); ?>" placeholder="House No. (optional)">
+                        <input type="text" class="form-control mt-2" name="street" value="<?php echo $dbh->getValueByProfileID('street', $_SESSION['id']); ?>" placeholder="Street (optional)">
+                        <input type="text" class="form-control mt-2" name="barangay" value="<?php echo $dbh->getValueByProfileID('barangay', $_SESSION['id']); ?>">
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <input type="text" class="form-control mt-2" name="municipality" value="<?php echo $dbh->getValueByProfileID('municipality', $_SESSION['id']); ?>">
+                        <input type="text" class="form-control mt-2" name="province" value="<?php echo $dbh->getValueByProfileID('province', $_SESSION['id']); ?>">
+                    </div>
                     <div class="alert alert-danger mt-3" role="alert" id="alertError">
                     </div>
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
                     </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-dark">Upload Project</button>
+                    <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
+                </div>
+            </div>
+        </form>
+        <form id="changePassForm" class="row g-3 p-3">
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="col-6">
+                        <div class="col-12 fw-bold">
+                            <label for="inputAddress" class="form-label">Current Password:</label>
+                            <input type="password" class="password form-control" id="inputAddressOld" name="oldPass" required>
+                        </div>
+                        <div class="col-12 fw-bold">
+                            <label for="inputAddress" class="form-label">New Password:</label>
+                            <input type="password" class="password form-control" id="inputAddressNew" name="newPass" required>
+                        </div>
+                        <div class="col-12 fw-bold">
+                            <label for="inputAddress" class="form-label">Confirm Password:</label>
+                            <input type="password" class="password form-control" id="inputAddressConfirm" name="confirmPass" required>
+                        </div>
+                        <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass"></div>
+
                     </div>
-                </form>
+                </div>
             </div>
-            <div class="col-6">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="projects">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        </form>
     </div>
-
 </div>

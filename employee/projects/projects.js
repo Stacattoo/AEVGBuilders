@@ -87,7 +87,6 @@ $(document).ready(function () {
 
                 $('.projectEditDiv').click(function (e) {
                     e.preventDefault();
-
                     projectId = $(this).data("id");
                     $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
@@ -102,21 +101,30 @@ $(document).ready(function () {
                             console.log(data);
                             contentEdit += `
                                 <div class="col">
-                                    <div class="border">
-                                    <img src="../projects/${data}" class="d-block img-fluid img">
-                                    <button type="button" class="deleteImgBtn" id="imageDeleteBtn"  data-id="${indexInArray}">
-                                    DELETE
-                                    </button>
+                                    <div class="border position-relative">
+                                        <img src="../projects/${data}" class="d-block img-fluid img">
+                                        <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                            id="imageDeleteBtn"  data-id="${indexInArray}">
+                                            X
+                                        </span>
+                                       
                                     </div>
                                 </div>
+                                <style> 
+                                    .deleteImgBtn {
+                                        cursor: pointer;
+                                    }
+
+                                    .deleteImgBtn:hover {
+                                        background: #461217 !important;
+                                    }
+                                </style>
                             `;
                         });
                         $('#view-editImage').html(contentEdit);
                         $('#edit-image').val(dataFilter.image);
                     }
                     imageRefresh();
-                    //console.log(dataFilter.image);
-                    // $('#unset').val("");
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
@@ -136,7 +144,6 @@ $(document).ready(function () {
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
-                        //console.log(id);
                         //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
@@ -148,15 +155,19 @@ $(document).ready(function () {
                             dataType: "JSON",
                             success: function (response) {
                                 console.log(response);
-                                if (response.status == 'success') {
-                                    $("#alertSuccessEdit").html(response.msg);
-                                    $("#alertSuccessEdit").show();
-                                    $('#editProjectModal').modal("hide");
-                                    refreshTable();
-                                } else {
+                                if (response.status == 'error') {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
+                                } else {
+                                    $("#alertSuccessEdit").html(response.msg);
+                                    $("#alertSuccessEdit").show();
+                                    $("#editUploadProjects").trigger("reset");
+                                    $('#editProjectModal').modal("hide");
+                                    refreshTable();
+                                   
                                 }
+                            }, error: function (response) {
+                                console.error(response);
                             }
                         });
                     });
@@ -165,7 +176,10 @@ $(document).ready(function () {
 
                 // console.log(response);
             }
-            
+            ,
+            error: function (response) {
+                console.error(response.responseText);
+            }
 
 
         });

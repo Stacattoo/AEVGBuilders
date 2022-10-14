@@ -157,25 +157,17 @@ class dbHandler
         }
     }
 
-
-//profile
-    function getAllEmployeeInfo($id){
-        $sql = "SELECT * FROM employee WHERE id='$id'";
+    function getValueByProfileID($value, $id, $table = "employee")
+    {
+        $sql = "SELECT `$value` FROM $table WHERE id=$id";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
-                return (object) [
-                    'username' => $row['username'],
-                    'email' => $row['email'],
-                    'password' => $row['password'],
-                ];
+                return $row[$value];
+                // return $sql;
             }
         }
     }
-    function updateInfo($id, $col, $value, $table ='employee')
-{
-    $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
-    return mysqli_query($this->conn, $sql);
 }
-}
+
 
