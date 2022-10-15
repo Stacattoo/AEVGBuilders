@@ -7,7 +7,7 @@ $(document).ready(function () {
         // console.log('test lang');
         event.preventDefault();
         $.ajax({
-            url: "profileProcess.php",
+            url: "../profile/profileProcess.php",
             type: "POST",
             data: new FormData(this),
             contentType: false,
@@ -16,7 +16,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (result) {
                 console.log(result);
-                //alert("Record successfully updated");
+
                 if (result.status == 'error') {
                     $("#alertError").html(result.msg);
                     $("#alertError").fadeIn();
@@ -81,7 +81,7 @@ $(document).ready(function () {
         // console.log('test lang');
         event.preventDefault();
         $.ajax({
-            url: "changePassProcess.php",
+            url: "../profile/changePassProcess.php",
             type: "POST",
             dataType: "json",
             data: new FormData(this),
@@ -93,6 +93,7 @@ $(document).ready(function () {
                 if (result.status == "error") {
                     $("#errorPass").html(result.msg);
                     $("#errorPass").show();
+                    $('#changePassForm').trigger("reset");
                 } else {
                     alert("Password Changed Succesfully");
                     $("#changePass").hide();
@@ -104,6 +105,7 @@ $(document).ready(function () {
             }
         });
     });
+    //pa check kay kuya kase may mali pag nagsubmit ule di narerecognize hehe
 
     $('#changePassForm').click(function (){
         $("#errorPass").hide();

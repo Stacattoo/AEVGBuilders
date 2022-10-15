@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../projects/projects.php");
+    $("#content").load("../profile/profile.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {
@@ -44,27 +44,6 @@ $(document).ready(function () {
         $("#content").load("../profile/profile.php");
     });
 
-  
-    $("#updateProfileModal").on("show.bs.modal", function () {
-        $("#profileForm").trigger("reset");
-        $("#errorAlert").hide();
-        $.ajax({
-            type: "POST",
-            url: "profileProcess.php",
-            data: { getEmployeeInfo: true },
-            dataType: "JSON",
-            success: function (data) {
-                $("#username").val(data.username);
-                $("#email").val(data.email);
-            },
-          
-            error: function (response) {
-                console.error(response.responseText);
-                alert("SESSION expired login again");
-                window.location.href = 'login/login.php';
-            }
-        });
-    });
 
 
 });

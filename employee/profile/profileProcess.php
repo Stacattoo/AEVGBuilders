@@ -1,5 +1,5 @@
 <?php
-include_once('../include/dbh.inc.php');
+include_once('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
 //Profile Edit Info
@@ -11,7 +11,6 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
     $img_path = "image/" . basename($_FILES['image']['name']);
 
     move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
-
 
 } else {
 
@@ -26,10 +25,10 @@ if (isset($_POST['firstName'])) {
         'firstName' => $_POST['firstName'],
         'middleName' => $_POST['middleName'],
         'lastName' => $_POST['lastName'],
-        //'username' => $_POST['username'],
+        'username' => $_POST['username'],
         'email' => $_POST['email'],
-        'contact_no' => $_POST['contact_no'],
-        'house_no' => $_POST['house_no'],
+        'contactNo' => $_POST['contactNo'],
+        'houseNo' => $_POST['houseNo'],
         'street' => $_POST['street'],
         'barangay' => $_POST['barangay'],
         'municipality' => $_POST['municipality'],
@@ -39,11 +38,14 @@ if (isset($_POST['firstName'])) {
 
 
     if ($dbh->profileUpdate($info, $_SESSION['id'])) {
-        // echo $img_path;
-        // move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Profile Update Successfully.'
+        ));
+    }else{
+        echo json_encode(array(
+            "status" => 'error',
+            "msg" => 'There was a problem updating you profile, Please Try Again.'
         ));
     }
 }

@@ -108,7 +108,26 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function profileUpdate($value, $id)
+    {
+        $sql = "UPDATE `employee` SET firstName='$value->firstName', middleName='$value->middleName', lastName='$value->lastName', username='$value->username', email='$value->email',
+         contactNo='$value->contactNo', houseNo='$value->houseNo', street='$value->street', barangay='$value->barangay', municipality='$value->municipality', 
+         province='$value->province', profile_picture='$value->image' WHERE id=$id";
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
 
+    function getSpecificInfo($id, $col)
+    {
+        $sql = "SELECT $col FROM employee WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row[$col];
+        } else {
+            return 0;
+        }
+    }
 
     function checkIfSomeAlrExist($key, $table, $col)
     {

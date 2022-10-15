@@ -1,5 +1,5 @@
 <?php
-include_once('../include/dbh.inc.php');
+include_once('../include/dbh.employee.php');
 $dbh = new dbHandler;
 
 //Change Password Edit
