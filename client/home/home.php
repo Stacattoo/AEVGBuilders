@@ -41,7 +41,7 @@ $dbh = new dbHandler;
             </ul>
 
 
-            <div class="col-md-3 text-end">
+            <div class="col-md-3 d-flex justify-content-end">
 
                 <!-- Checking if the session is set -->
                 <?php if (!isset($_SESSION['id'])) { ?>
@@ -52,8 +52,8 @@ $dbh = new dbHandler;
 
                 <?php } else { ?>
 
-                    <!-- <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px"> -->
-                    <div class="dropdown">
+                    <!-- <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px">  -->
+                    <!-- <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo $dbh->getFullname($_SESSION['id']); ?>
                         </button>
@@ -66,8 +66,23 @@ $dbh = new dbHandler;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../../logout/logout.phps">Logout</a></li>
 
+                        </ul>
+                    </div> -->
+                    <div class="dropdown me-5">
+                        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow">
+                            <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+                            <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                            <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
                         </ul>
                     </div>
 
@@ -158,7 +173,7 @@ $dbh = new dbHandler;
                     </div>
                     <div class="col-md-8 ">
 
-                        <img class="img-fluid" src="../../images/interior.jpg">
+                        <img class="img-fluid" src="../../images/consultation.jpg">
 
 
 
@@ -193,10 +208,10 @@ $dbh = new dbHandler;
                 <hr>
 
                 <div class="row d-flex align-items-center">
-                    <div class="col-md-4 ">
+                    <div class="col-md-8">
                         <img class="img-fluid" src="../../images/pm.jpg">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <h2 class=" fw-normal lh-1">PROJECT MANAGEMENT</h2>
                         <p class="lead">Project documentation, planning, tracking, and communication—all with the goal of delivering work successfully</p>
                     </div>

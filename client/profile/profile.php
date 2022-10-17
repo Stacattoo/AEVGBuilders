@@ -33,7 +33,7 @@ $dbh = new dbHandler;
 
                 <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
-                <li><a href="../services/services.php" class="nav-link px-2 link-dark">Services</a></li>
+
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 
@@ -64,7 +64,7 @@ $dbh = new dbHandler;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
 
                         </ul>
                     </div>
@@ -281,7 +281,10 @@ $dbh = new dbHandler;
 
         </div>
 
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      
+
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -429,8 +432,7 @@ $dbh = new dbHandler;
             </div>
 
         </div>
-
-    </div>
+    
     <div class="container">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

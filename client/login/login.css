@@ -1,12 +1,12 @@
 .form-container {
 
     width: 450px;
-    height: 500px;
+    min-height: 500px;
     font-size: 15px;
     margin-bottom: 0px;
-    background: #f7f7f7;    
-   
-    padding: 30px;
+    background: #f7f7f7;
+
+
     background: rgba(255, 255, 255, 0.5);
 }
 
@@ -15,18 +15,19 @@
 html {
     height: 100%;
 }
-body{
 
-    background-image:url(../../images/login.jpg);
+body {
+
+    background-image: url(../../images/login1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
 }
 
-.glass-effect{
-background: linear-gradient(133deg, rgb(255 225 255 / 10%), rgba(255,255,255,0.8)); 
--webkit-backdrop-filter: blur(20px);
-box-shadow: 0 8px 32px 0 rgb(0 0 0 / 11%);
-border: 1px solig rgba(255, 255, 255, 0.18);
-border-radius: 26px;
+.glass-effect {
+    background: linear-gradient(285deg, rgb(225 225 225 / 10%), rgb(183 177 177 / 66%));
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 11%);
+    border: 1px solig rgba(255, 255, 255, 0.18);
+    border-radius: 26px;
 }

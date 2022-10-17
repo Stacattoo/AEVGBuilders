@@ -33,7 +33,7 @@ $dbh = new dbHandler;
                 <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-                <li><a href="../materials/materials.php" class="nav-link px-2 link-secondarys">Materials</a></li>
+                <li><a href="../materials/materials.php" class="nav-link px-2 link-secondary">Materials</a></li>
 
             </ul>
 
@@ -62,7 +62,7 @@ $dbh = new dbHandler;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
 
                         </ul>
                     </div>
@@ -80,7 +80,7 @@ $dbh = new dbHandler;
     
 		<nav class="nav d-flex justify-content-center">
 			<a class="p-2 link-secondary" href="#">All</a>
-			<a class="p-2 link-secondary" href="#">Woods</a>
+			<a class="p-2 link-secondary" href="#">Woods</a>  
 			<a class="p-2 link-secondary" href="#">Concretes</a>
 			<a class="p-2 link-secondary" href="#">Steel</a>
 			<a class="p-2 link-secondary" href="#">Tiles</a>

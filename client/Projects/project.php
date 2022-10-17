@@ -59,7 +59,7 @@ $dbh = new dbHandler;
 							<li>
 								<hr class="dropdown-divider">
 							</li>
-							<li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+							<li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
 
 						</ul>
 					</div>
@@ -74,13 +74,13 @@ $dbh = new dbHandler;
 	</div>
 	<div class="nav-scroller py-1 mb-2">
 		<nav class="nav d-flex justify-content-center">
-			<button class="p-2 link-secondary btn btn-link category" href="#">All</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Building</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Commercial</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Design</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Renovation</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Blueprints</button>
-			<button class="p-2 link-secondary btn btn-link category" href="#">Residentials</button>
+			<button class="p-2 link-secondary btn btn-link category">All</button>
+			<button class="p-2 link-secondary btn btn-link category">Building</button>
+			<button class="p-2 link-secondary btn btn-link category">Commercial</button>
+			<button class="p-2 link-secondary btn btn-link category">Design</button>
+			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
+			<button class="p-2 link-secondary btn btn-link category">Blueprints</button>
+			<button class="p-2 link-secondary btn btn-link category">Residentials</button>
 
 		</nav>
 		<div class="album py-5 bg-light">
