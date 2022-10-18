@@ -12,7 +12,7 @@
 </head>
 
 <body>
-        <div class="row h-100 d-flex align-items-center">
+        <div class="row h-100 d-flex align-items-center mx-0">
             <div class="col-md-7  offset-1 ">
             
                 <h1 class="display-1 text-light">Affordable homes in thriving communities</h1>
@@ -32,7 +32,7 @@
                         </div>
                         <button type="submit" class="btn btn-dark form-control mt-3">Login</button>
                         <div>
-                            <a href="../forgotPassword/forgotPassword.php" class="mt-3 btn btn-link text-dark text-decoration-none">Forgot Password?</a>
+                            <button class="mt-3 btn btn-link text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</button>
                         </div>
 
                     </form>

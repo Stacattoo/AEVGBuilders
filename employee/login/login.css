@@ -1,12 +1,10 @@
 .form-container {
 
     width: 450px;
-    height: 500px;
+    min-height: 500px;
     font-size: 15px;
     margin-bottom: 0px;
-    background: #f7f7f7;    
-   
-    padding: 30px;
+    background: #f7f7f7;       
     background: rgba(255, 255, 255, 0.5);
 }
 

@@ -101,11 +101,11 @@
 
 ### 1. Log in
 
-- (Frontend) ~~(Backend)~~
+~~- (Frontend) ~~ ~~(Backend)~~
 
 ### 2. Registration 
 
-- (Frontend) ~~(Backend)~~
+~~- (Frontend) ~~ ~~(Backend)~~
 
 ### 3. Home page
 
@@ -122,7 +122,7 @@
 ### 5. Projects
 
 - ~~List of all projects. (Frontend)~~
-- Filter by category. (Frontend)
+~~- Filter by category. (Frontend)~~
 - Limit of 15 latest Projects. (Frontend)
 
 ### 6. Materials

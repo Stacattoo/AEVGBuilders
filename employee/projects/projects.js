@@ -72,13 +72,20 @@ $(document).ready(function () {
                 $.each(response, function (indexInArray, data) {
                     //console.log(data);
                     content += `
-                   
-                        <tr class="projectEditDiv" data-id="${data.id}">
-                        <th scope="row">${data.id}</th>
-                        <td class="align-middle">${data.title}</td>
-                        <td class="align-middle">${data.category}</td>
-                        <td class="align-middle">${data.description}</td>
-                        </tr>
+                    <div class="col">
+                        <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
+                            <div class="card-img-top" style="height: 220px; background-image: url('../projects/${data.image[0]}'); background-size: cover; ">
+                            </div>
+
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">                       
+                                <div class="fw-bold text-capitalize">${data.title}</div> 
+                                <small class="text-muted">${data.category}</small>
+                                </div>
+                                <p class="card-text">${data.description}</p>
+                            </div>
+                        </div>
+                    </div>    
                         `;
 
                 });

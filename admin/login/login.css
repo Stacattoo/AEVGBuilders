@@ -1,25 +1,29 @@
-body {
-    background-color: #fff5da;
-}
-
 .form-container {
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    background-color: white;
+
+    width: 450px;
+    min-height: 500px;
+    font-size: 15px;
+    margin-bottom: 0px;
+    background: #f7f7f7;    
+    background: rgba(255, 255, 255, 0.5);
 }
 
-.form-container .form-floating:focus-within {
-    z-index: 2;
+
+
+html {
+    height: 100%;
+}
+body{
+    background-image:url(../../images/alogin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
 
-.form-container input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-container input[type="password"] {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+.glass-effect{
+background: linear-gradient(133deg, rgb(255 225 255 / 10%), rgba(255,255,255,0.8)); 
+-webkit-backdrop-filter: blur(20px);
+box-shadow: 0 8px 32px 0 rgb(0 0 0 / 11%);
+border: 1px solig rgba(255, 255, 255, 0.18);
+border-radius: 26px;
 }

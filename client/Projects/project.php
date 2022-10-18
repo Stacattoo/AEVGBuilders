@@ -83,22 +83,21 @@ $dbh = new dbHandler;
 			<button class="p-2 link-secondary btn btn-link category">Residentials</button>
 
 		</nav>
-		<div class="album py-5 bg-light">
+
+		<div class="container mt-5">
+
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 " id="materials">
+
+
+			</div>
 			<div class="container">
+				<footer class="py-3 my-4">
+					<hr>
+					<p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
 
-				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 " id="materials">
-					
-
-				</div>
-				<div class="container">
-					<footer class="py-3 my-4">
-						<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-
-						</ul>
-						<p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
-
-					</footer>
-				</div>
+				</footer>
+			</div>
+		</div>
 
 </body>
 

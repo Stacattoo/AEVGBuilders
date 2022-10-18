@@ -15,8 +15,6 @@
     <div class="row h-100 d-flex align-items-center mx-0">
         <div class="col-md-7  offset-1 ">
 
-
-
         </div>
         <div class="col-md-4 ">
 
@@ -32,24 +30,18 @@
                     </div>
                     <button type="submit" class="btn btn-dark form-control mt-3">Login</button>
                     <div class="d-flex justify-content-evenly mt-4">
-                        <a href="../forgotPassword/forgotPassword.php" class="mt-3 btn btn-link text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
+                        <button class="mt-3 btn btn-link text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</button>
                         <a href="../register/register.php" class="mt-3 btn btn-link text-dark text-decoration-none">Create an Account</a>
                     </div>
-
-
                 </form>
-
             </div>
-
-
         </div>
 
 
         <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content rounded-4 shadow">
                     <div class="modal-header p-5 pb-4 border-bottom-0">
-
                         <h1 class="fw-bold mb-0 fs-2">Forgot Password</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -101,8 +93,8 @@
             </div>
 
         </div>
+    </div>
 
-        
 </body>
 
 </html>

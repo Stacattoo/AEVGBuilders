@@ -11,36 +11,25 @@ $dbh = new dbHandler;
 <div class="container-fluid ">
     <div class="d-flex justify-content-between mx-4">
 
-        <h3><i class="fal fa-analytics me-2"></i>Upload Project</h3>
+        <h3><i class="fal fa-city me-2"></i></i>Upload Projects</h3>
         <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button>
     </div>
     <hr>
-    <div class="  container-fluid">
+    <div class="container-fluid">
+        <div class="container mt-5">
+            <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4">
 
 
-        <div class="row">
-
-            <div class="col">
-                <table class="table table-striped ">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="projects">
-
-                    </tbody>
-                </table>
             </div>
         </div>
+
     </div>
 </div>
 
 </div>
 
+
+<!-- button add new project -->
 <div class="modal fade" id="newProjectModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered  modal-xl">
         <div class="modal-content">
@@ -87,7 +76,7 @@ $dbh = new dbHandler;
 
 
                                 <!-- <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple required> -->
-                                <div class="card" id="uploadReset">
+                                <div class="card-file" id="uploadReset">
                                     <div class="drag-area">
                                         <span class="visible">
                                             Drag & drop image here or
@@ -104,13 +93,7 @@ $dbh = new dbHandler;
 
 
                             </div>
-                            <!-- <div class="alert alert-danger mt-3" role="alert" id="alertError">
-                    </div>
-                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-                    </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-dark">Upload Project</button>
-                    </div> -->
+
                         </div>
                     </div>
                 </div>

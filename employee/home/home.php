@@ -28,7 +28,7 @@ $dbh = new dbHandler;
 
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
                         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <img src="../../images/waevg.png" class=" d-flex-justify-content-center " height="45">
+                            <img src="../../images/waevg.png" class=" d-flex-justify-content-center mx-4" height="45">
 
                         </a>
                         
@@ -70,7 +70,7 @@ $dbh = new dbHandler;
                                 <li>
                                     <a href="#" class="nav-link text-white" id="projectNav">
 
-                                        <i class="fas fa-ban bi me-2"></i>
+                                        <i class="fas fa-city bi me-2"></i>
                                         Projects
                                     </a>
                                 </li>
