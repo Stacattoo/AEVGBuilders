@@ -44,13 +44,22 @@ class dbHandler
         $projects = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
-               $projects[] = (object)[
-                "id" => $row["id"],
-                "title" => $row["title"],
-                "description" => $row["description"],
-                "category" => $row["category"],
-                "image" => explode(",", $row["image"]),
-               ];
+                $id = $row["id"];
+                $sql = "SELECT COUNT(project_reaction.project_id) AS reactionCtr FROM project_reaction WHERE project_id=$id";
+                $result2 = mysqli_query($this->conn, $sql);
+                if (mysqli_num_rows($result)) {
+                    if ($row2 = mysqli_fetch_assoc($result2)) {
+                        $projects[] = (object)[
+                            "id" => $row["id"],
+                            "title" => $row["title"],
+                            "description" => $row["description"],
+                            "category" => $row["category"],
+                            "image" => explode(",", $row["image"]),
+                            "reaction" => $row2["reactionCtr"]
+                           ];
+                    }
+                }
+               
             }
         }
         return $projects;
