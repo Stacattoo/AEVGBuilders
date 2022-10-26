@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    
-    filterProject("All");
-    
 
-    $(".category").click(function (e) { 
+    filterProject("All");
+
+
+    $(".category").click(function (e) {
         e.preventDefault();
         filterProject($(this).html())
     });
 
-    function filterProject(category){
+    function filterProject(category) {
         console.log(category);
         $.ajax({
             type: "post",
@@ -18,9 +18,9 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-            console.log(response);
-              var filter = response.filter(function (data) {
-                    if(category=="All"){
+                console.log(response);
+                var filter = response.filter(function (data) {
+                    if (category == "All") {
                         return true;
                     }
                     images += `<div class="carousel-item ${active}">
@@ -30,7 +30,7 @@ $(document).ready(function () {
                 })
                 let content = ``;
                 $.each(filter, function (indexInArray, data) {
-                    console.log(data.image);
+                    console.log(filter);
                     let images = ``;
                     $.each(data.image, function (indexInArray, path) {
                         let active = '';
@@ -60,19 +60,42 @@ $(document).ready(function () {
                                 </div>
                                 <div class="card-body">
                                 <p class=
-                                    <p class="card-text">${data.description}</p>
+                                    <p class="card-text">${data.description}</p> 
+                                    <i class="far fa-heart react" data-id="${data.id}"></i> <span> ${data.reaction}</span>
                                 </div>
                             </div>
                         </div>
                      `;
+                    //  ${(data.react == 'like') ? "fas":"far"}
                 });
                 $("#materials").html(content);
-               
+
+                $('.react').click(function (e) { // dito yung dpat mag cchange to solid
+                    e.preventDefault();
+                    let postId = $(this).attr("data-id");
+                    console.log(postId);
+                    $.ajax({
+                        type: "post",
+                        url: "projectProcess.php",
+                        data: {
+                            setPostReaction: true, projectId: postId
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            
+                            $(this).removeClass("far");
+                            $(this).addClass("fas");
+                        }
+                    });
+
+
+                });
+
             },
             error: function (response) {
                 console.error(response.responseText);
             }
         });
     }
-    
+
 });

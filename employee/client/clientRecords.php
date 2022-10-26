@@ -23,6 +23,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
+        <!-- TODO: fix names, hindi similar pag cinlick
+                    lalagyan ng condition na palitan yung name-->
         <div>Assigned Employee: <span class="fw-bolder">
                 <?php if ($userData->employeeName == "") {
                     echo '<a id="choose" data-bs-toggle="modal" href="#chooseModal">Choose an Employee </a>';

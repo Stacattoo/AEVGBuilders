@@ -52,7 +52,7 @@ $(document).ready(function () {
                 $.each(response, function (i, val) {
                     console.log(val.id);
                     content += `
-            <tr id="matChoose" class="materialContainer" value="${val.id}" name="select">
+            <tr id="matChoose" class="materialContainer" data-id="${val.id}" name="select">
             <th scope="row">${val.id}</th>
             <td>${val.code}</td>
             <td>${val.name}</td>
