@@ -38,7 +38,7 @@ class dbHandler
         return $materials;
     }
 
-    function getAllProjects() {
+    function getAllProjects($clientId) {
         $query = "SELECT * FROM projects";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
@@ -49,13 +49,18 @@ class dbHandler
                 $result2 = mysqli_query($this->conn, $sql);
                 if (mysqli_num_rows($result)) {
                     if ($row2 = mysqli_fetch_assoc($result2)) {
+                        $sql2 = "SELECT * FROM project_reaction WHERE client_id=$clientId AND project_id=$id";
+                        $result3 = mysqli_query($this->conn, $sql2);
+                        $isReacted = mysqli_num_rows($result3);
+                        
                         $projects[] = (object)[
                             "id" => $row["id"],
                             "title" => $row["title"],
                             "description" => $row["description"],
                             "category" => $row["category"],
                             "image" => explode(",", $row["image"]),
-                            "reaction" => $row2["reactionCtr"]
+                            "reactionCtr" => $row2["reactionCtr"],
+                            "reaction" => $isReacted
                            ];
                     }
                 }
@@ -197,6 +202,18 @@ class dbHandler
         } else {
             return 0;
         }
+    }
+
+    function insertProjectReaction($clientId, $projectId)
+    {
+        $sql = "INSERT INTO `project_reaction`(`client_id`, `project_id`) VALUES ($clientId, $projectId)";
+        return mysqli_query($this->conn, $sql);
+    }
+
+    function deleteProjectReaction($clientId, $projectId)
+    {
+        $sql = "DELETE from `project_reaction` where client_id = $clientId AND project_id = $projectId";
+        return mysqli_query($this->conn, $sql);
     }
 
     function __destroy()

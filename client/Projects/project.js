@@ -2,14 +2,14 @@ $(document).ready(function () {
 
     filterProject("All");
 
-
+    var cat = "All";
     $(".category").click(function (e) {
         e.preventDefault();
-        filterProject($(this).html())
+        cat = $(this).html();
+        filterProject(cat);
     });
 
     function filterProject(category) {
-        console.log(category);
         $.ajax({
             type: "post",
             url: "projectProcess.php",
@@ -18,19 +18,17 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                console.log(response);
                 var filter = response.filter(function (data) {
                     if (category == "All") {
                         return true;
                     }
-                    images += `<div class="carousel-item ${active}">
-									<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
-									</div>`;
+                    // images += `<div class="carousel-item ${active}">
+					// 				<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
+					// 				</div>`;
                     return data.category == category;
                 })
                 let content = ``;
                 $.each(filter, function (indexInArray, data) {
-                    console.log(filter);
                     let images = ``;
                     $.each(data.image, function (indexInArray, path) {
                         let active = '';
@@ -61,30 +59,31 @@ $(document).ready(function () {
                                 <div class="card-body">
                                 <p class=
                                     <p class="card-text">${data.description}</p> 
-                                    <i class="far fa-heart react" data-id="${data.id}"></i> <span> ${data.reaction}</span>
+                                    <i class="${(data.reaction) ? "fas" : "far"} fa-heart react" data-react="${(data.reaction)}" data-id="${data.id}"></i> <span> ${data.reactionCtr}</span>
                                 </div>
                             </div>
                         </div>
                      `;
-                    //  ${(data.react == 'like') ? "fas":"far"}
                 });
                 $("#materials").html(content);
 
                 $('.react').click(function (e) { // dito yung dpat mag cchange to solid
                     e.preventDefault();
-                    let postId = $(this).attr("data-id");
+                    var postId = $(this).data("id");
+                    var react = $(this).data("react");
+
                     console.log(postId);
                     $.ajax({
                         type: "post",
                         url: "projectProcess.php",
                         data: {
-                            setPostReaction: true, projectId: postId
+                            setPostReaction: true, 
+                            projectId: postId, 
+                            react: react
                         },
                         dataType: "json",
                         success: function (response) {
-                            
-                            $(this).removeClass("far");
-                            $(this).addClass("fas");
+                            filterProject(cat);
                         }
                     });
 
