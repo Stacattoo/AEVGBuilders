@@ -64,7 +64,6 @@
 - ~~Can show list block of employee (Frontend) (Backend)~~
 
 
-
 ## Employee 
 
 ### 1. Log in
@@ -73,20 +72,20 @@
 
 ### 2. Client
 
-- Can view list of clients. (Frontend) (Backend)
+- Can view list of clients. (Frontend) ~~(Backend)~~
 - Employee will be able to message the client. (Frontend) (Backend)
 - Can view list pending clients. (Frontend) (Backend)
-- Assign a client, or unassign to itself. (Frontend) (Backend)
+- Assign a client, or unassign to itself. (Frontend) ~~(Backend)~~
 - Filter/ search for client. (Frontend) (Backend)
 - View order of client. (Frontend) (Backend)
 
 ### 3. Profile
 
-- Can edit user information. (Frontend) (Backend) 
+- Can edit user information. (Frontend) ~~(Backend) ~~
 
 ### 4. Project
 
-- Can view and edit previous design uploads. (Frontend) (Backend)
+- ~~Can view and edit previous design uploads. (Frontend) (Backend)~~
 - ~~Can upload design/ projects.~~ (Frontend) ~~(Backend)~~
 <!-- ### 4. Materials
 - Can upload materials (Frontend) ~(Backend)~ -->

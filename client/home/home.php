@@ -72,7 +72,7 @@ $dbh = new dbHandler;
                     </div> -->
                     <div class="dropdown me-5">
                         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
                             <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
                         </a>
                         <ul class="dropdown-menu text-small shadow">

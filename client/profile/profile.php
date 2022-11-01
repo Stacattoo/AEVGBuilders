@@ -79,10 +79,11 @@ $dbh = new dbHandler;
 
             <div class="col-md-6">
                 <div class="h-100 p-5 text-bg-dark rounded-3">
-                    <h2>Matias, Rex A.</h2>
-                    <p>Email Address:<a href="mailto:britneymacahilig@gmail.com"> rex00@gmail.com</a></p>
-                    <p>Contact Number: 094895322876</p>
-                    <p>Home Address: 31 Delta Building Poblacion Navotas, Manila</p>
+                    <h2><?php echo $dbh->getFullname($_SESSION['id']); ?></h2>
+                    <!--  -->
+                    <p>Email Address: <?php echo $dbh->getValueByID('email', $_SESSION['id']); ?></p>
+                    <p>Contact Number: <?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?></p>
+                    <p>Home Address: <?php echo $dbh->getAddress($_SESSION['id']); ?></p>
                     <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button">Edit Profile</button>
                 </div>
             </div>

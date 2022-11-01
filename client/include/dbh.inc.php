@@ -146,11 +146,23 @@ class dbHandler
 
     function getFullname($id)
     {
-        $sql = "SELECT CONCAT(firstName, ' ', lastName) AS fullName FROM client WHERE id='$id'";
+        $sql = "SELECT CONCAT(lastName, ',', ' ', firstName, ' ', middleName) AS fullName FROM client WHERE id='$id'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $row = mysqli_fetch_assoc($result);
             return $row['fullName'];
+        } else {
+            return '';
+        }
+    }
+
+    function getAddress($id)
+    {
+        $sql = "SELECT CONCAT(street, ' ', barangay, ' ', municipality, ' ', province) AS address FROM client WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['address'];
         } else {
             return '';
         }
