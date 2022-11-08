@@ -5,13 +5,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-<div class="card mb-2">
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
+<div class="card mb-2 text-bg-dark rounded-3">
+    <div class="card-body ">
+        <div class="d-flex justify-content-between ">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id ?></h5>
             <div class="dropdown m-0">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+                <i class="fal fa-ellipsis-v-alt"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
@@ -20,10 +20,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             </div>
         </div>
         <h1><?php echo $userData->fullname; ?></h1>
-        <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
+        <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="text-reset fw-bolder"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
-        <div>Assigned Employee: <span class="fw-bolder">
+        <div>Assigned Employee: <span class="text-reset fw-bolder">
                 <?php if ($userData->employeeName == "") {
                     echo '<a id="choose" data-bs-toggle="modal" href="#chooseModal">Choose an Employee </a>';
                 } else {

@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $("#projectNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("project/project.php");
+        $("#content").load("projects/projects.php");
     });
 
     $("#scheduleNav").click(function (e) {

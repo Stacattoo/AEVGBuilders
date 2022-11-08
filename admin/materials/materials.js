@@ -47,18 +47,26 @@ $(document).ready(function () {
             },
             dataType: "JSON",
             success: function (response) {
-                console.log("harold");
+                
                 var content = ``;
-                $.each(response, function (i, val) {
-                    console.log(val.id);
+                $.each(response, function (i, data) {
+                    console.log(data);
                     content += `
-            <tr id="matChoose" class="materialContainer" data-id="${val.id}" name="select">
-            <th scope="row">${val.id}</th>
-            <td>${val.code}</td>
-            <td>${val.name}</td>
-            <td>${val.category}</td>
-            <td>${val.description}</td>
-        </tr>
+                    <div class="col">
+                    <div class="materialContainer card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
+                        <div class="card-img-top" style="height: 220px; background-image: url('../projects/${data.image}'); background-size: cover; ">
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">                       
+                            <div class="fw-bold text-capitalize">${data.name}</div> 
+                            <small class="text-muted">${data.category}</small>
+                            </div>
+                            <p class="card-text">${data.description}</p>
+                        </div>
+                    </div>
+                </div>    
+       
         `;
                 });
                 console.log(content);
@@ -73,6 +81,7 @@ $(document).ready(function () {
 
                 $('.materialContainer').click(function (e) { //pwede yata i call si #table tr
                     e.preventDefault();
+                    $('#viewMaterialModal').modal("show");
                     materialsId = $(this).data("id");
                     $('#hiddenId').val(materialsId);
                     dataFilter = response.filter(function (eachEditInfo) {
@@ -114,7 +123,7 @@ $(document).ready(function () {
                     $('#edit-title').val(dataFilter.title);
                     $('#edit-category').val(dataFilter.category);
                     $('#edit-description').html(dataFilter.description);
-                    $('#editMaterialsModal').modal("show");
+                    $('#viewMaterialModal').modal("show");
 
                     $('.deleteImgBtn').click(function (e) {
                         e.preventDefault();

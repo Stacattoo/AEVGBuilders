@@ -8,7 +8,7 @@ $dbh = new dbHandler;
 <script src="../projects/projects.js"></script>
 <script src="../projects/app.js"></script>
 
-<div class="container-fluid ">
+<div class="container-fluid">
     <div class="d-flex justify-content-between mx-4">
 
         <h3><i class="fal fa-city me-2"></i></i>Upload Projects</h3>
@@ -18,16 +18,11 @@ $dbh = new dbHandler;
     <div class="container-fluid">
         <div class="container mt-5">
             <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4">
-
-
             </div>
         </div>
 
     </div>
 </div>
-
-</div>
-
 
 <!-- button add new project -->
 <div class="modal fade" id="newProjectModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -108,9 +103,6 @@ $dbh = new dbHandler;
                 </div>
             </form>
         </div>
-
-
-
     </div>
 </div>
 <!-- Edit Project Modal -->
@@ -167,8 +159,8 @@ $dbh = new dbHandler;
                     </div>
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
-                    <button type="button" class="btn  btn-outline-danger" id="deleteBtn">Delete</a>
-                        <button type="submit" class="btn  btn-outline-success ">Save changes</button>
+                    <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</a>
+                        <button type="button" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
                         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

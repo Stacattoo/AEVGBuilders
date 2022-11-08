@@ -4,7 +4,7 @@ $dbh = new dbHandler();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,90 @@ $dbh = new dbHandler();
 
 <body>
     <div class="container-fluid m-0 p-0">
+        <div class="position-fixed d-print-none">
+            <main>
+                <div class="d-flex flex-nowrap">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+                        <a href="/" class="d-flex mx-auto align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <img src="../images/waevg.png" class="text-center" height="45">
+                        </a>
+                        <div class="text-uppercase text-center fw-bold fs-6 d-none d-lg-inline mt-3 text-info">
+                            Admin
+                        </div>
+                        <hr>
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
+                                    <i class="fad fa-analytics bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="employeeNav">
+                                    <i class="far fa-user-alt bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Employee</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="clientNav">
+                                    <i class="far fa-user-alt bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Client</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="projectNav">
+                                    <i class="fad fa-folder-open bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Project</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="scheduleNav">
+                                    <i class="fad fa-calendar-alt bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Schedule</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="materialsNav">
+                                    <i class="fal fa-paperclip bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Materials</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="blockedNav">
+                                    <i class="fas fa-ban bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Blocked Users</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <medium id="timeNow"></medium>
+                        <hr>
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fal fa-user me-2"></i>
+                                <strong class="d-none d-lg-inline text-uppercase">Admin</strong>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="login/login.php">Sign out</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div id="content" class="pt-3">
+
+        </div>
+
+    </div>
+
+    <!-- <div class="container-fluid m-0 p-0">
         <div class="position-fixed d-print-none">
             <main>
                 <div class="d-flex flex-column flex-nowrap p-3 text-white bg-dark">
@@ -52,7 +136,7 @@ $dbh = new dbHandler();
                         </li>
                         <li>
                             <button type="button" id="clientNav" class="nav-link text-white">
-                                <!-- <i class="fad fa-calendar-alt bi me-2"></i> -->
+                               
                                 <i class="far fa-user-alt bi me-2"></i>
                                 <span class="d-none d-lg-inline">Client</span>
                             </button>
@@ -107,7 +191,7 @@ $dbh = new dbHandler();
 
         </div>
 
-    </div>
+    </div> -->
 
     <!-- UPDATE PROFILE -->
     <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
