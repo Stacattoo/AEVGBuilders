@@ -8,6 +8,8 @@ $trimmed_array = '';
 if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
+
+    
     for ($i = 0; $i < $imageCount; $i++) {
         $file_name = $_FILES['image']['name'][$i];
         $file_tmp = $_FILES["image"]["tmp_name"][$i];
@@ -20,7 +22,7 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
             ));
         }
     }
-
+    
     $trimmed_array = trim($paths, ",");
 
     $info = (object) [

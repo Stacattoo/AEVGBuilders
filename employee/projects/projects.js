@@ -112,7 +112,7 @@ $(document).ready(function () {
                                         <img src="../projects/${data}" class="d-block img-fluid img">
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                                             id="imageDeleteBtn"  data-id="${indexInArray}">
-                                            X
+                                            -
                                         </span>
                                        
                                     </div>
