@@ -29,6 +29,7 @@ $dbh = new dbHandler;
 			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 				<li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
+				<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
 				<li><a href="#" class="nav-link px-2 link-secondary">Projects</a></li>
 				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
 

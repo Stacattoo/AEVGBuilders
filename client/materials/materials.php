@@ -49,6 +49,10 @@ $dbh = new dbHandler;
 
         <?php } else { ?>
 
+          <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+            <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-secondary">Contact Us</a></li>
+          <?php } ?>
+
           <div class="dropdown me-5">
             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
@@ -57,7 +61,6 @@ $dbh = new dbHandler;
             <ul class="dropdown-menu text-small shadow">
               <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-              <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

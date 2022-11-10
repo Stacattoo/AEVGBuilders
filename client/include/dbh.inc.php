@@ -18,27 +18,29 @@ class dbHandler
         }
     }
 
-    function getAllMaterials() {
+    function getAllMaterials()
+    {
         $query = "SELECT * FROM material";
         $result = mysqli_query($this->conn, $query);
         $materials = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
-               $materials[] = (object)[
-                "id" => $row["id"],
-                "code" => $row["code"],
-                "name" => $row["name"],
-                "description" => $row["description"],
-                "category" => $row["category"],
-                "image" => $row["image"],
-                "remaining_stock" => $row["remaining_stock"],
-               ];
+                $materials[] = (object)[
+                    "id" => $row["id"],
+                    "code" => $row["code"],
+                    "name" => $row["name"],
+                    "description" => $row["description"],
+                    "category" => $row["category"],
+                    "image" => $row["image"],
+                    "remaining_stock" => $row["remaining_stock"],
+                ];
             }
         }
         return $materials;
     }
 
-    function getAllProjects($clientId) {
+    function getAllProjects($clientId)
+    {
         $query = "SELECT * FROM projects";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
@@ -52,7 +54,7 @@ class dbHandler
                         $sql2 = "SELECT * FROM project_reaction WHERE client_id=$clientId AND project_id=$id";
                         $result3 = mysqli_query($this->conn, $sql2);
                         $isReacted = mysqli_num_rows($result3);
-                        
+
                         $projects[] = (object)[
                             "id" => $row["id"],
                             "title" => $row["title"],
@@ -61,10 +63,9 @@ class dbHandler
                             "image" => explode(",", $row["image"]),
                             "reactionCtr" => $row2["reactionCtr"],
                             "reaction" => $isReacted
-                           ];
+                        ];
                     }
                 }
-               
             }
         }
         return $projects;
@@ -124,9 +125,9 @@ class dbHandler
             if ($row = mysqli_fetch_assoc($result)) {
                 if ($row["status"] == "active") {
                     // if ($this->updateAttempt($key, 3)) {
-                        $_SESSION['id'] = $row["id"];
-                        $_SESSION['email'] = $row["email"];
-                        return true;
+                    $_SESSION['id'] = $row["id"];
+                    $_SESSION['email'] = $row["email"];
+                    return true;
                     //}
                 }
             }
@@ -206,14 +207,21 @@ class dbHandler
 
     function getSched($id)
     {
-        $sql = "SELECT * FROM schedule WHERE user_id='$id'";
+        $sql = "SELECT * FROM appointment WHERE client_id='$id'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             return $result;
-           
         } else {
             return 0;
         }
+    }
+
+    function setAppointment($value, $id)
+    {
+
+        $sql = "INSERT INTO appointment(client_id, projectLocation, targetConsDate, projectType, lotArea, numberFloors, businessType, meetingType, meetingLocation, meetingDate, meetingTime)
+        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', '$value->meetLoc', '$value->appointmentDate', '$value->appointmentTime')";
+        return mysqli_query($this->conn, $sql);
     }
 
     function insertProjectReaction($clientId, $projectId)

@@ -1,24 +1,24 @@
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    $("#alertsched").hide();
-    $("#scheduleForm").submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "../schedule/scheduleProcess.php",
-            //C:\xampp\htdocs\AEVGBuilders\client\schedule\scheduleProcess.php
-            type: "POST",
-            //dataType: "json",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (result) {
-                console.log(result);
-                window.location.href = "../aboutUs/aboutUs.php";
-                $('#scheduleForm').trigger("reset");
-            }
-        });
-    });
+//     $("#alertsched").hide();
+//     $("#scheduleForm").submit(function (event) {
+//         event.preventDefault();
+//         $.ajax({
+//             url: "../schedule/scheduleProcess.php",
+//             //C:\xampp\htdocs\AEVGBuilders\client\schedule\scheduleProcess.php
+//             type: "POST",
+//             //dataType: "json",
+//             data: new FormData(this),
+//             contentType: false,
+//             cache: false,
+//             processData: false,
+//             success: function (result) {
+//                 console.log(result);
+//                 window.location.href = "../aboutUs/aboutUs.php";
+//                 $('#scheduleForm').trigger("reset");
+//             }
+//         });
+//     });
 
     // $("#date").change(function (event) {
     //     $("#time9amTo10am").prop("disabled", false);
