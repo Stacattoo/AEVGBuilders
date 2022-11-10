@@ -198,7 +198,7 @@ class dbHandler
             $user = array();
             while ($row = mysqli_fetch_assoc($result)) {
                 $user[] = (object) [
-                    "id" => $row['id'],
+                    "id" => $row['client_id'],
                     "fullName" => $row['fullName'],
                     "email" => $row['email'],
                     "contact" => $row['contact_no'],
@@ -211,6 +211,28 @@ class dbHandler
     }
 
     function getAllUserClientData()
+    {
+        $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
+        FROM client WHERE NOT EXISTS (SELECT * FROM  employee_client WHERE employee_client.client_id = client.id)";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $user = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $user[] = (object) [
+                    "id" => $row['id'],
+                    "fullName" => $row['fullName'],
+                    "email" => $row['email'],
+                    "contact" => $row['contact_no'],
+                    "address" => $row['address'],
+
+                ];
+            }
+            return $user;
+        }
+    }
+
+    function getAllClientPendingSched()
     {
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
         CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address

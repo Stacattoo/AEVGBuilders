@@ -5,7 +5,9 @@ $dbh = new dbHandler();
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 <div class="container-fluid">
-	<h3><i class="fal fa-ban me-2"></i>Block Accounts</h3>
+	<div class="d-flex justify-content-between mx-4">
+		<h3><i class="fal fa-ban me-2"></i>Block Accounts</h3>
+	</div>
 	<hr>
 	<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -61,7 +63,7 @@ $dbh = new dbHandler();
 				},
 				dataType: 'JSON',
 				success: function(dataResult) {
-					
+
 					$.each(dataResult, function(i, data) {
 						var content = `
 						<tr id='user$id'>
@@ -76,8 +78,8 @@ $dbh = new dbHandler();
 					});
 				},
 				error: function(result) {
-						console.log(result);
-					},
+					console.log(result);
+				},
 				complete: function() {
 					$('#resultTable').DataTable();
 				}

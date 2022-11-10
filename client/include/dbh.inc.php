@@ -38,19 +38,33 @@ class dbHandler
         return $materials;
     }
 
-    function getAllProjects() {
+    function getAllProjects($clientId) {
         $query = "SELECT * FROM projects";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
-               $projects[] = (object)[
-                "id" => $row["id"],
-                "title" => $row["title"],
-                "description" => $row["description"],
-                "category" => $row["category"],
-                "image" => explode(",", $row["image"]),
-               ];
+                $id = $row["id"];
+                $sql = "SELECT COUNT(project_reaction.project_id) AS reactionCtr FROM project_reaction WHERE project_id=$id";
+                $result2 = mysqli_query($this->conn, $sql);
+                if (mysqli_num_rows($result)) {
+                    if ($row2 = mysqli_fetch_assoc($result2)) {
+                        $sql2 = "SELECT * FROM project_reaction WHERE client_id=$clientId AND project_id=$id";
+                        $result3 = mysqli_query($this->conn, $sql2);
+                        $isReacted = mysqli_num_rows($result3);
+                        
+                        $projects[] = (object)[
+                            "id" => $row["id"],
+                            "title" => $row["title"],
+                            "description" => $row["description"],
+                            "category" => $row["category"],
+                            "image" => explode(",", $row["image"]),
+                            "reactionCtr" => $row2["reactionCtr"],
+                            "reaction" => $isReacted
+                           ];
+                    }
+                }
+               
             }
         }
         return $projects;
@@ -132,11 +146,23 @@ class dbHandler
 
     function getFullname($id)
     {
-        $sql = "SELECT CONCAT(firstName, ' ', lastName) AS fullName FROM client WHERE id='$id'";
+        $sql = "SELECT CONCAT(lastName, ',', ' ', firstName, ' ', IFNULL(middleName, '')) AS fullName FROM client WHERE id='$id'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $row = mysqli_fetch_assoc($result);
             return $row['fullName'];
+        } else {
+            return '';
+        }
+    }
+
+    function getAddress($id)
+    {
+        $sql = "SELECT CONCAT(street, ' ', barangay, ' ', municipality, ',', ' ', province) AS address FROM client WHERE id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['address'];
         } else {
             return '';
         }
@@ -188,6 +214,18 @@ class dbHandler
         } else {
             return 0;
         }
+    }
+
+    function insertProjectReaction($clientId, $projectId)
+    {
+        $sql = "INSERT INTO `project_reaction`(`client_id`, `project_id`) VALUES ($clientId, $projectId)";
+        return mysqli_query($this->conn, $sql);
+    }
+
+    function deleteProjectReaction($clientId, $projectId)
+    {
+        $sql = "DELETE from `project_reaction` where client_id = $clientId AND project_id = $projectId";
+        return mysqli_query($this->conn, $sql);
     }
 
     function __destroy()

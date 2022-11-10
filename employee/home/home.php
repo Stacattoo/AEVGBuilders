@@ -1,6 +1,6 @@
 <?php
 include_once("../include/dbh.employee.php");
-$dbh = new dbHandler;
+$dbh = new dbHandler;   
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,129 +19,61 @@ $dbh = new dbHandler;
 </head>
 
 <body>
-
     <div class="container-fluid m-0 p-0">
         <div class="position-fixed d-print-none">
             <main>
                 <div class="d-flex flex-nowrap">
-
-
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <img src="../../images/waevg.png" class=" d-flex-justify-content-center mx-4" height="45">
-
-                        </a>
-                        
-                            
-                           
-                            <div class="text-uppercase text-center fw-bold fs-6 d-none d-lg-inline mt-3 text-info">
-                                Employee
-                            </div>
-                            <hr>
-                            <ul class="nav nav-pills flex-column mb-auto">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
-
-                                        <i class="fad fa-analytics bi me-2"></i>
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link text-white" id="clientsNav">
-
-                                        <i class="far fa-user-alt bi me-2"></i>
-                                        Clients
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link text-white" id="scheduleNav">
-
-                                        <i class="fad fa-calendar-alt bi me-2"></i>
-                                        Schedule
-                                    </a>
-                                </li>
-                                <li>
-                                        <a href="#" class="nav-link text-white">
-
-                                            <i class="fal fa-paperclip bi me-2"></i>
-                                            Report
-                                        </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link text-white" id="projectNav">
-
-                                        <i class="fas fa-city bi me-2"></i>
-                                        Projects
-                                    </a>
-                                </li>
-                            </ul>
-                            <small id="timeNow"></small>
-                            <hr>
-                            <div class="dropdown">
-                                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../profile/<?php echo $dbh->getValueByProfileID('profile_picture', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-                                    <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-
-
-                                    <li><button type="button" id="profileNav" class="dropdown-item" data-bs-toggle="modal">Profile</button></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="../../logout/logoutEmployee.php">Sign out</a></li>
-                                </ul>
-                            </div>
-                        
-                    </div>
-
-                    <!-- <div class="d-flex flex-column flex-nowrap p-3 text-black bg-light">
-                        <a class="d-none d-lg-inline d-flex my-3 mb-md-0 me-auto align-items-center text-black text-decoration-none">
-                            <img src="../../images/aevg-nobg.png" class="text-center" height="45">
-
+                        <a href="/" class="d-flex mx-auto align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <img src="../../images/waevg.png" class="text-center" height="45">
                         </a>
                         <div class="text-uppercase text-center fw-bold fs-6 d-none d-lg-inline mt-3 text-info">
                             Employee
                         </div>
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li>
-                                <button type="button" id="dashboardNav" class="nav-link text-black active">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
+
                                     <i class="fad fa-analytics bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Dashboard</span>
-                                </button>
+                                    Dashboard
+                                </a>
                             </li>
                             <li>
-                                <button type="button" id="studentsNav" class="nav-link text-black">
+                                <a href="#" class="nav-link text-white" id="studentsNav">
+
                                     <i class="far fa-user-alt bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Clients</span>
-                                </button>
+                                    Clients
+                                </a>
                             </li>
                             <li>
-                                <button type="button" id="scheduleNav" class="nav-link text-black">
+                                <a href="#" class="nav-link text-white" id="scheduleNav">
+
                                     <i class="fad fa-calendar-alt bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Schedule</span>
-                                </button>
+                                    Schedule
+                                </a>
                             </li>
                             <li>
-                                <button type="button" id="reportNav" class="nav-link text-black">
+                                <a href="#" class="nav-link text-white">
+
                                     <i class="fal fa-paperclip bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Report</span>
-                                </button>
+                                    Report
+                                </a>
                             </li>
                             <li>
-                                <button type="button" id="projectNav" class="nav-link text-black">
-                                    <i class="fas fa-ban bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Projects</span>
-                                </button>
+                                <a href="#" class="nav-link text-white" id="projectNav">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Projects
+                                </a>
                             </li>
                         </ul>
-                        <small id="timeNow"></small>
+                        <medium id="timeNow"></medium>             
                         <hr>
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fad fa-user me-2"></i>
-                                <strong class="d-none d-lg-inline text-uppercase">Employee</strong>
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
@@ -151,9 +83,9 @@ $dbh = new dbHandler;
                                 <li><a class="dropdown-item" href="../../logout/logoutEmployee.php">Sign out</a></li>
                             </ul>
                         </div>
-                    </div> -->
 
-                    <div class="b-example-divider"></div>
+                    </div>
+                </div>
             </main>
         </div>
 

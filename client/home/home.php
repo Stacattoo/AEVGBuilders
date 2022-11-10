@@ -46,34 +46,16 @@ $dbh = new dbHandler;
                 <!-- Checking if the session is set -->
                 <?php if (!isset($_SESSION['id'])) { ?>
 
-
-                    <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
+                    <!-- <div class=""></div> -->
+                    <a href="../register/register.php" class="btn btn-dark mx-2">Sign-up</a>
                     <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
 
                 <?php } else { ?>
 
-                    <!-- <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" class="rounded-circle" style="max-height: 50px">  -->
-                    <!-- <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $dbh->getFullname($_SESSION['id']); ?>
-                        </button>
-
-                        <ul class="dropdown-menu dropdown-menu-dark">
-
-                            <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                            <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                            <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.phps">Logout</a></li>
-
-                        </ul>
-                    </div> -->
                     <div class="dropdown me-5">
                         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+                            <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
                         </a>
                         <ul class="dropdown-menu text-small shadow">
                             <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>

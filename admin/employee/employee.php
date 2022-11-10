@@ -2,7 +2,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mx-4">
         <h3><i class="fal fa-user-alt me-2"></i>Employee</h3>
         <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i class="fal fa-user-plus"></i> Add Employee</button>
     </div>
