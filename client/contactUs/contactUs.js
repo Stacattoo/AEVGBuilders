@@ -1,6 +1,9 @@
 $(document).ready(function () {
 
     $("#alertError").hide();
+    $("#flexCheckChecked7").hide();
+    $("#projectID").hide();
+    $("#meetLoc").prop('disabled', true);
     $("#appointForm").submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -18,9 +21,46 @@ $(document).ready(function () {
                     $("#alertError").fadeIn();
                 }else{
                     window.location.href="../aboutUs/aboutUs.php";
+                    // $('#appointForm').trigger("reset");
+                    // $('#flexCheckChecked7').hide();
+                    // $('#projectID').hide();
                 }
             }
         });
     });
+    $("#btnOthers").click(function (event){
+        event.preventDefault();
+        $("#flexCheckChecked7").show();
+    });
+    $("#btnOthers").change(function (event){
+        event.preventDefault();
+        $("#flexCheckChecked7").hide();
+    });
+    $("#projectType7").click(function (event){
+        event.preventDefault();
+        $("#projectID").show();
+    });
+    $("#projectType7").change(function (event){
+        event.preventDefault();
+        $("#projectID").hide();
+    });
 
+
+    $("#meetType").change(function (event){
+        event.preventDefault();
+        // console.log("gumana naman");
+        var type = $(this).val();
+        if(type == "virtual"){
+            $("#meetLoc").prop('disabled', true);
+        }else if(type == "meetUp"){
+            $("#meetLoc").prop('disabled', false);
+        }
+        
+    });
+   
+        var today = new Date().toISOString().split('T')[0];
+        $("#appointmentDate").attr('min', today);
+        var today = new Date().toISOString().split('T')[0];
+        $("#targetDate").attr('min', today);
+        
 });

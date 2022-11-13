@@ -180,6 +180,17 @@ class dbHandler
             }
         }
     }
+    function getAppDetailsByID($value, $id, $table = "appointment")
+    {
+        $sql = "SELECT `$value` FROM $table WHERE client_id=$id";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return $row[$value];
+                // return $sql;
+            }
+        }
+    }
 
     function getSpecificInfo($id, $col)
     {
@@ -235,6 +246,15 @@ class dbHandler
         $sql = "DELETE from `project_reaction` where client_id = $clientId AND project_id = $projectId";
         return mysqli_query($this->conn, $sql);
     }
+    function deletedSched($id)
+    {
+        $sql = "DELETE FROM `appointment` WHERE client_id='$id'";
+        // $fullName = $this->getFullname($id);
+        // $this->addActivities($fullName, "Schedule", "Cancel schedule");
+        return mysqli_query($this->conn, $sql);
+        // unset($_POST['dateChanged']);
+    }
+
 
     function __destroy()
     {

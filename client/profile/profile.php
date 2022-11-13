@@ -50,23 +50,27 @@ $dbh = new dbHandler;
 
                 <?php } else { ?>
 
-                    <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
-                        <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-secondary">Contact Us</a></li>
-                    <?php } ?>
+                    <div class="d-flex flex-row-reverse">
 
-                    <div class="dropdown me-5">
-                        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
-                        </a>
-                        <ul class="dropdown-menu text-small shadow">
-                            <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                            <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
-                        </ul>
+                        <div class="dropdown me-5">
+                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+                            </a>
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+                                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+                            </ul>
+                        </div>
+                        <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+                            <div>
+                                <a href="../contactUs/contactUs.php" class="nav-link mt-1 mx-3 px-2 link-dark">Contact Us</a>
+                            </div>
+                        <?php } ?>
                     </div>
 
                 <?php } ?>
@@ -89,15 +93,76 @@ $dbh = new dbHandler;
             </div>
             <div class="col-md-6">
                 <div class="h-100 p-5 bg-light border rounded-3">
-                    <h2>Appointment Schedule</h2>
-                    <p>The client wants to set an appointment. </p>
-                    <button class="btn btn-outline-secondary" type="button">Accept Appointment</button>
-                    <button class="btn btn-danger" type="button">Decline Appointment</button>
+                    <?php if ($dbh->getSched($_SESSION['id']) >= '1') { ?>
+                        <h2>Appointment Schedule</h2>
+                        <p>The client wants to set an appointment. </p>
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">View Appointment Details</button>
+                        <button class="btn btn-danger" type="button" name="cancelBtn" data-bs-toggle="modal" href="#exampleModal2">Cancel Appointment</button>
+                    <?php } else { ?>
+                        <h2>Schedule an Appointment.</h2>
+                        <p>You can now schedule an appointment for your personal inquires.</p>
+                        <p class="lead mb-0"><a type="button" class="btn btn-warning" href="../contactUs/contactUs.php">
+                                Schedule an Appointment.
+                            </a></p>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Delete Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            Are you sure you want to cancel?
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="mt-3 testbtn2" data-bs-dismiss="modal">Cancel</button>
+                            <a href="deleteSched.php" class="mt-3 testbtn2">Yes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- APPOINTMENT VIEW MODAL -->
+
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel1">Appointment Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><?php echo $dbh->getFullname($_SESSION['id']); ?></h4>
+                    <h3><b>Contact Number:</b><?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?></h3>
+                    <h3><b>Email Address:</b><?php echo $dbh->getValueByID('email', $_SESSION['id']); ?></h3>
+                    <h3><b>Project Location:</b><?php echo $dbh->getAppDetailsByID('projectLocation', $_SESSION['id']); ?></h3>
+                    <h3><b>Target Construction Date:</b><?php echo $dbh->getAppDetailsByID('targetConsDate', $_SESSION['id']); ?></h3>
+                    <h3><b>Project Type:</b><?php echo $dbh->getAppDetailsByID('projectType', $_SESSION['id']); ?></h3>
+                    <h3><b>Lot Area:</b><?php echo $dbh->getAppDetailsByID('lotArea', $_SESSION['id']); ?></h3>
+                    <h3><b>Number of Building Storey:</b><?php echo $dbh->getAppDetailsByID('numberFloors', $_SESSION['id']); ?></h3>
+                    <h3><b>Nature of Business:</b><?php echo $dbh->getAppDetailsByID('businessType', $_SESSION['id']); ?></h3>
+                    <h3><b>Meeting Type:</b><?php echo $dbh->getAppDetailsByID('meetingType', $_SESSION['id']); ?></h3>
+                    <?php if (!$dbh->getAppDetailsByID('meetingDate', $_SESSION['id']) == NULL) { ?>
+                        <h3><b>Meeting Location:</b><?php echo $dbh->getAppDetailsByID('meetingDate', $_SESSION['id']); ?></h3>
+                    <?php } ?>
+                    <h3><b>Meeting Time:</b><?php echo $dbh->getAppDetailsByID('meetingTime', $_SESSION['id']); ?></h3>
+
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
 
 
 
@@ -105,18 +170,18 @@ $dbh = new dbHandler;
         <h2>List of Previous Quotation</h2>
         <div class="table-responsive ">
             <table class="table table-striped table-hover" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-            <thead>
-                            <tr>
-                                <th scope="col">Quotation #</th>
-                                <th scope="col">Date</th>
-                            
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>  
-            
-            
+                <thead>
+                    <tr>
+                        <th scope="col">Quotation #</th>
+                        <th scope="col">Date</th>
+
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+
+
                 <tbody>
-                <tbody  id="qoute-table" class="table table-striped table-hover " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                <tbody id="qoute-table" class="table table-striped table-hover " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
 
                     <tr>
                         <td>001</td>
@@ -199,15 +264,15 @@ $dbh = new dbHandler;
                     </div>
 
                     <table class="table table-striped-columns mt-4 table table-bordered border-dark">
-                    <thead>
-                    <tr>
-                        <th scope="col">QUANTITY</th>
-                        <th scope="col">DESCRIPTION</th>
-                        <th scope="col">UNIT PRICE</th>
-                        <th scope="col">TOTAL</th>
+                        <thead>
+                            <tr>
+                                <th scope="col">QUANTITY</th>
+                                <th scope="col">DESCRIPTION</th>
+                                <th scope="col">UNIT PRICE</th>
+                                <th scope="col">TOTAL</th>
 
-                    </tr>
-                </thead>
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">001</th>
@@ -241,23 +306,23 @@ $dbh = new dbHandler;
                             <div class="col-5">
                                 <div class="table-responsive">
                                     <table class="table   table-bordered " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                                       
+
                                         <tbody>
-                                        <tbody  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                                        <tbody data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
 
                                             <tr>
                                                 <th>SUBTOTAL:</th>
                                                 <td>001</td>
-                                                
+
 
                                             </tr>
                                             <tr class="table-dark">
                                                 <th>TOTAL:</th>
                                                 <td>002</td>
-                                                
+
 
                                             </tr>
-                                           
+
 
 
                                         </tbody>
@@ -282,158 +347,157 @@ $dbh = new dbHandler;
 
         </div>
 
-      
+
 
     </div>
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Profile</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Info</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" type="button" id="passBtn">Change Password</a>
-                            </li>
-                        </ul>
-
-                        <form id="profileForm">
-                            <div class="row mt-3">
-                                <div class="col-4">
-
-                                    <div id="imgForm" class="text-center mt-5">
-                                        <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
-                                        <input type="file" id="imgBtn" class="btn btn-dark mt-2 form-control" name="image">
-                                        <input type="hidden" name="file_path" value="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>">
-                                    </div>
-
-                                </div>
-                                <div class="col-8">
-                                    <div class="row g-2">
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <label for="lastName" class="form-label">*Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <label for="firstName" class="form-label">*First Name</label>
-                                                <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
-                                            </div>
-
-
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <label for="middleName" class="form-label">Middle Initials </label>
-                                                <input type="text" class="form-control" id="middleName" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="(optional)">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-
-                                    <div class="row g-2">
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <label for="Email" class="form-label">*Email Address </label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <label for="ContactNumber" class="form-label">*Contact Number </label>
-                                                <input type="text" class="form-control " name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" >
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <label for="HomeAddress" class="form-label">*Home Address </label>
-                                    <div class="row g-2">
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <input type="text" class="form-control " name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No." required>
-                                            </div>
-
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <input type="text" class="form-control " name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street Name" required>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <input type="text" class="form-control " name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>" placeholder="Barangay" required>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row g-2">
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <input type="text" class="form-control " name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>" placeholder="Municipality" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3 ">
-                                                <input type="text" class="form-control " name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>" placeholder="Province" required>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="alert alert-danger mt-3" role="alert" id="alertError">
-                                    </div>
-                                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-                                    </div>
-                                    <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
-                                </div>
-                            </div>
-                    </div>
-                    </form>
-
-                    <form id="changePassForm" class="row g-3 p-3  ms-auto me-auto" style="width: 400px;">
-
-                        <div class="col-12 fw-bold">
-                            <label for="inputAddress" class="form-label">Current Password:</label>
-                            <input type="password" class="password form-control" id="inputAddressOld" name="oldPass" required>
-                        </div>
-                        <div class="col-12 fw-bold">
-                            <label for="inputAddress" class="form-label">New Password:</label>
-                            <input type="password" class="password form-control" id="inputAddressNew" name="newPass" required>
-                        </div>
-                        <div class="col-12 fw-bold">
-                            <label for="inputAddress" class="form-label">Confirm Password:</label>
-                            <input type="password" class="password form-control" id="inputAddressConfirm" name="confirmPass" required>
-                        </div>
-
-                        <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass">
-                        </div>
-
-                        <div class="mt-2 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary mt-3 mb-5 float-right" id="savepass" name="savepass">Save changes</button>
-                        </div>
-
-
-
-                    </form>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" type="button" aria-current="page" id="profileInfo">Edit Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" type="button" id="passBtn">Change Password</a>
+                        </li>
+                    </ul>
 
+                    <form id="profileForm">
+                        <div class="row mt-3">
+                            <div class="col-4">
+
+                                <div id="imgForm" class="text-center mt-5">
+                                    <img id="profileImg" src="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" style="max-height: 150px;">
+                                    <input type="file" id="imgBtn" class="btn btn-dark mt-2 form-control" name="image">
+                                    <input type="hidden" name="file_path" value="<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>">
+                                </div>
+
+                            </div>
+                            <div class="col-8">
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <label for="lastName" class="form-label">*Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $dbh->getValueByID('lastName', $_SESSION['id']); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <label for="firstName" class="form-label">*First Name</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $dbh->getValueByID('firstName', $_SESSION['id']); ?>">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <label for="middleName" class="form-label">Middle Initials </label>
+                                            <input type="text" class="form-control" id="middleName" name="middleName" value="<?php echo $dbh->getValueByID('middleName', $_SESSION['id']); ?>" placeholder="(optional)">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <label for="Email" class="form-label">*Email Address </label>
+                                            <input type="email" class="form-control" name="email" value="<?php echo $dbh->getValueByID('email', $_SESSION['id']); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <label for="ContactNumber" class="form-label">*Contact Number </label>
+                                            <input type="text" class="form-control " name="contact_no" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <label for="HomeAddress" class="form-label">*Home Address </label>
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <input type="text" class="form-control " name="house_no" value="<?php echo $dbh->getValueByID('house_no', $_SESSION['id']); ?>" placeholder="House No." required>
+                                        </div>
+
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <input type="text" class="form-control " name="street" value="<?php echo $dbh->getValueByID('street', $_SESSION['id']); ?>" placeholder="Street Name" required>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <input type="text" class="form-control " name="barangay" value="<?php echo $dbh->getValueByID('barangay', $_SESSION['id']); ?>" placeholder="Barangay" required>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <input type="text" class="form-control " name="municipality" value="<?php echo $dbh->getValueByID('municipality', $_SESSION['id']); ?>" placeholder="Municipality" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3 ">
+                                            <input type="text" class="form-control " name="province" value="<?php echo $dbh->getValueByID('province', $_SESSION['id']); ?>" placeholder="Province" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-danger mt-3" role="alert" id="alertError">
+                                </div>
+                                <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                                </div>
+                                <button type="submit" name="upload" class="btn btn-primary form-control mt-3">Save Changes</button>
+                            </div>
+                        </div>
+                </div>
+                </form>
+
+                <form id="changePassForm" class="row g-3 p-3  ms-auto me-auto" style="width: 400px;">
+
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Current Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressOld" name="oldPass" required>
+                    </div>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">New Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressNew" name="newPass" required>
+                    </div>
+                    <div class="col-12 fw-bold">
+                        <label for="inputAddress" class="form-label">Confirm Password:</label>
+                        <input type="password" class="password form-control" id="inputAddressConfirm" name="confirmPass" required>
+                    </div>
+
+                    <div class="alert alert-danger mt-3 form-control" role="alert" id="errorPass">
+                    </div>
+
+                    <div class="mt-2 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary mt-3 mb-5 float-right" id="savepass" name="savepass">Save changes</button>
+                    </div>
+
+
+                </form>
             </div>
 
         </div>
-    
+
+    </div>
+
     <div class="container">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

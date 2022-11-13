@@ -44,22 +44,27 @@ $dbh = new dbHandler;
 
         <?php } else { ?>
 
-          <div class="dropdown">
+          <div class="d-flex flex-row-reverse">
 
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php echo $dbh->getFullname($_SESSION['id']); ?>
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-dark">
-
-              <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-              <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../logout/logout.php">Logout</a></li>
-
-            </ul>
+            <div class="dropdown me-5">
+              <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+              </ul>
+            </div>
+            <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+              <div>
+                <a href="../contactUs/contactUs.php" class="nav-link mt-1 mx-3 px-2 link-dark">Contact Us</a>
+              </div>
+            <?php } ?>
           </div>
 
         <?php } ?>
@@ -98,12 +103,12 @@ $dbh = new dbHandler;
 
           <div class="col-12">
             <label for="projLocation" class="form-label">Project Location</label>
-            <input type="text" class="form-control" name="projLocation" placeholder="Example: 1234 Main St" required>
+            <input type="text" class="form-control" name="projLocation"  placeholder="Example: 1234 Main St" required>
           </div>
 
           <div class="col-12">
             <label for="targetDate" class="form-label">Target Date of Construction</label>
-            <input type="date" class="form-control" name="targetDate">
+            <input type="date" class="form-control" id="targetDate" name="targetDate">
           </div>
 
         </div>
@@ -136,8 +141,9 @@ $dbh = new dbHandler;
             <label class="form-check-label" for="projectType6">Interior</label>
           </div>
           <div class="form-check">
-            <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input" required>
+            <button id="projectType7" type="radio" value="Others" class="form-check-input"></button>
             <label class="form-check-label" for="projectType7">Others</label>
+            <input type="text" class="form-control" name="projectType" id="projectID">
           </div>
         </div>
 
@@ -151,7 +157,7 @@ $dbh = new dbHandler;
           <div class="col-md-6">
             <label for="cc-number" class="form-label">Number of Floors</label>
             <select class="form-select form-select-lg mb-3" name="noFloors" id="cc-number" aria-label=".form-select-lg example">
-              <option selected>Select</option>
+              <option selected disabled>Select</option>
               <option value="One-Storey">One-Storey</option>
               <option value="Two-Storey">Two-Storey</option>
               <option value="Three-Storey">Three-Storey</option>
@@ -200,12 +206,13 @@ $dbh = new dbHandler;
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Others" id="flexCheckChecked7">
+              <button class="form-check-input" type="checkbox" id="btnOthers"></button>
               <label class="form-check-label" for="flexCheckChecked">
                 Others
               </label>
             </div>
           </div>
+          <input class="form-control mx-4" type="text" name="businessType" id="flexCheckChecked7">
 
           <hr class="my-4">
           <div class="row g-2">
@@ -213,9 +220,9 @@ $dbh = new dbHandler;
             <div class="col-md">
               <div class="form-floating">
                 <select class="form-select" name="meetType" id="meetType" required>
-                  <option selected>SELECT A PREFERED TYPE OF MEETING </option>
-                  <option value="Virtual Meeting (Zoom)">Virtual Meeting (Zoom)</option>
-                  <option value="Meet up">Meet up</option>
+                  <option selected disabled>SELECT A PREFERED TYPE OF MEETING </option>
+                  <option value="virtual">Virtual Meeting (Zoom)</option>
+                  <option value="meetUp">Meet up</option>
                 </select>
                 <label for="meetType">Preferred Meeting</label>
               </div>
@@ -223,7 +230,7 @@ $dbh = new dbHandler;
             <div class="col-md">
               <div class="form-floating">
                 <select class="form-select" name="meetLoc" id="meetLoc">
-                  <option selected>SELECT LOCATION</option>
+                  <option selected disabled>SELECT LOCATION</option>
                   <option value="Shangri-la">Shangri-la</option>
                   <option value="SM Megamall">SM Megamall</option>
                 </select>
@@ -234,7 +241,7 @@ $dbh = new dbHandler;
           <div class="col-12">
             <label for="address2" class="form-label">Preferred Date</label>
             <input type="date" class="form-control" name="appointmentDate" id="appointmentDate" placeholder="">
-          </div>
+          </div> 
           <div class="col-12">
             <label for="address2" class="form-label">Preferred Time</label>
             <input type="time" class="form-control" name="appointmentTime" id="appointmentTime" placeholder="">
