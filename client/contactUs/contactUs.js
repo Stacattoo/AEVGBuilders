@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $("#alertError").hide();
-    $("#flexCheckChecked7").hide();
+    // $("#flexCheckChecked7").hide();
     $("#projectID").hide();
     $("#meetLoc").prop('disabled', true);
     $("#appointForm").submit(function (event) {
@@ -28,21 +28,31 @@ $(document).ready(function () {
             }
         });
     });
-    $("#btnOthers").click(function (event){
+    // $("#btnOthers").click(function (event){
+    //     event.preventDefault();
+    //     $("#flexCheckChecked7").show();
+    // });
+    // $("#btnOthers").change(function (event){
+    //     event.preventDefault();
+    //     $("#flexCheckChecked7").hide();
+    // });
+
+    // $("[name='businessType[]']").change(function (event){
+    //     event.preventDefault();
+    //     if ($(this).val() == "Others") {
+    //         $("#flexCheckChecked7").show();
+    //     } else {
+    //         $("#flexCheckChecked7").hide();
+    //     }
+    // });
+
+    $("[name='projectType']").change(function (event){
         event.preventDefault();
-        $("#flexCheckChecked7").show();
-    });
-    $("#btnOthers").change(function (event){
-        event.preventDefault();
-        $("#flexCheckChecked7").hide();
-    });
-    $("#projectType7").click(function (event){
-        event.preventDefault();
-        $("#projectID").show();
-    });
-    $("#projectType7").change(function (event){
-        event.preventDefault();
-        $("#projectID").hide();
+        if ($(this).val() == "Others") {
+            $("#projectID").show();
+        } else {
+            $("#projectID").hide();
+        }
     });
 
 

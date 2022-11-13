@@ -103,7 +103,7 @@ $dbh = new dbHandler;
 
           <div class="col-12">
             <label for="projLocation" class="form-label">Project Location</label>
-            <input type="text" class="form-control" name="projLocation"  placeholder="Example: 1234 Main St" required>
+            <input type="text" class="form-control" name="projLocation"  placeholder="Example: 1234 Main St">
           </div>
 
           <div class="col-12">
@@ -117,33 +117,33 @@ $dbh = new dbHandler;
         <div class="my-3">
           <label for="pt" class="form-label">Project Type</label>
           <div class="form-check">
-            <input id="projectType1" name="projectType" type="radio" value="Residential" class="form-check-input" checked required>
+            <input id="projectType1" name="projectType" type="radio" value="Residential" class="form-check-input" checked>
             <label class="form-check-label" for="projectType1">Residential</label>
           </div>
           <div class="form-check">
-            <input id="projectType2" name="projectType" type="radio" value="Commercial/Retail Design" class="form-check-input" required>
+            <input id="projectType2" name="projectType" type="radio" value="Commercial/Retail Design" class="form-check-input">
             <label class="form-check-label" for="projectType2">Commercial/Retail Design</label>
           </div>
           <div class="form-check">
-            <input id="projectType3" name="projectType" type="radio" value="Mixed-Use" class="form-check-input" required>
+            <input id="projectType3" name="projectType" type="radio" value="Mixed-Use" class="form-check-input">
             <label class="form-check-label" for="projectType3">Mixed-Use</label>
           </div>
           <div class="form-check">
-            <input id="projectType4" name="projectType" type="radio" value="Institutional" class="form-check-input" required>
+            <input id="projectType4" name="projectType" type="radio" value="Institutional" class="form-check-input">
             <label class="form-check-label" for="projectType4">Institutional</label>
           </div>
           <div class="form-check">
-            <input id="projectType5" name="projectType" type="radio" value="Industrial" class="form-check-input" required>
+            <input id="projectType5" name="projectType" type="radio" value="Industrial" class="form-check-input">
             <label class="form-check-label" for="projectType5">Industrial</label>
           </div>
           <div class="form-check">
-            <input id="projectType6" name="projectType" type="radio" value="Interior" class="form-check-input" required>
+            <input id="projectType6" name="projectType" type="radio" value="Interior" class="form-check-input">
             <label class="form-check-label" for="projectType6">Interior</label>
           </div>
           <div class="form-check">
-            <button id="projectType7" type="radio" value="Others" class="form-check-input"></button>
+            <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input">
             <label class="form-check-label" for="projectType7">Others</label>
-            <input type="text" class="form-control" name="projectType" id="projectID">
+            <input type="text" class="form-control" name="projectTypeOthers" id="projectID">
           </div>
         </div>
 
@@ -151,7 +151,7 @@ $dbh = new dbHandler;
         <div class="row gy-3">
           <div class="col-md-6">
             <label for="cc-name" class="form-label">Lot Area</label>
-            <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="" required>
+            <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="">
           </div>
 
           <div class="col-md-6">
@@ -170,56 +170,56 @@ $dbh = new dbHandler;
           <div class="col-md-3">
             <label for="cc-expiration" class="form-label">Nature of Business</label>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Outsourcing / BPO Offices" id="flexCheckDefault1">
-              <label class="form-check-label" for="flexCheckDefault">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Outsourcing / BPO Offices" id="flexCheckDefault1">
+              <label class="form-check-label" for="flexCheckDefault1">
                 Outsourcing / BPO Offices
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Local Business Office" id="flexCheckChecked2">
-              <label class="form-check-label" for="flexCheckDefault">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Local Business Office" id="flexCheckChecked2">
+              <label class="form-check-label" for="flexCheckChecked2">
                 Local Business Office
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Retail Store" id="flexCheckDefault3">
-              <label class="form-check-label" for="flexCheckDefault">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Retail Store" id="flexCheckDefault3">
+              <label class="form-check-label" for="flexCheckDefault3">
                 Retail Store
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Food and Beverages" id="flexCheckChecked4">
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Food and Beverages" id="flexCheckChecked4">
+              <label class="form-check-label" for="flexCheckChecked4">
                 Food and Beverages
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Sports and Recreation" id="flexCheckDefault5">
-              <label class="form-check-label" for="flexCheckDefault">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Sports and Recreation" id="flexCheckDefault5">
+              <label class="form-check-label" for="flexCheckDefault5">
                 Sports and Recreation
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" name="businessType" type="checkbox" value="Wellness" id="flexCheckChecked6">
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" name="businessType[]" type="checkbox" value="Wellness" id="flexCheckChecked6">
+              <label class="form-check-label" for="flexCheckChecked6">
                 Wellness
               </label>
             </div>
             <div class="form-check">
-              <button class="form-check-input" type="checkbox" id="btnOthers"></button>
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" name="businessType[]" value="Others" type="checkbox" id="btnOthers">
+              <label class="form-check-label" for="btnOthers">
                 Others
               </label>
             </div>
           </div>
-          <input class="form-control mx-4" type="text" name="businessType" id="flexCheckChecked7">
+          <input class="form-control mx-4" type="text" name="businessTypeName" id="flexCheckChecked7">
 
           <hr class="my-4">
           <div class="row g-2">
             <h4 class="mb-3">Set your Appointment</h4>
             <div class="col-md">
               <div class="form-floating">
-                <select class="form-select" name="meetType" id="meetType" required>
+                <select class="form-select" name="meetType" id="meetType">
                   <option selected disabled>SELECT A PREFERED TYPE OF MEETING </option>
                   <option value="virtual">Virtual Meeting (Zoom)</option>
                   <option value="meetUp">Meet up</option>
