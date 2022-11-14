@@ -289,6 +289,26 @@ class dbHandler
             return $blocked;
         }
     }
+    
+    function getTop5Reaction()
+    {
+        $query = "SELECT COUNT(project_id) AS ctr, projects.* FROM `project_reaction` INNER JOIN projects ON project_reaction.project_id=projects.id GROUP BY project_id ORDER BY ctr DESC LIMIT 5";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $data = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object) [
+                    "ctr" => $row['ctr'],
+                    "title" => $row['title'],
+                    "image" => $row['image'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "status" => $row['status'],
+                ];
+            }
+            return $data;
+        }
+    }
 
     function updateStatustoUnblock($id)
     {

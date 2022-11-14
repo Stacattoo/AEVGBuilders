@@ -1,5 +1,31 @@
 $(document).ready(function () {
     displayTotalNumOfClients(new Date().getFullYear());
+
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getTop5Reaction: true },
+        dataType: "JSON",
+        success: function (response) {
+            $.each(response, function (indexInArray, project) { 
+                let content = `
+                    <tr>
+                        <td>${project.ctr}</td>
+                        <td>${project.title}</td>
+                        <td>${project.image}</td>
+                        <td>${project.category}</td>
+                        <td>${project.description}</td>
+                        <td></td>
+                    </tr>
+                `;
+                 $("#popularProject").append(content);
+            });
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
+
+
     function displayTotalNumOfClients(year) {
         $.ajax({
             type: "POST",
