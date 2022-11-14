@@ -27,11 +27,11 @@ $dbh = new dbHandler;
 			</a>
 
 			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-				<li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
+				<li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
-				<li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
+				<li><a href="../projects/project.php" class="nav-link px-2 link-secondary">Projects</a></li>
 				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-
+				<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
 			</ul>
 
 			<div class="col-md-3 text-end">
@@ -63,7 +63,7 @@ $dbh = new dbHandler;
                         </div>
                         <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
                             <div>
-                                <a href="../contactUs/contactUs.php" class="nav-link mt-1 mx-3 px-2 link-dark">Contact Us</a>
+                             
                             </div>
                         <?php } ?>
                     </div>
