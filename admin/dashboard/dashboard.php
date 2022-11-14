@@ -40,7 +40,25 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                    <!-- PLEASE REDESIGN THIS TABLE -->
+                    <h3>Top 5 Most Popular Project</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th># of likes</th>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Uploaded By</th>
+                            </tr>
+                        </thead>
+                        <tbody id="popularProject">
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
