@@ -360,4 +360,23 @@ class dbHandler
         }
     }
 
+    function getAllClients(){
+        $sql = "SELECT * FROM employee_client";
+        $result =  mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $clients = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $clients[] = (object)[
+                    "id" => $row['id'],
+                    "employee_id" => $row['employee_id'],
+                    "client_id" => $row['client_id'],
+                    "status" => $row['status'],
+                    "transaction_date" => $row['transaction_date'],
+                    
+                ];
+            }
+            return $clients;
+        }
+    }
+
 }
