@@ -82,18 +82,17 @@ $dbh = new dbHandler;
             <h1 class="display-4">AEVG BUILDERS</h1>
             <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
             </p>
-            <?php if ($dbh->getSched($_SESSION['id']) >= '1') { ?>
+            
               <p class="lead mb-0">
-              <div class="alert alert-warning" role="alert">
+              <div class="alert alert-warning" role="alert" id="appAlert">
                 <h5>Your request is upon approval, kindly wait for an employee to approve your request.</h5>
               </div>
               </p>
-            <?php } else { ?>
 
-              <p class="lead mb-0"><a type="button" class="btn btn-warning" href="../contactUs/contactUs.php">
+              <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
                   Schedule an Appointment.
                 </a></p>
-            <?php } ?>
+            
           </div>
         </div>
       </div>

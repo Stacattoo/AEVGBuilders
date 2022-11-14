@@ -16,6 +16,7 @@ $dbh = new dbHandler;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-replace-svg></script>
     <script src="profile.js"></script>
+    <script src="../contactUs/contactUs.js"></script>
 </head>
 
 <body>
@@ -93,18 +94,21 @@ $dbh = new dbHandler;
             </div>
             <div class="col-md-6">
                 <div class="h-100 p-5 bg-light border rounded-3">
-                    <?php if ($dbh->getSched($_SESSION['id']) >= '1') { ?>
+                    <div id="viewAppModal">
+                        <!-- IF there is an appointment -->
                         <h2>Appointment Schedule</h2>
                         <p>The client wants to set an appointment. </p>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">View Appointment Details</button>
-                        <button class="btn btn-danger" type="button" name="cancelBtn" data-bs-toggle="modal" href="#exampleModal2">Cancel Appointment</button>
-                    <?php } else { ?>
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button>
+                        <button class="btn btn-danger" type="button" id="cancelBtnModal" name="cancelBtn" data-bs-toggle="modal" href="#exampleModal2">Cancel Appointment</button>
+                    </div>
+                    <div id="schedAppProfile">
+                        <!-- if there is no appointment -->
                         <h2>Schedule an Appointment.</h2>
                         <p>You can now schedule an appointment for your personal inquires.</p>
                         <p class="lead mb-0"><a type="button" class="btn btn-warning" href="../contactUs/contactUs.php">
                                 Schedule an Appointment.
                             </a></p>
-                    <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,22 +116,22 @@ $dbh = new dbHandler;
 
     <!-- Delete Modal -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body text-center">
-                            Are you sure you want to cancel?
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="mt-3 testbtn2" data-bs-dismiss="modal">Cancel</button>
-                            <a href="deleteSched.php" class="mt-3 testbtn2">Yes</a>
-                        </div>
-                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    Are you sure you want to cancel?
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="mt-3 testbtn2" data-bs-dismiss="modal">Cancel</button>
+                    <a href="deleteSched.php" class="mt-3 testbtn2">Yes</a>
                 </div>
             </div>
+        </div>
+    </div>
 
     <!-- APPOINTMENT VIEW MODAL -->
 
@@ -135,29 +139,44 @@ $dbh = new dbHandler;
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel1">Appointment Details</h1>
+                    <h1 class="modal-title fs-5 mx-3" id="exampleModalLabel1">Appointment Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <h4><?php echo $dbh->getFullname($_SESSION['id']); ?></h4>
-                    <h3><b>Contact Number:</b><?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?></h3>
-                    <h3><b>Email Address:</b><?php echo $dbh->getValueByID('email', $_SESSION['id']); ?></h3>
-                    <h3><b>Project Location:</b><?php echo $dbh->getAppDetailsByID('projectLocation', $_SESSION['id']); ?></h3>
-                    <h3><b>Target Construction Date:</b><?php echo $dbh->getAppDetailsByID('targetConsDate', $_SESSION['id']); ?></h3>
-                    <h3><b>Project Type:</b><?php echo $dbh->getAppDetailsByID('projectType', $_SESSION['id']); ?></h3>
-                    <h3><b>Lot Area:</b><?php echo $dbh->getAppDetailsByID('lotArea', $_SESSION['id']); ?></h3>
-                    <h3><b>Number of Building Storey:</b><?php echo $dbh->getAppDetailsByID('numberFloors', $_SESSION['id']); ?></h3>
-                    <h3><b>Nature of Business:</b><?php echo $dbh->getAppDetailsByID('businessType', $_SESSION['id']); ?></h3>
-                    <h3><b>Meeting Type:</b><?php echo $dbh->getAppDetailsByID('meetingType', $_SESSION['id']); ?></h3>
-                    <?php if (!$dbh->getAppDetailsByID('meetingDate', $_SESSION['id']) == NULL) { ?>
-                        <h3><b>Meeting Location:</b><?php echo $dbh->getAppDetailsByID('meetingDate', $_SESSION['id']); ?></h3>
-                    <?php } ?>
-                    <h3><b>Meeting Time:</b><?php echo $dbh->getAppDetailsByID('meetingTime', $_SESSION['id']); ?></h3>
+                <div class="modal-body p-5">
+
+
+                    <h4><b>Name: </b></h4>
+                    <p id="name_id"></p>
+                    <h5><b>Contact Number: </b></h5>
+                    <p id="contact_id"></p>
+                    <h5><b>Email Address: </b></h5>
+                    <p id="email_id"></p>
+                    <h5><b>Project Location: </b></h5>
+                    <p id="projLoc_id"></p>
+                    <h5><b>Target Construction Date: </b></h5>
+                    <p id="targetCons_id"></p>
+                    <h5><b>Project Type: </b></h5>
+                    <p id="projType_id"></p>
+                    <h5><b>Lot Area: </b></h5>
+                    <p id="lotArea_id"></p>
+                    <h5><b>Number of Building Storey: </b></h5>
+                    <p id="numStorey_id"></p>
+                    <h5><b>Nature of Business: </b></h5>
+                    <p id="business_id"></p>
+                    <h5><b>Meeting Type: </b></h5>
+                    <p id="meetType_id"></p>
+                    <h5><b>Meeting Location:</b></h5>
+                    <p id="meetLoc_id"></p>
+                    <h5><b>Meeting Date:</b></h5>
+                    <p id="meetDate_id"></p>
+                    <h5><b>Meeting Time:</b></h5>
+                    <p id="meetTime_id"></p>
+
 
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-success" id="editBtnSched" data-id="">Edit Appointment Details</button>
                 </div>
             </div>
         </div>

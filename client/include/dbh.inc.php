@@ -192,6 +192,8 @@ class dbHandler
         }
     }
 
+
+
     function getSpecificInfo($id, $col)
     {
         $sql = "SELECT $col FROM client WHERE id='$id'";
@@ -218,23 +220,52 @@ class dbHandler
 
     function getSched($id)
     {
-        $sql = "SELECT * FROM appointment WHERE client_id='$id'";
+        $sql = "SELECT *, appointment.id AS appID FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
+        $sched = array();
         if (mysqli_num_rows($result)) {
-            return $result;
-        } else {
-            return 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $businessType = explode(", ", $row['businessType']);
+                $fullName = $row['firstName'] . " " . $row['lastName'];
+                $sched[] = (object)[
+                    "id" => $row['appID'],
+                    "client_id" => $row["client_id"],
+                    'fullName' => $fullName,
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'projLocation' => $row['projectLocation'],
+                    'targetDate' => $row['targetConsDate'],
+                    'projectType' => $row['projectType'],
+                    'lotArea' => $row['lotArea'],
+                    'noFloors' => $row['numberFloors'],
+                    'businessType' => $businessType,
+                    'meetType' => $row['meetingType'],
+                    'meetLoc' => $row['meetingLocation'],
+                    'appointmentDate' => $row['meetingDate'],
+                    'appointmentTime' => $row['meetingTime']
+                ];
+            }
         }
+        return $sched;
     }
 
     function setAppointment($value, $id)
     {
 
         $sql = "INSERT INTO appointment(client_id, projectLocation, targetConsDate, projectType, lotArea, numberFloors, businessType, meetingType, meetingLocation, meetingDate, meetingTime)
-        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', '$value->meetLoc', '$value->appointmentDate', '$value->appointmentTime')";
+        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
+        '$value->meetLoc', '$value->appointmentDate', '$value->appointmentTime')";
         return mysqli_query($this->conn, $sql);
     }
 
+    function editSetAppointment($value, $id){
+
+        $sql = "UPDATE `appointment` SET  projectLocation = '$value->projLocation', targetConsDate = '$value->targetDate', projectType = '$value->projectType',
+        lotArea = '$value->lotArea', numberFloors = '$value->noFloors', businessType = '$value->businessType', meetingType = '$value->meetType',
+        meetingLocation = '$value->meetLoc',  meetingDate = '$value->appointmentDate', meetingTime = '$value->appointmentTime' WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
     function insertProjectReaction($clientId, $projectId)
     {
         $sql = "INSERT INTO `project_reaction`(`client_id`, `project_id`) VALUES ($clientId, $projectId)";

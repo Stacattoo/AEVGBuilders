@@ -103,7 +103,7 @@ $dbh = new dbHandler;
 
           <div class="col-12">
             <label for="projLocation" class="form-label">Project Location</label>
-            <input type="text" class="form-control" name="projLocation"  placeholder="Example: 1234 Main St">
+            <input type="text" class="form-control" name="projLocation" id="projectLocEdit" placeholder="Example: 1234 Main St">
           </div>
 
           <div class="col-12">
@@ -249,8 +249,11 @@ $dbh = new dbHandler;
           <div class="alert alert-danger" role="alert" id="alertError">
             Error!
           </div>
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Set an Appointment</button>
-      </form>
+          
+          <button class="w-100 btn btn-primary btn-lg" type="submit" id="setBtn">Set an Appointment</button>
+         
+        </form>
+
     </div>
   </div>
   </div>

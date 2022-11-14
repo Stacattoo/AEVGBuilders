@@ -14,9 +14,9 @@ if ($_POST['projectType'] == 'Others') {
     $projectOthers = $_POST['projectType'];
 }
 
-if(!empty($bstype)) {
-    foreach($bstype as $key => $value) {
-        if($value == 'Others'){
+if (!empty($bstype)) {
+    foreach ($bstype as $key => $value) {
+        if ($value == 'Others') {
             $bstype[$key] = $bstypename;
         }
     }
