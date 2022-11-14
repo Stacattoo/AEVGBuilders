@@ -136,41 +136,94 @@ $dbh = new dbHandler;
     <!-- APPOINTMENT VIEW MODAL -->
 
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 mx-3" id="exampleModalLabel1">Appointment Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5">
+                    <div class="row g-3">
+                        <div class="col">
+                            <h4><b>Name: </b></h4>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="name_id" readonly>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h5><b>Email Address: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="email_id" readonly>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Contact Number: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="contact_id" readonly>
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h5><b>Project Type: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projType_id" readonly>
 
 
-                    <h4><b>Name: </b></h4>
-                    <p id="name_id"></p>
-                    <h5><b>Contact Number: </b></h5>
-                    <p id="contact_id"></p>
-                    <h5><b>Email Address: </b></h5>
-                    <p id="email_id"></p>
-                    <h5><b>Project Location: </b></h5>
-                    <p id="projLoc_id"></p>
-                    <h5><b>Target Construction Date: </b></h5>
-                    <p id="targetCons_id"></p>
-                    <h5><b>Project Type: </b></h5>
-                    <p id="projType_id"></p>
-                    <h5><b>Lot Area: </b></h5>
-                    <p id="lotArea_id"></p>
-                    <h5><b>Number of Building Storey: </b></h5>
-                    <p id="numStorey_id"></p>
-                    <h5><b>Nature of Business: </b></h5>
-                    <p id="business_id"></p>
-                    <h5><b>Meeting Type: </b></h5>
-                    <p id="meetType_id"></p>
-                    <h5><b>Meeting Location:</b></h5>
-                    <p id="meetLoc_id"></p>
-                    <h5><b>Meeting Date:</b></h5>
-                    <p id="meetDate_id"></p>
-                    <h5><b>Meeting Time:</b></h5>
-                    <p id="meetTime_id"></p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Nature of Business: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="business_id" readonly>
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-8">
+                            <h5><b>Project Location: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projLoc_id" readonly>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h5><b>Lot Area: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="lotArea_id" readonly>
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h5><b>Number of Building Storey: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="numStorey_id" readonly>
+
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Target Construction Date: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="targetCons_id" readonly>
+
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h5><b>Meeting Type: </b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetType_id" readonly>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Meeting Location:</b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetLoc_id" readonly>
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h5><b>Meeting Date:</b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetDate_id" readonly>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Meeting Time:</b></h5>
+                            <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetTime_id" readonly>
+
+                        </div>
+                    </div>
 
 
                 </div>

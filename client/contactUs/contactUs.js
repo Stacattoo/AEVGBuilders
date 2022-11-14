@@ -69,19 +69,19 @@ $(document).ready(function () {
                 });
                 console.log(businessVar);
                 $('#editBtnID').attr("data-id", response.client_id);
-                $('#name_id').html(response.fullName);
-                $('#contact_id').html(response.contactNo);
-                $('#email_id').html(response.email);
-                $('#projLoc_id').html(response.projLocation);
-                $('#targetCons_id').html(response.targetDate);
-                $('#projType_id').html(response.projectType);
-                $('#lotArea_id').html(response.lotArea);
-                $('#numStorey_id').html(response.noFloors);
-                $('#business_id').html(businessVar);
-                $('#meetType_id').html(response.meetType);
-                $('#meetLoc_id').html(response.meetLoc);
-                $('#meetDate_id').html(response.appointmentDate);
-                $('#meetTime_id').html(response.appointmentTime);
+                $('#name_id').val(response.fullName);
+                $('#contact_id').val(response.contactNo);
+                $('#email_id').val(response.email);
+                $('#projLoc_id').val(response.projLocation);
+                $('#targetCons_id').val(response.targetDate);
+                $('#projType_id').val(response.projectType);
+                $('#lotArea_id').val(response.lotArea);
+                $('#numStorey_id').val(response.noFloors);
+                $('#business_id').val(businessVar);
+                $('#meetType_id').val(response.meetType);
+                $('#meetLoc_id').val(response.meetLoc);
+                $('#meetDate_id').val(response.appointmentDate);
+                $('#meetTime_id').val(response.appointmentTime);
                 valueEdit = response;
 
             }
