@@ -217,10 +217,9 @@ class dbHandler
         $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
         return mysqli_query($this->conn, $sql);
     }
-
     function getSched($id)
     {
-        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
         $sched = array();
         if (mysqli_num_rows($result)) {
@@ -245,7 +244,8 @@ class dbHandler
                     'meetLoc' => $row['meetingLocation'],
                     'image' => $imgExplode,
                     'appointmentDate' => $row['meetingDate'],
-                    'appointmentTime' => $row['meetingTime']
+                    'appointmentTime' => $row['meetingTime'],
+                    'status' => $row['statusCheck']
                 ];
             }
         }
@@ -281,9 +281,9 @@ class dbHandler
         $sql = "DELETE from `project_reaction` where client_id = $clientId AND project_id = $projectId";
         return mysqli_query($this->conn, $sql);
     }
-    function deletedSched($id)
+    function canceledSched($id)
     {
-        $sql = "DELETE FROM `appointment` WHERE client_id='$id'";
+        $sql = "UPDATE `appointment` SET status='canceled' WHERE client_id='$id'";
         // $fullName = $this->getFullname($id);
         // $this->addActivities($fullName, "Schedule", "Cancel schedule");
         return mysqli_query($this->conn, $sql);
