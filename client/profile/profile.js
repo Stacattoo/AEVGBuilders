@@ -122,8 +122,14 @@ $(document).ready(function () {
             checkAppointmentProfile: true
         },
         success: function (result) {
-            $("#schedAppProfile").hide();
-            $("#viewAppModal").show();
+            // console.log(result.status);
+            if(result.status == 'pending'){
+                $("#schedAppProfile").hide();
+                $("#viewAppModal").show();
+            }else if (result.status == 'canceled'){
+                $("#schedAppProfile").show();
+                $("#viewAppModal").hide();
+            }
 
         }
     });
