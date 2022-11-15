@@ -14,7 +14,7 @@ $(document).ready(function () {
             type: "post",
             url: "projectProcess.php",
             data: {
-                getAllProjects_req: true    
+                getAllProjects_req: true
             },
             dataType: "json",
             success: function (response) {
@@ -23,8 +23,8 @@ $(document).ready(function () {
                         return true;
                     }
                     // images += `<div class="carousel-item ${active}">
-					// 				<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
-					// 				</div>`;
+                    // 				<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
+                    // 				</div>`;
                     return data.category == category;
                 })
                 let content = ``;
@@ -42,7 +42,7 @@ $(document).ready(function () {
                     });
                     content += `
                     <div class="col">
-                            <div class="card" data-bs-toggle="modal" data-bs-target="#openModalProj">
+                            <div class="card" >
     
                                 <div id="carouselExampleInterval${indexInArray}" class="carousel slide">
                                     <div class="carousel-inner">
@@ -60,7 +60,12 @@ $(document).ready(function () {
                                 <div class="card-body">
         
                                     <p class="card-text text-truncate">${data.description}</p> 
+                                    <div class= "d-flex justify-content-between"> 
+                                    <div>
                                     <i class="${(data.reaction) ? "fas" : "far"} fa-heart react" data-react="${(data.reaction)}" data-id="${data.id}"></i> <span> ${data.reactionCtr}</span>
+                                    </div>
+                                    <button class="btn btn-link text-secondary text-decoration-none" data-bs-toggle="modal" data-bs-target="#openModalProj">See more...</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -78,8 +83,8 @@ $(document).ready(function () {
                         type: "post",
                         url: "projectProcess.php",
                         data: {
-                            setPostReaction: true, 
-                            projectId: postId, 
+                            setPostReaction: true,
+                            projectId: postId,
                             react: react
                         },
                         dataType: "json",
