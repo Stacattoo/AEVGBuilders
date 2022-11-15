@@ -28,10 +28,10 @@ $dbh = new dbHandler;
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-secondary">About Us</a></li>
-        <li><a href="../Projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
+        <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-secondary">About Us</a></li>
+        <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-
+       <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -44,20 +44,27 @@ $dbh = new dbHandler;
 
         <?php } else { ?>
 
-          <div class="dropdown me-5">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-              <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-              <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-              <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
-            </ul>
+          <div class="d-flex flex-row-reverse">
+
+            <div class="dropdown me-5">
+              <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+              </ul>
+            </div>
+            <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+              <div>
+               
+              </div>
+            <?php } ?>
           </div>
 
         <?php } ?>
@@ -75,18 +82,17 @@ $dbh = new dbHandler;
             <h1 class="display-4">AEVG BUILDERS</h1>
             <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
             </p>
-            <?php if ($dbh->getSched($_SESSION['id']) >= '1') { ?>
+            
               <p class="lead mb-0">
-              <div class="alert alert-warning" role="alert">
+              <div class="alert alert-warning" role="alert" id="appAlert">
                 <h5>Your request is upon approval, kindly wait for an employee to approve your request.</h5>
               </div>
               </p>
-            <?php } else { ?>
 
-              <p class="lead mb-0"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
                   Schedule an Appointment.
-                </button></p>
-            <?php } ?>
+                </a></p>
+            
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ $dbh = new dbHandler;
         <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-secondary">Materials</a></li>
-
+        <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
       </ul>
 
 
@@ -49,20 +49,27 @@ $dbh = new dbHandler;
 
         <?php } else { ?>
 
-          <div class="dropdown me-5">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-              <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-              <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-              <li><a class="dropdown-item" href="../order/order.php">Order</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
-            </ul>
+          <div class="d-flex flex-row-reverse">
+
+            <div class="dropdown me-5">
+              <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+              </ul>
+            </div>
+            <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+              <div>
+             
+              </div>
+            <?php } ?>
           </div>
 
         <?php } ?>

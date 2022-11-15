@@ -1,24 +1,24 @@
 $(document).ready(function () {
 
-    $("#alertsched").hide();
-    $("#scheduleForm").submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "../schedule/scheduleProcess.php",
-            //C:\xampp\htdocs\AEVGBuilders\client\schedule\scheduleProcess.php
-            type: "POST",
-            //dataType: "json",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (result) {
-                console.log(result);
-                window.location.href = "../aboutUs/aboutUs.php";
-                $('#scheduleForm').trigger("reset");
-            }
-        });
+    $("#schedBtn").show();
+    $("#appAlert").hide();
+    //     $("#scheduleForm").submit(function (event) {
+    //         event.preventDefault();
+    console.log("pasok");
+    $.ajax({
+        url: "../contactUs/getData.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            checkAppointment: true
+        },
+        success: function (result) {
+            $("#schedBtn").hide();
+            $("#appAlert").show();
+
+        }
     });
+    //     });
 
     // $("#date").change(function (event) {
     //     $("#time9amTo10am").prop("disabled", false);
@@ -35,17 +35,17 @@ $(document).ready(function () {
     //             date: $('#date').val()
     //         },
     //         success: function (result) {
-                // for (var i = 0; i < result.length; i++) {
-                //     if (result[i] == $("#time9amTo10am").val()) {
-                //         $("#time9amTo10am").prop("disabled", true);
-                //     } else if (result[i] == $("#time10amTo11am").val()) {
-                //         $("#time10amTo11am").prop("disabled", true);
-                //     } else if (result[i] == $("#time11amTo12nn").val()) {
-                //         $("#time11amTo12nn").prop("disabled", true);
-                //     } else if (result[i] == $("#time1pmTo2pm").val()) {
-                //         $("#time1pmTo2pm").prop("disabled", true);
-                //     }
-                // }
+    // for (var i = 0; i < result.length; i++) {
+    //     if (result[i] == $("#time9amTo10am").val()) {
+    //         $("#time9amTo10am").prop("disabled", true);
+    //     } else if (result[i] == $("#time10amTo11am").val()) {
+    //         $("#time10amTo11am").prop("disabled", true);
+    //     } else if (result[i] == $("#time11amTo12nn").val()) {
+    //         $("#time11amTo12nn").prop("disabled", true);
+    //     } else if (result[i] == $("#time1pmTo2pm").val()) {
+    //         $("#time1pmTo2pm").prop("disabled", true);
+    //     }
+    // }
 
     //         }
     //     });

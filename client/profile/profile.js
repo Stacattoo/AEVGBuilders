@@ -68,7 +68,7 @@ $(document).ready(function () {
     });
 
     $("#passBtn").click(function () {
-       
+
         $(this).addClass("active");
         $("#profileInfo").removeClass("active");
         $("#changePassForm").show();
@@ -105,8 +105,27 @@ $(document).ready(function () {
         });
     });
 
-    $('#changePassForm').click(function (){
+    $('#changePassForm').click(function () {
         $("#errorPass").hide();
+    });
+
+    $("#schedAppProfile").show();
+    $("#viewAppModal").hide();
+    //     $("#scheduleForm").submit(function (event) {
+    //         event.preventDefault();
+
+    $.ajax({
+        url: "../contactUs/getData.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            checkAppointmentProfile: true
+        },
+        success: function (result) {
+            $("#schedAppProfile").hide();
+            $("#viewAppModal").show();
+
+        }
     });
 
 }); // end of document ready function
