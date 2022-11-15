@@ -56,6 +56,7 @@ $(document).ready(function () {
                                 </div>
                                 <div class="card-body">
         
+                                    <h6 class="card-text">${data.title}</h6> 
                                     <p class="card-text text-truncate">${data.description}</p> 
                                     <div class= "d-flex justify-content-between"> 
                                     <div>
@@ -70,28 +71,7 @@ $(document).ready(function () {
                 });
                 $("#materials").html(content);
 
-                $('.react').click(function (e) {
-                    e.preventDefault();
-                    var postId = $(this).data("id");
-                    var react = $(this).data("react");
-
-                    console.log(postId);
-                    $.ajax({
-                        type: "post",
-                        url: "projectProcess.php",
-                        data: {
-                            setPostReaction: true,
-                            projectId: postId,
-                            react: react
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            filterProject(cat);
-                        }
-                    });
-
-
-                });
+                
 
                 $(".projectBtn").click(function (e) {
                     e.preventDefault();
@@ -99,7 +79,6 @@ $(document).ready(function () {
                     var selected = filter.filter(function (data) {
                         return data.id == id;
                     })[0];
-                    console.log(selected);
                     let images = ``;
                     $.each(selected.image, function (indexInArray, path) {
                         let active = '';
@@ -128,14 +107,41 @@ $(document).ready(function () {
 						<h2 class="fw-normal">${selected.title} </h2>
 						<div>
                         <i class="${(selected.reaction) ? "fas" : "far"} fa-heart react" data-react="${(selected.reaction)}" data-id="${selected.id}"></i> <span> ${selected.reactionCtr}</span>
+
 						</div>
-                        </div>
+                    </div>
                     <p>${selected.description}</p>
                     `;
 
 
                     $("#projectModalBody").html(content);
+                    clickReact();
                 });
+                
+                clickReact();
+                function clickReact() {
+                    $('.react').click(function (e) {
+                        e.preventDefault();
+                        var postId = $(this).data("id");
+                        var react = $(this).data("react");
+                        $.ajax({
+                            type: "post",
+                            url: "projectProcess.php",
+                            data: {
+                                setPostReaction: true,
+                                projectId: postId,
+                                react: react
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                filterProject(cat);
+                            }
+                        });
+    
+    
+                    });
+                }
+                
 
             },
             error: function (response) {
