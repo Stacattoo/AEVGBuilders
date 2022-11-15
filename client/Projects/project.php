@@ -108,19 +108,19 @@ $dbh = new dbHandler;
 	<div class="modal fade" id="openModalProj" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content rounded-4 shadow">
-				<div class="modal-body p-5">
+				<div class="modal-body p-5" id="projectModalBody">
 					<img class="img-fluid" src="../../images/consultation.jpg">
-				
-						
-							<div class="d-flex justify-content-between w-100 mt-3">
-								<h2 class="fw-normal">Title </h2>
-								<div>
-									<i class=" fas fa-heart react"></i> <span>4</span>
-								</div>
 
-							</div>
-							<p>	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum unde porro suscipit amet eos quae consectetur, beatae incidunt, assumenda, quas cupiditate alias. Inventore dignissimos quo illo? Aliquam maiores ea fugit.
-					Id ducimus, harum assumenda aperiam sapiente aut pariatur cupiditate, quis excepturi blanditiis non nostrum beatae nulla saepe cum illum atque? Neque aspernatur placeat veritatis cum odio quam ducimus consectetur reprehenderit.</p>
+
+					<div class="d-flex justify-content-between w-100 mt-3">
+						<h2 class="fw-normal">Title </h2>
+						<div>
+							<i class=" fas fa-heart react"></i> <span>4</span>
+						</div>
+
+					</div>
+					<p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum unde porro suscipit amet eos quae consectetur, beatae incidunt, assumenda, quas cupiditate alias. Inventore dignissimos quo illo? Aliquam maiores ea fugit.
+						Id ducimus, harum assumenda aperiam sapiente aut pariatur cupiditate, quis excepturi blanditiis non nostrum beatae nulla saepe cum illum atque? Neque aspernatur placeat veritatis cum odio quam ducimus consectetur reprehenderit.</p>
 				</div>
 			</div>
 		</div>

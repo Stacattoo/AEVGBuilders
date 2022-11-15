@@ -22,9 +22,6 @@ $(document).ready(function () {
                     if (category == "All") {
                         return true;
                     }
-                    // images += `<div class="carousel-item ${active}">
-                    // 				<img src="../../employee/projects/${path}" class="d-block w-70 img-fluid img ">
-                    // 				</div>`;
                     return data.category == category;
                 })
                 let content = ``;
@@ -64,7 +61,7 @@ $(document).ready(function () {
                                     <div>
                                     <i class="${(data.reaction) ? "fas" : "far"} fa-heart react" data-react="${(data.reaction)}" data-id="${data.id}"></i> <span> ${data.reactionCtr}</span>
                                     </div>
-                                    <button class="btn btn-link text-secondary text-decoration-none" data-bs-toggle="modal" data-bs-target="#openModalProj">See more...</button>
+                                    <button class="btn btn-link text-secondary text-decoration-none projectBtn" data-bs-toggle="modal" data-bs-target="#openModalProj" data-id="${data.id}">See more...</button>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +70,7 @@ $(document).ready(function () {
                 });
                 $("#materials").html(content);
 
-                $('.react').click(function (e) { // dito yung dpat mag cchange to solid
+                $('.react').click(function (e) {
                     e.preventDefault();
                     var postId = $(this).data("id");
                     var react = $(this).data("react");
@@ -94,6 +91,50 @@ $(document).ready(function () {
                     });
 
 
+                });
+
+                $(".projectBtn").click(function (e) {
+                    e.preventDefault();
+                    let id = $(this).data("id");
+                    var selected = filter.filter(function (data) {
+                        return data.id == id;
+                    })[0];
+                    console.log(selected);
+                    let images = ``;
+                    $.each(selected.image, function (indexInArray, path) {
+                        let active = '';
+                        if (indexInArray == 0) {
+                            active = "active";
+                        }
+                        images += `<div class="carousel-item ${active}">
+                                    <img src="../../employee/projects/${path}" class="d-block w-100 img-fluid img-modal">
+                                    </div>`;
+                    });
+                    let content = `
+                    <div id="carouselExampleIntervalModal" class="carousel slide">
+                        <div class="carousel-inner">
+                            ${images}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-between w-100 mt-3">
+						<h2 class="fw-normal">${selected.title} </h2>
+						<div>
+                        <i class="${(selected.reaction) ? "fas" : "far"} fa-heart react" data-react="${(selected.reaction)}" data-id="${selected.id}"></i> <span> ${selected.reactionCtr}</span>
+						</div>
+                        </div>
+                    <p>${selected.description}</p>
+                    `;
+
+
+                    $("#projectModalBody").html(content);
                 });
 
             },

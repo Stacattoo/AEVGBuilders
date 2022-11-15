@@ -3,3 +3,8 @@
     height: 300px;
     object-fit: cover;
   }
+
+  .img-modal {
+    height: 600px;
+    object-fit: cover;
+  }
