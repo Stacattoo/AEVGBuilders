@@ -32,7 +32,7 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
         'description' => $_POST['description'],
     ];
 
-    if ($dbh->uploadProject($info)) {
+    if ($dbh->uploadProject($info, $_SESSION['id'])) {
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Project Successfully Uploaded.'

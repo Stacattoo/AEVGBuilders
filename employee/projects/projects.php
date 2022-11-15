@@ -16,7 +16,7 @@ $dbh = new dbHandler;
     </div>
     <hr>
     <div class="container-fluid">
-        <div class="container mt-5">
+        <div class=" mt-5">
             <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4">
             </div>
         </div>
@@ -80,10 +80,10 @@ $dbh = new dbHandler;
                                         <span class="on-drop">Drop images here</span>
                                         <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                                     </div>
-
+                                    
+                                    <!-- IMAGE PREVIEW CONTAINER -->
+                                    <div class="container " id="imgCon"></div>
                                 </div>
-                                <!-- IMAGE PREVIEW CONTAINER -->
-                                <div class="container " id="imgCon"></div>
 
 
 

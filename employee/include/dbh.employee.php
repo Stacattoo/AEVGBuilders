@@ -100,10 +100,10 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    function uploadProject($info)
+    function uploadProject($info, $id)
     {
-        $query = "INSERT INTO projects(title, image, category, description) 
-        VALUES ('$info->title' ,'$info->image', '$info->category', '$info->description')";
+        $query = "INSERT INTO projects(employee_id, title, image, category, description) 
+        VALUES ($id, '$info->title' ,'$info->image', '$info->category', '$info->description')";
         return mysqli_query($this->conn, $query);
     }
 
