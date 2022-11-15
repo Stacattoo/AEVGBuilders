@@ -16,7 +16,7 @@ $dbh = new dbHandler;
     </div>
     <hr>
     <div class="container-fluid">
-        <div class=" mt-5">
+        <div class="mt-5">
             <div class="row">
                 <div class="col">
                     <div class="card text-bg-light mb-3">
@@ -60,8 +60,36 @@ $dbh = new dbHandler;
                     </table>
                 </div>
             </div>
-
-
+        </div>
+        <div class="mt-3">
+            <h3>Clients Feedback</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Feedback</th>
+                        <th>Date & Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackContent">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="">Post</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

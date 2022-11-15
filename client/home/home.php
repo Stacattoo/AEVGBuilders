@@ -19,7 +19,7 @@ $dbh = new dbHandler;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.3.1/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+    <script src="home.js"></script>
 </head>
 
 <body>
@@ -194,53 +194,9 @@ $dbh = new dbHandler;
                 <header>
                     <h1 class="text-dark">FEEDBACK</h1>
                 </header>
-                <!-- Slider main container -->
                 <div class="swiper">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div class="swiper-slide">
-                            <div class="content-wrapper">
-                                <div class="content">
-                                    <div class="swiper-avatar"><img src="https://bikes-n-stuff.com/wp-content/uploads/sb-instagram-feed-images/julietelliott.jpg">
-                                    </div>
-                                    <p>"Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio
-                                        sem
-                                        nec elit. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam.
-                                        Pellentesque ornare sem lacinia quam venenatis vestibulum."</p>
-                                    <p class="cite">- Juliet Elliott, Cyclist</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="content-wrapper">
-                                <div class="content">
-                                    <div class="swiper-avatar"><img src="https://dgtzuqphqg23d.cloudfront.net/aqUDdv8fco91cPIeBAetAcpDfUEOIuaIrivU11PMnBs-2048x1942.jpg">
-                                    </div>
-                                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere consectetur est
-                                        at
-                                        lobortis. Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit
-                                        tempus porttitor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-                                        eget
-                                        lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at
-                                        eros."</p>
-                                    <p class="cite">- Katie Kookaburra, Cyclist</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="content-wrapper">
-                                <div class="content">
-                                    <div class="swiper-avatar"><img src="https://dgalywyr863hv.cloudfront.net/pictures/athletes/188112/45714/8/full.jpg">
-                                    </div>
-                                    <p>"Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio
-                                        sem
-                                        nec elit. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam.
-                                        Pellentesque ornare sem lacinia quam venenatis vestibulum."</p>
-                                    <p class="cite">- Alison Tetrick, Cyclist</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="swiper-wrapper" id="feedbackContent">
+                        
                     </div>
                 </div>
             </div>
@@ -258,13 +214,11 @@ $dbh = new dbHandler;
 </body>
 <script>
     const swiper = new Swiper(".swiper", {
-        // Optional parameters
         direction: "horizontal",
         loop: true,
         autoHeight: false,
         centeredSlides: true,
         slidesPerView: 1,
-        // Responsive breakpoints
         breakpoints: {
             640: {
                 slidesPerView: 2,

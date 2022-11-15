@@ -31,6 +31,19 @@ $(document).ready(function () {
         });
     });
 
+    $("#feedbackForm").submit(function (e) { 
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "profileProcess.php",
+            data: {insertFeedback: $("#feedback").val()},
+            dataType: "JSON",
+            success: function (response) {
+                alert("Feedback Successfully Sent!")
+            }
+        });
+    });
+
     $('input').focus(function (e) {
         e.preventDefault();
         $("#alertError").fadeOut();

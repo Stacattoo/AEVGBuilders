@@ -1,6 +1,7 @@
 $(document).ready(function () {
     displayTotalNumOfClients(new Date().getFullYear());
 
+    // TOP 5 MOST POPULAR PROJECT
     $.ajax({
         type: "POST",
         url: "dashboard/dashboardProcess.php",
@@ -20,6 +21,33 @@ $(document).ready(function () {
                 `;
                  $("#popularProject").append(content);
             });
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
+
+    // CLIENTS FEEDBACK
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getClientsFeedback: true },
+        dataType: "JSON",
+        success: function (response) {
+            let content = ``;
+            $.each(response, function (indexInArray, feedback) { 
+                content += `
+                    <tr>
+                        <td>${feedback.id}</td>
+                        <td>${feedback.fullname}</td>
+                        <td>${feedback.email}</td>
+                        <td>${feedback.contact_no}</td>
+                        <td>${feedback.feedback}</td>
+                        <td>${feedback.date}</td>
+                        <td></td>
+                    </tr>
+                `;
+            });
+            $("#feedbackContent").html(content);
         }, error: function (response) {
             console.error(response);
         }
