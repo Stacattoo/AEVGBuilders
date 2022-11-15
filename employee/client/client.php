@@ -47,7 +47,8 @@
 
         $("#search").change(function(e) {
             e.preventDefault();
-            displayUsers($(this).val());
+            displayApproveClient($(this).val());
+            displayPendingClient($(this).val());
         });
 
 

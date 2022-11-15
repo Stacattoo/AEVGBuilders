@@ -312,6 +312,46 @@ class dbHandler
         return mysqli_query($this->conn, $sql);
     }
 
+    // inserting message
+    function insertClientMessage($content, $id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $msg = json_decode($row["content"]);
+                array_push($msg, json_decode($content)[0]);
+                $msg = json_encode($msg);
+                $sql = "UPDATE `message` SET content='$msg' WHERE client_id='$id'";
+                return mysqli_query($this->conn, $sql);
+            }
+        } else {
+            $sql = "INSERT INTO message(client_id, content) VALUES ('$id', '$content')";
+            return mysqli_query($this->conn, $sql);
+        }
+    }
+
+    function getContent($id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $message = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $message[] = (object) [
+                    'id' => $row['client_id'],
+                    'content' => json_decode($row['content']),
+                    'date' => $row['dateTime'],
+                    'status' => $row['status']
+                ];
+            }
+        }
+        return $message;
+    }
+
+    //message end
+
+
 
     function __destroy()
     {
