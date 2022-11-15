@@ -117,17 +117,15 @@ $dbh = new dbHandler;
     <!-- Delete Modal -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-body p-4 text-center">
+                    <h5 class="mb-0 py-4"> Are you sure you want to cancel?</h5>
+
                 </div>
-                <div class="modal-body text-center">
-                    Are you sure you want to cancel?
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="mt-3 testbtn2" data-bs-dismiss="modal">Cancel</button>
-                    <a href="deleteSched.php" class="mt-3 testbtn2">Yes</a>
+
+                <div class="modal-footer flex-nowrap p-0">
+                    <a href="deleteSched.php" type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></a>
+                    <a type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">Cancel</a>
                 </div>
             </div>
         </div>
@@ -175,12 +173,12 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="row g-3">
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                             <h5><b>Project Location: </b></h5>
                             <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projLoc_id" readonly>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <h5><b>Lot Area: </b></h5>
                             <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="lotArea_id" readonly>
 
@@ -285,7 +283,7 @@ $dbh = new dbHandler;
             </table>
         </div>
     </div>
-
+    <!-- modal for quotation -->
     <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -422,6 +420,7 @@ $dbh = new dbHandler;
 
 
     </div>
+    <!-- modal for edit profile -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

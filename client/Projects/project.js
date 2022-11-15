@@ -14,7 +14,7 @@ $(document).ready(function () {
             type: "post",
             url: "projectProcess.php",
             data: {
-                getAllProjects_req: true
+                getAllProjects_req: true    
             },
             dataType: "json",
             success: function (response) {
@@ -42,7 +42,7 @@ $(document).ready(function () {
                     });
                     content += `
                     <div class="col">
-                            <div class="card">
+                            <div class="card" data-bs-toggle="modal" data-bs-target="#openModalProj">
     
                                 <div id="carouselExampleInterval${indexInArray}" class="carousel slide">
                                     <div class="carousel-inner">
@@ -58,8 +58,8 @@ $(document).ready(function () {
                                     </button>
                                 </div>
                                 <div class="card-body">
-                                <p class=
-                                    <p class="card-text">${data.description}</p> 
+        
+                                    <p class="card-text text-truncate">${data.description}</p> 
                                     <i class="${(data.reaction) ? "fas" : "far"} fa-heart react" data-react="${(data.reaction)}" data-id="${data.id}"></i> <span> ${data.reactionCtr}</span>
                                 </div>
                             </div>

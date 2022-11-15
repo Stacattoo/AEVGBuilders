@@ -116,7 +116,7 @@ $dbh = new dbHandler;
             <div class="col-sm-6">
               <h5 class="form-label mb-4">Project Type</h5>
               <div class="form-check">
-                <input id="projectType1" name="projectType" type="radio" value="Residential" class="form-check-input" checked>
+                <input id="projectType1" name="projectType" type="radio" value="Residential" class="form-check-input" required>
                 <label class="form-check-label" for="projectType1">Residential</label>
               </div>
               <div class="form-check">
@@ -150,7 +150,7 @@ $dbh = new dbHandler;
 
             <div class="col-sm-6">
               <h5 class="form-label mb-4">Nature of Business</h5>
-              <div class="form-check">
+              <div class="form-check" required>
                 <input class="form-check-input" name="businessType[]" type="checkbox" value="Outsourcing / BPO Offices" id="flexCheckDefault1">
                 <label class="form-check-label" for="flexCheckDefault1">
                   Outsourcing / BPO Offices
@@ -193,43 +193,6 @@ $dbh = new dbHandler;
                 </label>
                 <input type="text" class="form-control" name="businessTypeName" id="inputOthers">
               </div>
-            </div>
-          </div>
-          <hr class="my-4">
-
-          <div class="row g-3">
-            <div class="col-sm-9">
-              <label for="projLocation" class="form-label">Project Location</label>
-              <input type="text" class="form-control" id="projLoc_id" name="projLocation" placeholder="Example: 1234 Main St">
-            </div>
-
-            <div class="col-sm-3">
-              <label for="cc-name" class="form-label">Lot Area</label>
-              <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="">
-            </div>
-
-            <div class="col-sm-9">
-              <label for="cc-number" class="form-label">Number of Floors</label>
-              <select class="form-select form-select" name="noFloors" id="cc-number" aria-label=".form-select-lg example">
-                <option selected disabled>Select</option>
-                <option value="One-Storey">(1) One-Storey</option>
-                <option value="Two-Storey">(2) Two-Storey</option>
-                <option value="Three-Storey">(3) Three-Storey</option>
-                <option value="Four-Storey">(4) Four-Storey</option>
-                <option value="Mid-rise Storey">(5-6) Mid-rise Storey</option>
-                <option value="High-rise Storey">(7-9) High-rise Storey</option>
-              </select>
-            </div>
-
-            <div class="col-sm-3">
-              <label for="targetDate" class="form-label">Target Date of Construction</label>
-              <input type="date" class="form-control" id="targetDate" name="targetDate">
-            </div>
-
-            <div class="col-sm-9">
-              <label for="area-img" id="sketch" class="form-label">Provide site images and sketches (if available)</label>
-              <input type="file" class="form-control" id="sketch" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
-              <input type="hidden" id="edit-image1" name="imageEditStore" value="">
             </div>
           </div>
           <hr class="my-4">
@@ -371,6 +334,44 @@ $dbh = new dbHandler;
               </div>
             </div>
           </div>
+
+          <hr class="my-4">
+
+          <div class="row g-3">
+            <div class="col-sm-9">
+              <label for="projLocation" class="form-label">Project Location</label>
+              <input type="text" class="form-control" id="projLoc_id" name="projLocation" placeholder="Example: 1234 Main St" required>
+            </div>
+
+            <div class="col-sm-3">
+              <label for="cc-name" class="form-label">Lot Area</label>
+              <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="" required>
+            </div>
+
+            <div class="col-sm-9">
+              <label for="cc-number" class="form-label">Number of Floors</label>
+              <select class="form-select form-select" name="noFloors" id="cc-number" aria-label=".form-select-lg example" required>
+                <option selected disabled>Select</option>
+                <option value="One-Storey">(1) One-Storey</option>
+                <option value="Two-Storey">(2) Two-Storey</option>
+                <option value="Three-Storey">(3) Three-Storey</option>
+                <option value="Four-Storey">(4) Four-Storey</option>
+                <option value="Mid-rise Storey">(5-6) Mid-rise Storey</option>
+                <option value="High-rise Storey">(7-9) High-rise Storey</option>
+              </select>
+            </div>
+
+            <div class="col-sm-3">
+              <label for="targetDate" class="form-label">Target Date of Construction</label>
+              <input type="date" class="form-control" id="targetDate" name="targetDate" required>
+            </div>
+
+            <div class="col-sm-9">
+              <label for="area-img" id="sketch" class="form-label">Provide site images and sketches (if available)</label>
+              <input type="file" class="form-control" id="sketch" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+              <input type="hidden" id="edit-image1" name="imageEditStore" value="">
+            </div>
+          </div>
           <hr class="my-4">
           <div class="row g-3">
           </div>
@@ -378,7 +379,7 @@ $dbh = new dbHandler;
             <h4 class="mb-3">Set your Appointment</h4>
             <div class="col-md">
               <div class="form-floating">
-                <select class="form-select" name="meetType" id="meetType">
+                <select class="form-select" name="meetType" id="meetType" required>
                   <option selected disabled>SELECT A PREFERED TYPE OF MEETING </option>
                   <option value="virtual">Virtual Meeting (Zoom)</option>
                   <option value="meetUp">Meet up</option>
@@ -388,7 +389,7 @@ $dbh = new dbHandler;
             </div>
             <div class="col-md">
               <div class="form-floating">
-                <select class="form-select" name="meetLoc" id="meetLoc">
+                <select class="form-select" name="meetLoc" id="meetLoc" required>
                   <option selected disabled>SELECT LOCATION</option>
                   <option value="Shangri-la">Shangri-la</option>
                   <option value="SM Megamall">SM Megamall</option>
@@ -400,11 +401,11 @@ $dbh = new dbHandler;
           <div class="row mt-3 ">
             <div class="col-sm-6">
               <label for="address2" class="form-label">Preferred Date</label>
-              <input type="date" class="form-control" name="appointmentDate" id="appointmentDate" placeholder="">
+              <input type="date" class="form-control" name="appointmentDate" id="appointmentDate" placeholder="" required>
             </div>
             <div class="col-sm-6">
               <label for="address2" class="form-label">Preferred Time</label>
-              <input type="time" class="form-control" name="appointmentTime" id="appointmentTime" placeholder="">
+              <input type="time" class="form-control" name="appointmentTime" id="appointmentTime" placeholder="" required>
             </div>
             <div class="alert alert-danger" role="alert" id="alertError">
               Error!

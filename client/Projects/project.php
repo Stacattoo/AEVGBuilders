@@ -47,26 +47,26 @@ $dbh = new dbHandler;
 
 					<div class="d-flex flex-row-reverse">
 
-                        <div class="dropdown me-5">
-                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
-                                <strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
-                            </a>
-                            <ul class="dropdown-menu text-small shadow">
-                                <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
-                            </ul>
-                        </div>
-                        <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
-                            <div>
-                             
-                            </div>
-                        <?php } ?>
-                    </div>
+						<div class="dropdown me-5">
+							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="../profile/<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+								<strong class="text-capitalize"><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
+							</a>
+							<ul class="dropdown-menu text-small shadow">
+								<li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
+								<li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
+							</ul>
+						</div>
+						<?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+							<div>
+
+							</div>
+						<?php } ?>
+					</div>
 
 				<?php } ?>
 
@@ -90,7 +90,7 @@ $dbh = new dbHandler;
 
 		<div class="container mt-5">
 
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 " id="materials">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="materials">
 
 
 			</div>
@@ -102,6 +102,30 @@ $dbh = new dbHandler;
 				</footer>
 			</div>
 		</div>
+	</div>
+
+	<!-- MODAL PROJECTS -->
+	<div class="modal fade" id="openModalProj" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content rounded-4 shadow">
+				<div class="modal-body p-5">
+					<img class="img-fluid" src="../../images/consultation.jpg">
+				
+						
+							<div class="d-flex justify-content-between w-100 mt-3">
+								<h2 class="fw-normal">Title </h2>
+								<div>
+									<i class=" fas fa-heart react"></i> <span>4</span>
+								</div>
+
+							</div>
+							<p>	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum unde porro suscipit amet eos quae consectetur, beatae incidunt, assumenda, quas cupiditate alias. Inventore dignissimos quo illo? Aliquam maiores ea fugit.
+					Id ducimus, harum assumenda aperiam sapiente aut pariatur cupiditate, quis excepturi blanditiis non nostrum beatae nulla saepe cum illum atque? Neque aspernatur placeat veritatis cum odio quam ducimus consectetur reprehenderit.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 
