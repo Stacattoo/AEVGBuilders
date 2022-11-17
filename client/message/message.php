@@ -81,16 +81,16 @@ $dbh = new dbHandler;
     <div class="container-fluid mx-auto mt-3 text-center" style="max-width: 800px;">
         <form id="messageForm">
             <!-- <h4 id="client-name"></h4> -->
-            <div class="modal-dialog">
-                <div class="modal-content">
+            <div class="modal-dialog ">
+                <div class="modal-content modal-dialog-scrollable">
                     <div class="modal-header">
-                        <h5 class="modal-title">AEVGBuilders</h5>
+                        <h5 class="modal-title mb-3">AEVGBuilders</h5>
                     </div>
-                    <div class="modal-body" style="height: 390px; overflow-y:scroll; overflow-x:hidden;">
+                    <div class="modal-body border" style="height: 390px; overflow-y:scroll; overflow-x:hidden;">
                         <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
                             <div>
-                                <small>client</small>
-                                <div class="text-bg-secondary p-2 rounded-4">hello</div>
+                                <small class="text-start" id="clientNameHeader"></small>
+                                <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
                             </div>
                         </div>
                     </div>

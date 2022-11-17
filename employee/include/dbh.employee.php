@@ -289,10 +289,12 @@ class dbHandler
         CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
         FROM client WHERE id=$id";
         $result = mysqli_query($this->conn, $query);
+        // $info = array();
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
-                $empName = "";
 
+
+                $empName = "";
                 $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname FROM employee_client INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
                 if (mysqli_num_rows($result)) {

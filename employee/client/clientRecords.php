@@ -180,7 +180,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             $("#errorAlert").hide();
             $.ajax({
                 type: "POST",
-                url: "../client/clientProcess.php.php",
+                url: "../client/clientProcess.php",
                 data: {
                     editUser: id
                 },
@@ -206,7 +206,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: '../client/clientProcess.php.php',
+                url: '../client/clientProcess.php',
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
@@ -235,7 +235,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 var id = $(this).data('id');
                 $.ajax({
                     type: "POST",
-                    url: "../client/clientProcess.php.php",
+                    url: "../client/clientProcess.php",
                     data: {
                         deleteUser: id
                     },

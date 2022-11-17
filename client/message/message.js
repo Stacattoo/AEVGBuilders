@@ -1,8 +1,10 @@
 $(document).ready(function () {
     
+    $('#messageBubble').hide();
     displayMessage();
 
     $('#messageForm').submit(function (e) {
+        
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -14,7 +16,7 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 console.log(response);
-                $('#contentID').trigger("reset");
+                $('#contentID').html("");
                 if (response.status == 'success') {
                     displayMessage();
                 }
@@ -32,6 +34,7 @@ $(document).ready(function () {
             data: { getMessage: true },
             dataType: "JSON",
             success: function (response) {
+                // $('#contentID').trigger("reset");
                 console.log(response);
                 var content = ``;
                 $.each(response.content, function (indexInArray, val) { 
@@ -48,6 +51,8 @@ $(document).ready(function () {
                         </div>
                     `;
                 });
+                $('#contentID').trigger("reset");
+                // $('#messageBubble').show();
                 $("#messageRetrieve").html(content);
     
             }, error: function(response) {
