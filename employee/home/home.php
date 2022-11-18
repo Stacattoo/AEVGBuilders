@@ -47,10 +47,10 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="scheduleNav">
+                                <a href="#" class="nav-link text-white" id="messageNav">
 
                                     <i class="fad fa-calendar-alt bi me-2"></i>
-                                    Schedule
+                                    Message
                                 </a>
                             </li>
                             <li>

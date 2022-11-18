@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../client/client.php");
+    $("#content").load("../message/message.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {
@@ -24,10 +24,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../materials/materials.php");
     });
-    //Schedule
-    $("#scheduleNav").click(function (e) {
+    //Message
+    $("#messageNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("../schedule/schedule.php");
+        $("#content").load("../message/message.php");
     });
     //Report
     $("#reportNav").click(function (e) {
