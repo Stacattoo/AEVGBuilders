@@ -52,7 +52,7 @@ $(document).ready(function () {
                     <div class="swiper-slide">
                         <div class="content-wrapper">
                             <div class="content">
-                                <div class="swiper-avatar"><img src="../${data.image}">
+                                <div class="swiper-avatar"><img src="../profile/${data.image}">
                                 </div>
                                 <p>"${data.feedback}"</p>
                                 <p class="cite">- ${data.fullname}</p>

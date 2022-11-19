@@ -86,7 +86,11 @@ $dbh = new dbHandler;
                     <div class="modal-header">
                         <h5 class="modal-title mb-3">AEVGBuilders</h5>
                     </div>
-                    <div class="modal-body border" style="height: 390px; overflow-y:scroll; overflow-x:hidden;">
+                    <div class="modal-body border" style="height: 200px; overflow-y:hidden; overflow-x:hidden;">
+                        <div class="col-5">
+
+                            <input class="" type="text" value="Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you." aria-label="readonly input example" readonly style="width: 500px; height:auto">
+                        </div>
                         <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
                             <div>
                                 <small class="text-start" id="clientNameHeader"></small>
@@ -94,12 +98,19 @@ $dbh = new dbHandler;
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer mt-3">
-                    <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
-                <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
+                    <div class="row">
+
+                        <div class="modal-footer col-6">
+                            <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary ">Send</button>
+                            <button type="submit" class="btn btn-primary ">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <!-- <div class="d-flex mt-4">
                 <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
                 <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>

@@ -569,6 +569,22 @@ $dbh = new dbHandler;
 
     </div>
 
+    <div class="fixed-bottom  d-flex justify-content-end m-3 ">
+        <div>
+            <div class=" ">
+                <button type="button" class="btn btn-secondary bg-secondary p-3 rounded-circle" id="msg" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Message">
+                    <i class="far fa-headset fs-2"></i>
+                </button>
+            </div>
+            <div class="mt-2">
+                <button type="button" class="btn btn-secondary bg-secondary p-3 rounded-circle" id="fb" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Feedback">
+                    <i class="far fa-comment-alt-edit fs-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

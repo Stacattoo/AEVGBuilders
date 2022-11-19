@@ -1,8 +1,76 @@
 $(document).ready(function () {
-
+    // $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
+    var feedbackContent = `
+    <div>
+        <h5><b>Thank you for trusting us!</b></h5>
+        <p>We would like to hear your feedback.</p>
+        <form id="feedbackForm">
+            <div class="form-label">
+                <textarea class="form-control" id="feedbackArea" rows="3"></textarea>
+            </div>
+            <div class="d-flex justify-content-end ">
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>`;
 
+    var messageContent = 
+    `<div class="modal-dialog ">
+    <div class="modal-content modal-dialog-scrollable">
+        <div class="modal-header">
+            <h5 class="modal-title mb-3">AEVGBuilders</h5>
+        </div>
+        <div class="modal-body border" style="height: 200px; overflow-y:scroll; overflow-x:hidden;">
+            <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
+                <div>
+                    <small class="text-start" id="clientNameHeader"></small>
+                    <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
+                </div>
+            </div>
+        </div>
+        
+        <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
+        <button type="submit" class="btn btn-secondary"><i class="fas fa-paper-plane"></i></button>
+        
+    </div>
+</div>`;
+
+    $("#fb").popover({
+        placement:"left",
+        html:true,
+        sanitize:false,
+        title: "Feedback",
+        content:feedbackContent,
+        
+    });
+
+    $("#msg").popover({
+        placement:"left",
+        html:true,
+        sanitize:false,
+        title: "Message",
+        content:messageContent,
+        
+    });
+    $("#fb").on("shown.bs.popover", function () {
+        $("#feedbackForm").submit(function (e) { 
+            e.preventDefault();
+            console.log( $("#feedback").val());
+            $.ajax({
+                type: "POST",
+                url: "profileProcess.php",
+                data: {insertFeedback: $("#feedbackArea").val()},
+                success: function (response) {
+                    console.log(response);
+                    alert("Feedback Successfully Sent!")
+                }, error: function(response) {
+                    console.error(response);
+                }
+            });
+        });
+    });
     $("#profileForm").submit(function (event) {
         // console.log('test lang');
         event.preventDefault();
@@ -31,18 +99,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#feedbackForm").submit(function (e) { 
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "profileProcess.php",
-            data: {insertFeedback: $("#feedback").val()},
-            dataType: "JSON",
-            success: function (response) {
-                alert("Feedback Successfully Sent!")
-            }
-        });
-    });
+    
 
     $('input').focus(function (e) {
         e.preventDefault();
@@ -136,10 +193,10 @@ $(document).ready(function () {
         },
         success: function (result) {
             // console.log(result.status);
-            if(result.status == 'pending'){
+            if (result.status == 'pending') {
                 $("#schedAppProfile").hide();
                 $("#viewAppModal").show();
-            }else if (result.status == 'canceled'){
+            } else if (result.status == 'canceled') {
                 $("#schedAppProfile").show();
                 $("#viewAppModal").hide();
             }

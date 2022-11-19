@@ -8,7 +8,7 @@ $(document).ready(function () {
         cat = $(this).html();
         filterProject(cat);
     });
-
+    
     function filterProject(category) {
         $.ajax({
             type: "post",
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 });
                 $("#materials").html(content);
 
-                
+
 
                 $(".projectBtn").click(function (e) {
                     e.preventDefault();
@@ -117,7 +117,7 @@ $(document).ready(function () {
                     $("#projectModalBody").html(content);
                     clickReact();
                 });
-                
+
                 clickReact();
                 function clickReact() {
                     $('.react').click(function (e) {
@@ -137,11 +137,11 @@ $(document).ready(function () {
                                 filterProject(cat);
                             }
                         });
-    
-    
+
+
                     });
                 }
-                
+
 
             },
             error: function (response) {

@@ -18,3 +18,9 @@
 #qoute-table > tr{
     cursor:pointer;
 }
+
+.popover{
+    max-width: 400px !important ;
+    
+    
+}

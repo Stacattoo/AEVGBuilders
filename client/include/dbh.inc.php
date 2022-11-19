@@ -308,7 +308,7 @@ class dbHandler
 
     function insertFeedback($clientId, $feedback)
     {
-        $sql = "INSERT INTO `feedback`(`client_id`, `feedback`) VALUES ($clientId, $feedback)";
+        $sql = "INSERT INTO `feedback`(`client_id`, `feedback`) VALUES ($clientId, '$feedback')";
         return mysqli_query($this->conn, $sql);
     }
 
