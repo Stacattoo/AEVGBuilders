@@ -331,6 +331,8 @@ class dbHandler
         }
     }
 
+
+
     function getContent($id)
     {
         $sql = "SELECT * FROM message WHERE client_id='$id'";
