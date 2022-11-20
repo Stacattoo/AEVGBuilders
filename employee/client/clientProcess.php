@@ -7,7 +7,7 @@ if (isset($_POST['displayApprovedUser'])) {
 }
 
 if (isset($_POST['displayPendingUser'])) {
-    echo json_encode((array)$dbh->getAllUserClientData($_SESSION['id']));
+    echo json_encode((array)$dbh->getAllClientPendingSched());
 }
 
 if(isset($_POST['getEmployee'])){
@@ -17,7 +17,9 @@ if(isset($_POST['getEmployee'])){
 if(isset($_POST['employeeID'])){
     echo json_encode((array)$dbh->assignEmployee($_POST['employeeID'], $_POST['clientID']));
 }
+if(isset($_POST['displaySchedDetails'])){
 
+}
 
 
 if (isset($_POST['email'])) {

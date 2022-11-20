@@ -4,7 +4,8 @@ function messageClient(searchQuery = '') {
 		$.ajax({
 			type: "POST",
 			url: "../message/messageProcess.php",
-			data: { displayApprovedUser: true },
+			data: { displayApprovedUser: true
+			},
 			dataType: "JSON",
 			success: function (response) {
 				var content = ``;

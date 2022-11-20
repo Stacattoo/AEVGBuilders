@@ -30,6 +30,7 @@
         $("#pending").hide();
         displayApproveClient();
         displayPendingClient();
+        
        
         $("#listBtn").click(function() {
             $(this).addClass("active");

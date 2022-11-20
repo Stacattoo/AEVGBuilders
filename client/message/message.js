@@ -2,9 +2,8 @@ $(document).ready(function () {
     
     $('#messageBubble').hide();
     displayMessage();
-
+    setInterval(displayMessage, 1000);
     $('#messageForm').submit(function (e) {
-        
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -28,6 +27,7 @@ $(document).ready(function () {
 
 
     function displayMessage() {
+        // console.log("stringlang");
         $.ajax({
             type: "POST",
             url: "../message/messageProcess.php",
@@ -35,10 +35,8 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
-                console.log(response);
                 var content = ``;
                 $.each(response.content, function (indexInArray, val) { 
-                    console.log(val);
                     var isClient = false;
                     if (val.sender == "client") {
                         isClient = true;

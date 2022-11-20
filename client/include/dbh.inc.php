@@ -342,6 +342,7 @@ class dbHandler
             while ($row = mysqli_fetch_assoc($result)) {
                 $message[] = (object) [
                     'id' => $row['client_id'],
+                    'employee_id' => $row['employee_id'],
                     'content' => json_decode($row['content']),
                     'date' => $row['dateTime'],
                     'status' => $row['status']

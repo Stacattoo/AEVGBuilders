@@ -7,7 +7,7 @@ if (isset($_POST['displayApprovedUser'])) {
 }
 
 if (isset($_POST['employeeMessage'])) {
-
+    $clientID = $_POST['clientID'];
     $date = date('Y-m-d H:i:s');
     $json = array(
         (object)[
@@ -17,7 +17,7 @@ if (isset($_POST['employeeMessage'])) {
         ]
     );
     $json = json_encode($json);
-    if ($dbh->insertEmployeeMessage($json, $_SESSION['id'])) {
+    if ($dbh->insertEmployeeMessage($json, $clientID ,$_SESSION['id'])) {
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Profile Update Successfully.'
@@ -26,5 +26,5 @@ if (isset($_POST['employeeMessage'])) {
 }
 
 if (isset($_POST['getMessage'])) {
-    echo json_encode((array)$dbh->getContent($_SESSION['id'])[0]);
+    echo json_encode((array)$dbh->getContent($_POST['id'])[0]);
 }

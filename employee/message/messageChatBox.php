@@ -8,7 +8,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <div class="card mb-2">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h5 class="card-subtitle text-muted align-bottom m-0" id="clientID"hidden><?php echo $userData->id ?></h5>
+
             <div class="dropdown m-0">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" hidden>
                     <i class="fas fa-ellipsis-v"></i>
@@ -24,7 +24,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body">
         <div class="container-fluid">
             <form id="messageEmployee">
-
+                <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
                 <div class="border" style="height: 320px; overflow-y:scroll; overflow-x:hidden;">
                     <div class="" id="messageRetrieve">
                         <div class="">
@@ -46,7 +46,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         $('#messageBubble').hide();
         displayMessage();
-
+        setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
@@ -59,33 +59,33 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
                     $('#contentID').html("");
                     if (response.status == 'success') {
                         displayMessage();
                     }
-                },
-                error: function(response) {
-                    console.error(response.responseText);
                 }
+                // ,
+                // error: function(response) {
+                //     console.error(response.responseText);
+                // }
             });
         });
 
 
         function displayMessage() {
+            var id = $('#clientID').val();
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
                 data: {
-                    getMessage: true
+                    getMessage: true,
+                    id: id
                 },
                 dataType: "JSON",
                 success: function(response) {
                     // $('#contentID').trigger("reset");
-                    console.log(response);
                     var content = ``;
                     $.each(response.content, function(indexInArray, val) {
-                        console.log(val);
                         var isEmployee = false;
                         if (val.sender == "employee") {
                             isEmployee = true;
@@ -102,10 +102,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     // $('#messageBubble').show();
                     $("#messageRetrieve").html(content);
 
-                },
-                error: function(response) {
-                    console.error(response);
                 }
+                // ,
+                // error: function(response) {
+                //     console.error(response);
+                // }
             });
         }
     });

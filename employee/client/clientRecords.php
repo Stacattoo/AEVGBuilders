@@ -1,6 +1,7 @@
 <?php
 include('../include/dbh.employee.php');
 $dbh = new dbHandler();
+
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -8,7 +9,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <div class="card mb-2">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id ?></h5>
+            <h3 class="card-subtitle text-muted align-bottom m-0" id="idClient" hidden><?php echo $userData->id ?></h3>
+            <h5 class="text-capitalize text-bold"><?php echo $userData->fullname; ?></h5>
             <div class="dropdown m-0">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
@@ -19,7 +21,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </ul>
             </div>
         </div>
-        <h1 class="text-capitalize"><?php echo $userData->fullname; ?></h1>
+
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
@@ -31,6 +33,99 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 } else {
                     echo $userData->employeeName;
                 } ?></span></div>
+    </div>
+</div>
+<div class="card">
+
+    <div class="card-body">
+
+        <h4 class="text-capitalize text-bold mx-5 mt-2">Appointment Details</h4>
+
+        <div class="modal-body p-5">
+            <div class="row g-3">
+                <div class="col">
+                    <h5><b>Name: </b></h5>
+                    <p class="form-control" value="" id="name_id"></p>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Email Address: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="email_id">
+
+                </div>
+                <div class="col-sm-6">
+                    <h5><b>Contact Number: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="contact_id" readonly>
+
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Project Type: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projType_id" readonly>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <h5><b>Nature of Business: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="business_id" readonly>
+
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-9">
+                    <h5><b>Project Location: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projLoc_id" readonly>
+
+                </div>
+                <div class="col-sm-3">
+                    <h5><b>Lot Area: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="lotArea_id" readonly>
+
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Number of Building Storey: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="numStorey_id" readonly>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <h5><b>Target Construction Date: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="targetCons_id" readonly>
+
+
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Meeting Type: </b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetType_id" readonly>
+
+                </div>
+                <div class="col-sm-6">
+                    <h5><b>Meeting Location:</b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetLoc_id" readonly>
+
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Meeting Date:</b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetDate_id" readonly>
+
+                </div>
+                <div class="col-sm-6">
+                    <h5><b>Meeting Time:</b></h5>
+                    <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetTime_id" readonly>
+
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </div>
 
@@ -115,7 +210,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <script>
     $(document).ready(function() {
 
-
+        console.log(displayDetails());
+        displayDetails();
         $.ajax({
             type: "POST",
             url: "../client/clientProcess.php",
@@ -149,7 +245,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 })
             }
         });
-
+        console.log($('#idClient').html());
         $("#chooseBtn").click(function(e) {
             e.preventDefault();
             var employeeID = $('input[name="select"]:checked').val();
@@ -249,6 +345,53 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 });
             }
         });
-    });
 
+        function displayDetails() {
+            $(document).ready(function() {
+                var id = $('#idClient').html();
+                $.ajax({
+                    type: "post",
+                    url: "../client/getData.php",
+                    data: {
+                        client_id: id,
+                        displaySchedDetails: true
+                    },
+                    dataType: 'JSON',
+                    success: function(details) {
+
+                        console.log(details);
+                        var location = details.meetLoc;
+                        if(details.meetLoc == ''){
+                            details.meetLoc = "N/A";
+                        }
+                        var businessVar = '';
+                        $.each(details.businessType, function(indexInArray, data) {
+                            businessVar = details.businessType.join(', ');
+                        });
+                        console.log(businessVar);
+                        $('#editBtnID').attr("data-id", details.client_id);
+                        $('#name_id').html(details.fullName);
+                        $('#contact_id').html(details.contactNo);
+                        $('#email_id').html(details.email);
+                        $('#projLoc_id').html(details.projLocation);
+                        $('#targetCons_id').html(details.targetDate);
+                        $('#projType_id').html(details.projectType);
+                        $('#lotArea_id').html(details.lotArea);
+                        $('#numStorey_id').html(details.noFloors);
+                        $('#business_id').html(businessVar);
+                        $('#meetType_id').html(details.meetType);
+                        $('#meetLoc_id').html(details.meetLoc);
+                        $('#meetDate_id').html(details.appointmentDate);
+                        $('#meetTime_id').html(details.appointmentTime);
+                        valueEdit = details;
+
+                    },
+                    error: function(details) {
+                        console.log(details);
+                    }
+                });
+            });
+
+        }
+    });
 </script>

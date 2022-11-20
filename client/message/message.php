@@ -86,10 +86,10 @@ $dbh = new dbHandler;
                     <div class="modal-header">
                         <h5 class="modal-title mb-3">AEVGBuilders</h5>
                     </div>
-                    <div class="modal-body border" style="height: 200px; overflow-y:hidden; overflow-x:hidden;">
+                    <div class="modal-body border" style="height: 300px; overflow-y:hidden; overflow-x:hidden;">
                         <div class="col-5">
 
-                            <input class="" type="text" value="Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you." aria-label="readonly input example" readonly style="width: 500px; height:auto">
+                            <!-- <input class="" type="text" value="Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you." aria-label="readonly input example" readonly style="width: 500px; height:auto"> -->
                         </div>
                         <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
                             <div>
@@ -100,13 +100,13 @@ $dbh = new dbHandler;
                     </div>
                     <div class="row">
 
-                        <div class="modal-footer col-6">
+                        <div class="modal-footer col-6 mt-3 form-control">
                             <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary ">Send</button>
                             <button type="submit" class="btn btn-primary ">Send</button>
                         </div>
+                        <!-- <div class="col-6">
+                            
+                        </div> -->
                     </div>
                 </div>
             </div>
