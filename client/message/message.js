@@ -28,6 +28,8 @@ $(document).ready(function () {
 
     function displayMessage() {
         // console.log("stringlang");
+        var id = $('clientSideID').val();
+        console.log(id);
         $.ajax({
             type: "POST",
             url: "../message/messageProcess.php",

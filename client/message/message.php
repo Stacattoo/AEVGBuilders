@@ -91,6 +91,7 @@ $dbh = new dbHandler;
 
                             <!-- <input class="" type="text" value="Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you." aria-label="readonly input example" readonly style="width: 500px; height:auto"> -->
                         </div>
+                        <input type="hidden" id="clientSideID" val="<?php echo $_SESSION['id']; ?>">
                         <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
                             <div>
                                 <small class="text-start" id="clientNameHeader"></small>
