@@ -14,7 +14,8 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
+                $('#messageForm').trigger("reset");
                 $('#contentID').html("");
                 if (response.status == 'success') {
                     displayMessage();

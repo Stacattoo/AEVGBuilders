@@ -386,6 +386,9 @@ class dbHandler
     {
         $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
         return mysqli_query($this->conn, $query);
+        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
+        return mysqli_query($this->conn, $sql);
+
     }
 
 
@@ -418,10 +421,10 @@ class dbHandler
         }
     }
 
-    function getContent($id)
+    function getContent($client_id, $id)
     
     {
-        $sql = "SELECT * FROM message WHERE employee_id='$id'";
+        $sql = "SELECT * FROM message WHERE employee_id='$id' AND client_id='$client_id'";
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {

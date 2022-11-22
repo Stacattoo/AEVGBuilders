@@ -4,7 +4,7 @@ $dbh = new dbHandler();
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
+<script src="../message/message.js"></script>
 <div class="card mb-2">
     <div class="card-body">
         <div class="d-flex justify-content-between">
@@ -59,6 +59,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 cache: false,
                 processData: false,
                 success: function(response) {
+                    $('#messageEmployee').trigger("reset");
                     $('#contentID').html("");
                     if (response.status == 'success') {
                         displayMessage();
@@ -74,6 +75,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         function displayMessage() {
             var id = $('#clientID').val();
+            // console.log(id);
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
@@ -97,6 +99,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             <small>${val.dateTime}</small>
                         </div>
                     `;
+                    // console.log(val.content);
                     });
                     $('#contentID').trigger("reset");
                     // $('#messageBubble').show();

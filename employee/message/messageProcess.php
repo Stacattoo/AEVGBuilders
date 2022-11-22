@@ -26,5 +26,6 @@ if (isset($_POST['employeeMessage'])) {
 }
 
 if (isset($_POST['getMessage'])) {
-    echo json_encode((array)$dbh->getContent($_POST['id'])[0]);
+    $client_id = $_POST['id'];
+    echo json_encode((array)$dbh->getContent($client_id, $_SESSION['id'])[0]);
 }

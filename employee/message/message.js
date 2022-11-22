@@ -23,6 +23,7 @@ function messageClient(searchQuery = '') {
 						<h5 class="text-capitalize mb-1">`+ data.fullName + `</h5>
 						<p class="mb-1">`+ data.email + `</p>
 					</button>`;
+					
 				});
 				$('#list').html(content);
 			},
@@ -31,10 +32,12 @@ function messageClient(searchQuery = '') {
 			},
 			complete: function () {
 				$(".client").click(function (e) {
+
 					e.preventDefault();
 					$(".client").removeClass("active");
 					$(this).addClass("active");
 					var userid = $(this).attr("data-id");
+					console.log(userid);
 					$.ajax({
 						url: "../message/messageChatBox.php",
 						type: "POST",
