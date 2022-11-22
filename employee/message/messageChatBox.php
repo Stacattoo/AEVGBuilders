@@ -24,8 +24,17 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body">
         <div class="container-fluid">
             <form id="messageEmployee">
+                <ul class="nav nav-pills nav-fill mb-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="messageTab">Message</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="filesTab">Files & Images</a>
+
+                    </li>
+                </ul>
                 <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
-                <div class="border" style="height: 320px; overflow-y:scroll; overflow-x:hidden;">
+                <div class="border" id="scrollBar" style="height: 320px; overflow-y:scroll; overflow-x:hidden;">
                     <div class="" id="messageRetrieve">
                         <div class="">
                             <small class="text-start" id="clientNameHeader"></small>
@@ -35,6 +44,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </div>
                 <div class="mt-3">
                     <textarea class="form-control" aria-label="With textarea" id="contentID" name="employeeMessage"></textarea>
+                    <input type="file" id="filesEmployee" name="filesEmployee">
                     <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
                 </div>
             </form>
@@ -43,7 +53,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 </div>
 <script>
     $(document).ready(function() {
-
+        // var mesScrollBar = document.getElementById("scrollBar");
+        // mesScrollBar.scrollBottom = mesScrollBar.scrollHeight;
         $('#messageBubble').hide();
         displayMessage();
         setInterval(displayMessage, 1000);
@@ -99,7 +110,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             <small>${val.dateTime}</small>
                         </div>
                     `;
-                    // console.log(val.content);
+                        // console.log(val.content);
                     });
                     $('#contentID').trigger("reset");
                     // $('#messageBubble').show();

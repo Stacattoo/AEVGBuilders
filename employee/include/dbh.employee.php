@@ -408,7 +408,7 @@ class dbHandler
 
     function insertEmployeeMessage($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id'";
+        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {

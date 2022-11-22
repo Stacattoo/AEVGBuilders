@@ -249,7 +249,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $("#chooseBtn").click(function(e) {
             e.preventDefault();
             var employeeID = $('input[name="select"]:checked').val();
-            var clientID = <?php echo ($userData->id); ?>;
+            var clientID = $('#idClient').html();
             console.log(clientID);
 
             $.ajax({
@@ -262,7 +262,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 dataType: "JSON",
                 success: function(response) {
                     $('#chooseModal').modal("hide");
-                    console.log(response);
+                    
                 }
             });
         });
@@ -308,7 +308,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
                     if (response) {
                         $.getScript("students/students.js", function(script) {
                             $("#editForm").trigger('reset');
