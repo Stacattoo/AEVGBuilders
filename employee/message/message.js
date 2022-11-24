@@ -4,7 +4,8 @@ function messageClient(searchQuery = '') {
 		$.ajax({
 			type: "POST",
 			url: "../message/messageProcess.php",
-			data: { displayApprovedUser: true
+			data: {
+				displayApprovedUser: true
 			},
 			dataType: "JSON",
 			success: function (response) {
@@ -23,7 +24,7 @@ function messageClient(searchQuery = '') {
 						<h5 class="text-capitalize mb-1">`+ data.fullName + `</h5>
 						<p class="mb-1">`+ data.email + `</p>
 					</button>`;
-					
+
 				});
 				$('#list').html(content);
 			},
@@ -54,5 +55,6 @@ function messageClient(searchQuery = '') {
 				});
 			}
 		});
+
 	});
 }
