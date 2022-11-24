@@ -28,8 +28,9 @@ $dbh = new dbHandler;
 
                                 </div>
                                 <div class="col">
-                                    <h1 class="card-title">125</h1>
+                                    <h1 class="card-title"><span id="totalClients1"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
                                     <h6>Total number of Clients</h6>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -43,7 +44,7 @@ $dbh = new dbHandler;
                                     <i class="fad fa-folder-open bi me-2 fa-3x"></i>
                                 </div>
                                 <div class="col">
-                                    <h1 class="card-title">125</h1>
+                                    <h1 class="card-title"><span id="totalProjects"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
                                     <h6> Finished Projects</h6>
                                 </div>
                             </div>
@@ -58,7 +59,7 @@ $dbh = new dbHandler;
                             <i class="far fa-solid fa-users fa-3x"></i>
                             </div>
                             <div class="col">
-                                <h1 class="card-title">125</h1>
+                                <h1 class="card-title"><span id="totalRegisteredUser"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
                                 <h6> Registered Users</h6>
                             </div>
                         </div>
@@ -73,8 +74,8 @@ $dbh = new dbHandler;
                             <i class="far fa-solid fa-users fa-3x"></i>
                             </div>
                             <div class="col">
-                                <h1 class="card-title">125</h1>
-                                <h6> Registered Users</h6>
+                                <h1 class="card-title"><span id="totalEmployees"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
+                                <h6> Employees</h6>
                             </div>
                         </div>
                     </div>

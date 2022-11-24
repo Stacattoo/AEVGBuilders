@@ -418,4 +418,25 @@ class dbHandler
         return $data;
     }
 
+    function countAllProjects(){
+        $sql = "SELECT * FROM projects";
+        $result =  mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $projects = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row['id'],
+                    "employee_id" => $row['employee_id'],
+                    "title" => $row['title'],
+                    "image" => $row['image'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "status" => $row['status'],
+                    
+                ];
+            }
+            return $projects;
+        }
+    }
+
 }
