@@ -20,6 +20,68 @@ $dbh = new dbHandler;
         <div class="mt-5">
             <div class="row">
                 <div class="col">
+                    <div class="card mb-3 " style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="far fa-user-alt bi me-2 fa-3x"></i>
+
+                                </div>
+                                <div class="col">
+                                    <h1 class="card-title">125</h1>
+                                    <h6>Total number of Clients</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 " style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fad fa-folder-open bi me-2 fa-3x"></i>
+                                </div>
+                                <div class="col">
+                                    <h1 class="card-title">125</h1>
+                                    <h6> Finished Projects</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                <div class="card mb-3 " style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                            <i class="far fa-solid fa-users fa-3x"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="card-title">125</h1>
+                                <h6> Registered Users</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col">
+                <div class="card mb-3 " style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                            <i class="far fa-solid fa-users fa-3x"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="card-title">125</h1>
+                                <h6> Registered Users</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div class="card text-bg-light mb-3">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">

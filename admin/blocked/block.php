@@ -6,7 +6,7 @@ $dbh = new dbHandler();
 
 <div class="container-fluid">
 	<div class="d-flex justify-content-between mx-4">
-		<h3><i class="fal fa-ban me-2"></i>Block Accounts</h3>
+		<h3><i class="fal fa-ban me-2"></i>Account Management</h3>
 	</div>
 	<hr>
 	<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
