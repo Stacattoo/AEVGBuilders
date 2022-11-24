@@ -34,7 +34,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     </li>
                 </ul>
                 <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
-                <div class="border" id="scrollBar" style="height: 400px; overflow-y:scroll; overflow-x:hidden;">
+                <div class="border" id="scrollBar" style="height: 320px; overflow-y:scroll; overflow-x:hidden;">
                     <div class="" id="messageRetrieve">
                         <div class="">
                             <small class="text-start" id="clientNameHeader"></small>
@@ -44,11 +44,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </div>
                 <div class="mt-3">
                     <textarea class="form-control" aria-label="With textarea" id="contentID" name="employeeMessage"></textarea>
-                    <input type="file" class="btn" id="filesEmployee" name="filesEmployee[]" multiple>
+                    <input type="file" id="filesEmployee" name="filesEmployee">
                     <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
-                    <div class="alert alert-danger mt-3" role="alert" id="errorFiles">
-                        You can only upload a maximum of 5 files. Please Try again!
-                    </div>
                 </div>
             </form>
         </div>
@@ -59,9 +56,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         // var mesScrollBar = document.getElementById("scrollBar");
         // mesScrollBar.scrollBottom = mesScrollBar.scrollHeight;
         $('#messageBubble').hide();
-        $('#errorFiles').hide();
         displayMessage();
-        // setInterval(displayMessage, 1000);
+        setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
@@ -69,12 +65,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 type: "POST",
                 url: "../message/messageProcess.php",
                 data: new FormData(this),
-                // dataType: "json",
+                dataType: "json",
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
                     $('#messageEmployee').trigger("reset");
                     $('#contentID').html("");
                     if (response.status == 'success') {
@@ -88,19 +83,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             });
         });
 
-
-        $('#filesEmployee').change(function(e) {
-            e.preventDefault();
-            console.log("hehe");
-            var $fileUpload = $("input[name='filesEmployee']");
-            if (parseInt($fileUpload.get(0).files.length) > 5) {
-                // alert("You can only upload a maximum of 5 files");
-                $('#errorFiles').show();
-                $('#filesEmployee').trigger("reset");
-            } else {
-                $('#errorFiles').hide();
-            }
-        });
 
         function displayMessage() {
             var id = $('#clientID').val();
@@ -121,7 +103,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         if (val.sender == "employee") {
                             isEmployee = true;
                         }
-
                         content += `
                         <div class="mb-3 px-4 ">
                             <small>${val.sender}</small>
@@ -129,30 +110,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             <small>${val.dateTime}</small>
                         </div>
                     `;
-                        // console.log(val.files);
+                        // console.log(val.content);
                     });
-                    $.each(response.files, function(indexInArray, data) {
-                        // console.log(data);
-                        var isEmployee = false;
-                        if (data.sender == "employee") {
-                            isEmployee = true;
-                        }
-                        
-                        var str = data.replace(/\\/g, '');
-                        console.log(str);
-
-                        content += `
-                        <div class="mb-3 px-4 ">
-                            <small>${data.sender}</small>
-                            <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">
-                            <div class="card d-flex">
-                            <div class="p-2"><img src="${data.content}" class="d-block img-fluid img"></div>
-                            </div>
-                            <small>${data.dateTime}</small>
-                        </div>
-                    `;
-                    });
-                    // $('#contentID').trigger("reset");
+                    $('#contentID').trigger("reset");
                     // $('#messageBubble').show();
                     $("#messageRetrieve").html(content);
 
