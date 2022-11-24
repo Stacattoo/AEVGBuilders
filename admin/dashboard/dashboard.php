@@ -15,6 +15,7 @@ $dbh = new dbHandler;
         <h3><i class="fal fa-chart-line me-2"></i></i>Dashboard</h3>
     </div>
     <hr>
+    
     <div class="container-fluid">
         <div class="mt-5">
             <div class="row">
