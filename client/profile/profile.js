@@ -252,10 +252,21 @@ $(document).ready(function () {
             // console.log(result.status);
             if (result.status == 'pending') {
                 $("#schedAppProfile").hide();
+                $("#haveASchedule").hide();
                 $("#viewAppModal").show();
+                $("#viewModBtn").hide();
             } else if (result.status == 'canceled') {
                 $("#schedAppProfile").show();
+                $("#haveASchedule").hide();
                 $("#viewAppModal").hide();
+                $("#editBtnSched").show();
+                $("#viewModBtn").show();
+            } else if (result.status == 'ongoing'){
+                $("#schedAppProfile").hide();
+                $("#haveASchedule").show();
+                $("#viewAppModal").hide();
+                $("#editBtnSched").hide();
+                $("#viewModBtn").show();
             }
 
         }

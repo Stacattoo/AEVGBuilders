@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../message/message.php");
+    $("#content").load("../client/client.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {

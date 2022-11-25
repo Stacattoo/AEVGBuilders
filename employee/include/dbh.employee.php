@@ -354,9 +354,23 @@ class dbHandler
     function assignEmployee($employeeID, $clientID)
     {
         $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
-        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID AND employee_id=$employeeID";
+        // $sql = "INSERT INTO `message`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','delivered')";
         return mysqli_query($this->conn, $query);
+        // return mysqli_query($this->conn, $sql);
+        
+
+    }
+    function updateAppDetails($employeeID, $clientID)
+    {
+        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
         return mysqli_query($this->conn, $sql);
+
+    }
+
+    function updateMessageDetails($employeeID, $clientID)
+    {
+        $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
+        return mysqli_query($this->conn, $query);
 
     }
 
@@ -415,15 +429,16 @@ class dbHandler
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {
+            // $filesobj = '';
             while ($row = mysqli_fetch_assoc($result)) {
-                $filesobj = json_decode($row['files']);
-                $filesobj = json_encode($filesobj);
+                // $filesobj = json_decode($row['files']);
+                // $filesobj = json_encode($filesobj);
                 // $filesobj = explode(",", $filesobj);
-                // $filesobj = '';
+                // $filesobj = json_encode($filesobj);
                 $message[] = (object) [
                     'id' => $row['employee_id'],
                     'content' => json_decode($row['content']),
-                    'files' => explode(",", $filesobj),
+                    'files' => json_decode($row['files']),
                     'date' => $row['dateTime'],
                     'status' => $row['status']
                 ];

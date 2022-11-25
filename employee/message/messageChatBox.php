@@ -117,6 +117,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     // $('#contentID').trigger("reset");
                     var content = ``;
                     $.each(response.content, function(indexInArray, val) {
+                        console.log(response.content);
                         var isEmployee = false;
                         if (val.sender == "employee") {
                             isEmployee = true;
@@ -132,21 +133,26 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         // console.log(val.files);
                     });
                     $.each(response.files, function(indexInArray, data) {
-                        // console.log(data);
+                        console.log(response.files);
                         var isEmployee = false;
                         if (data.sender == "employee") {
                             isEmployee = true;
                         }
-                        
-                        var str = data.replace(/\\/g, '');
-                        console.log(str);
+                        // var str = data.replace(/\\/g, '');
+                        // console.log(str);
+                        var filesContent = data.content;
+                        // $.each(filesContent, function(indexInArray, valFiles) {
+                        //     // var str = data.replace(/\\/g, '');
+                        //     filesContent = valFiles;
 
+                        // })[0];
+                        console.log(filesContent);
                         content += `
                         <div class="mb-3 px-4 ">
                             <small>${data.sender}</small>
                             <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">
                             <div class="card d-flex">
-                            <div class="p-2"><img src="${data.content}" class="d-block img-fluid img"></div>
+                            <div class="p-2"><img src="${filesContent}" class="d-block img-fluid img"></div>
                             </div>
                             <small>${data.dateTime}</small>
                         </div>
