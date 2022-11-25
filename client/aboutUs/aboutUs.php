@@ -32,8 +32,8 @@ $dbh = new dbHandler;
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
         <?php if (isset($_SESSION['id'])) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
-                <?php }  ?>
+          <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+        <?php }  ?>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -76,167 +76,178 @@ $dbh = new dbHandler;
   </div>
 
   <main class="container">
-    <div class="background-img">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner"data-bs-interval="1500">
+    <!-- <div class="col-xl-10 offset-xl-1 rounded position-relative">
+      <div id="titleCarousel" class="carousel slide carousel-fade position-relative" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" id="c-one"></div>
+          <div class="carousel-item" id="c-two"></div>
+          <div class="carousel-item" id="c-three"></div>
+        </div>
+      </div>
+      <div class="row">
+        <h1 class="text-center">Title Text</h1>
+      </div>
+    </div>
+
+ -->
+
+
+
+    <div class="background-img mb-4">
+      
+      <div class="blur-effect ">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner" data-bs-interval="1500">
           <div class="carousel-item active">
-            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
+            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
           </div>
-          <div class="carousel-item"data-bs-interval="2000">
-            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
           </div>
           <div class="carousel-item">
-            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
+            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
           </div>
         </div>
 
-        <div class="blur-effect">
-          <div class="p-4 p-md-5 mb-4 rounded text-light">
-
-            <div class="col-md-6 px-0">
-              <h1 class="display-4">AEVG BUILDERS</h1>
-              <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
-              </p>
-
-              <p class="lead mb-0">
-              <div class="alert alert-warning" role="alert" id="appAlert">
-                <h3 class="text-black">Pending for Approval</h3>
-                <p class="h6 text-muted">Kindly wait for an employee to approve your request.</p>
-              </div>
-              </p>
-
-              <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
-                  Schedule an Appointment.
-                </a></p>
-
-            </div>
-          </div>
-        </div>
       </div>
+        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect">
 
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">Architect</strong>
-              <h3 class="mb-0">Rhina Marie Monforte</h3>
-              <p class="card-text mb-auto">The lead architect at AEVG Builders, came from the Albay province. Having professionaly worked in a corporate setting, contracting, and design outsourcing for years in Metro Manila, she has built a network of clients.</p>
-
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-              </svg>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-success">3D Visualizer</strong>
-              <h3 class="mb-0">Cochise Macahilig</h3>
-              <p class="mb-auto">Is capable of bringing any 2D plans to a realistic 3D Model. She originated in Bulacan. With an eye for details, she assists the team in presenting any design concept thru meticulous 3D model which usually amazes the clients.</p>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-              </svg>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr class="featurette-divider">
-
-      <div class="row ">
-        <div class="col-md-4 d-flex align-items-center ">
-          <div>
-
+          <div class="col-md-6 px-0">
             <h1 class="display-4">AEVG BUILDERS</h1>
+            <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
+            </p>
 
-            <p class="lead mb-2"> <i class="mx-2 fas fa-map-marker-alt"></i> 002 San Pablo, Hagonoy Bulacan .</p>
-            <p class="lead mb-2"> <i class="mx-2 fas fa-phone-alt"></i> +63 977 852 7307.</p>
-            <p class="lead "><i class="mx-2   fas fa-envelope"></i> evgalangdesign@gmail.com</p>
+            <p class="lead mb-0">
+            <div class="alert alert-warning" role="alert" id="appAlert">
+              <h3 class="text-black">Pending for Approval</h3>
+              <p class="h6 text-muted">Kindly wait for an employee to approve your request.</p>
+            </div>
+            </p>
+
+            <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
+                Schedule an Appointment.
+              </a></p>
+
           </div>
         </div>
-        <div class="col-md-8">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Architect</strong>
+            <h3 class="mb-0">Rhina Marie Monforte</h3>
+            <p class="card-text mb-auto">The lead architect at AEVG Builders, came from the Albay province. Having professionaly worked in a corporate setting, contracting, and design outsourcing for years in Metro Manila, she has built a network of clients.</p>
 
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img src="../../images/3bb1db2fc1454432143e08cd67e2126b.jpg" width="200" height="250" alt="">   
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">3D Visualizer</strong>
+            <h3 class="mb-0">Cochise Macahilig</h3>
+            <p class="mb-auto">Is capable of bringing any 2D plans to a realistic 3D Model. She originated in Bulacan. With an eye for details, she assists the team in presenting any design concept thru meticulous 3D model which usually amazes the clients.</p>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img src="../../images/37ea903719dc841b2a2aa03693256b8a.jpg" width="200" height="250" alt="">   
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="row ">
+      <div class="col-md-4 d-flex align-items-center ">
+        <div>
+
+          <h1 class="display-4">AEVG BUILDERS</h1>
+
+          <p class="lead mb-2"> <i class="mx-2 fas fa-map-marker-alt"></i> 002 San Pablo, Hagonoy Bulacan .</p>
+          <p class="lead mb-2"> <i class="mx-2 fas fa-phone-alt"></i> +63 977 852 7307.</p>
+          <p class="lead "><i class="mx-2   fas fa-envelope"></i> evgalangdesign@gmail.com</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+
+        </ul>
+        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+
+      </footer>
+    </div>
+
+
+    <!-- Modal -->
+
+    <?php if (!isset($_SESSION['id'])) { ?>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="card-header">
+              <h4 class="py-3 ms-4">Scheduling</h4>
+
+            </div>
+            <div class="modal-body text-start ps-5 px-5">
+
+              <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
+                You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
+              <h5 class="mt-3 mb-3">You have to be logged in to set an appointment. </h5>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end">
+              <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
+              <a class="btn btn-primary" href="../login/login.php">Log-in</a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <?php } else { ?>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="card-header">
+              <h4 class="py-3 ms-4">Scheduling</h4>
+
+            </div>
+            <div class="modal-body text-start ps-5 px-5">
+              <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
+                You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
+              <h5 class="mt-3 mb-3">Title of the reason (optional): </h5>
+              <form id="scheduleForm">
+                <textarea class="form-control" aria-label="Reason for Scheduling" name="reason"></textarea>
+
+                <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                  <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+
+              </form>
+            </div>
+
+          </div>
         </div>
       </div>
 
-
-      <div class="container">
-        <footer class="py-3 my-4">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-
-          </ul>
-          <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
-
-        </footer>
-      </div>
-
-
-      <!-- Modal -->
-
-      <?php if (!isset($_SESSION['id'])) { ?>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="card-header">
-                <h4 class="py-3 ms-4">Scheduling</h4>
-
-              </div>
-              <div class="modal-body text-start ps-5 px-5">
-
-                <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
-                  You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
-                <h5 class="mt-3 mb-3">You have to be logged in to set an appointment. </h5>
-              </div>
-
-              <div class="modal-footer d-flex justify-content-end">
-                <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
-                <a class="btn btn-primary" href="../login/login.php">Log-in</a>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      <?php } else { ?>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="card-header">
-                <h4 class="py-3 ms-4">Scheduling</h4>
-
-              </div>
-              <div class="modal-body text-start ps-5 px-5">
-                <p>If you have enquiries regarding our firm, you may schedule a meeting with an architect.
-                  You may also call us at +63912-3456-789. Usually, our staff responds in 30 minutes.</p>
-                <h5 class="mt-3 mb-3">Title of the reason (optional): </h5>
-                <form id="scheduleForm">
-                  <textarea class="form-control" aria-label="Reason for Scheduling" name="reason"></textarea>
-
-                  <div class="alert alert-danger mt-3 col-12" role="alert" id="alertsched">
-                  </div>
-                  <div class="modal-footer d-flex justify-content-end">
-                    <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
-                </form>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      <?php } ?>
+    <?php } ?>
 
 </body>
 

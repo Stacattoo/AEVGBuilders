@@ -32,7 +32,7 @@ $dbh = new dbHandler;
 
 
 
-                <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
@@ -573,12 +573,12 @@ $dbh = new dbHandler;
         <div>
             <div class=" ">
                 <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
-                    <i class="far fa-headset fs-2"></i>
+                <i class="fal fa-comment-alt-lines fs-2"></i>
                 </button>
             </div>
             <div class="mt-2">
                 <button type="button" class="btn text-white p-3 rounded-circle " id="fb" style="background-color: #843b62">
-                    <i class="far fa-comment-alt-edit fs-2"></i>
+                <i class="fal fa-bullhorn fs-3"></i>
                 </button>
             </div>
         </div>

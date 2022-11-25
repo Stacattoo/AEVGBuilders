@@ -71,15 +71,16 @@ $(document).ready(function () {
             </div>
             <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
                 <div class="d-flex justify-content-between">
-                    <input type="text" class="form-control border-0" placeholder="Write a message...">
+                    <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
                   
                         <button class="btn btn-light text-secondary">
-                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-paperclip text-primary"></i>
                         </button>
                         <button class="btn btn-light text-secondary">
-                            <i class="far fa-paper-plane"></i>
+                            <i class="far fa-paper-plane text-primary"></i>
                         </button>
-
+                     
+                    
                 </div>
             </div>
         </div>
@@ -87,7 +88,7 @@ $(document).ready(function () {
 
     // $("#fb").click(function (e) { 
     //     e.preventDefault();
-        
+
     // });
     $("#fb").popover({
         placement: "left",
@@ -117,7 +118,7 @@ $(document).ready(function () {
     $("#msg").popover({
         placement: "left",
         html: true,
-        sanitize: false, 
+        sanitize: false,
         content: messageContent,
 
     }).on("shown.bs.popover", function () {
