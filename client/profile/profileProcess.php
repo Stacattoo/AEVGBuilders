@@ -15,6 +15,8 @@ if (isset($_POST['firstName'])) {
         $img_path = $_POST["file_path"];
     }
 
+    
+
     $info = (object) [
         'firstName' => $_POST['firstName'],
         'middleName' => $_POST['middleName'],

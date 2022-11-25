@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // $('[data-bs-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
     var feedbackContent = `
@@ -16,61 +16,117 @@ $(document).ready(function () {
         </form>
     </div>`;
 
-    var messageContent = 
-    `<div class="modal-dialog ">
-    <div class="modal-content modal-dialog-scrollable">
-        <div class="modal-header">
-            <h5 class="modal-title mb-3">AEVGBuilders</h5>
-        </div>
-        <div class="modal-body border" style="height: 200px; overflow-y:scroll; overflow-x:hidden;">
-            <div class="position-absolute bottom-0 start-0 mx-3 mb-3" id="messageRetrieve">
-                <div>
-                    <small class="text-start" id="clientNameHeader"></small>
-                    <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
+    var messageContent =
+        `<div class="">
+        <div class="card mx-auto" style="max-width:400px">
+            <div class="card-header bg-transparent">
+                <div class="navbar navbar-expand p-0">
+                    <ul class="navbar-nav me-auto align-items-center">
+                     
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                    
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            <i class="far fa-window-minimize"></i>  
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body p-4" style="height: 480px; overflow: auto;">
+
+                <div class="d-flex align-items-baseline mb-4">
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                    <div class="pe-2">
+                        <div>
+                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                    <div class="pe-2">
+                        <div>
+                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">Sure</div>
+                        </div>
+                    </div>
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                </div> 
+
+            </div>
+            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+                <div class="d-flex justify-content-between">
+                    <input type="text" class="form-control border-0" placeholder="Write a message...">
+                  
+                        <button class="btn btn-light text-secondary">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="btn btn-light text-secondary">
+                            <i class="far fa-paper-plane"></i>
+                        </button>
+
                 </div>
             </div>
         </div>
-        
-        <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
-        <button type="submit" class="btn btn-secondary"><i class="fas fa-paper-plane"></i></button>
-        
-    </div>
-</div>`;
+    </div>`
 
+    // $("#fb").click(function (e) { 
+    //     e.preventDefault();
+        
+    // });
     $("#fb").popover({
-        placement:"left",
-        html:true,
-        sanitize:false,
+        placement: "left",
+        html: true,
+        sanitize: false,
         title: "Feedback",
-        content:feedbackContent,
-        
-    });
-
-    $("#msg").popover({
-        placement:"left",
-        html:true,
-        sanitize:false,
-        title: "Message",
-        content:messageContent,
-        
-    });
-    $("#fb").on("shown.bs.popover", function () {
-        $("#feedbackForm").submit(function (e) { 
+        content: feedbackContent,
+    }).on("shown.bs.popover", function () {
+        $('#msg').popover('hide');
+        $("#feedbackForm").submit(function (e) {
             e.preventDefault();
-            console.log( $("#feedback").val());
+            console.log($("#feedback").val());
             $.ajax({
                 type: "POST",
                 url: "profileProcess.php",
-                data: {insertFeedback: $("#feedbackArea").val()},
+                data: { insertFeedback: $("#feedbackArea").val() },
                 success: function (response) {
                     console.log(response);
                     alert("Feedback Successfully Sent!")
-                }, error: function(response) {
+                }, error: function (response) {
                     console.error(response);
                 }
             });
         });
     });
+
+    $("#msg").popover({
+        placement: "left",
+        html: true,
+        sanitize: false, 
+        content: messageContent,
+
+    }).on("shown.bs.popover", function () {
+        $('#fb').popover('hide');
+        var popover = $("#" + $("#msg").attr("aria-describedby"));
+        $(popover).addClass("popover-msg");
+    });
+
+
     $("#profileForm").submit(function (event) {
         // console.log('test lang');
         event.preventDefault();
@@ -99,7 +155,7 @@ $(document).ready(function () {
         });
     });
 
-    
+
 
     $('input').focus(function (e) {
         e.preventDefault();

@@ -572,12 +572,12 @@ $dbh = new dbHandler;
     <div class="fixed-bottom  d-flex justify-content-end m-3 ">
         <div>
             <div class=" ">
-                <button type="button" class="btn btn-secondary bg-secondary p-3 rounded-circle" id="msg" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Message">
+                <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
                     <i class="far fa-headset fs-2"></i>
                 </button>
             </div>
             <div class="mt-2">
-                <button type="button" class="btn btn-secondary bg-secondary p-3 rounded-circle" id="fb" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Feedback">
+                <button type="button" class="btn text-white p-3 rounded-circle " id="fb" style="background-color: #843b62">
                     <i class="far fa-comment-alt-edit fs-2"></i>
                 </button>
             </div>

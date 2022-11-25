@@ -112,6 +112,8 @@ $dbh = new dbHandler;
                 </div>
             </div>
 
+
+
             <!-- <div class="d-flex mt-4">
                 <textarea class="form-control" aria-label="With textarea" id="contentID" name="clientMessage"></textarea>
                 <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
@@ -119,6 +121,10 @@ $dbh = new dbHandler;
 
         </form>
     </div>
+
+   
+    
+
 </body>
 
 </html>

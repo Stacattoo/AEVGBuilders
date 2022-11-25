@@ -38,7 +38,9 @@ $dbh = new dbHandler;
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
+                <?php if (isset($_SESSION['id'])) { ?>
+                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php }  ?>
             </ul>
 
 
@@ -92,32 +94,32 @@ $dbh = new dbHandler;
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="1500">
                     <img src="../../images/e.png" class="d-block w-100 img-fluid bg-carousel vh-100">
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1 class="display-4">HOUSES</h1>
-                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                            <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects</a></p>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="2000">
                     <img src="../../images/interior.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1 class="display-4">INTERIOR DESIGN</h1>
 
-                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects </a></p>
+                            <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects </a></p>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" >
                     <img src="../../images/pool.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
                     <div class="container">
                         <div class="container">
                             <div class="carousel-caption text-start">
                                 <h1 class="display-4">RESORTS</h1>
-                                <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                                <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects</a></p>
                             </div>
                         </div>
                     </div>

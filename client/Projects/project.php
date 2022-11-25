@@ -31,7 +31,9 @@ $dbh = new dbHandler;
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
 				<li><a href="../projects/project.php" class="nav-link px-2 link-secondary">Projects</a></li>
 				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-				<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
+				<?php if (isset($_SESSION['id'])) { ?>
+                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php }  ?>
 			</ul>
 
 			<div class="col-md-3 text-end">
