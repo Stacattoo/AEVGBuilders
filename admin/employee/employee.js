@@ -17,10 +17,10 @@ function displayUsers(searchQuery='') {
 				});
 				$.each(filtered, function (i, data) {
 					content += `
-					<button type="button" class="student list-group-item list-group-item-action" data-id='`+ data.id + `'>
+					<button type="button" class="client list-group-item list-group-item-action" data-id='`+ data.id + `'>
 						<div class="row d-flex align-items-center">
 							<div class="col-3">
-								<img id="view_profile" src="../${data.profile_picture}" class="img-fluid rounded-circle border p-1">
+								<img id="view_profile" src="../employee/profile/${data.profile_picture}" class="img-fluid rounded-circle border p-1">
 							</div>
 							<div class="col ">
 								<div id="view-fullName" class="mb-1 text-capitalize h5"><b>${data.fullName}</b></div>
@@ -37,9 +37,9 @@ function displayUsers(searchQuery='') {
 				$("#error").html(dataResult.responseText);
 			},
 			complete: function () {
-				$(".student").click(function (e) {
+				$(".client").click(function (e) {
 					e.preventDefault();
-					$(".student").removeClass("active");
+					$(".client").removeClass("active");
 					$(this).addClass("active");
 					var userid = $(this).data("id");
 					$.ajax({

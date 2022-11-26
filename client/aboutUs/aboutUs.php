@@ -31,7 +31,9 @@ $dbh = new dbHandler;
         <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-secondary">About Us</a></li>
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-       <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
+        <?php if (isset($_SESSION['id'])) { ?>
+          <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+        <?php }  ?>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -62,7 +64,7 @@ $dbh = new dbHandler;
             </div>
             <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
               <div>
-               
+
               </div>
             <?php } ?>
           </div>
@@ -74,62 +76,87 @@ $dbh = new dbHandler;
   </div>
 
   <main class="container">
-    <div class="background-img">
-      <div class="blur-effect">
-        <div class="p-4 p-md-5 mb-4 rounded text-light">
+    <!-- <div class="col-xl-10 offset-xl-1 rounded position-relative">
+      <div id="titleCarousel" class="carousel slide carousel-fade position-relative" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" id="c-one"></div>
+          <div class="carousel-item" id="c-two"></div>
+          <div class="carousel-item" id="c-three"></div>
+        </div>
+      </div>
+      <div class="row">
+        <h1 class="text-center">Title Text</h1>
+      </div>
+    </div>
+
+ -->
+
+
+
+    <div class="background-img mb-4">
+      
+      <div class="blur-effect ">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner" data-bs-interval="1500">
+          <div class="carousel-item active">
+            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+          </div>
+          <div class="carousel-item">
+            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+          </div>
+        </div>
+
+      </div>
+        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect">
 
           <div class="col-md-6 px-0">
             <h1 class="display-4">AEVG BUILDERS</h1>
             <p class="lead my-3">The design and construction company has been running at a prominent level of excellence for exactly 5 years, they supply quality design and construction and are progressive and competitive in the design and construction industry.
             </p>
-            
-              <p class="lead mb-0">
-              <div class="alert alert-warning" role="alert" id="appAlert">
-                <h5>Your request is upon approval, kindly wait for an employee to approve your request.</h5>
-              </div>
-              </p>
 
-              <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
-                  Schedule an Appointment.
-                </a></p>
-            
+            <p class="lead mb-0">
+            <div class="alert alert-warning" role="alert" id="appAlert">
+              <h3 class="text-black">Pending for Approval</h3>
+              <p class="h6 text-muted">Kindly wait for an employee to approve your request.</p>
+            </div>
+            </p>
+
+            <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
+                Schedule an Appointment.
+              </a></p>
+
           </div>
         </div>
       </div>
     </div>
-
     <div class="row mb-2">
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary">Architect</strong>
-            <h3 class="mb-0">Yel Villalon Galang</h3>
-            <p class="card-text mb-auto">Founder of AEVG builders. After 2 years of working in Singapore Architect Galang decided to start his design and construction company in San Pablo, Hagonoy Bulacan. </p>
+            <h3 class="mb-0">Rhina Marie Monforte</h3>
+            <p class="card-text mb-auto">The lead architect at AEVG Builders, came from the Albay province. Having professionaly worked in a corporate setting, contracting, and design outsourcing for years in Metro Manila, she has built a network of clients.</p>
 
           </div>
           <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-            </svg>
-
+            <img src="../../images/3bb1db2fc1454432143e08cd67e2126b.jpg" width="200" height="250" alt="">   
           </div>
         </div>
       </div>
+      
 
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Engineer</strong>
-            <h3 class="mb-0">Name</h3>
-            <p class="mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique officia ea unde, illum quia voluptatum quod iusto! Blanditiis consectetur, sapiente, accusantium, qui reprehenderit in omnis reiciendis nobis eius numquam sequi?</p>
+            <strong class="d-inline-block mb-2 text-success">3D Visualizer</strong>
+            <h3 class="mb-0">Cochise Macahilig</h3>
+            <p class="mb-auto">Is capable of bringing any 2D plans to a realistic 3D Model. She originated in Bulacan. With an eye for details, she assists the team in presenting any design concept thru meticulous 3D model which usually amazes the clients.</p>
           </div>
           <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-            </svg>
-
+            <img src="../../images/37ea903719dc841b2a2aa03693256b8a.jpg" width="200" height="250" alt="">   
           </div>
         </div>
       </div>

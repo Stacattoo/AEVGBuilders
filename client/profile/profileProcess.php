@@ -2,25 +2,20 @@
 include_once('../include/dbh.inc.php');
 $dbh = new dbHandler;
 
-//Profile Edit Info
-$img_path = "";
-
-// var_dump($_FILES);
-if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
-    
-    $img_path = "image/" . basename($_FILES['image']['name']);
-
-    move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
-
-
-} else {
-
-    // echo "naka set";
-    $img_path = $_POST["file_path"];
-    // echo $img_path;
+if (isset($_POST['insertFeedback'])) {
+    echo json_encode((array)$dbh->insertFeedback($_SESSION['id'], $_POST['insertFeedback']));
 }
 
 if (isset($_POST['firstName'])) {
+    $img_path = "";
+    if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+        $img_path = "image/" . basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
+    } else {
+        $img_path = $_POST["file_path"];
+    }
+
+    
 
     $info = (object) [
         'firstName' => $_POST['firstName'],

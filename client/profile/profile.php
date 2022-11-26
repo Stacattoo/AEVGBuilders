@@ -32,7 +32,7 @@ $dbh = new dbHandler;
 
 
 
-                <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
@@ -98,7 +98,7 @@ $dbh = new dbHandler;
                         <!-- IF there is an appointment -->
                         <h2>Appointment Schedule</h2>
                         <p>The client wants to set an appointment. </p>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button>
+                        <button class="btn btn-outline-secondary" id="viewModBtn" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button>
                         <button class="btn btn-danger" type="button" id="cancelBtnModal" name="cancelBtn" data-bs-toggle="modal" href="#exampleModal2">Cancel Appointment</button>
                     </div>
                     <div id="schedAppProfile">
@@ -109,6 +109,12 @@ $dbh = new dbHandler;
                                 Schedule an Appointment.
                             </a></p>
                     </div>
+                    <div id="haveASchedule">
+                        <!-- if there is no appointment -->
+                        <h2>You already have an appointment!</h2>
+                        <p>Kindly check your messages, and view your submitted appointment information.</p>
+                        <!-- <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,17 +123,14 @@ $dbh = new dbHandler;
     <!-- Delete Modal -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-body p-4 text-center">
+                    <h5 class="mb-0 py-4"> Are you sure you want to cancel?</h5>
                 </div>
-                <div class="modal-body text-center">
-                    Are you sure you want to cancel?
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="mt-3 testbtn2" data-bs-dismiss="modal">Cancel</button>
-                    <a href="deleteSched.php" class="mt-3 testbtn2">Yes</a>
+
+                <div class="modal-footer flex-nowrap p-0">
+                    <a href="deleteSched.php" type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></a>
+                    <a type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">Cancel</a>
                 </div>
             </div>
         </div>
@@ -175,12 +178,12 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="row g-3">
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                             <h5><b>Project Location: </b></h5>
                             <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="projLoc_id" readonly>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <h5><b>Lot Area: </b></h5>
                             <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="lotArea_id" readonly>
 
@@ -229,6 +232,7 @@ $dbh = new dbHandler;
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <!-- <button type="button" class="btn btn-success" id="viewBtnSched" data-id="">View Appointment Details</button> -->
                     <button type="button" class="btn btn-success" id="editBtnSched" data-id="">Edit Appointment Details</button>
                 </div>
             </div>
@@ -285,7 +289,7 @@ $dbh = new dbHandler;
             </table>
         </div>
     </div>
-
+    <!-- modal for quotation -->
     <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -422,6 +426,7 @@ $dbh = new dbHandler;
 
 
     </div>
+    <!-- modal for edit profile -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -569,6 +574,22 @@ $dbh = new dbHandler;
         </div>
 
     </div>
+
+    <div class="fixed-bottom  d-flex justify-content-end m-3 ">
+        <div>
+            <div class=" ">
+                <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
+                <i class="fal fa-comment-alt-lines fs-2"></i>
+                </button>
+            </div>
+            <div class="mt-2">
+                <button type="button" class="btn text-white p-3 rounded-circle " id="fb" style="background-color: #843b62">
+                <i class="fal fa-bullhorn fs-3"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container">
         <footer class="py-3 my-4">

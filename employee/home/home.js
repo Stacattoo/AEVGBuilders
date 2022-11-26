@@ -24,10 +24,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../materials/materials.php");
     });
-    //Schedule
-    $("#scheduleNav").click(function (e) {
+    //Message
+    $("#messageNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("../schedule/schedule.php");
+        $("#content").load("../message/message.php");
     });
     //Report
     $("#reportNav").click(function (e) {

@@ -59,13 +59,13 @@ $dbh = new dbHandler();
                             <li>
                                 <a href="#" class="nav-link text-white" id="projectNav">
                                     <i class="fad fa-folder-open bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Project</span>
+                                    <span class="d-none d-lg-inline">Finished Projects</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link text-white" id="scheduleNav">
                                     <i class="fad fa-calendar-alt bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Schedule</span>
+                                    <span class="d-none d-lg-inline">Project Activity Log/Status</span>
                                 </a>
                             </li>
                             <li>
@@ -77,7 +77,7 @@ $dbh = new dbHandler();
                             <li>
                                 <a href="#" class="nav-link text-white" id="blockedNav">
                                     <i class="fas fa-ban bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Blocked Users</span>
+                                    <span class="d-none d-lg-inline">Archives</span>
                                 </a>
                             </li>
                         </ul>

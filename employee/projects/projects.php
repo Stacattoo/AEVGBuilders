@@ -35,7 +35,6 @@ $dbh = new dbHandler;
             <form id="uploadProjects">
                 <div class="modal-body">
 
-
                     <div class="row ">
                         <div class="mb-3 row">
 
@@ -80,7 +79,7 @@ $dbh = new dbHandler;
                                         <span class="on-drop">Drop images here</span>
                                         <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                                     </div>
-                                    
+
                                     <!-- IMAGE PREVIEW CONTAINER -->
                                     <div class="container " id="imgCon"></div>
                                 </div>
@@ -159,9 +158,9 @@ $dbh = new dbHandler;
                     </div>
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
-                    <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</a>
-                        <button type="button" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
-                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</button>
+                    <button type="submit" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

@@ -30,6 +30,7 @@
         $("#pending").hide();
         displayApproveClient();
         displayPendingClient();
+        
        
         $("#listBtn").click(function() {
             $(this).addClass("active");
@@ -47,7 +48,8 @@
 
         $("#search").change(function(e) {
             e.preventDefault();
-            displayUsers($(this).val());
+            displayApproveClient($(this).val());
+            displayPendingClient($(this).val());
         });
 
 

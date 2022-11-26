@@ -1,6 +1,7 @@
 $(document).ready(function () {
     displayTotalNumOfClients(new Date().getFullYear());
 
+    // TOP 5 MOST POPULAR PROJECT
     $.ajax({
         type: "POST",
         url: "dashboard/dashboardProcess.php",
@@ -21,9 +22,80 @@ $(document).ready(function () {
                  $("#popularProject").append(content);
             });
         }, error: function (response) {
-            console.error(response);
+            // console.error(response); 4
         }
     });
+
+    // CLIENTS FEEDBACK
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getClientsFeedback: true },
+        dataType: "JSON",
+        success: function (response) {
+            let content = ``;
+            $.each(response, function (indexInArray, feedback) { 
+                content += `
+                    <tr>
+                        <td>${feedback.id}</td>
+                        <td>${feedback.fullname}</td>
+                        <td>${feedback.email}</td>
+                        <td>${feedback.contact_no}</td>
+                        <td>${feedback.feedback}</td>
+                        <td>${feedback.date}</td>
+                        <td></td>
+                    </tr>
+                `;
+            });
+            $("#feedbackContent").html(content);
+        }, error: function (response) {
+            // console.error(response); 3
+        }
+    });
+
+    // PROJECT COUNT
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getProjects: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $("#totalProjects").html(response.length);
+        }, error: function(error){
+            console.log(error);
+        }
+    });
+
+    //REGISTERED USER COUNT
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getRegisteredUsers: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $("#totalRegisteredUser").html(response.length);
+        }, error: function(error){
+            console.log(error);
+        }
+    });
+
+    //EMPLOYEE USER COUNT
+    $.ajax({
+        type: "POST",
+        url: "dashboard/dashboardProcess.php",
+        data: { getEmployees: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $("#totalEmployees").html(response.length);
+        }, error: function(error){
+            console.log(error);
+        }
+    });
+
+    
 
 
     function displayTotalNumOfClients(year) {
@@ -44,7 +116,7 @@ $(document).ready(function () {
                     var formattedDate = new Date(val.transaction_date);
                     var y = formattedDate.getFullYear();
                     var m = formattedDate.getMonth();
-                    console.log();
+                    // console.log(); 2
                     if (year == y) {
                         ctr[m]++;
                     }
@@ -60,11 +132,12 @@ $(document).ready(function () {
                     }));
                 });
                 $("#totalClients").html(response.length);
+                $("#totalClients1").html(response.length);
                 myChart.data.datasets[0].data = ctr;
                 myChart.update();
             },
             error: function (error) {
-                console.error(error);
+                // console.error(error); 1
             }
         });
     }

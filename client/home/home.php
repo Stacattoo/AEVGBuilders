@@ -13,10 +13,13 @@ $dbh = new dbHandler;
     <title>Home</title>
     <link rel="stylesheet" href="../include/style.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.3.1/swiper-bundle.min.css">
+    <link rel="stylesheet" href="feedback.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.3.1/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <!-- <script src="login.js"></script> -->
+    <script src="home.js"></script>
 </head>
 
 <body>
@@ -35,7 +38,9 @@ $dbh = new dbHandler;
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
+                <?php if (isset($_SESSION['id'])) { ?>
+                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php }  ?>
             </ul>
 
 
@@ -68,7 +73,7 @@ $dbh = new dbHandler;
                         </div>
                         <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
                             <div>
-                            
+
                             </div>
                         <?php } ?>
                     </div>
@@ -89,41 +94,32 @@ $dbh = new dbHandler;
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="1500">
                     <img src="../../images/e.png" class="d-block w-100 img-fluid bg-carousel vh-100">
-
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1 class="display-4">HOUSES</h1>
-
-                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                            <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects</a></p>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="2000">
                     <img src="../../images/interior.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
-
-                    </svg>
-
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1 class="display-4">INTERIOR DESIGN</h1>
 
-                            <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects </a></p>
+                            <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects </a></p>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" >
                     <img src="../../images/pool.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
-
-                    </svg>
-
                     <div class="container">
                         <div class="container">
                             <div class="carousel-caption text-start">
-                                <h1 class="display-4 ">RESORTS</h1>
-
-                                <p><a class="btn btn-lg btn-primary" href="../projects/project.php">View Projects</a></p>
+                                <h1 class="display-4">RESORTS</h1>
+                                <p><a class="btn btn-lg btn-warning" href="../projects/project.php">View Projects</a></p>
                             </div>
                         </div>
                     </div>
@@ -139,50 +135,28 @@ $dbh = new dbHandler;
             </div>
 
 
-            <!-- Marketing messaging and featurettes
-  ================================================== -->
-            <!-- Wrap the rest of the page in another container to center all the content. -->
-
             <div class="container marketing">
-
-                <!-- Three columns of text below the carousel -->
-
-
-
-                <!-- START THE FEATURETTES -->
-
                 <hr>
-
                 <div class="row d-flex align-items-center">
                     <div class="col-md-4">
                         <h2 class="featurette-heading fw-normal lh-1s">CONSULTATION</h2>
                         <p class="lead">We offer high-quality construction services to clients, and a key part of this involves providing accurate projections and project costing.</p>
                     </div>
                     <div class="col-md-8 ">
-
                         <img class="img-fluid" src="../../images/consultation.jpg">
-
-
-
                     </div>
                 </div>
-
                 <hr>
-
                 <div class="row d-flex align-items-center">
                     <div class="col-md-8">
                         <img class="img-fluid" src="../../images/interior.jpg">
-
                     </div>
                     <div class="col-md-4">
                         <h2 class="fw-normal lh-1">INTERIOR DESIGN</h2>
                         <p class="lead">Planning and design of man-made spaces, a part of environmental design and closely related to architecture.</p>
                     </div>
-
                 </div>
-
                 <hr>
-
                 <div class="row d-flex align-items-center">
                     <div class="col-md-4">
                         <h2 class="featurette-heading fw-normal lh-1">BUDGET ESTIMATION</h2>
@@ -193,7 +167,6 @@ $dbh = new dbHandler;
                     </div>
                 </div>
                 <hr>
-
                 <div class="row d-flex align-items-center">
                     <div class="col-md-8">
                         <img class="img-fluid" src="../../images/pm.jpg">
@@ -203,9 +176,7 @@ $dbh = new dbHandler;
                         <p class="lead">Project documentation, planning, tracking, and communication—all with the goal of delivering work successfully</p>
                     </div>
                 </div>
-
                 <hr>
-
                 <div class="row d-flex align-items-center">
                     <div class="col-md-4">
                         <h2 class="featurette-heading fw-normal lh-1">CONSTRUCTION</h2>
@@ -217,63 +188,67 @@ $dbh = new dbHandler;
                     </div>
                 </div>
                 <hr class="featurette-divider">
+            </div>
+        </div>
 
-                <!-- /END THE FEATURETTES -->
-
-            </div><!-- /.container -->
-
-
-            <div class="container-slider h-100">
-                <div class="row align-items-center h-100">
-                    <div class="container rounded">
-                        <h1 class="mb-2 text-center">Our Clients</h1>
-                        <div class="slider">
-                            <div class="logos">
-                                <i class="fab fa-js fa-4x"></i>
-                                <i class="fab fa-linkedin-in fa-4x"></i>
-                                <i class="fab fa-dribbble fa-4x"></i>
-                                <i class="fab fa-medium-m fa-4x"></i>
-                                <i class="fab fa-github fa-4x"></i>
-                            </div>
-                            <div class="logos">
-                                <i class="fab fa-js fa-4x"></i>
-                                <i class="fab fa-linkedin-in fa-4x"></i>
-                                <i class="fab fa-dribbble fa-4x"></i>
-                                <i class="fab fa-medium-m fa-4x"></i>
-                                <i class="fab fa-github fa-4x"></i>
-                            </div>
-                        </div>
+        <div class="feedback">
+            <div class="wrapper">
+                <header>
+                    <h1 class="text-dark">FEEDBACK</h1>
+                </header>
+                <div class="swiper">
+                    <div class="swiper-wrapper" id="feedbackContent">
+                        
                     </div>
                 </div>
-
             </div>
-            <div class="container">
-                <footer class="py-3 my-4">
-                    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        </div>
+        
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
-                    </ul>
-                    <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+                </ul>
+                <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
 
-                </footer>
-
+            </footer>
+        </div>
+    </main>
 </body>
-<!-- <script>
-    $(document).ready(function() {
-
-        var file = $("input[type=file]").get(0).files[0];
-
-        if (file) {
-
-            var reader = new FileReader();
-
-            reader.onload = function() {
-                $("#profileImg").attr("src", reader.result);
+<script>
+    const swiper = new Swiper(".swiper", {
+        direction: "horizontal",
+        loop: true,
+        autoHeight: false,
+        centeredSlides: true,
+        slidesPerView: 1,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 40
+            },
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 40
             }
+        },
 
-            reader.readAsDataURL(file);
-        }
+        // // If we need pagination
+        // pagination: {
+        //     el: ".swiper-pagination"
+        // },
+
+        // // Navigation arrows
+        // navigation: {
+        //     nextEl: ".swiper-button-next",
+        //     prevEl: ".swiper-button-prev"
+        // }
+
+        // And if we need scrollbar
+        /*scrollbar: {
+    el: '.swiper-scrollbar',
+  },*/
     });
-
-</script> -->
+</script>
 
 </html>

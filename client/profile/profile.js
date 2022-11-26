@@ -1,7 +1,132 @@
 $(document).ready(function () {
-
+    $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
+    var feedbackContent = `
+    <div>
+        <h5><b>Thank you for trusting us!</b></h5>
+        <p>We would like to hear your feedback.</p>
+        <form id="feedbackForm">
+            <div class="form-label">
+                <textarea class="form-control" id="feedbackArea" rows="3"></textarea>
+            </div>
+            <div class="d-flex justify-content-end ">
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>`;
+
+    var messageContent =
+        `<div class="">
+        <div class="card mx-auto" style="max-width:400px">
+            <div class="card-header bg-transparent">
+                <div class="navbar navbar-expand p-0">
+                    <ul class="navbar-nav me-auto align-items-center">
+                     
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                    
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            <i class="far fa-window-minimize"></i>  
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body p-4" style="height: 480px; overflow: auto;">
+
+                <div class="d-flex align-items-baseline mb-4">
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                    <div class="pe-2">
+                        <div>
+                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                    <div class="pe-2">
+                        <div>
+                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">Sure</div>
+                        </div>
+                    </div>
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                </div> 
+
+            </div>
+            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+                <div class="d-flex justify-content-between">
+                    <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
+                  
+                        <button class="btn btn-light text-secondary">
+                            <i class="fas fa-paperclip text-primary"></i>
+                        </button>
+                        <button class="btn btn-light text-secondary">
+                            <i class="far fa-paper-plane text-primary"></i>
+                        </button>
+                     
+                    
+                </div>
+            </div>
+        </div>
+    </div>`
+
+    // $("#fb").click(function (e) { 
+    //     e.preventDefault();
+
+    // });
+    $("#fb").popover({
+        placement: "left",
+        html: true,
+        sanitize: false,
+        title: "Feedback",
+        content: feedbackContent,
+    }).on("shown.bs.popover", function () {
+        $('#msg').popover('hide');
+        $("#feedbackForm").submit(function (e) {
+            e.preventDefault();
+            console.log($("#feedback").val());
+            $.ajax({
+                type: "POST",
+                url: "profileProcess.php",
+                data: { insertFeedback: $("#feedbackArea").val() },
+                success: function (response) {
+                    console.log(response);
+                    alert("Feedback Successfully Sent!")
+                }, error: function (response) {
+                    console.error(response);
+                }
+            });
+        });
+    });
+
+    $("#msg").popover({
+        placement: "left",
+        html: true,
+        sanitize: false,
+        content: messageContent,
+
+    }).on("shown.bs.popover", function () {
+        $('#fb').popover('hide');
+        var popover = $("#" + $("#msg").attr("aria-describedby"));
+        $(popover).addClass("popover-msg");
+    });
+
 
     $("#profileForm").submit(function (event) {
         // console.log('test lang');
@@ -30,6 +155,8 @@ $(document).ready(function () {
             }
         });
     });
+
+
 
     $('input').focus(function (e) {
         e.preventDefault();
@@ -122,8 +249,25 @@ $(document).ready(function () {
             checkAppointmentProfile: true
         },
         success: function (result) {
-            $("#schedAppProfile").hide();
-            $("#viewAppModal").show();
+            // console.log(result.status);
+            if (result.status == 'pending') {
+                $("#schedAppProfile").hide();
+                $("#haveASchedule").hide();
+                $("#viewAppModal").show();
+                $("#viewModBtn").hide();
+            } else if (result.status == 'canceled') {
+                $("#schedAppProfile").show();
+                $("#haveASchedule").hide();
+                $("#viewAppModal").hide();
+                $("#editBtnSched").show();
+                $("#viewModBtn").show();
+            } else if (result.status == 'ongoing'){
+                $("#schedAppProfile").hide();
+                $("#haveASchedule").show();
+                $("#viewAppModal").hide();
+                $("#editBtnSched").hide();
+                $("#viewModBtn").show();
+            }
 
         }
     });

@@ -399,4 +399,44 @@ class dbHandler
         }
     }
 
+    function getFeedback() {
+        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.email, client.contact_no FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE status = 'active'";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "fullname" => $row['fullname'],                    
+                    "email" => $row['email'],                    
+                    "contact_no" => $row['contact_no'],                    
+                    "feedback" => $row['feedback'],                    
+                    "status" => $row['contact_no'],                    
+                    "date" => $row['date'],                    
+                ];
+            }
+        }
+        return $data;
+    }
+
+    function countAllProjects(){
+        $sql = "SELECT * FROM projects";
+        $result =  mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $projects = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row['id'],
+                    "employee_id" => $row['employee_id'],
+                    "title" => $row['title'],
+                    "image" => $row['image'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "status" => $row['status'],
+                    
+                ];
+            }
+            return $projects;
+        }
+    }
+
 }

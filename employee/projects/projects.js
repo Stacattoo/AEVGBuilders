@@ -114,7 +114,6 @@ $(document).ready(function () {
                                             id="imageDeleteBtn"  data-id="${indexInArray}">
                                             -
                                         </span>
-                                       
                                     </div>
                                 </div>
                                 <style> 
@@ -128,9 +127,12 @@ $(document).ready(function () {
                                 </style>
                             `;
                         });
+
+
                         $('#view-editImage').html(contentEdit);
                         $('#edit-image').val(dataFilter.image);
                     }
+                    
                     imageRefresh();
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);

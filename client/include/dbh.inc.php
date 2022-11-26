@@ -217,10 +217,9 @@ class dbHandler
         $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
         return mysqli_query($this->conn, $sql);
     }
-
     function getSched($id)
     {
-        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
         $sched = array();
         if (mysqli_num_rows($result)) {
@@ -245,7 +244,8 @@ class dbHandler
                     'meetLoc' => $row['meetingLocation'],
                     'image' => $imgExplode,
                     'appointmentDate' => $row['meetingDate'],
-                    'appointmentTime' => $row['meetingTime']
+                    'appointmentTime' => $row['meetingTime'],
+                    'status' => $row['statusCheck']
                 ];
             }
         }
@@ -281,14 +281,95 @@ class dbHandler
         $sql = "DELETE from `project_reaction` where client_id = $clientId AND project_id = $projectId";
         return mysqli_query($this->conn, $sql);
     }
-    function deletedSched($id)
+    function canceledSched($id)
     {
-        $sql = "DELETE FROM `appointment` WHERE client_id='$id'";
+        $sql = "UPDATE `appointment` SET status='canceled' WHERE client_id='$id'";
         // $fullName = $this->getFullname($id);
         // $this->addActivities($fullName, "Schedule", "Cancel schedule");
         return mysqli_query($this->conn, $sql);
         // unset($_POST['dateChanged']);
     }
+
+    function getFeedback() {
+        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.image FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE status = 'active'";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "fullname" => $row['fullname'],                    
+                    "image" => $row['image'],                    
+                    "feedback" => $row['feedback'],                    
+                ];
+            }
+        }
+        return $data;
+    }
+
+    function insertFeedback($clientId, $feedback)
+    {
+        $sql = "INSERT INTO `feedback`(`client_id`, `feedback`) VALUES ($clientId, '$feedback')";
+        return mysqli_query($this->conn, $sql);
+    }
+
+    // inserting message
+    function insertClientMessage($content, $id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $msg = json_decode($row["content"]);
+                array_push($msg, json_decode($content)[0]);
+                $msg = json_encode($msg);
+                $sql = "UPDATE `message` SET content='$msg' WHERE client_id='$id'";
+                return mysqli_query($this->conn, $sql);
+            }
+        } else {
+            $sql = "INSERT INTO message(client_id, content) VALUES ('$id', '$content')";
+            return mysqli_query($this->conn, $sql);
+        }
+    }
+    function insertClientFiles($content, $client, $id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $msg = json_decode($row["content"]);
+                array_push($msg, json_decode($content)[0]);
+                $msg = json_encode($msg);
+                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
+                return mysqli_query($this->conn, $sql);
+            }
+        } else {
+            $sql = "INSERT INTO message(files) VALUES ('$content')";
+            return mysqli_query($this->conn, $sql);
+        }
+    }
+
+
+    function getContent($id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $message = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $message[] = (object) [
+                    'id' => $row['client_id'],
+                    'employee_id' => $row['employee_id'],
+                    'content' => json_decode($row['content']),
+                    'date' => $row['dateTime'],
+                    'status' => $row['status']
+                ];
+            }
+        }
+        return $message;
+    }
+
+    //message end
+
 
 
     function __destroy()

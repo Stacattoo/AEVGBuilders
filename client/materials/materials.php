@@ -34,7 +34,9 @@ $dbh = new dbHandler;
         <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
         <li><a href="../materials/materials.php" class="nav-link px-2 link-secondary">Materials</a></li>
-        <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Contact Us</a></li>
+        <?php if (isset($_SESSION['id'])) { ?>
+                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php }  ?>
       </ul>
 
 
@@ -67,7 +69,7 @@ $dbh = new dbHandler;
             </div>
             <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
               <div>
-             
+
               </div>
             <?php } ?>
           </div>
@@ -79,9 +81,12 @@ $dbh = new dbHandler;
     </header>
 
     <div class="b-example-divider"></div>
-
     <div class="container px-4 py-5" id="custom-cards">
-      <h2 class="text-center pb-2 border-bottom fw-bolds">Materials</h2>
+      <div class="alert alert-warning px-5" role="alert">
+            <b>Disclaimer:</b> These materials are for references, and it is not for sale. If you have inquires on these materials
+        feel free to contact AEVG Builders, by sign-in or if you have already have an account <a href="../login/login.php">Log-in</a>.
+      </div>
+      <h2 class="text-center pb-2 border-bottom  mb-5 fw-bolds">Materials</h2>
 
       <nav class="nav d-flex justify-content-center">
         <a class="p-2 link-secondary" href="#">All</a>

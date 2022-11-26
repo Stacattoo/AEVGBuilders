@@ -15,8 +15,72 @@ $dbh = new dbHandler;
         <h3><i class="fal fa-chart-line me-2"></i></i>Dashboard</h3>
     </div>
     <hr>
+    
     <div class="container-fluid">
-        <div class=" mt-5">
+        <div class="mt-5">
+            <div class="row">
+                <div class="col">
+                    <div class="card mb-3 " style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="far fa-user-alt bi me-2 fa-3x"></i>
+
+                                </div>
+                                <div class="col">
+                                    <h1 class="card-title"><span id="totalClients1"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
+                                    <h6>Total number of Clients</h6>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 " style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fad fa-folder-open bi me-2 fa-3x"></i>
+                                </div>
+                                <div class="col">
+                                    <h1 class="card-title"><span id="totalProjects"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
+                                    <h6> Finished Projects</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                <div class="card mb-3 " style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                            <i class="far fa-solid fa-users fa-3x"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="card-title"><span id="totalRegisteredUser"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
+                                <h6> Registered Users</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col">
+                <div class="card mb-3 " style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                            <i class="far fa-solid fa-users fa-3x"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="card-title"><span id="totalEmployees"><!-- DITO NAGDIDISPLAY YUNG TOTAL --></span></h1>
+                                <h6> Employees</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="card text-bg-light mb-3">
@@ -60,8 +124,36 @@ $dbh = new dbHandler;
                     </table>
                 </div>
             </div>
-
-
+        </div>
+        <div class="mt-3">
+            <h3>Clients Feedback</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Feedback</th>
+                        <th>Date & Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackContent">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="">Post</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

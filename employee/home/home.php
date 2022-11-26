@@ -40,21 +40,21 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="studentsNav">
+                                <a href="#" class="nav-link text-white" id="clientsNav">
 
                                     <i class="far fa-user-alt bi me-2"></i>
                                     Clients
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="scheduleNav">
+                                <a href="#" class="nav-link text-white" id="messageNav">
 
                                     <i class="fad fa-calendar-alt bi me-2"></i>
-                                    Schedule
+                                    Message
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white">
+                                <a href="#" class="nav-link text-white" >
 
                                     <i class="fal fa-paperclip bi me-2"></i>
                                     Report
@@ -72,11 +72,11 @@ $dbh = new dbHandler;
                         <hr>
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../<?php echo $dbh->getValueByID('image', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <img src="../profile/<?php echo $dbh->getValueByProfileID('profile_picture', $_SESSION['id']); ?>" alt="" width="32" height="32" class="rounded-circle me-2">
                                 <strong><?php echo $dbh->getFullname($_SESSION['id']); ?></strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
+                                <li><button class="dropdown-item" data-bs-toggle="modal" id="profileNav">Profile</button></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
