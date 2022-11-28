@@ -50,10 +50,13 @@ $(document).ready(function () {
         $("#step4").hide();
         $(".progress-bar").width("70%");
     });
+
+
     $("#appointForm").submit(function (event) {
         console.log("okey naman huehue");
         event.preventDefault();
         if (params1.has('editing')) {
+            console.log("sa una");
             $.ajax({
                 url: "../contactUs/getData.php",
                 type: "POST",
@@ -74,6 +77,7 @@ $(document).ready(function () {
                 }
             });
         } else {
+            console.log("sa pangalawa");
             $.ajax({
                 url: "../contactUs/appointmentProcess.php",
                 type: "POST",
@@ -92,9 +96,9 @@ $(document).ready(function () {
 
                     }
                 }
-                // , error: function (response) {
-                //     console.error(response);
-                // }
+                , error: function (response) {
+                    console.error(response);
+                }
             });
         }
     });

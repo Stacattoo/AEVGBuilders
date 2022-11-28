@@ -411,7 +411,7 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             $msg = array();
             if ($row = mysqli_fetch_assoc($result)) {
-                // $msg = json_decode($row["files"]);
+                $msg = json_decode($row["files"]);
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
                 $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
@@ -431,14 +431,10 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             // $filesobj = '';
             while ($row = mysqli_fetch_assoc($result)) {
-                // $filesobj = json_decode($row['files']);
-                // $filesobj = json_encode($filesobj);
-                // $filesobj = explode(",", $filesobj);
-                // $filesobj = json_encode($filesobj);
+                $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
                 $message[] = (object) [
                     'id' => $row['employee_id'],
-                    'content' => json_decode($row['content']),
-                    'files' => json_decode($row['files']),
+                    'content' => $arrayObj,
                     'date' => $row['dateTime'],
                     'status' => $row['status']
                 ];

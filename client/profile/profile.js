@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    messagePopover();
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
@@ -16,9 +17,72 @@ $(document).ready(function () {
         </form>
     </div>`;
 
+    var mesContent = ``;
+    
+    function messagePopover() {
+        $.ajax({
+            type: "POST",
+            url: "../message/messageProcess.php",
+            data: { getMessage: true },
+            dataType: "JSON",
+            success: function (response) {
+                // $('#contentID').trigger("reset");
+                $.each(response.content, function (indexInArray, val) {
+                    var isClient = false;
+                    if (val.sender == "client") {
+                        isClient = true;
+                    }
+
+                //     mesContent += `
+                //     <div class="mb-3">
+                //         <small>${val.sender}</small>
+                //         <div class="${(isClient) ? "text-bg-primary" : "text-bg-secondary"} p-2 rounded-4">${val.content}</div>
+                //         <small>${val.dateTime}</small>
+                //     </div>
+                // `;
+                if(isClient){
+                    mesContent +=  `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                    <div class="pe-2">
+                        <div>
+                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                            ${val.content}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                </div> `;
+                }else{
+                    mesContent += `
+                    <div class="d-flex align-items-baseline mb-4">
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                    <div class="pe-2">
+                        <div>
+                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                            ${val.content}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                    `;
+                }
+                });
+                $('#contentID').trigger("reset");
+                // $('#messageBubble').show();
+                // $("#messageRetrieve").html(content);
+                console.log(mesContent);
+            }, error: function (response) {
+                console.error(response);
+            }
+        });
+    }
     var messageContent =
         `<div class="">
-        <div class="card mx-auto" style="max-width:400px">
+        <div class="card mx-auto" style="width:400px">
             <div class="card-header bg-transparent">
                 <div class="navbar navbar-expand p-0">
                     <ul class="navbar-nav me-auto align-items-center">
@@ -42,7 +106,7 @@ $(document).ready(function () {
                     </ul>
                 </div>
             </div>
-            <div class="card-body p-4" style="height: 480px; overflow: auto;">
+            <div class="card-body p-4" id="mesBody" style="height: 480px; overflow: auto;">
 
                 <div class="d-flex align-items-baseline mb-4">
                     <div class="position-relative avatar">
@@ -50,7 +114,8 @@ $(document).ready(function () {
                     </div>
                     <div class="pe-2">
                         <div>
-                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">Thank you for contacting us here at AEVG Builders. We will be in touch soon. We look forward to serving you.
+                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+
                             </div>
                         </div>
 
@@ -60,15 +125,15 @@ $(document).ready(function () {
                 <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                     <div class="pe-2">
                         <div>
-                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">Sure</div>
+                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
                         </div>
                     </div>
                     <div class="position-relative avatar">
                         <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
                     </div>
                 </div> 
-
             </div>
+            
             <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
                 <div class="d-flex justify-content-between">
                     <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
@@ -84,7 +149,7 @@ $(document).ready(function () {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`;
 
     // $("#fb").click(function (e) { 
     //     e.preventDefault();
@@ -120,11 +185,15 @@ $(document).ready(function () {
         html: true,
         sanitize: false,
         content: messageContent,
-
+        
     }).on("shown.bs.popover", function () {
         $('#fb').popover('hide');
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
+        
+        console.log('kahit ano');
+        $('#mesBody').html(mesContent);
+        
     });
 
 
@@ -261,7 +330,7 @@ $(document).ready(function () {
                 $("#viewAppModal").hide();
                 $("#editBtnSched").show();
                 $("#viewModBtn").show();
-            } else if (result.status == 'ongoing'){
+            } else if (result.status == 'ongoing') {
                 $("#schedAppProfile").hide();
                 $("#haveASchedule").show();
                 $("#viewAppModal").hide();

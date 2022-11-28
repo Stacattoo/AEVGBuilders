@@ -61,7 +61,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        // setInterval(displayMessage, 1000);
+        setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
@@ -75,11 +75,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 processData: false,
                 success: function(response) {
                     console.log(response);
-                    $('#messageEmployee').trigger("reset");
-                    $('#contentID').html("");
-                    if (response.status == 'success') {
-                        displayMessage();
-                    }
+                    // $('#messageEmployee').trigger("reset");
+                    // $('#contentID').html("");
+                    // if (response.status == 'success') {
+                    //     displayMessage();
+                    // }
                 }
                 // ,
                 // error: function(response) {
@@ -116,8 +116,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 success: function(response) {
                     // $('#contentID').trigger("reset");
                     var content = ``;
+                    // console.log(response.content);
                     $.each(response.content, function(indexInArray, val) {
-                        console.log(response.content);
+                        response.content.sort(function(a, b) {
+                            return  new Date(a.dateTime) - new Date(b.dateTime);
+                        });
+                        // var dateSort = response.content;
+                    //     console.log(response.content);
                         var isEmployee = false;
                         if (val.sender == "employee") {
                             isEmployee = true;
@@ -130,34 +135,34 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             <small>${val.dateTime}</small>
                         </div>
                     `;
-                        // console.log(val.files);
+
                     });
-                    $.each(response.files, function(indexInArray, data) {
-                        console.log(response.files);
-                        var isEmployee = false;
-                        if (data.sender == "employee") {
-                            isEmployee = true;
-                        }
+                    // $.each(response.files, function(indexInArray, data) {
+                    //     console.log(response.files);
+                    //     var isEmployee = false;
+                    //     if (data.sender == "employee") {
+                    //         isEmployee = true;
+                    //     }
+
                         // var str = data.replace(/\\/g, '');
                         // console.log(str);
-                        var filesContent = data.content;
+                        // var filesContent = data.content;
                         // $.each(filesContent, function(indexInArray, valFiles) {
                         //     // var str = data.replace(/\\/g, '');
                         //     filesContent = valFiles;
-
                         // })[0];
-                        console.log(filesContent);
-                        content += `
-                        <div class="mb-3 px-4 ">
-                            <small>${data.sender}</small>
-                            <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">
-                            <div class="card d-flex">
-                            <div class="p-2"><img src="${filesContent}" class="d-block img-fluid img"></div>
-                            </div>
-                            <small>${data.dateTime}</small>
-                        </div>
-                    `;
-                    });
+                        //     console.log(filesContent);
+                        //     content += `
+                        //     <div class="mb-3 px-4 ">
+                        //         <small>${data.sender}</small>
+                        //         <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">
+                        //         <div class="card d-flex">
+                        //         <div class="p-2"><img src="${filesContent}" class="d-block img-fluid img"></div>
+                        //         </div>
+                        //         <small>${data.dateTime}</small>
+                        //     </div>
+                        // `;
+                    // });
                     // $('#contentID').trigger("reset");
                     // $('#messageBubble').show();
                     $("#messageRetrieve").html(content);
