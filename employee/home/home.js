@@ -32,7 +32,7 @@ $(document).ready(function () {
     //Report
     $("#reportNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("../report/report.php");
+        $("#content").load("../reports/reports.php");
     });
     //Projects
     $("#projectNav").click(function (e) {

@@ -442,4 +442,50 @@ class dbHandler
         }
         return $message;
     }
+
+    function getAllInfoById($id){
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+            CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
+            FROM employee WHERE id=$id";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"];
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $res = mysqli_query($this->conn, $sql);
+                $client = array();
+                if (mysqli_num_rows($res)) {
+                    while ($row_client = mysqli_fetch_assoc($res)) {
+                        $client[] = (object)[
+                            'id' => $row_client["id"],
+                            'name' => $row_client["fullname"],
+                            'email' => $row_client["email"],
+                            'contact_no' => $row_client["contact_no"],
+                            'status' => $row_client["status"],
+                        ];
+                    }
+                }
+                return (object)[
+                    'id' => $id,
+                    'firstName' => $row['firstName'],
+                    'lastName' => $row['lastName'],
+                    'middleName' => $row['middleName'],
+                    'fullName' => $row['fullname'],
+                    'username' => $row['username'],
+                    'contactNo' => $row['contactNo'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address'],
+                    'houseNo' => $row['houseNo'],
+                    'street' => $row['street'],
+                    'barangay' => $row['barangay'],
+                    'municipality' => $row['municipality'],
+                    'province' => $row['province'],
+                    'attempt' => $row['attempt'],
+                    'status' => $row['status'],
+                    'clients' => $client
+                ];
+            }
+        }
+    }
 }

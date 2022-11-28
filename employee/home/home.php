@@ -54,7 +54,7 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" >
+                                <a href="#" class="nav-link text-white" id="reportNav">
 
                                     <i class="fal fa-paperclip bi me-2"></i>
                                     Report
