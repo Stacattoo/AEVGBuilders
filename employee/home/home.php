@@ -32,13 +32,13 @@ $dbh = new dbHandler;
                         </div>
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
 
                                     <i class="fad fa-analytics bi me-2"></i>
                                     Dashboard
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="#" class="nav-link text-white" id="clientsNav">
 

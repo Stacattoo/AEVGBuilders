@@ -307,6 +307,7 @@ $(document).ready(function () {
 
     $("#schedAppProfile").show();
     $("#viewAppModal").hide();
+    $("#haveASchedule").hide();
     //     $("#scheduleForm").submit(function (event) {
     //         event.preventDefault();
 
@@ -323,7 +324,7 @@ $(document).ready(function () {
                 $("#schedAppProfile").hide();
                 $("#haveASchedule").hide();
                 $("#viewAppModal").show();
-                $("#viewModBtn").hide();
+                $("#viewModBtn").show();
             } else if (result.status == 'canceled') {
                 $("#schedAppProfile").show();
                 $("#haveASchedule").hide();

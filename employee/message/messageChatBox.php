@@ -63,28 +63,29 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         displayMessage();
         setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
-
+            
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
                 data: new FormData(this),
-                // dataType: "json",
+                dataType: "json",
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(response) {
                     console.log(response);
-                    // $('#messageEmployee').trigger("reset");
-                    // $('#contentID').html("");
-                    // if (response.status == 'success') {
-                    //     displayMessage();
-                    // }
+                    $('#messageEmployee').trigger("reset");
+                    $('#filesEmployee').trigger("reset");
+                    $('#contentID').html("");
+                    if (response.status == 'success') {
+                        displayMessage();
+                    }
                 }
-                // ,
-                // error: function(response) {
-                //     console.error(response.responseText);
-                // }
+                ,
+                error: function(response) {
+                    console.error(response.responseText);
+                }
             });
         });
 

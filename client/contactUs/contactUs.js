@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    console.log($(this).val());
     $("#alertError").hide();
     $("#projectID").hide();
     // $("#step1").hide();
@@ -8,43 +9,46 @@ $(document).ready(function () {
     $("#step4").hide();
     $("#meetLoc").prop('disabled', true);
     $(".projectTypeListImages").hide();
+    // console.log(disableDate());
+    // disableDate();
+    var dateVar = ``;
     const params1 = new URLSearchParams(location.search);
 
-    $("#step1Btn").click(function (e) { 
+    $("#step1Btn").click(function (e) {
         e.preventDefault();
         $("#step1").hide();
         $("#step2").show();
         $(".progress-bar").width("40%");
     });
 
-    $("#prev1Btn").click(function (e) { 
+    $("#prev1Btn").click(function (e) {
         e.preventDefault();
         $("#step1").show();
         $("#step2").hide();
         $(".progress-bar").width("20%");
     });
 
-    $("#step2Btn").click(function (e) { 
+    $("#step2Btn").click(function (e) {
         e.preventDefault();
         $("#step2").hide();
         $("#step3").show();
         $(".progress-bar").width("70%");
     });
 
-    $("#prev2Btn").click(function (e) { 
+    $("#prev2Btn").click(function (e) {
         e.preventDefault();
         $("#step2").show();
         $("#step3").hide();
         $(".progress-bar").width("30%");
     });
-    $("#step3Btn").click(function (e) { 
+    $("#step3Btn").click(function (e) {
         e.preventDefault();
         $("#step3").hide();
         $("#step4").show();
         $(".progress-bar").width("100%");
     });
-  
-    $("#prev3Btn").click(function (e) { 
+
+    $("#prev3Btn").click(function (e) {
         e.preventDefault();
         $("#step3").show();
         $("#step4").hide();
@@ -53,7 +57,7 @@ $(document).ready(function () {
 
 
     $("#appointForm").submit(function (event) {
-        console.log("okey naman huehue");
+        // console.log("okey naman huehue");
         event.preventDefault();
         if (params1.has('editing')) {
             console.log("sa una");
@@ -77,7 +81,7 @@ $(document).ready(function () {
                 }
             });
         } else {
-            console.log("sa pangalawa");
+            // console.log("sa pangalawa");
             $.ajax({
                 url: "../contactUs/appointmentProcess.php",
                 type: "POST",
@@ -153,7 +157,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                console.log("hehe");
+                console.log(response);
                 $('#projLoc_id').val(response.projLocation);
                 $('#targetDate').val(response.targetDate);
                 $('#cc-name').val(response.lotArea);
@@ -238,5 +242,54 @@ $(document).ready(function () {
     $("#appointmentDate").attr('min', today);
     var today = new Date().toISOString().split('T')[0];
     $("#targetDate").attr('min', today);
+
+
+
+    // function disableDate() {
+    $.ajax({
+        type: "POST",
+        url: "../contactUs/getData.php",
+        data: {
+            checkSched: true
+        },
+        dataType: "json",
+        success: function (response) {
+
+            $.each(response, function (indexInArray, data) {
+                console.log(data);
+                let toString = `${data.date}`;
+
+                dateVar = toString;
+                console.log(dateVar);
+
+                $("#targetDate").change(function (event) {
+                    event.preventDefault();
+                    console.log("pasok");
+                    if ($(this).val() == dateVar) {
+                        alert("This date has been occupied");
+                        $("#targetDate").val('');
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "../contactUs/getData.php",
+                            data: {
+                                checkSched: true
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                // console.log("kahit ano");
+                                // if(disableDate() == response)
+                            }
+                        });
+                    }
+
+                });
+                // }
+            });
+        }
+    });
+    // }
+
+
 
 });

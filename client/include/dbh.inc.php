@@ -290,16 +290,17 @@ class dbHandler
         // unset($_POST['dateChanged']);
     }
 
-    function getFeedback() {
+    function getFeedback()
+    {
         $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.image FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE status = 'active'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
-                    "fullname" => $row['fullname'],                    
-                    "image" => $row['image'],                    
-                    "feedback" => $row['feedback'],                    
+                    "fullname" => $row['fullname'],
+                    "image" => $row['image'],
+                    "feedback" => $row['feedback'],
                 ];
             }
         }
@@ -368,10 +369,27 @@ class dbHandler
         return $message;
     }
 
+
+
     //message end
 
 
+    function checkSched()
+    {
 
+        $sql = "SELECT `targetConsDate` FROM appointment";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $time = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $time[] = (object) [
+                    'date' => $row['targetConsDate']
+                ];
+            }
+            return $time;
+        }
+
+    }
     function __destroy()
     {
         $this->conn->close();
