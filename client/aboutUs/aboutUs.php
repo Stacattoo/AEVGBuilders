@@ -55,7 +55,7 @@ $dbh = new dbHandler;
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
+                
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -99,13 +99,13 @@ $dbh = new dbHandler;
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner" data-bs-interval="1500">
           <div class="carousel-item active">
-            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 352px;">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 352px;">
           </div>
           <div class="carousel-item">
-            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 352px;">
           </div>
         </div>
 

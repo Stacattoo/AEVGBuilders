@@ -8,19 +8,20 @@ $(document).ready(function () {
         data: { getTop5Reaction: true },
         dataType: "JSON",
         success: function (response) {
+            let content = ``;
             $.each(response, function (indexInArray, project) { 
-                let content = `
+                content += `
                     <tr>
+                        <td class="text-center"><img src="../employee/profile/${project.profile_picture}" class="rounded-circle" width="50px" height="50px" alt=""></td>
+                        <td>${project.fullName}</td>
                         <td>${project.ctr}</td>
                         <td>${project.title}</td>
-                        <td>${project.image}</td>
                         <td>${project.category}</td>
-                        <td>${project.description}</td>
-                        <td></td>
+                        <td class="text-center"><button type="button" class="btn btn-dark" data-id="${project.id}" data-bs-toggle="modal" data-bs-target="#viewModal">View</button></td>
                     </tr>
                 `;
-                 $("#popularProject").append(content);
             });
+            $("#popularProject").html(content);
         }, error: function (response) {
             // console.error(response); 4
         }

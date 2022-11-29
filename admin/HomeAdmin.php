@@ -65,7 +65,7 @@ $dbh = new dbHandler();
                             <li>
                                 <a href="#" class="nav-link text-white" id="scheduleNav">
                                     <i class="fad fa-calendar-alt bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Project Activity Log/Status</span>
+                                    <span class="d-none d-lg-inline">Project Status</span>
                                 </a>
                             </li>
                             <li>
