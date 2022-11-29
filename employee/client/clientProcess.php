@@ -16,6 +16,12 @@ if(isset($_POST['getEmployee'])){
 
 if(isset($_POST['employeeID'])){
     echo json_encode((array)$dbh->assignEmployee($_POST['employeeID'], $_POST['clientID']));
+    echo json_encode((array)$dbh->updateAppDetails($_POST['employeeID'], $_POST['clientID']));
+    echo json_encode((array)$dbh->updateMessageDetails($_POST['employeeID'], $_POST['clientID']));
+    echo json_encode(array(
+        "status" => 'success',
+        "msg" => 'Profile Update Successfully.'
+    ));
 }
 
 

@@ -15,7 +15,7 @@ $dbh = new dbHandler;
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  <script src="contactUS.js"></script>
+  <script src="contactUs.js"></script>
 </head>
 
 
@@ -74,20 +74,20 @@ $dbh = new dbHandler;
   </div>
   <main class="container ">
     <div>
-      <!-- Step1 -->
-      <div id="step1">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+      <form id="appointForm">
+        <!-- Step1 -->
+        <div id="step1">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
             </div>
-          </div>
 
-          <div class="card-body mx-auto">
+            <div class="card-body mx-auto">
 
-            <h2 class="mb-3">Set an Appointment</h2>
-            <p class="h6 text-muted">Please check your information.</p>
-            <form id="appointForm">
+              <h2 class="mb-3">Set an Appointment</h2>
+              <p class="h6 text-muted">Please check your information.</p>
 
               <div class="row g-3">
                 <div class="col-sm-6">
@@ -112,27 +112,27 @@ $dbh = new dbHandler;
                   </div>
                 </div>
               </div>
-            </form>
 
-          </div>
-          <div class="d-flex justify-content-end mx-3 my-3 px-3">
-            <button type="button" id="step1Btn" class="btn btn-outline-dark btn-lg ">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Step 2 -->
-      <div id="step2">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-end mx-3 my-3 px-3">
+              <button type="button" id="step1Btn" class="btn btn-outline-dark btn-lg ">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
-            <h2 class="mb-3">Set an Appointment</h2>
-            <form id="appointForm">
+        <!-- Step 2 -->
+        <div id="step2">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <div class="card-body mx-auto">
+              <h2 class="mb-3">Set an Appointment</h2>
+
               <div class="row g-3">
                 <div class="col-sm-6">
                   <h5 class="form-label mb-4">Project Type</h5>
@@ -355,28 +355,28 @@ $dbh = new dbHandler;
                   </div>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="d-flex justify-content-between mx-3 my-3 px-3">
-            <button type="button" id="prev1Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
-            <button type="button" id="step2Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- STEP 3 -->
-      <div id="step3">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-between mx-3 my-3 px-3">
+              <button type="button" id="prev1Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
+              <button type="button" id="step2Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
+        <!-- STEP 3 -->
+        <div id="step3">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
 
-            <h2 class="mb-3">Set an Appointment</h2>
-            <form id="appointForm">
+            <div class="card-body mx-auto">
+
+              <h2 class="mb-3">Set an Appointment</h2>
+
               <div class="row g-3">
                 <div class="col-sm-9">
                   <label for="projLocation" class="form-label">Project Location</label>
@@ -413,26 +413,26 @@ $dbh = new dbHandler;
                 </div>
               </div>
 
-            </form>
-          </div>
-          <div class="d-flex justify-content-between mx-3 my-3 px-3">
-            <button type="button" id="prev2Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
-            <button type="button" id="step3Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- STEP 4 -->
-      <div id="step4">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-between mx-3 my-3 px-3">
+              <button type="button" id="prev2Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
+              <button type="button" id="step3Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
-            <form id="appointForm">
+        <!-- STEP 4 -->
+        <div id="step4">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <div class="card-body mx-auto">
+
               <div class="row g-2">
                 <h4 class="mb-3">Set your Appointment</h4>
                 <div class="col-md">
@@ -472,13 +472,14 @@ $dbh = new dbHandler;
                 <button class="btn btn-primary mt-4" type="submit">Set an Appointment</button>
               </div>
 
-            </form>
-          </div>
-          <div class="d-flex justify-content-start mx-3 my-3 px-3">
-            <button type="button" id="prev3Btn" class="btn btn-outline-dark btn-lg "><i class="fas fa-chevron-left"></i> Back</button>
+
+            </div>
+            <div class="d-flex justify-content-start mx-3 my-3 px-3">
+              <button type="button" id="prev3Btn" class="btn btn-outline-dark btn-lg "><i class="fas fa-chevron-left"></i> Back</button>
+            </div>
           </div>
         </div>
-        </div>
+      </form>
     </div>
 
     <!-- <input class="form-control mx-4" type="text" name="businessTypeName" id="flexCheckChecked7"> -->
@@ -497,7 +498,7 @@ $dbh = new dbHandler;
 
       </footer>
     </div>
-
+  </main>
 
 </body>
 

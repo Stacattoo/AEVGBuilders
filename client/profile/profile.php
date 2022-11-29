@@ -98,7 +98,7 @@ $dbh = new dbHandler;
                         <!-- IF there is an appointment -->
                         <h2>Appointment Schedule</h2>
                         <p>The client wants to set an appointment. </p>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button>
+                        <button class="btn btn-outline-secondary" id="viewModBtn" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button>
                         <button class="btn btn-danger" type="button" id="cancelBtnModal" name="cancelBtn" data-bs-toggle="modal" href="#exampleModal2">Cancel Appointment</button>
                     </div>
                     <div id="schedAppProfile">
@@ -108,6 +108,12 @@ $dbh = new dbHandler;
                         <p class="lead mb-0"><a type="button" class="btn btn-warning" href="../contactUs/contactUs.php">
                                 Schedule an Appointment.
                             </a></p>
+                    </div>
+                    <div id="haveASchedule">
+                        <!-- if there is no appointment -->
+                        <h2>You already have an appointment!</h2>
+                        <p>Kindly check your messages, and view your submitted appointment information.</p>
+                        <!-- <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button> -->
                     </div>
                 </div>
             </div>
@@ -120,7 +126,6 @@ $dbh = new dbHandler;
             <div class="modal-content rounded-3 shadow">
                 <div class="modal-body p-4 text-center">
                     <h5 class="mb-0 py-4"> Are you sure you want to cancel?</h5>
-
                 </div>
 
                 <div class="modal-footer flex-nowrap p-0">
@@ -227,6 +232,7 @@ $dbh = new dbHandler;
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <!-- <button type="button" class="btn btn-success" id="viewBtnSched" data-id="">View Appointment Details</button> -->
                     <button type="button" class="btn btn-success" id="editBtnSched" data-id="">Edit Appointment Details</button>
                 </div>
             </div>

@@ -212,6 +212,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         console.log(displayDetails());
         displayDetails();
+        
         $.ajax({
             type: "POST",
             url: "../client/clientProcess.php",
@@ -261,7 +262,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    $('#chooseModal').modal("hide");
+                    if(response.status == 'success'){
+                        displayApproveClient();
+                        $('#chooseModal').modal("hide");
+                    }
                     
                 }
             });

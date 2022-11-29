@@ -354,9 +354,23 @@ class dbHandler
     function assignEmployee($employeeID, $clientID)
     {
         $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
-        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID AND employee_id=$employeeID";
+        // $sql = "INSERT INTO `message`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','delivered')";
         return mysqli_query($this->conn, $query);
+        // return mysqli_query($this->conn, $sql);
+        
+
+    }
+    function updateAppDetails($employeeID, $clientID)
+    {
+        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
         return mysqli_query($this->conn, $sql);
+
+    }
+
+    function updateMessageDetails($employeeID, $clientID)
+    {
+        $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
+        return mysqli_query($this->conn, $query);
 
     }
 
@@ -397,7 +411,7 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             $msg = array();
             if ($row = mysqli_fetch_assoc($result)) {
-                // $msg = json_decode($row["files"]);
+                $msg = json_decode($row["files"]);
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
                 $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
@@ -415,20 +429,63 @@ class dbHandler
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {
+            // $filesobj = '';
             while ($row = mysqli_fetch_assoc($result)) {
-                $filesobj = json_decode($row['files']);
-                $filesobj = json_encode($filesobj);
-                // $filesobj = explode(",", $filesobj);
-                // $filesobj = '';
+                $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
                 $message[] = (object) [
                     'id' => $row['employee_id'],
-                    'content' => json_decode($row['content']),
-                    'files' => explode(",", $filesobj),
+                    'content' => $arrayObj,
                     'date' => $row['dateTime'],
                     'status' => $row['status']
                 ];
             }
         }
         return $message;
+    }
+
+    function getAllInfoById($id){
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+            CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
+            FROM employee WHERE id=$id";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"];
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $res = mysqli_query($this->conn, $sql);
+                $client = array();
+                if (mysqli_num_rows($res)) {
+                    while ($row_client = mysqli_fetch_assoc($res)) {
+                        $client[] = (object)[
+                            'id' => $row_client["id"],
+                            'name' => $row_client["fullname"],
+                            'email' => $row_client["email"],
+                            'contact_no' => $row_client["contact_no"],
+                            'status' => $row_client["status"],
+                        ];
+                    }
+                }
+                return (object)[
+                    'id' => $id,
+                    'firstName' => $row['firstName'],
+                    'lastName' => $row['lastName'],
+                    'middleName' => $row['middleName'],
+                    'fullName' => $row['fullname'],
+                    'username' => $row['username'],
+                    'contactNo' => $row['contactNo'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address'],
+                    'houseNo' => $row['houseNo'],
+                    'street' => $row['street'],
+                    'barangay' => $row['barangay'],
+                    'municipality' => $row['municipality'],
+                    'province' => $row['province'],
+                    'attempt' => $row['attempt'],
+                    'status' => $row['status'],
+                    'clients' => $client
+                ];
+            }
+        }
     }
 }

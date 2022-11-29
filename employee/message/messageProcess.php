@@ -25,8 +25,6 @@ if (isset($_FILES['filesEmployee']['name']) && $_FILES['filesEmployee']['name'] 
     }
 
     $trimmed_array = trim($paths, ",");
-
-
     // var_dump($trimmed_array);
     $clientID = $_POST['clientID'];
     $date = date('Y-m-d H:i:s');
@@ -48,19 +46,23 @@ if (isset($_FILES['filesEmployee']['name']) && $_FILES['filesEmployee']['name'] 
     $jsonFiles = json_encode($jsonFiles);
     $jsonContent = json_encode($jsonContent);
 
-    if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
-        echo json_encode(array(
-            "status" => 'success',
-            "msg" => 'Profile Update Successfully.'
-        ));
-    }
-    // var_dump($jsonFiles);
-    if ($dbh->insertEmployeeFiles($jsonFiles, $clientID, $_SESSION['id'])) {
-        echo json_encode(array(
-            "status" => 'success',
-            "msg" => 'Profile Update Successfully.'
-        ));
-    }
+    // if ($jsonContent == true) {
+        if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
+            echo json_encode(array(
+                "status" => 'success',
+                "msg" => 'Profile Update Successfully.'
+            ));
+        }
+    // } 
+    // if ($jsonFiles == true) {
+            if ($dbh->insertEmployeeFiles($jsonFiles, $clientID, $_SESSION['id'])) {
+                echo json_encode(array(
+                    "status" => 'success',
+                    "msg" => 'Profile Update Successfully.'
+                ));
+            }
+        // }
+    
 }
 
 if (isset($_POST['getMessage'])) {
