@@ -498,7 +498,7 @@ class dbHandler
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
                     "client_id" => $row['client_id'],
-                    "date_time" => $row['date_time'],
+                    "date_time" => $row['date_time']
                     
                 ];
             }

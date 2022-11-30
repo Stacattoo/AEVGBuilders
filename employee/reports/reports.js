@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     // console.log("alert");
     var userid = $(this).data("id");
     $.ajax({
@@ -12,7 +13,7 @@ $(document).ready(function () {
             $.each(dataResult.clients, function (indexInArray, c) {
                 console.log(c.id);
                 content += `
-                        <tr id="clientid" data-bs-toggle="modal" href="#activitiesModal" data-id="${c.id}">
+                        <tr id="clientid" class="clientReport" data-bs-toggle="modal" href="#activitiesModal" data-id="${c.id}">
                             <td id="reportclientid">${c.id}</td>
                             <td>${c.name}</td>
                             <td>${c.email}</td>
@@ -24,13 +25,13 @@ $(document).ready(function () {
             $("#handledClientContent").html(content);
 
             
-            $('#clientid').click(function () {
+            $('.clientReport').click(function () {
                 // pag ciniclick si table, nailaw.
                 // $(this).find('tr id:clientid').prop('checked', true);
                 // $('.tr').removeClass("table-primary");
                 // $(this).addClass("table-primary");
-                var id = $('#clientid').attr('data-id');
-                console.log($(this).attr("data-id"));
+                var id = $(this).data("id");
+                console.log(id);
                 $.ajax({
                     type: "POST",
                     url: "../reports/reportProcess.php",

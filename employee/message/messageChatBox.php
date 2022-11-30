@@ -60,7 +60,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        // setInterval(displayMessage, 1000);
+        setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
