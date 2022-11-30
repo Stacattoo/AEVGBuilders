@@ -7,6 +7,6 @@ if (isset($_POST['getHandledClients'])) {
 }
 
 if(isset($_POST['getActivities'])){
-    //
+    echo json_encode((array)$dbh->activities($_POST['clientId']));
 }
 ?>

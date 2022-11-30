@@ -487,4 +487,24 @@ class dbHandler
             }
         }
     }
+
+    function activities($id){
+        $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
+        ON client.id = activity_log.client_id AND client.registration_date = activity_log.date_time 
+        WHERE client.id = $id";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "client_id" => $row['client_id'],
+                    "date_time" => $row['date_time'],
+                    
+                ];
+            }
+        }
+        return $data;
+    }
+
+    // INSERT INTO activity_log (status_message) VALUES ("Registration Date: ")
 }

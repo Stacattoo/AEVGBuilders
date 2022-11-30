@@ -1,4 +1,4 @@
-<!-- <script src="../reports/reports.js"></script> -->
+<script src="../reports/reports.js"></script>
 <h5>List of Handled Clients</h5>
 <table class="table table-bordered table-striped" id="handledClientTable">
     <thead>
@@ -28,12 +28,13 @@
                 <table id="table" class="table table-sm table-hover">
                     <thead>
                         <tr id="first-tr">
+                            <th>ID</th>
                             <th>ACTIVITY</th>
                             <th>DATE AND TIME</th>
                         </tr>
                     </thead>
                     <tbody id="activities">
-
+                        
                     </tbody>
                 </table>
             </div>
@@ -44,7 +45,34 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "../reports/reportProcess.php",
+            data: {getActivities: true},
+            dataType: "JSON",
+            success: function (activities) {
+                console.log("pasok ba");
+                var content = ``;
+                $.each(activities, function (indexInArray, act) { 
+                    console.log(act);
+                    content += `
+                        <tr id="actrow" >
+                            <td>${act.client_id}</td>
+                            <td>Registration date: </td>
+                            <td>${act.date_time}</td>
+                        </tr>
+                    `;
+                });
+                $("#activities").html(content);
+            }, error: function(error){
+                //
+            }
+        });
+    });
+</script> -->
+<!-- <script>
     $(document).ready(function() {
         // console.log("alert");
         var userid = $(this).data("id");
@@ -74,7 +102,7 @@
                 //function pag ciniclick si table, nailaw.
                 $('#table tr').click(function() {
 
-                    $(this).find('td input:radio').prop('checked', true);
+                    $(this).find('tr value:${c.id}').prop('checked', true); //aaaaarrgggghhhh
                     $('#table tr').removeClass("table-primary");
                     $(this).addClass("table-primary");
                 })
@@ -82,4 +110,4 @@
         });
 
     });
-</script>
+</script> -->
