@@ -141,9 +141,18 @@ class dbHandler
         $query = "INSERT INTO client(firstName, middleName, lastName, password, email, contact_no, house_no, street, barangay, municipality, province) 
         VALUES ('$info->firstName' ,'$info->middleName', '$info->lastName',
         '$info->password', '$info->email', '$info->contact', '$info->houseNo', '$info->street', '$info->barangay', '$info->municipality', '$info->province')";
-        //$this->addActivities($info->firstName + ' ' + $info->lastName, "Account", "Creat an account with student number $info->username");
+        $result = mysqli_query($this->conn, $query);
+        if($result){
+            $last_id = $this->conn->insert_id;
+            $this->insertActivity($last_id, "Registration Date ");
+        }
+    }
+
+    function insertActivity($clientId, $statusMessage){
+        $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
         return mysqli_query($this->conn, $query);
     }
+    
 
     function getFullname($id)
     {
@@ -292,7 +301,7 @@ class dbHandler
 
     function getFeedback()
     {
-        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.image FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE status = 'active'";
+        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.image FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE feedback_status = 'approved'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {

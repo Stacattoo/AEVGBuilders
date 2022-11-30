@@ -18,6 +18,25 @@ $(document).ready(function () {
 
         }
     });
+
+    $("#schedBtn").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "../aboutUs/aboutUsProcess.php",
+            data: { checkLogin: true },
+            // dataType: "",
+            success: function (response) {
+                console.log(response);
+                if (response == "banana") {
+                    $("#loginPrompt").modal("show")
+
+                } else if (response == "hanna") {
+                    window.location.href = "../contactUs/contactUs.php";
+                } 
+            }
+        });
+    });
     //     });
 
     // $("#date").change(function (event) {

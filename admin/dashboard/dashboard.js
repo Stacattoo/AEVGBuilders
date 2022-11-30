@@ -9,7 +9,7 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (response) {
             let content = ``;
-            $.each(response, function (indexInArray, project) { 
+            $.each(response, function (indexInArray, project) {
                 content += `
                     <tr>
                         <td class="text-center"><img src="../employee/profile/${project.profile_picture}" class="rounded-circle" width="50px" height="50px" alt=""></td>
@@ -28,15 +28,17 @@ $(document).ready(function () {
     });
 
     // CLIENTS FEEDBACK
-    $.ajax({
-        type: "POST",
-        url: "dashboard/dashboardProcess.php",
-        data: { getClientsFeedback: true },
-        dataType: "JSON",
-        success: function (response) {
-            let content = ``;
-            $.each(response, function (indexInArray, feedback) { 
-                content += `
+    displayFeedback();
+    function displayFeedback() {
+        $.ajax({
+            type: "POST",
+            url: "dashboard/dashboardProcess.php",
+            data: { getClientsFeedback: true },
+            dataType: "JSON",
+            success: function (response) {
+                let content = ``;
+                $.each(response, function (indexInArray, feedback) {
+                    content += `
                     <tr>
                         <td>${feedback.id}</td>
                         <td>${feedback.fullname}</td>
@@ -44,15 +46,34 @@ $(document).ready(function () {
                         <td>${feedback.contact_no}</td>
                         <td>${feedback.feedback}</td>
                         <td>${feedback.date}</td>
-                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${feedback.id}">Post</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="remove">Remove</button>
+                        </td>
                     </tr>
                 `;
-            });
-            $("#feedbackContent").html(content);
-        }, error: function (response) {
-            // console.error(response); 3
-        }
-    });
+
+                });
+                $("#feedbackContent").html(content);
+
+                $(".post-feedback").click(function (e) {
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: { changeClientsFeedback: true, feedbackId: id },
+                        dataType: "JSON",
+                        success: function (response) {
+                            displayFeedback();
+                        }
+                    });
+                });
+            }, error: function (response) {
+                console.error(response); 
+            }
+        });
+    }
 
     // PROJECT COUNT
     $.ajax({
@@ -63,7 +84,7 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response);
             $("#totalProjects").html(response.length);
-        }, error: function(error){
+        }, error: function (error) {
             console.log(error);
         }
     });
@@ -77,7 +98,7 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response);
             $("#totalRegisteredUser").html(response.length);
-        }, error: function(error){
+        }, error: function (error) {
             console.log(error);
         }
     });
@@ -91,12 +112,12 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response);
             $("#totalEmployees").html(response.length);
-        }, error: function(error){
+        }, error: function (error) {
             console.log(error);
         }
     });
 
-    
+
 
 
     function displayTotalNumOfClients(year) {

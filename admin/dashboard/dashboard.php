@@ -170,18 +170,6 @@ $dbh = new dbHandler;
                             </tr>
                         </thead>
                         <tbody id="feedbackContent">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-success post-feedback" data-id="">Post</button>
-                                    <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="">Remove</button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

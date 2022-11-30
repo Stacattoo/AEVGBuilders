@@ -40,7 +40,7 @@ $(document).ready(function () {
                     },
                     dataType: "JSON",
                     success: function (activities) {
-                        console.log("pasok ba");
+                        console.log(activities);
                         var content = ``;
                         $.each(activities, function (indexInArray, act) { 
                             console.log(act);
@@ -52,6 +52,7 @@ $(document).ready(function () {
                                 </tr>
                             `;
                         });
+                        console.log(content);
                         $("#activities").html(content);
                     }, error: function(error){
                         //

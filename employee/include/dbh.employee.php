@@ -490,8 +490,7 @@ class dbHandler
 
     function activities($id){
         $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
-        ON client.id = activity_log.client_id AND client.registration_date = activity_log.date_time 
-        WHERE client.id = $id";
+        ON client.id = activity_log.client_id WHERE client.id = $id";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {

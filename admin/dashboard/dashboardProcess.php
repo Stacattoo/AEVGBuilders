@@ -13,3 +13,11 @@ if (isset($_POST['getClients'])) {
 } elseif (isset($_POST['getEmployees'])) {
     echo json_encode((array) $dbh->getAllUserData());
 }
+
+if (isset($_POST['getClientsFeedback'])){
+    echo json_encode((array) $dbh->getFeedback());
+}
+
+if (isset($_POST['changeClientsFeedback'])){
+    echo json_encode((array) $dbh->approveFeedback($_POST['feedbackId']));
+}

@@ -419,12 +419,13 @@ class dbHandler
 
     function getFeedback()
     {
-        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.email, client.contact_no FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE status = 'active'";
+        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.email, client.contact_no FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE feedback_status = 'pending'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
+                    "id" => $row['id'],
                     "fullname" => $row['fullname'],
                     "email" => $row['email'],
                     "contact_no" => $row['contact_no'],
@@ -435,6 +436,11 @@ class dbHandler
             }
         }
         return $data;
+    }
+
+    function approveFeedback($id){
+        $query = "UPDATE feedback SET feedback_status='approved' where id='$id'";
+        return mysqli_query($this->conn, $query);
     }
 
     function countAllProjects()
