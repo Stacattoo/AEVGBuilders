@@ -11,7 +11,7 @@ $(document).ready(function () {
             $.each(dataResult.clients, function (indexInArray, c) {
                 console.log(c);
                 content += `
-                <tr>
+                <tr id="clientid" value="${c.id}">
             <td>${c.id}</td>
             <td>${c.name}</td>
             <td>${c.email}</td>
@@ -21,6 +21,15 @@ $(document).ready(function () {
                 `;
             });
             $("#handledClientContent").html(content);
+
+            //function pag ciniclick si table, nailaw.
+            $('.tr').click(function() {
+
+                $(this).find('tr id:clientid').prop('checked', true);
+                $('.tr').removeClass("table-primary");
+                $(this).addClass("table-primary");
+            })
         }
     });
+
 });
