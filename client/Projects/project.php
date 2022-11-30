@@ -31,7 +31,7 @@ $dbh = new dbHandler;
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
 				<li><a href="../projects/project.php" class="nav-link px-2 link-secondary">Projects</a></li>
 				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-				<?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
+				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
                 <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
                 <?php }  ?>
 			</ul>

@@ -25,16 +25,10 @@ if (isset($_FILES['filesEmployee']['name']) && $_FILES['filesEmployee']['name'] 
     }
 
     $trimmed_array = trim($paths, ",");
-    // var_dump($trimmed_array);
+
     $clientID = $_POST['clientID'];
     $date = date('Y-m-d H:i:s');
-    $jsonContent = array(
-        (object)[
-            "content" => $_POST['employeeMessage'],
-            "dateTime" => $date,
-            "sender" => "employee"
-        ]
-    );
+   
     $jsonFiles = array(
         (object)[
             "content" => $trimmed_array,
@@ -44,25 +38,34 @@ if (isset($_FILES['filesEmployee']['name']) && $_FILES['filesEmployee']['name'] 
     );
 
     $jsonFiles = json_encode($jsonFiles);
-    $jsonContent = json_encode($jsonContent);
-
-    // if ($jsonContent == true) {
-        if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
-            echo json_encode(array(
-                "status" => 'success',
-                "msg" => 'Profile Update Successfully.'
-            ));
-        }
-    // } 
-    // if ($jsonFiles == true) {
-            if ($dbh->insertEmployeeFiles($jsonFiles, $clientID, $_SESSION['id'])) {
-                echo json_encode(array(
-                    "status" => 'success',
-                    "msg" => 'Profile Update Successfully.'
-                ));
-            }
-        // }
     
+    if ($dbh->insertEmployeeFiles($jsonFiles, $clientID, $_SESSION['id'])) {
+        echo json_encode(array(
+            "status" => 'success',
+            "msg" => 'Profile Update Successfully.'
+        ));
+    }
+
+
+}
+if(isset($_POST['employeeMessage'])){
+
+    $clientID = $_POST['clientID'];
+    $date = date('Y-m-d H:i:s');
+    $jsonContent = array(
+        (object)[
+            "content" => $_POST['employeeMessage'],
+            "dateTime" => $date,
+            "sender" => "employee"
+        ]
+    );
+    $jsonContent = json_encode($jsonContent);
+    if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
+        echo json_encode(array(
+            "status" => 'success',
+            "msg" => 'Profile Update Successfully.'
+        ));
+    }
 }
 
 if (isset($_POST['getMessage'])) {

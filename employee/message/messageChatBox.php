@@ -56,14 +56,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 </div>
 <script>
     $(document).ready(function() {
-        // var mesScrollBar = document.getElementById("scrollBar");
-        // mesScrollBar.scrollBottom = mesScrollBar.scrollHeight;
+
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        setInterval(displayMessage, 1000);
+        // setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
-            
+
             e.preventDefault();
             $.ajax({
                 type: "POST",
@@ -81,8 +80,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     if (response.status == 'success') {
                         displayMessage();
                     }
-                }
-                ,
+                },
                 error: function(response) {
                     console.error(response.responseText);
                 }
@@ -92,10 +90,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         $('#filesEmployee').change(function(e) {
             e.preventDefault();
-            console.log("hehe");
             var $fileUpload = $("input[name='filesEmployee']");
             if (parseInt($fileUpload.get(0).files.length) > 5) {
-                // alert("You can only upload a maximum of 5 files");
+
                 $('#errorFiles').show();
                 $('#filesEmployee').trigger("reset");
             } else {
@@ -105,7 +102,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         function displayMessage() {
             var id = $('#clientID').val();
-            // console.log(id);
+
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
@@ -115,64 +112,61 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    // $('#contentID').trigger("reset");
+
                     var content = ``;
-                    // console.log(response.content);
+                    console.log(response);
                     $.each(response.content, function(indexInArray, val) {
                         response.content.sort(function(a, b) {
-                            return  new Date(a.dateTime) - new Date(b.dateTime);
+                            return new Date(a.dateTime) - new Date(b.dateTime);
                         });
-                        // var dateSort = response.content;
-                    //     console.log(response.content);
+
                         var isEmployee = false;
                         if (val.sender == "employee") {
                             isEmployee = true;
                         }
+                        var contentMsgDisplay = '';
+                        var imgArr = val.content.split(',');
+                        for (let i in imgArr) {
+                            contentMsgDisplay = imgArr[i];
+                            // console.log(contentMsgDisplay);
 
-                        content += `
-                        <div class="mb-3 px-4 ">
-                            <small>${val.sender}</small>
-                            <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">${val.content}</div>
-                            <small>${val.dateTime}</small>
-                        </div>
-                    `;
+                            var dotIndex = contentMsgDisplay.lastIndexOf('.');
+                            var ext = contentMsgDisplay.substring(dotIndex);
+                            console.log(ext);
+
+                            if (contentMsgDisplay != ext) {
+                                // console.log(contentMsgDisplay);
+                                content += `
+                                <div class="mb-3 px-4 ">
+                                    <small>${val.sender}</small>
+        
+                                    <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4" >
+                                    <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
+                                    </div>
+                                    <small>${val.dateTime}</small>
+                                </div>`;
+                            } else {
+                                // console.log("hinde image");
+                                content += `
+                            <div class="mb-3 px-4 ">
+                                <small>${val.sender}</small>
+    
+                                <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4" >${contentMsgDisplay}</div>
+                                <small>${val.dateTime}</small>
+                            </div>
+                        `;
+                            }
+                        }
+
+                        // <img src="../projects/${data}" class="d-block img-fluid img">
 
                     });
-                    // $.each(response.files, function(indexInArray, data) {
-                    //     console.log(response.files);
-                    //     var isEmployee = false;
-                    //     if (data.sender == "employee") {
-                    //         isEmployee = true;
-                    //     }
-
-                        // var str = data.replace(/\\/g, '');
-                        // console.log(str);
-                        // var filesContent = data.content;
-                        // $.each(filesContent, function(indexInArray, valFiles) {
-                        //     // var str = data.replace(/\\/g, '');
-                        //     filesContent = valFiles;
-                        // })[0];
-                        //     console.log(filesContent);
-                        //     content += `
-                        //     <div class="mb-3 px-4 ">
-                        //         <small>${data.sender}</small>
-                        //         <div class="${(isEmployee) ? "text-bg-primary":"text-bg-secondary"} p-2 rounded-4">
-                        //         <div class="card d-flex">
-                        //         <div class="p-2"><img src="${filesContent}" class="d-block img-fluid img"></div>
-                        //         </div>
-                        //         <small>${data.dateTime}</small>
-                        //     </div>
-                        // `;
-                    // });
-                    // $('#contentID').trigger("reset");
-                    // $('#messageBubble').show();
                     $("#messageRetrieve").html(content);
 
+                },
+                error: function(response) {
+                    console.error(response);
                 }
-                // ,
-                // error: function(response) {
-                //     console.error(response);
-                // }
             });
         }
     });

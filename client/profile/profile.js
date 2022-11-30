@@ -33,13 +33,6 @@ $(document).ready(function () {
                         isClient = true;
                     }
 
-                //     mesContent += `
-                //     <div class="mb-3">
-                //         <small>${val.sender}</small>
-                //         <div class="${(isClient) ? "text-bg-primary" : "text-bg-secondary"} p-2 rounded-4">${val.content}</div>
-                //         <small>${val.dateTime}</small>
-                //     </div>
-                // `;
                 if(isClient){
                     mesContent +=  `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                     <div class="pe-2">

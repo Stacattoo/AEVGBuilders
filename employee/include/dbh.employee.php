@@ -315,7 +315,8 @@ class dbHandler
     }
 
 
-    function getClientScheduleDetails($id){
+    function getClientScheduleDetails($id)
+    {
 
         $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
@@ -348,7 +349,6 @@ class dbHandler
             }
         }
         return $sched;
-
     }
 
     function assignEmployee($employeeID, $clientID)
@@ -357,21 +357,19 @@ class dbHandler
         // $sql = "INSERT INTO `message`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','delivered')";
         return mysqli_query($this->conn, $query);
         // return mysqli_query($this->conn, $sql);
-        
+
 
     }
     function updateAppDetails($employeeID, $clientID)
     {
         $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
         return mysqli_query($this->conn, $sql);
-
     }
 
     function updateMessageDetails($employeeID, $clientID)
     {
         $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
         return mysqli_query($this->conn, $query);
-
     }
 
 
@@ -423,7 +421,7 @@ class dbHandler
 
     // ../../clientEmployeeFiles/0b7b018678e29c0c27f6a6aa967f3544.jpg,../../clientEmployeeFiles/0e9625a1104c9fd8f79929dcd698d35a.jpg
     function getContent($client_id, $id)
-    
+
     {
         $sql = "SELECT * FROM message WHERE employee_id='$id' AND client_id='$client_id'";
         $result = mysqli_query($this->conn, $sql);
@@ -443,7 +441,8 @@ class dbHandler
         return $message;
     }
 
-    function getAllInfoById($id){
+    function getAllInfoById($id)
+    {
         $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
             CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
             FROM employee WHERE id=$id";
