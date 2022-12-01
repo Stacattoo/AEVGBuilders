@@ -1,6 +1,7 @@
 function displayApproveClient(searchQuery = '') {
 	$(document).ready(function () {
-		$("#records").html("");
+		// $("#records").html("");
+		
 		$.ajax({
 			type: "POST",
 			url: "../client/clientProcess.php",
@@ -55,7 +56,7 @@ function displayApproveClient(searchQuery = '') {
 }
 function displayPendingClient(searchQuery = '') {
 	$(document).ready(function () {
-		$("#records").html("");
+		// $("#records").html("");
 		$.ajax({
 			type: "POST",
 			url: "../client/clientProcess.php",

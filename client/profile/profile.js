@@ -73,76 +73,76 @@ $(document).ready(function () {
             }
         });
     }
-    var messageContent =
-        `<div class="">
-        <div class="card mx-auto" style="width:400px">
-            <div class="card-header bg-transparent">
-                <div class="navbar navbar-expand p-0">
-                    <ul class="navbar-nav me-auto align-items-center">
+    // var messageContent =
+    //     `<div class="">
+    //     <div class="card mx-auto" style="width:400px">
+    //         <div class="card-header bg-transparent">
+    //             <div class="navbar navbar-expand p-0">
+    //                 <ul class="navbar-nav me-auto align-items-center">
                      
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
+    //                     <li class="nav-item">
+    //                         <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
+    //                     </li>
+    //                 </ul>
+    //                 <ul class="navbar-nav ms-auto">
                     
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                            <i class="far fa-window-minimize"></i>  
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-body p-4" id="mesBody" style="height: 480px; overflow: auto;">
+    //                     <li class="nav-item">
+    //                         <a href="#!" class="nav-link">
+    //                         <i class="far fa-window-minimize"></i>  
+    //                         </a>
+    //                     </li>
+    //                     <li class="nav-item">
+    //                         <a href="#!" class="nav-link">
+    //                             <i class="fas fa-times"></i>
+    //                         </a>
+    //                     </li>
+    //                 </ul>
+    //             </div>
+    //         </div>
+    //         <div class="card-body p-4" id="mesBody" style="height: 480px; overflow: auto;">
 
-                <div class="d-flex align-items-baseline mb-4">
-                    <div class="position-relative avatar">
-                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                    </div>
-                    <div class="pe-2">
-                        <div>
-                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+    //             <div class="d-flex align-items-baseline mb-4">
+    //                 <div class="position-relative avatar">
+    //                     <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+    //                 </div>
+    //                 <div class="pe-2">
+    //                     <div>
+    //                         <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
 
-                            </div>
-                        </div>
+    //                         </div>
+    //                     </div>
 
-                    </div>
-                </div>
+    //                 </div>
+    //             </div>
 
-                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                    <div class="pe-2">
-                        <div>
-                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
-                        </div>
-                    </div>
-                    <div class="position-relative avatar">
-                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                    </div>
-                </div> 
-            </div>
+    //             <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+    //                 <div class="pe-2">
+    //                     <div>
+    //                         <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
+    //                     </div>
+    //                 </div>
+    //                 <div class="position-relative avatar">
+    //                     <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+    //                 </div>
+    //             </div> 
+    //         </div>
             
-            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
-                <div class="d-flex justify-content-between">
-                    <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
+    //         <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+    //             <div class="d-flex justify-content-between">
+    //                 <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
                   
-                        <button class="btn btn-light text-secondary">
-                            <i class="fas fa-paperclip text-primary"></i>
-                        </button>
-                        <button class="btn btn-light text-secondary">
-                            <i class="far fa-paper-plane text-primary"></i>
-                        </button>
+    //                     <button class="btn btn-light text-secondary">
+    //                         <i class="fas fa-paperclip text-primary"></i>
+    //                     </button>
+    //                     <button class="btn btn-light text-secondary">
+    //                         <i class="far fa-paper-plane text-primary"></i>
+    //                     </button>
                      
                     
-                </div>
-            </div>
-        </div>
-    </div>`;
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div>`;
 
     // $("#fb").click(function (e) { 
     //     e.preventDefault();

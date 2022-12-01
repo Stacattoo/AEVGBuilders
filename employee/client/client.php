@@ -19,7 +19,12 @@
             <div id="list" class="list-group"></div>
             <div id="pending" class="list-group"></div>
         </div>
-        <div id="records" class="col"></div>
+        <div id="records" class="col">
+            <div class="bg-dark mb-2" style="height: 250px;"></div>
+            <div class="bg-dark mb-2" style="height: 250px;"></div>
+            <div class="bg-dark mb-2" style="height: 250px;"></div>
+            
+        </div>
     </div>
 
 </div>
@@ -30,8 +35,8 @@
         $("#pending").hide();
         displayApproveClient();
         displayPendingClient();
-        
-       
+
+
         $("#listBtn").click(function() {
             $(this).addClass("active");
             $("#pendingBtn").removeClass("active");

@@ -4,6 +4,7 @@ $(document).ready(function () {
     displayMessage();
     setInterval(displayMessage, 1000);
     $('#messageForm').submit(function (e) {
+        console.log("okay naman");
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -34,7 +35,9 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "../message/messageProcess.php",
-            data: { getMessage: true },
+            data: { getMessage: true 
+            
+            },
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");

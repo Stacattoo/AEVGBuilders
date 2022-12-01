@@ -9,11 +9,17 @@
     <div class="row g-2 ">
         <div class="col-4 ">
             <input type="search" name="search" id="search" class="form-control mb-2 " placeholder="Search">
-            <div id="list" class="list-group "></div>
-        </div>
-        <div id="records" class="col "></div>
-    </div>
+            <div id="list" class="list-group ">
 
+            </div>
+        </div>
+        <div id="records" class="col ">
+            <div class="bg-dark mb-2" style="height: 60px;"></div>
+            <div class="bg-warning mb-2" style="height: 50px;"></div>
+            <div class="bg-secondary mb-2" style="height:40px"></div>
+            
+        </div>
+    </div>
 </div>
 
 <script>

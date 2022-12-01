@@ -18,7 +18,12 @@ $dbh = new dbHandler;
             </ul>
             <div id="list" class="list-group"></div>
         </div>
-        <div id="records" class="col"></div>
+        <div id="records" class="col">
+        <div class="bg-dark mb-2" style="height: 250px;"></div>
+            <div class="bg-dark mb-2" style="height: 250px;"></div>
+            <div class="bg-dark mb-2" style="height: 250px;"></div>
+            
+        </div>
     </div>
 
 </div>

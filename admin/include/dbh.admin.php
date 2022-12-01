@@ -297,6 +297,11 @@ class dbHandler
             return $blocked;
         }
     }
+    function deleteProject($id)
+    {
+        $sql = "DELETE FROM `projects` WHERE `id`=$id";
+        return mysqli_query($this->conn, $sql);
+    }
 
     function getTop5Reaction()
     {
@@ -312,7 +317,7 @@ class dbHandler
                     "fullName" => $row['firstName'] . " " . $row['lastName'],
                     "profile_picture" => $row['profile_picture'],
                     "title" => $row['title'],
-                    "image" => $row['image'],
+                    "image" => explode(",", $row["image"]),
                     "category" => $row['category'],
                     "description" => $row['description'],
                     "status" => $row['status'],

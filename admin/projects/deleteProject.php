@@ -1,5 +1,5 @@
 <?php
-include('../include/dbh.employee.php');
+include('../include/dbh.admin.php');
 $dbh = new dbHandler();
 
 if (isset($_POST['deleteProjects_req'])) {

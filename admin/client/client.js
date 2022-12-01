@@ -1,7 +1,8 @@
 
 function displayUsers(searchQuery='') {
 	$(document).ready(function () {
-		$("#records").html("");
+		// $("#records").html("");
+		
 		$.ajax({
 			type: "POST",
 			url: "client/clientProcess.php",

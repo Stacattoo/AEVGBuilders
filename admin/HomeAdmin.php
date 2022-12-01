@@ -15,12 +15,6 @@ $dbh = new dbHandler();
     <link rel="stylesheet" href="include/style.css">
     <link rel="stylesheet" href="admin.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-    <script src="moment.js"></script>
-    <script src="admin.js"></script>
 
 </head>
 
@@ -82,6 +76,7 @@ $dbh = new dbHandler();
                             </li>
                         </ul>
 
+                    
                         <medium id="timeNow"></medium>
                         <hr>
                         <div class="dropdown">
@@ -238,6 +233,13 @@ $dbh = new dbHandler();
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="moment.js"></script>
+    <script src="admin.js"></script>
 </body>
 
 </html>

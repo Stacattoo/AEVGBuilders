@@ -80,7 +80,7 @@ $(document).ready(function () {
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
                                 <small class="text-muted">${data.category}</small>
                                 </div>
-                                <p class="card-text">${data.description}</p>
+                                <p class="card-text text-truncate">${data.description}</p>
                             </div>
                         </div>
                     </div>    
@@ -196,7 +196,7 @@ $(document).ready(function () {
         console.log(deleteId);
         $.ajax({
             type: "post",
-            url: "../projects/deleteProject.php",
+            url: "projects/deleteProject.php",
             data: {
                 deleteProjects_req: true,
                 id: deleteId

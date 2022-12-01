@@ -8,11 +8,11 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 <div class="card mb-2">
-    <div class="card-body">
+    <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
             <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
                 </button>
                 <ul class="dropdown-menu">
@@ -22,13 +22,13 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
             </div>
         </div>
         <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
-        <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
+        <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
         <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
     </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body"  style="background-color:#f8f9fa;">
         <h5>List of Handled Clients</h5>
         <table class="table table-bordered table-striped" id="handledClientTable">
             <thead>

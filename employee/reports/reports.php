@@ -11,103 +11,12 @@
         </tr>
     </thead>
     <tbody id="handledClientContent">
-
+        <!-- <tr>
+            <td>$client->id</td>
+            <td>$client->name</td>
+            <td>$client->email</td>
+            <td>$client->contact_no</td>
+            <td>$client->status</td>
+        </tr> -->
     </tbody>
 </table>
-
-
-<!-- activities modal -->
-<div class="modal fade" id="activitiesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">ACTIVITY LOG</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table id="table" class="table table-sm table-hover">
-                    <thead>
-                        <tr id="first-tr">
-                            <th>ID</th>
-                            <th>ACTIVITY</th>
-                            <th>DATE AND TIME</th>
-                        </tr>
-                    </thead>
-                    <tbody id="activities">
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- <script>
-    $(document).ready(function () {
-        $.ajax({
-            type: "POST",
-            url: "../reports/reportProcess.php",
-            data: {getActivities: true},
-            dataType: "JSON",
-            success: function (activities) {
-                console.log("pasok ba");
-                var content = ``;
-                $.each(activities, function (indexInArray, act) { 
-                    console.log(act);
-                    content += `
-                        <tr id="actrow" >
-                            <td>${act.client_id}</td>
-                            <td>Registration date: </td>
-                            <td>${act.date_time}</td>
-                        </tr>
-                    `;
-                });
-                $("#activities").html(content);
-            }, error: function(error){
-                //
-            }
-        });
-    });
-</script> -->
-<!-- <script>
-    $(document).ready(function() {
-        // console.log("alert");
-        var userid = $(this).data("id");
-        $.ajax({
-            type: "POST",
-            url: "../reports/reportProcess.php",
-            data: {
-                getHandledClients: true
-            },
-            dataType: "JSON",
-            success: function(dataResult) {
-                var content = ``;
-                $.each(dataResult.clients, function(indexInArray, c) {
-                    console.log(c);
-                    content += `
-                        <tr id="clientid" data-bs-toggle="modal" href="#activitiesModal" value="${c.id}">
-                            <td>${c.id}</td>
-                            <td>${c.name}</td>
-                            <td>${c.email}</td>
-                            <td>${c.contact_no}</td>
-                            <td>${c.status}</td>
-                        </tr>
-                    `;
-                });
-                $("#handledClientContent").html(content);
-
-                //function pag ciniclick si table, nailaw.
-                $('#table tr').click(function() {
-
-                    $(this).find('tr value:${c.id}').prop('checked', true); //aaaaarrgggghhhh
-                    $('#table tr').removeClass("table-primary");
-                    $(this).addClass("table-primary");
-                })
-            }
-        });
-
-    });
-</script> -->

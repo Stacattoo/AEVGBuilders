@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    // $("#content").load("dashboard/dashboard.php");
     $("#content").load("dashboard/dashboard.php");
+    // $("#content").on("load",("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $(".nav-link").click(function (e) {
         e.preventDefault();

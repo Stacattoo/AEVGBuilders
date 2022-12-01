@@ -15,7 +15,45 @@
 
             </div>
         </div>
-        <div id="records" class="col"></div>
+        <div id="records" class="col">
+            <div class="card mb-2   ">
+                <div class="card-body text-white" style="background-color:#343a40;">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-subtitle text-muted align-bottom m-0"></h5>
+                        <div class="dropdown m-0">
+                            <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editEmployeeModal">Edit</a></li>
+                                <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#removeEmployeeModal">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="background-color:#f8f9fa;">
+                    <h5>List of Handled Clients</h5>
+                    <table class="table table-bordered table-striped" id="handledClientTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact No</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="handledClientContent">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

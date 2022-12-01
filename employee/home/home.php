@@ -40,7 +40,7 @@ $dbh = new dbHandler;
                                 </a>
                             </li> -->
                             <li>
-                                <a href="#" class="nav-link text-white" id="clientsNav">
+                                <a href="#" class="nav-link active text-white" id="clientsNav">
 
                                     <i class="far fa-user-alt bi me-2"></i>
                                     Clients

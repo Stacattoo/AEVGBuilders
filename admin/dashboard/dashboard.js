@@ -17,11 +17,53 @@ $(document).ready(function () {
                         <td>${project.ctr}</td>
                         <td>${project.title}</td>
                         <td>${project.category}</td>
-                        <td class="text-center"><button type="button" class="btn btn-dark" data-id="${project.id}" data-bs-toggle="modal" data-bs-target="#viewModal">View</button></td>
+                        <td class="text-center"><button type="button" class="viewBtn btn btn-dark" data-id="${project.id}" data-bs-toggle="modal" data-bs-target="#viewModal">View</button></td>
                     </tr>
                 `;
             });
             $("#popularProject").html(content);
+            $(".viewBtn").click(function (e) {
+                e.preventDefault();
+                let id = $(this).data("id"); 
+                var selected = response.filter(function (data) {
+                    return data.id == id;
+                })[0];
+                let images = ``;
+                console.log(selected);
+                $.each(selected.image, function (indexInArray, path) {
+                    let active = '';
+                    if (indexInArray == 0) {
+                        active = "active";
+                    }
+                    images += `<div class="carousel-item ${active}">
+                                <img src="../employee/projects/${path}" class="d-block w-100 img-fluid img-modal">
+                                </div>`;
+                });
+                let content = `
+                <div id="carouselExampleIntervalModal" class="carousel slide">
+                    <div class="carousel-inner">
+                        ${images}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="d-flex justify-content-between w-100 mt-3">
+                    <h2 class="fw-normal">${selected.title} </h2>
+                </div>
+                <p>${selected.description}</p>
+                `;
+
+
+                $("#projectModalBody").html(content);
+                
+            });
+
         }, error: function (response) {
             // console.error(response); 4
         }
@@ -70,7 +112,7 @@ $(document).ready(function () {
                     });
                 });
             }, error: function (response) {
-                console.error(response); 
+                console.error(response);
             }
         });
     }

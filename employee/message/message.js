@@ -1,6 +1,7 @@
 function messageClient(searchQuery = '') {
 	$(document).ready(function () {
-		$("#records").html("");
+		// $("#records").html("");
+		
 		$.ajax({
 			type: "POST",
 			url: "../message/messageProcess.php",

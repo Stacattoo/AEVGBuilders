@@ -6,12 +6,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 <div class="card mb-2 text-bg-dark rounded-3">
-    <div class="card-body ">
+    <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between ">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id ?></h5>
             <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fal fa-ellipsis-v-alt"></i>
+                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
