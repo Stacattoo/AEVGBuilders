@@ -30,6 +30,7 @@ function displayApproveClient(searchQuery = '') {
 				console.log(dataResult);
 			},
 			complete: function () {
+				
 				$(".client").click(function (e) {
 					e.preventDefault();
 					$(".client").removeClass("active");

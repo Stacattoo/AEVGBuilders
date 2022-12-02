@@ -31,6 +31,7 @@
 
 <script>
     $(document).ready(function() {
+        
         $("#list").show();
         $("#pending").hide();
         displayApproveClient();

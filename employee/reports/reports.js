@@ -31,7 +31,7 @@ $(document).ready(function () {
                 // $('.tr').removeClass("table-primary");
                 // $(this).addClass("table-primary");
                 var id = $(this).data("id");
-                console.log(id);
+                console.log($(this).html());
                 $.ajax({
                     type: "POST",
                     url: "../reports/reportProcess.php",

@@ -577,6 +577,7 @@ $dbh = new dbHandler;
 
     <div class="fixed-bottom  d-flex justify-content-end m-3 ">
         <div>
+
             <div class=" ">
                 <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
                 <i class="fal fa-comment-alt-lines fs-2"></i>
@@ -587,11 +588,13 @@ $dbh = new dbHandler;
                 <i class="fal fa-bullhorn fs-3"></i>
                 </button>
             </div>
+
         </div>
     </div>
 
 
     <div class="container">
+        
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
