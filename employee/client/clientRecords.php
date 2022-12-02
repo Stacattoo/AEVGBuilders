@@ -6,13 +6,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-<div class="card mb-2">
-    <div class="card-body">
+<div class="card mb-2  rounded-5">
+    <div class="card-body text-white rounded-3" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
             <h3 class="card-subtitle text-muted align-bottom m-0" id="idClient" hidden><?php echo $userData->id ?></h3>
-            <h5 class="text-capitalize text-bold"><?php echo $userData->fullname; ?></h5>
+            <h2 class="text-capitalize text-bold mt-3"><?php echo $userData->fullname; ?></h2>
             <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
                 </button>
                 <ul class="dropdown-menu">
@@ -22,7 +22,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             </div>
         </div>
 
-        <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
+        <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
         <!-- TODO: fix names, hindi similar pag cinlick
@@ -37,7 +37,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 </div>
 <div class="card">
 
-    <div class="card-body">
+    <div class="card-body" style="background-color:#f8f9fa;">
 
         <h4 class="text-capitalize text-bold mx-5 mt-2">Appointment Details</h4>
 

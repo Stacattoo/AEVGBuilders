@@ -25,7 +25,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
         <div>Assigned Employee: <span class="text-reset fw-bolder">
                 <?php if ($userData->employeeName == "") {
-                    echo '<a id="choose" data-bs-toggle="modal" href="#chooseModal">Choose an Employee </a>';
+                    echo '<a id="choose" data-bs-toggle="modal" class="text-warning" href="#chooseModal">Choose an Employee </a>';
                 } else {
                     echo $userData->employeeName;
                 } ?></span></div>

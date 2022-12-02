@@ -20,43 +20,130 @@
             <div id="pending" class="list-group"></div>
         </div>
         <div id="records" class="col">
-            <div class="bg-dark mb-2" style="height: 250px;"></div>
-            <div class="bg-dark mb-2" style="height: 250px;"></div>
-            <div class="bg-dark mb-2" style="height: 250px;"></div>
-            
+            <div class="card mb-2  rounded-5">
+                <div class="card-body text-white rounded-3" style="background-color:#343a40;">
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 700px; background-color:#495057;"></div>
+                    <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 300px; background-color:#495057;"></div>
+                    <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 600px; background-color:#495057;"></div>
+                    <div class=" mb-2 mx-3 rounded-4" style="height: 20px; width: 400px; background-color:#495057;"></div>
+                </div>
+                <div class="card mt-2">
+
+                    <div class="card-body" style="background-color:#f8f9fa;">
+
+                        <div class="mt-2  mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+
+
+                        <div class="modal-body p-4">
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 300px; background-color:#e9ecef;"></div>
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 700px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                                <div class="col-sm-6">
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-9">
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 600px; background-color:#e9ecef;"></div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 100px; background-color:#e9ecef;"></div>
+                                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 200px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
-</div>
-
-<script>
-    $(document).ready(function() {
-        $("#list").show();
-        $("#pending").hide();
-        displayApproveClient();
-        displayPendingClient();
-
-
-        $("#listBtn").click(function() {
-            $(this).addClass("active");
-            $("#pendingBtn").removeClass("active");
+    <script>
+        $(document).ready(function() {
             $("#list").show();
             $("#pending").hide();
+            displayApproveClient();
+            displayPendingClient();
+
+
+            $("#listBtn").click(function() {
+                $(this).addClass("active");
+                $("#pendingBtn").removeClass("active");
+                $("#list").show();
+                $("#pending").hide();
+            });
+
+            $("#pendingBtn").click(function() {
+                $(this).addClass("active");
+                $("#listBtn").removeClass("active");
+                $("#pending").show();
+                $("#list").hide();
+            });
+
+            $("#search").change(function(e) {
+                e.preventDefault();
+                displayApproveClient($(this).val());
+                displayPendingClient($(this).val());
+            });
+
+
         });
-
-        $("#pendingBtn").click(function() {
-            $(this).addClass("active");
-            $("#listBtn").removeClass("active");
-            $("#pending").show();
-            $("#list").hide();
-        });
-
-        $("#search").change(function(e) {
-            e.preventDefault();
-            displayApproveClient($(this).val());
-            displayPendingClient($(this).val());
-        });
-
-
-    });
-</script>
+    </script>

@@ -14,10 +14,16 @@
             </div>
         </div>
         <div id="records" class="col ">
-            <div class="bg-dark mb-2" style="height: 60px;"></div>
-            <div class="bg-warning mb-2" style="height: 50px;"></div>
-            <div class="bg-secondary mb-2" style="height:40px"></div>
-            
+            <div class="card mb-2 text-bg-dark rounded-3">
+                <div class=" " style="background-color:#343a40;">
+                    <div class="mt-4 mb-2 mx-3 rounded" style="height: 20px; width: 30px; background-color:#495057;"></div>
+                    <div class=" mb-2 mx-3 rounded-4" style="height: 50px; width: 700px; background-color:#495057;"></div>
+                    <div class=" mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class=" mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class=" mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class=" mb-3 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

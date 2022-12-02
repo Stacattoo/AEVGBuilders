@@ -59,7 +59,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card mb-3 border-0 "    >
+                        <div class="card mb-3 border-0 " style="background-color:#fcb9b2;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
