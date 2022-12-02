@@ -77,13 +77,16 @@ $dbh = new dbHandler;
                                             <span class="select" role="button">Browse</span>
                                         </span>
                                         <span class="on-drop">Drop images here</span>
-                                        <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                                        <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple require>
                                     </div>
 
                                     <!-- IMAGE PREVIEW CONTAINER -->
                                     <div class="container " id="imgCon"></div>
                                 </div>
-
+                                <div class="alert alert-danger mt-3" role="alert" id="alertError">
+                                </div>
+                                <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                                </div>
 
 
                             </div>
@@ -92,10 +95,7 @@ $dbh = new dbHandler;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="alert alert-danger mt-3" role="alert" id="alertError">
-                    </div>
-                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-                    </div>
+
                     <div class="text-end">
                         <button type="submit" class="btn btn-dark">Upload Project</button>
                     </div>
@@ -142,7 +142,7 @@ $dbh = new dbHandler;
                     <div class="mb-3 row">
                         <h5 class="col-sm-2 ">Add Image: &nbsp;</h5>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple require>
                             <input type="hidden" id="edit-image" name="imageEditStore" value="">
                         </div>
                     </div>

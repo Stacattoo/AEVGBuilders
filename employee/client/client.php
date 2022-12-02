@@ -118,6 +118,20 @@
 
     <script>
         $(document).ready(function() {
+</div>
+
+<script>
+    $(document).ready(function() {
+        
+        $("#list").show();
+        $("#pending").hide();
+        displayApproveClient();
+        displayPendingClient();
+
+
+        $("#listBtn").click(function() {
+            $(this).addClass("active");
+            $("#pendingBtn").removeClass("active");
             $("#list").show();
             $("#pending").hide();
             displayApproveClient();
