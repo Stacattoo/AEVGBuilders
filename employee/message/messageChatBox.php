@@ -24,16 +24,16 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body p-4">
         <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
         <div class="container-fluid">
-            <form id="messageEmployee">
-                <ul class="nav nav-pills nav-fill mb-1">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" id="messageTab">Message</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="filesTab">Files & Images</a>
+            <ul class="nav nav-pills nav-fill mb-1">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="messageTab">Message</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="filesTab">Files & Images</a>
 
-                    </li>
-                </ul>
+                </li>
+            </ul>
+            <form id="messageEmployee">
                 <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
                 <div class="border" id="scrollBar" style="height: 400px; overflow-y:scroll;">
                     <div class="p-3" id="messageRetrieve">
@@ -52,19 +52,47 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     </div>
                 </div>
             </form>
+            <div id="filesContent">
+                <div class="bg-info" id="scrollBar" style="height: 500px; overflow-y:scroll;">
+                    <div class="p-3" id="messageRetrieve">
+                        <div class="">
+                            <!-- <small class="text-start" id="clientNameHeader"></small>
+                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
 
+        $("#filesContent").hide();
+        $("#messageTab").click(function() {
+
+            $(this).addClass("active");
+            $("#filesTab").removeClass("active");
+            $("#messageEmployee").show();
+            $("#filesContent").hide();
+
+        });
+
+        $("#filesTab").click(function() {
+
+            $(this).addClass("active");
+            $("#messageTab").removeClass("active");
+            $("#filesContent").show();
+            $("#messageEmployee").hide();
+
+        });
 
         $(".border").scrollTop($(".border")[0].scrollHeight);
 
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        setInterval(displayMessage, 1000);
+        // setInterval(displayMessage, 1000);
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
@@ -95,8 +123,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#filesEmployee').change(function(e) {
             e.preventDefault();
             var $fileUpload = $("input[name='filesEmployee']");
-            if (parseInt($fileUpload.get(0).files.length) > 5) 
-            {
+            if (parseInt($fileUpload.get(0).files.length) > 5) {
 
                 $('#errorFiles').show();
                 $('#filesEmployee').trigger("reset");

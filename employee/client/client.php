@@ -117,10 +117,7 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-</div>
-
-<script>
+        
     $(document).ready(function() {
         
         $("#list").show();
@@ -160,4 +157,5 @@
 
 
         });
+    });
     </script>
