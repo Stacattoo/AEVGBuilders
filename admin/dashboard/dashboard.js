@@ -90,7 +90,7 @@ $(document).ready(function () {
                         <td>${feedback.date}</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${feedback.id}">Post</button>
-                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="remove">Remove</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="${feedback.id}">Remove</button>
                         </td>
                     </tr>
                 `;
@@ -110,6 +110,22 @@ $(document).ready(function () {
                             displayFeedback();
                         }
                     });
+                });
+
+                $(".remove-feedback").click(function (e) { 
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: {disapprovedFeedback: true, feedbackId2: id},
+                        dataType: "JSON",
+                        success: function (response) {
+                            console.log("PASOK KA BA");
+                            displayFeedback();
+                        }
+                    });
+                    
                 });
             }, error: function (response) {
                 console.error(response);

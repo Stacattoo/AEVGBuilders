@@ -22,4 +22,6 @@ if (isset($_POST['getClients'])) {
     echo json_encode((array) $dbh->approveProjects($_POST['projectId']));
 } elseif (isset($_POST['disapprovedProjects'])) {
     echo json_encode((array) $dbh->disapprovedProjects($_POST['projectId2']));
+} elseif (isset($_POST['disapprovedFeedback'])) {
+    echo json_encode((array) $dbh->disapprovedFeedback($_POST['feedbackId2']));
 }

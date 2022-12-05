@@ -478,6 +478,11 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function disapprovedFeedback($id){
+        $query = "UPDATE feedback SET feedback_status='disapproved' where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
     function countAllProjects()
     {
         $sql = "SELECT * FROM projects";
