@@ -6,63 +6,65 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 <script src="../message/message.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<div class="card">
-    <div class="card-body">
+<div class="card" style="background-color:#f8f9fa;">
+    <div class="card-body h-100">
         <div class="d-flex justify-content-between">
-
+            <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
             <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" hidden>
+                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#deleteModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
+                    <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#fileModal" data-id="<?php echo $userData->id; ?>">Files & Images</a></li>
+
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="card-body p-4">
-        <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
-        <div class="container-fluid">
-            <ul class="nav nav-pills nav-fill mb-1">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="messageTab">Message</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="filesTab">Files & Images</a>
 
-                </li>
-            </ul>
-            <form id="messageEmployee">
-                <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
-                <div class="border" id="scrollBar" style="height: 400px; overflow-y:scroll;">
-                    <div class="p-3" id="messageRetrieve">
-                        <div class="">
-                            <small class="text-start" id="clientNameHeader"></small>
-                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
-                        </div>
+        <form id="messageEmployee">
+            <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id; ?>" hidden>
+            <div class="border" id="scrollBar" style="height: 700px; overflow-y:scroll;">
+                <div class="p-3" id="messageRetrieve">
+                    <div class="">
+                        <small class="text-start" id="clientNameHeader"></small>
+                        <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
                     </div>
                 </div>
-                <div class="mt-3">
-                    <textarea class="form-control" aria-label="With textarea" id="contentID" name="employeeMessage"></textarea>
-                    <input type="file" class="btn" id="filesEmployee" name="filesEmployee[]" multiple>
-                    <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
-                    <div class="alert alert-danger mt-3" role="alert" id="errorFiles">
-                        You can only upload a maximum of 5 files. Please Try again!
-                    </div>
-                </div>
-            </form>
-            <div id="filesContent">
-                <div class="bg-info" id="scrollBar" style="height: 500px; overflow-y:scroll;">
-                    <div class="p-3" id="messageRetrieve">
-                        <div class="">
-                            <!-- <small class="text-start" id="clientNameHeader"></small>
+            </div>
+           
+
+            <div class="card-footer d-flex justify-content-start align-items-center px-0"  style="background-color:#f8f9fa;" >
+                <textarea type="text" class="form-control " id="contentID" placeholder="Type message..." style="height: 20px;"></textarea>
+                <div class="dropdown m-0">
+                <button class="btn ms-1 text-muted" type="button file" data-bs-toggle="dropdown" id="filesEmployee aria-expanded="false>
+                <i class="fas fa-paperclip"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#attachModal" data-id=" ">Add Attachment(s)</a></li>
+                    <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#attachModal" data-id=" ">Cost Estimate</a></li>
+                </ul>
+            </div>
+                <!-- <button type="file" class="ms-1 text-muted btn" id="filesEmployee">
+                    <i class="fas fa-paperclip"></i>
+                </button> -->
+                <button type="submit" class="ms-3 btn btn-primary btn-sm px-3">
+                <i class="fas fa-paper-plane"></i>
+                </button>
+               
+            </div>
+        </form>
+        <div id="filesContent">
+            <div class="bg-info" id="scrollBar" style="height: 500px;  overflow-y:scroll;">
+                <div class="p-3" id="messageRetrieve">
+                    <div class="">
+                        <!-- <small class="text-start" id="clientNameHeader"></small>
                             <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 <script>
@@ -176,7 +178,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
                                             <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
                                             </div>
                                         </div>
@@ -193,7 +195,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
                                     <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
                                     </div>
                                 </div>
@@ -210,7 +212,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #fdfffc">
                                             <div>${splitBack}</div>
                                             <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
                                             </div>
@@ -228,7 +230,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
                                     <div>${splitBack}</div>
                                             <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
                                     </div>
@@ -245,10 +247,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                 //para sa text content
 
                                 if (isEmployee) {
-                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
                                             ${contentMsgDisplay}
                                             </div>
                                         </div>
@@ -265,7 +267,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-2 px-3 m-1" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
                                     ${contentMsgDisplay}
                                     </div>
                                 </div>
