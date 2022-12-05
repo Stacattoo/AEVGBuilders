@@ -51,11 +51,14 @@ $dbh = new dbHandler;
                         <div class="col-sm-10">
 
                             <select class="form-select" aria-label="Default select example" id="edit-category" name="categoryEdit">
-                                <option selected disabled>Catergory</option>
-                                <option value="Interior">Interior</option>
-                                <option value="Renovate">Renovate</option>
-                                <option value="Bungalo">Bungalo</option>
-                                <option value="Modern">Modern</option>
+                            <option selected disabled>Catergory</option>
+                                <option value="Interior">Residentials</option>
+                                <option value="Renovate">Commercial</option>
+                                <option value="Bungalo">Mixed-Use</option>
+                                <option value="Modern">Institutional</option>
+                                <option value="Modern">Industrial</option>
+                                <option value="Modern">Interior</option>
+                                <option value="Modern">Renovation</option>
                             </select>
                         </div>
                     </div>

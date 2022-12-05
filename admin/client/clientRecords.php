@@ -9,14 +9,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between ">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id ?></h5>
-            <div class="dropdown m-0">
-                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
+            <div class="m-0">
+                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-trash fs-5"></i>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#deleteModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
-                </ul>
+                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-edit fs-5"></i>
+                </button>
             </div>
         </div>
         <h1><?php echo $userData->fullname; ?></h1>

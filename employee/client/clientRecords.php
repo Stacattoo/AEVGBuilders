@@ -9,17 +9,17 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <div class="card mb-2  rounded-5">
     <div class="card-body text-white rounded-3" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
-            <h3 class="card-subtitle text-muted align-bottom m-0" id="idClient" hidden><?php echo $userData->id ?></h3>
             <h2 class="text-capitalize text-bold mt-3"><?php echo $userData->fullname; ?></h2>
-            <div class="dropdown m-0">
-                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+            <h3 class="card-subtitle text-muted align-bottom m-0" id="idClient" hidden><?php echo $userData->id ?></h3>
+            <div class="d-flex flex-row-reverse">
+                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#deleteModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-trash fs-5"></i>
                 </button>
-                <ul class="list-group">
-                    <li><a class="list-group-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="list-group-item" id="delete" data-bs-toggle="modal" href="#deleteModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
-                </ul>
+                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-edit fs-5"></i>
+                </button>
             </div>
+
         </div>
 
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
@@ -381,8 +381,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         });
                         $.each(details.image, function(indexInArray, data) {
                             // imgAppDetails = data;
-                            if(data == ''){
-                            imgAppDetails = `
+                            if (data == '') {
+                                imgAppDetails = `
                             <div class="col">
                                     <div class="border position-relative" style="height: 300px;">
                                         
@@ -390,8 +390,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     </div>
                                 </div>
                             `;
-                            }else{
-                            imgAppDetails += `
+                            } else {
+                                imgAppDetails += `
                                 <div class="col">
                                     <div class="border position-relative">
                                         <img src="../projects/${data}" class="d-block img-fluid img">

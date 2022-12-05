@@ -81,12 +81,14 @@ $dbh = new dbHandler;
 	<div class="nav-scroller py-1 mb-2">
 		<nav class="nav d-flex justify-content-center">
 			<button class="p-2 link-secondary btn btn-link category">All</button>
-			<button class="p-2 link-secondary btn btn-link category">Building</button>
-			<button class="p-2 link-secondary btn btn-link category">Commercial</button>
-			<button class="p-2 link-secondary btn btn-link category">Design</button>
-			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
-			<button class="p-2 link-secondary btn btn-link category">Blueprints</button>
 			<button class="p-2 link-secondary btn btn-link category">Residentials</button>
+			<button class="p-2 link-secondary btn btn-link category">Commercial</button>
+			<button class="p-2 link-secondary btn btn-link category">Mixed-Use</button>
+			<button class="p-2 link-secondary btn btn-link category">Institutional</button>
+			<button class="p-2 link-secondary btn btn-link category">Industrial</button>
+			<button class="p-2 link-secondary btn btn-link category">Interior</button>
+			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
+			
 
 		</nav>
 

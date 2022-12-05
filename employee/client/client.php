@@ -116,7 +116,6 @@
 
     </div>
 
-<<<<<<< Updated upstream
     <script>
         $(document).ready(function() {
 
@@ -160,51 +159,3 @@
             });
         });
     </script>
-=======
-</div>
-<script>
-    $(document).ready(function() {
-
-                <
-                script >
-                    $(document).ready(function() {
-
-                            $("#list").show();
-                            $("#pending").hide();
-                            displayApproveClient();
-                            displayPendingClient();
-
-
-                            $("#listBtn").click(function() {
-                                $(this).addClass("active");
-                                $("#pendingBtn").removeClass("active");
-                                $("#list").show();
-                                $("#pending").hide();
-                                displayApproveClient();
-                                displayPendingClient();
-
-
-                                $("#listBtn").click(function() {
-                                    $(this).addClass("active");
-                                    $("#pendingBtn").removeClass("active");
-                                    $("#list").show();
-                                    $("#pending").hide();
-                                });
-
-                                $("#pendingBtn").click(function() {
-                                    $(this).addClass("active");
-                                    $("#listBtn").removeClass("active");
-                                    $("#pending").show();
-                                    $("#list").hide();
-                                });
-
-                                $("#search").change(function(e) {
-                                    e.preventDefault();
-                                    displayApproveClient($(this).val());
-                                    displayPendingClient($(this).val());
-                                });
-
-
-                            });
-</script>
->>>>>>> Stashed changes

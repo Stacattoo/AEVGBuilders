@@ -11,14 +11,14 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
     <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
-            <div class="dropdown m-0">
-                <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+            <div class=" m-0">
+                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-edit fs-5"></i>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
-                </ul>
+                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-trash fs-5"></i>
+                </button>
+
             </div>
         </div>
         <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
@@ -28,7 +28,7 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 </div>
 
 <div class="card">
-    <div class="card-body"  style="background-color:#f8f9fa;">
+    <div class="card-body" style="background-color:#f8f9fa;">
         <h5>List of Handled Clients</h5>
         <table class="table table-bordered table-striped" id="handledClientTable">
             <thead>
@@ -68,10 +68,8 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                 <p class="mb-1">Are you sure you want to remove this employee?</p>
             </div>
             <div class="modal-footer flex-nowrap p-0">
-                <button type="button" id="remove-yes-btn" data-id="<?php echo $userData->id; ?>"
-                    class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></button>
-                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0"
-                    data-bs-dismiss="modal">No</button>
+                <button type="button" id="remove-yes-btn" data-id="<?php echo $userData->id; ?>" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></button>
+                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -165,15 +163,17 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 
 <script>
     $(document).ready(function() {
-        $("#remove-yes-btn").click(function (e) { 
+        $("#remove-yes-btn").click(function(e) {
             e.preventDefault();
             var id = $(this).data("id");
             $.ajax({
                 type: "POST",
                 url: "employee/employeeProcess.php",
-                data: {REMOVE_EMPLOYEE_REQ: id},
+                data: {
+                    REMOVE_EMPLOYEE_REQ: id
+                },
                 dataType: "JSON",
-                success: function (REMOVE_EMPLOYEE_RESP) {
+                success: function(REMOVE_EMPLOYEE_RESP) {
                     if (REMOVE_EMPLOYEE_RESP) {
                         displayUsers();
                         $("#removeEmployeeModal").modal("hide");

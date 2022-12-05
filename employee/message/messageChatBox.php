@@ -12,7 +12,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
             <div class="dropdown m-0">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+                <i class="fas fa-images fs-4"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#fileModal" data-id="<?php echo $userData->id; ?>">Files & Images</a></li>
@@ -34,11 +34,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
            
 
             <div class="card-footer d-flex justify-content-start align-items-center px-0"  style="background-color:#f8f9fa;" >
-                <textarea type="text" class="form-control " id="contentID" placeholder="Type message..." style="height: 20px;"></textarea>
+                <textarea type="text" class="form-control " id="contentID" name="employeeMessage" placeholder="Type message..." style="height: 20px;"></textarea>
                 <div class="dropdown m-0">
-                <button class="btn ms-1 text-muted" type="button file" data-bs-toggle="dropdown" id="filesEmployee aria-expanded="false>
+                <button class="btn ms-1 text-muted" type="button file"  data-bs-toggle="dropdown" id="filesEmployee aria-expanded="false>
                 <i class="fas fa-paperclip"></i>
                 </button>
+                <!-- <input type="text"> -->
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#attachModal" data-id=" ">Add Attachment(s)</a></li>
                     <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#attachModal" data-id=" ">Cost Estimate</a></li>
@@ -183,8 +184,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
-                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
+                                            <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4" style="max-height: 150px;">
                                             </div>
                                         </div>
                                     </div>
@@ -196,11 +197,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle rounded-4" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card  text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
                                     <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
                                     </div>
                                 </div>

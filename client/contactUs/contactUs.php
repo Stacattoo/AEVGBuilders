@@ -163,6 +163,11 @@ $dbh = new dbHandler;
                     <label class="form-check-label" for="projectType6">Interior</label>
                   </div>
                   <div class="form-check">
+                    <input id="projectType8" name="projectType" type="radio" value="Renovation" class="form-check-input">
+                    <label class="form-check-label" for="projectType8">Renovation</label>
+                    
+                  </div>
+                  <div class="form-check">
                     <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input">
                     <label class="form-check-label" for="projectType7">Others</label>
                     <input type="text" class="form-control" name="projectTypeOthers" id="projectID">
