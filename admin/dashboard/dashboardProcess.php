@@ -22,18 +22,18 @@ elseif (isset($_POST['getEmployees'])) {
     echo json_encode((array) $dbh->getAllUserData());
 }
 
-if (isset($_POST['getClientsFeedback'])){
+elseif (isset($_POST['getClientsFeedback'])){
     echo json_encode((array) $dbh->getFeedback());
 }
 
-if (isset($_POST['changeClientsFeedback'])){
+elseif (isset($_POST['changeClientsFeedback'])){
     echo json_encode((array) $dbh->approveFeedback($_POST['feedbackId']));
 }
 
-if (isset($_POST['getPendingProjects'])){
+elseif (isset($_POST['getPendingProjects'])){
     echo json_encode((array) $dbh->getPendingProjects());
 }
 
-if (){
-    echo json_encode((array) $dbh->approveFeedback($_POST['feedbackId']));
-}
+// if (){
+//     echo json_encode((array) $dbh->approveFeedback($_POST['feedbackId']));
+// }
