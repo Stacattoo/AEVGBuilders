@@ -99,18 +99,18 @@ $dbh = new dbHandler;
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner" data-bs-interval="1500">
             <div class="carousel-item active">
-              <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+              <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 375px;">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+              <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 375px;">
             </div>
             <div class="carousel-item">
-              <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+              <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 375px;">
             </div>
           </div>
 
         </div>
-        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect">
+        <div class="p-4 p-md-5 mb-5 rounded text-light position-absolute top-0 left-0 blur-effect">
 
           <div class="col-md-6 px-0">
             <h1 class="display-4">AEVG BUILDERS</h1>
