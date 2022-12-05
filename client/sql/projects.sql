@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2022 at 10:09 AM
+-- Generation Time: Dec 05, 2022 at 02:59 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -35,7 +35,7 @@ CREATE TABLE `projects` (
   `category` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `date_time` datetime NOT NULL DEFAULT current_timestamp(),
-  `project_status` varchar(255) NOT NULL DEFAULT 'active'
+  `project_status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -43,10 +43,10 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `employee_id`, `title`, `image`, `category`, `description`, `date_time`, `project_status`) VALUES
-(15, 2, 'Dentals Partners Waltermart Malolos', 'image/Dental Partners Interior Waltermart Malolos1.jpg,image/Dental Partners Interior Waltermart Malolos2.jpg', 'Modern', 'AEVG Builders \"Dental Partners Walter Malolos Bulacan\" Project Design', '2022-12-05 15:57:32', 'pending'),
-(16, 2, 'Contemporary Modern House', 'image/Home Project 1.jpg,image/Home Project2.jpg,image/Home Project3.jpg,image/Home Project4.jpg,image/Home Project5.jpg,image/Home Project6.jpg', 'Modern', 'AEVG Builders \"Contemporary Modern House\" Project\r\n', '2022-12-05 15:57:32', 'active'),
-(17, 2, 'House Renovation Project ', 'image/House Project After Sample.jpg,image/House Project Before Sample.jpg', 'Renovate', 'AEVG Builders \" House Renovation\" Project \r\n', '2022-12-05 15:57:32', 'active'),
-(18, 2, 'AEVG Builders Interior Designs ', 'image/Interior Design 2.jpg,image/InteriorDesign1.jpg,image/InteriorDesign3.jpg', 'Interior', 'AEVG Builders \"Interior Designs\" Sample', '2022-12-05 15:57:32', 'active'),
+(15, 2, 'Dentals Partners Waltermart Malolos', 'image/Dental Partners Interior Waltermart Malolos1.jpg,image/Dental Partners Interior Waltermart Malolos2.jpg', 'Modern', 'AEVG Builders \"Dental Partners Walter Malolos Bulacan\" Project Design', '2022-12-05 15:57:32', 'disapproved'),
+(16, 2, 'Contemporary Modern House', 'image/Home Project 1.jpg,image/Home Project2.jpg,image/Home Project3.jpg,image/Home Project4.jpg,image/Home Project5.jpg,image/Home Project6.jpg', 'Modern', 'AEVG Builders \"Contemporary Modern House\" Project\r\n', '2022-12-05 15:57:32', 'pending'),
+(17, 2, 'House Renovation Project ', 'image/House Project After Sample.jpg,image/House Project Before Sample.jpg', 'Renovate', 'AEVG Builders \" House Renovation\" Project \r\n', '2022-12-05 15:57:32', 'disapproved'),
+(18, 2, 'AEVG Builders Interior Designs ', 'image/Interior Design 2.jpg,image/InteriorDesign1.jpg,image/InteriorDesign3.jpg', 'Interior', 'AEVG Builders \"Interior Designs\" Sample', '2022-12-05 15:57:32', 'pending'),
 (21, 2, 'Modern Industrial Office Warehouse', 'image/Modern Industrial Office  Warehouse project1.jpg,image/Modern Industrial Office  Warehouse project2.jpg,image/Modern Industrial Office  Warehouse project3.jpg,image/Modern Industrial Office  Warehouse project4.jpg,image/Modern Industrial Office  War', 'Modern', 'AEVG Builders \"Modern Industrial Office Warehouse\" Project', '2022-12-05 15:57:32', 'active'),
 (22, 2, 'Private Studio x Car Garage', 'image/Private Studio x Car Garage1.jpg,image/Private Studio x Car Garage2.jpg,image/Private Studio x Car Garage3.jpg,image/Private Studio x Car Garage4.jpg,image/Private Studio x Car Garage5.jpg,image/Private Studio x Car Garage6.jpg,image/Private ', 'Modern', 'AEVG Builders \"Private Studio x Car Garage\" Project', '2022-12-05 15:57:32', 'active'),
 (23, 2, 'Private Villa x Mini Pool', 'image/Private Villa w Mini Pool1.jpg,image/Private Villa w Mini Pool2.jpg,image/Private Villa w Mini Pool3.jpg', 'Modern', 'AEVG Builders \" Private Villa With Mini Pool\" Project', '2022-12-05 15:57:32', 'active'),
