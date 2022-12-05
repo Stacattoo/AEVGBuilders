@@ -320,7 +320,7 @@ class dbHandler
                     "image" => explode(",", $row["image"]),
                     "category" => $row['category'],
                     "description" => $row['description'],
-                    "status" => $row['status'],
+                    "status" => $row['project_status'],
                 ];
             }
             return $data;
@@ -435,7 +435,7 @@ class dbHandler
                     "email" => $row['email'],
                     "contact_no" => $row['contact_no'],
                     "feedback" => $row['feedback'],
-                    "status" => $row['contact_no'],
+                    "status" => $row['feedback_status'],
                     "date" => $row['date'],
                 ];
             }
@@ -444,7 +444,7 @@ class dbHandler
     }
 
     function getPendingProjects(){
-        $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname, employee.id FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
+        $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {
@@ -468,6 +468,16 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function approveProjects($id){
+        $query = "UPDATE projects SET project_status='active' where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function disapprovedProjects($id){
+        $query = "UPDATE projects SET project_status='disapproved' where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
     function countAllProjects()
     {
         $sql = "SELECT * FROM projects";
@@ -482,7 +492,7 @@ class dbHandler
                     "image" => $row['image'],
                     "category" => $row['category'],
                     "description" => $row['description'],
-                    "status" => $row['status'],
+                    "status" => $row['project_status'],
 
                 ];
             }

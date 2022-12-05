@@ -24,7 +24,7 @@ $(document).ready(function () {
             $("#popularProject").html(content);
             $(".viewBtn").click(function (e) {
                 e.preventDefault();
-                let id = $(this).data("id"); 
+                let id = $(this).data("id");
                 var selected = response.filter(function (data) {
                     return data.id == id;
                 })[0];
@@ -61,7 +61,7 @@ $(document).ready(function () {
 
 
                 $("#projectModalBody").html(content);
-                
+
             });
 
         }, error: function (response) {
@@ -119,16 +119,16 @@ $(document).ready(function () {
 
     //PROJECT APPROVAL
     displayProjects();
-    function displayProjects(){
+    function displayProjects() {
         $.ajax({
             type: "POST",
             url: "dashboard/dashboardProcess.php",
-            data: {getPendingProjects: true},
+            data: { getPendingProjects: true },
             dataType: "JSON",
             success: function (response) {
                 let content = ``;
-                $.each(response, function (indexInArray, project) { 
-                     content += `
+                $.each(response, function (indexInArray, project) {
+                    content += `
                      <tr>
                         <td>${project.id}</td>
                         <td>${project.fullname}</td>
@@ -138,18 +138,49 @@ $(document).ready(function () {
                         <td>${project.description}</td>
                         <td>${project.date_time}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${project.id}">Post</button>
-                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="remove">Remove</button>
+                            <button type="button" class="btn btn-sm btn-success post-project" data-id="${project.id}">Approve</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-project" data-id="${project.id}">Disapprove</button>
                         </td>
                     </tr>
                      `
                 });
 
                 $("#projectContent").html(content);
+
+                $(".post-project").click(function (e) {
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: { approveProjects: true, projectId: id },
+                        dataType: "JSON",
+                        success: function (response) {
+                            console.log("pasok???");
+                            displayProjects();
+                        }
+                    });
+
+                });
+
+                $(".remove-project").click(function (e) { 
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: {disapprovedProjects: true, projectId2: id},
+                        dataType: "JSON",
+                        success: function (response) {
+                            console.log("pasok ba 'to");
+                            displayProjects();
+                        }
+                    });
+                    
+                });
             }
         });
     }
-
     // PROJECT COUNT
     $.ajax({
         type: "POST",
