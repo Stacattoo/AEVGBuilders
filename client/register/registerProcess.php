@@ -35,7 +35,13 @@ if ($dbh->checkIfEmailExist($_POST['email'])) {
    ];
     if ($dbh->registerAccount($account)) {   
         echo json_encode(array(
-            "status" => 'success'
+            "status" => 'success',
+            'msg' => "Register Successful!"
+        ));
+    } else {
+        echo json_encode(array(
+            "status" => 'error',
+            'msg' => "There is an error occur. Please try again."
         ));
     }
 }

@@ -110,7 +110,7 @@ $dbh = new dbHandler;
           </div>
 
         </div>
-        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect">
+        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect h-100">
 
           <div class="col-md-6 px-0">
             <h1 class="display-4">AEVG BUILDERS</h1>

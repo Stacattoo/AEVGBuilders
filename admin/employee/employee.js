@@ -60,6 +60,9 @@ function displayUsers(searchQuery='') {
 }
 
 $(document).ready(function () {
+	console.log("asd");
+	console.log($("#addSpinner"));
+	$("#addSpinner").hide();
 	$("#addEmployeeForm").submit(function (e) { 
 		e.preventDefault();
 		var data = $(this).serializeArray();  // Form Data
@@ -78,8 +81,14 @@ $(document).ready(function () {
 					console.error(ADD_EMPLOYEE_RESP);
 					$("#error").html(ADD_EMPLOYEE_RESP.msg);
 				}
+				$("#addBtn").removeAttr("disabled");
+				$("#addSpinner").hide();
 			}, error: function(response) {
+				console.error(response.responseText);
 				$("#error").html(response.responseText);
+			}, beforeSend: function() {
+				$("#addBtn").attr("disabled", true);
+				$("#addSpinner").show();
 			}
 		});
 	});

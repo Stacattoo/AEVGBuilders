@@ -114,7 +114,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                    <button type="submit" class="btn btn-primary" id="addBtn">
+                        Add Employee
+                        <span class="spinner-border spinner-border-sm" id="addSpinner" role="status"></span>
+                    </button>
                 </div>
             </form>
         </div>

@@ -146,6 +146,8 @@ class dbHandler
             $last_id = $this->conn->insert_id;
             $this->insertActivity($last_id, "Registration Date ");
         }
+
+        return $result;
     }
 
     function insertActivity($clientId, $statusMessage){
