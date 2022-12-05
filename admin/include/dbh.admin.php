@@ -443,6 +443,26 @@ class dbHandler
         return $data;
     }
 
+    function getPendingProjects(){
+        $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname, employee.id FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "id" => $row['id'],
+                    "fullname" => $row['fullname'],
+                    "employee_id" => $row['employee_id'],
+                    "title" => $row['title'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "date_time" => $row['date_time'],
+                ];
+            }
+        }
+        return $data;
+    }
+
     function approveFeedback($id){
         $query = "UPDATE feedback SET feedback_status='approved' where id='$id'";
         return mysqli_query($this->conn, $query);

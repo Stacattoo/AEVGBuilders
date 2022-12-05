@@ -137,7 +137,7 @@ $dbh = new dbHandler;
                                     </tr>
                                 </thead>
                                 <tbody id="popularProject">
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center"><img src="../images/500.jpg" class="rounded-circle" width="50px" height="50px" alt=""></td>
                                         <td>Brit Macahilig</td>
                                         <td>4 likes</td>
@@ -148,31 +148,57 @@ $dbh = new dbHandler;
                                                 view
                                             </button>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-3">
-                    <h3>Clients Feedback</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Client Name</th>
-                                <th>Email</th>
-                                <th>Contact Number</th>
-                                <th>Feedback</th>
-                                <th>Date & Time</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="feedbackContent">
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-3" >
+                            <h3>Clients Feedback</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Client Name</th>
+                                        <th>Email</th>
+                                        <th>Contact Number</th>
+                                        <th>Feedback</th>
+                                        <th>Date & Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feedbackContent">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col">
+                    <div class="mt-3" >
+                            <h3>Project Approval</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Employee Name</th> 
+                                        <th>Employee ID</th>
+                                        <th>Project Name</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>Date & Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="projectContent">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+                
 
             </div>
         </div>

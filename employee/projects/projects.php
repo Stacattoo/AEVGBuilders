@@ -139,6 +139,7 @@ $dbh = new dbHandler;
                             </select>
                         </div>
                     </div>
+                    
                     <div class="mb-3 row">
                         <h5 class="col-sm-2 ">Add Image: &nbsp;</h5>
                         <div class="col-sm-10">

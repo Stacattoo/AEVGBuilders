@@ -117,6 +117,39 @@ $(document).ready(function () {
         });
     }
 
+    //PROJECT APPROVAL
+    displayProjects();
+    function displayProjects(){
+        $.ajax({
+            type: "POST",
+            url: "dashboard/dashboardProcess.php",
+            data: {getPendingProjects: true},
+            dataType: "JSON",
+            success: function (response) {
+                let content = ``;
+                $.each(response, function (indexInArray, project) { 
+                     content += `
+                     <tr>
+                        <td>${project.id}</td>
+                        <td>${project.fullname}</td>
+                        <td>${project.employee_id}</td>
+                        <td>${project.title}</td>
+                        <td>${project.category}</td>
+                        <td>${project.description}</td>
+                        <td>${project.date_time}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${project.id}">Post</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="remove">Remove</button>
+                        </td>
+                    </tr>
+                     `
+                });
+
+                $("#projectContent").html(content);
+            }
+        });
+    }
+
     // PROJECT COUNT
     $.ajax({
         type: "POST",

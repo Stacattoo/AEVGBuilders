@@ -148,6 +148,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 success: function(response) {
                     var splitBack = '';
                     var content = ``;
+                    var filesContMsg = ``;
                     console.log(response);
                     $.each(response.content, function(indexInArray, val) {
                         response.content.sort(function(a, b) {
@@ -167,13 +168,17 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             var dotIndex = contentMsgDisplay.lastIndexOf('.');
                             var ext = contentMsgDisplay.substring(dotIndex);
                             console.log(ext);
+                            
 
+                            // splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
+                            
                             //--- para sa mga files ---
-
+                            // console.log(filesContMsg);
                             if (contentMsgDisplay != ext) {
                                 // console.log(contentMsgDisplay);
                                 if (ext == '.jpg') {
 
+                                    
                                     if (isEmployee) {
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
@@ -206,8 +211,15 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     }
                                 } else if (ext == '.doc') {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
-                                    console.log(splitBack);
+                                    
+                                    filesContMsg +=`
+                                            <div class="form-control">
+                                            <div>${splitBack}</div>
+                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            </div>`;
 
+
+                                    // console.log(filesContMsg);
                                     if (isEmployee) {
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
@@ -283,6 +295,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                     });
                     $("#messageRetrieve").html(content);
+                    $("#filesRetrieve").html(filesContMsg);
 
                     $('.fileBtn').click(function(e) {
                         e.preventDefault();
