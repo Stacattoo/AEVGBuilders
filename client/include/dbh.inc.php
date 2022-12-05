@@ -366,10 +366,11 @@ class dbHandler
         $message = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
                 $message[] = (object) [
                     'id' => $row['client_id'],
                     'employee_id' => $row['employee_id'],
-                    'content' => json_decode($row['content']),
+                    'content' => $arrayObj,
                     'date' => $row['dateTime'],
                     'status' => $row['status']
                 ];

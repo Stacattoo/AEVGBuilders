@@ -53,8 +53,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </div>
             </form>
             <div id="filesContent">
-                <div class="bg-info" id="scrollBar" style="height: 500px; overflow-y:scroll;">
-                    <div class="p-3" id="messageRetrieve">
+                <div class="bg-grey" id="scrollBar" style="height: 500px; overflow-y:scroll;">
+                    <div class="p-3" id="filesRetrieve">
                         <div class="">
                             <!-- <small class="text-start" id="clientNameHeader"></small>
                             <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
@@ -172,6 +172,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                 // console.log(contentMsgDisplay);
                                 if (ext == '.jpg') {
 
+                                    
                                     if (isEmployee) {
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
@@ -204,7 +205,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     }
                                 } else if (ext == '.doc') {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
-                                    console.log(splitBack);
+                                    
 
                                     if (isEmployee) {
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
@@ -281,6 +282,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                     });
                     $("#messageRetrieve").html(content);
+                    $("#filesRetrieve").html(filesContent);
 
                     $('.fileBtn').click(function(e) {
                         e.preventDefault();

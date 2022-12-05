@@ -3,6 +3,10 @@ $(document).ready(function () {
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
+    $("#schedAppProfile").show();
+    $("#viewAppModal").hide();
+    $("#haveASchedule").hide();
+    appStatus()
     var feedbackContent = `
     <div>
         <h5><b>Thank you for trusting us!</b></h5>
@@ -27,127 +31,218 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
+                var splitBack = '';
                 $.each(response.content, function (indexInArray, val) {
+
+                    response.content.sort(function (a, b) {
+                        return new Date(a.dateTime) - new Date(b.dateTime);
+                    });
+
                     var isClient = false;
                     if (val.sender == "client") {
                         isClient = true;
                     }
 
-                if(isClient){
-                    mesContent +=  `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                    <div class="pe-2">
-                        <div>
-                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
-                            ${val.content}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-relative avatar">
-                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                    </div>
-                </div> `;
-                }else{
-                    mesContent += `
-                    <div class="d-flex align-items-baseline mb-4">
+                    var contentMsgDisplay = '';
+                    var imgArr = val.content.split(',');
+                    for (let i in imgArr) {
+                        contentMsgDisplay = imgArr[i];
+                        // console.log(contentMsgDisplay);
+
+                        var dotIndex = contentMsgDisplay.lastIndexOf('.');
+                        var ext = contentMsgDisplay.substring(dotIndex);
+                        // console.log(ext);
+                        if (contentMsgDisplay != ext) {
+                            console.log(contentMsgDisplay);
+                            if (ext == '.jpg' || '.png') {
+                                if (isClient) {
+                                    mesContent +=
+                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 90px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                </div>
+                            </div> `;
+                                } else {
+                                    mesContent += `
+                                    <div class="d-flex align-items-baseline mb-4">
+                                        <div class="position-relative avatar">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        </div>
+                                        <div class="pe-2">
+                                            <div>
+                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                                                <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 90px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                    `;
+                                }
+
+                            }
+                            else if (ext == '.doc') {
+                                splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
+                                console.log(splitBack);
+                                if (isClient) {
+                                    mesContent +=
+                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                                            <div>${splitBack}</div>
+                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                </div>
+                            </div> `;
+                                } else {
+                                    mesContent += `
+                                    <div class="d-flex align-items-baseline mb-4">
+                                        <div class="position-relative avatar">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        </div>
+                                        <div class="pe-2">
+                                            <div>
+                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                                                <div>${splitBack}</div>
+                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                    `;
+                                }
+                            }
+                        }else {
+                                if (isClient) {
+                                    mesContent +=
+                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                                            ${val.content}
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                </div>
+                            </div> `;
+                                } else {
+                                    mesContent += `
+                                    <div class="d-flex align-items-baseline mb-4">
+                                        <div class="position-relative avatar">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        </div>
+                                        <div class="pe-2">
+                                            <div>
+                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                                                ${val.content}
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                    `;
+                                }
+
+                            }
+                        }
+                    
+                });
+                $('#contentID').trigger("reset");
+                // $('#messageBubble').show();
+                $("#splitBack").html(content);
+                // console.log(mesContent);
+            }, error: function (response) {
+                console.error(response);
+            }
+        });
+    }
+    var messageContent =
+        `<div class="">
+        <div class="card mx-auto" style="width:400px">
+            <div class="card-header bg-transparent">
+                <div class="navbar navbar-expand p-0">
+                    <ul class="navbar-nav me-auto align-items-center">
+
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            <i class="far fa-window-minimize"></i>  
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body p-4" id="mesBody" style="height: 480px;overflow: auto;">
+
+                <div class="d-flex align-items-baseline mb-4">
                     <div class="position-relative avatar">
                         <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
                     </div>
                     <div class="pe-2">
                         <div>
                             <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
-                            ${val.content}
+
                             </div>
                         </div>
 
                     </div>
                 </div>
-                    `;
-                }
-                });
-                $('#contentID').trigger("reset");
-                // $('#messageBubble').show();
-                // $("#messageRetrieve").html(content);
-                console.log(mesContent);
-            }, error: function (response) {
-                console.error(response);
-            }
-        });
-    }
-    // var messageContent =
-    //     `<div class="">
-    //     <div class="card mx-auto" style="width:400px">
-    //         <div class="card-header bg-transparent">
-    //             <div class="navbar navbar-expand p-0">
-    //                 <ul class="navbar-nav me-auto align-items-center">
-                     
-    //                     <li class="nav-item">
-    //                         <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
-    //                     </li>
-    //                 </ul>
-    //                 <ul class="navbar-nav ms-auto">
-                    
-    //                     <li class="nav-item">
-    //                         <a href="#!" class="nav-link">
-    //                         <i class="far fa-window-minimize"></i>  
-    //                         </a>
-    //                     </li>
-    //                     <li class="nav-item">
-    //                         <a href="#!" class="nav-link">
-    //                             <i class="fas fa-times"></i>
-    //                         </a>
-    //                     </li>
-    //                 </ul>
-    //             </div>
-    //         </div>
-    //         <div class="card-body p-4" id="mesBody" style="height: 480px; overflow: auto;">
 
-    //             <div class="d-flex align-items-baseline mb-4">
-    //                 <div class="position-relative avatar">
-    //                     <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-    //                 </div>
-    //                 <div class="pe-2">
-    //                     <div>
-    //                         <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                    <div class="pe-2">
+                        <div>
+                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
+                        </div>
+                    </div>
+                    <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                    </div>
+                </div> 
+            </div>
 
-    //                         </div>
-    //                     </div>
+            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+                <div class="d-flex justify-content-between">
+                    <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
 
-    //                 </div>
-    //             </div>
+                        <button class="btn btn-light text-secondary">
+                            <i class="fas fa-paperclip text-primary"></i>
+                        </button>
+                        <button class="btn btn-light text-secondary">
+                            <i class="far fa-paper-plane text-primary"></i>
+                        </button>
 
-    //             <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-    //                 <div class="pe-2">
-    //                     <div>
-    //                         <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
-    //                     </div>
-    //                 </div>
-    //                 <div class="position-relative avatar">
-    //                     <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-    //                 </div>
-    //             </div> 
-    //         </div>
-            
-    //         <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
-    //             <div class="d-flex justify-content-between">
-    //                 <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
-                  
-    //                     <button class="btn btn-light text-secondary">
-    //                         <i class="fas fa-paperclip text-primary"></i>
-    //                     </button>
-    //                     <button class="btn btn-light text-secondary">
-    //                         <i class="far fa-paper-plane text-primary"></i>
-    //                     </button>
-                     
-                    
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>`;
 
-    // $("#fb").click(function (e) { 
-    //     e.preventDefault();
+                </div>
+            </div>
+        </div>
+    </div>`;
 
-    // });
+    $("#fb").click(function (e) {
+        e.preventDefault();
+
+    });
     $("#fb").popover({
         placement: "left",
         html: true,
@@ -178,15 +273,15 @@ $(document).ready(function () {
         html: true,
         sanitize: false,
         content: messageContent,
-        
+
     }).on("shown.bs.popover", function () {
         $('#fb').popover('hide');
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
-        
+
         console.log('kahit ano');
         $('#mesBody').html(mesContent);
-        
+
     });
 
 
@@ -298,41 +393,40 @@ $(document).ready(function () {
         $("#errorPass").hide();
     });
 
-    $("#schedAppProfile").show();
-    $("#viewAppModal").hide();
-    $("#haveASchedule").hide();
+
     //     $("#scheduleForm").submit(function (event) {
     //         event.preventDefault();
+    function appStatus() {
+        $.ajax({
+            url: "../contactUs/getData.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                checkAppointmentProfile: true
+            },
+            success: function (result) {
+                // console.log(result.status);
+                if (result.status == 'pending') {
+                    $("#schedAppProfile").hide();
+                    $("#haveASchedule").hide();
+                    $("#viewAppModal").show();
+                    $("#viewModBtn").show();
+                } else if (result.status == 'canceled') {
+                    $("#schedAppProfile").show();
+                    $("#haveASchedule").hide();
+                    $("#viewAppModal").hide();
+                    $("#editBtnSched").show();
+                    $("#viewModBtn").show();
+                } else if (result.status == 'ongoing') {
+                    $("#schedAppProfile").hide();
+                    $("#haveASchedule").show();
+                    $("#viewAppModal").hide();
+                    $("#editBtnSched").hide();
+                    $("#viewModBtn").show();
+                }
 
-    $.ajax({
-        url: "../contactUs/getData.php",
-        type: "POST",
-        dataType: "json",
-        data: {
-            checkAppointmentProfile: true
-        },
-        success: function (result) {
-            // console.log(result.status);
-            if (result.status == 'pending') {
-                $("#schedAppProfile").hide();
-                $("#haveASchedule").hide();
-                $("#viewAppModal").show();
-                $("#viewModBtn").show();
-            } else if (result.status == 'canceled') {
-                $("#schedAppProfile").show();
-                $("#haveASchedule").hide();
-                $("#viewAppModal").hide();
-                $("#editBtnSched").show();
-                $("#viewModBtn").show();
-            } else if (result.status == 'ongoing') {
-                $("#schedAppProfile").hide();
-                $("#haveASchedule").show();
-                $("#viewAppModal").hide();
-                $("#editBtnSched").hide();
-                $("#viewModBtn").show();
             }
-
-        }
-    });
+        });
+    }
 
 }); // end of document ready function

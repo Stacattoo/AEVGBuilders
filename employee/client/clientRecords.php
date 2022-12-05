@@ -15,9 +15,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <button class="btn text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#deleteModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
+                <ul class="list-group">
+                    <li><a class="list-group-item" id="edit" data-bs-toggle="modal" href="#editModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
+                    <li><a class="list-group-item" id="delete" data-bs-toggle="modal" href="#deleteModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
                 </ul>
             </div>
         </div>
@@ -122,8 +122,15 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     <p class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" id="meetTime_id" readonly>
 
                 </div>
-            </div>
 
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <h5><b>Reference Image/s:</b></h5>
+                    <div class="form-control" id="refImgClient"></div>
+                </div>
+
+            </div>
 
         </div>
     </div>
@@ -212,7 +219,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         console.log(displayDetails());
         displayDetails();
-        
+
         $.ajax({
             type: "POST",
             url: "../client/clientProcess.php",
@@ -262,11 +269,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    if(response.status == 'success'){
+                    if (response.status == 'success') {
                         displayApproveClient();
                         $('#chooseModal').modal("hide");
                     }
-                    
+
                 }
             });
         });
@@ -364,13 +371,40 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                         console.log(details);
                         var location = details.meetLoc;
-                        if(details.meetLoc == ''){
+                        if (details.meetLoc == '') {
                             details.meetLoc = "N/A";
                         }
                         var businessVar = '';
+                        var imgAppDetails = ``;
                         $.each(details.businessType, function(indexInArray, data) {
                             businessVar = details.businessType.join(', ');
                         });
+                        $.each(details.image, function(indexInArray, data) {
+                            // imgAppDetails = data;
+                            if(data == ''){
+                            imgAppDetails = `
+                            <div class="col">
+                                    <div class="border position-relative" style="height: 300px;">
+                                        
+                                    <p class="position-absolute top-50 start-50 translate-middle">No Image reference.</p>
+                                    </div>
+                                </div>
+                            `;
+                            }else{
+                            imgAppDetails += `
+                                <div class="col">
+                                    <div class="border position-relative">
+                                        <img src="../projects/${data}" class="d-block img-fluid img">
+                                        <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle"
+                                            id="imageDeleteBtn"  data-id="${indexInArray}">
+                                            -
+                                        </span>
+                                    </div>
+                                </div>
+                            `;
+                            }
+                        });
+                        console.log(imgAppDetails);
                         console.log(businessVar);
                         $('#editBtnID').attr("data-id", details.client_id);
                         $('#name_id').html(details.fullName);
@@ -386,6 +420,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         $('#meetLoc_id').html(details.meetLoc);
                         $('#meetDate_id').html(details.appointmentDate);
                         $('#meetTime_id').html(details.appointmentTime);
+                        $('#refImgClient').html(imgAppDetails);
                         valueEdit = details;
 
                     },
