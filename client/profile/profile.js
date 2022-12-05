@@ -1,5 +1,6 @@
 $(document).ready(function () {
     messagePopover();
+
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
@@ -7,6 +8,7 @@ $(document).ready(function () {
     $("#viewAppModal").hide();
     $("#haveASchedule").hide();
     appStatus()
+
     var feedbackContent = `
     <div>
         <h5><b>Thank you for trusting us!</b></h5>
@@ -22,7 +24,7 @@ $(document).ready(function () {
     </div>`;
 
     var mesContent = ``;
-    
+    var splitBack = '';
     function messagePopover() {
         $.ajax({
             type: "POST",
@@ -31,7 +33,8 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
-                var splitBack = '';
+                console.log(response);
+                var contentMsgDisplay = '';
                 $.each(response.content, function (indexInArray, val) {
 
                     response.content.sort(function (a, b) {
@@ -43,7 +46,6 @@ $(document).ready(function () {
                         isClient = true;
                     }
 
-                    var contentMsgDisplay = '';
                     var imgArr = val.content.split(',');
                     for (let i in imgArr) {
                         contentMsgDisplay = imgArr[i];
@@ -53,8 +55,9 @@ $(document).ready(function () {
                         var ext = contentMsgDisplay.substring(dotIndex);
                         // console.log(ext);
                         if (contentMsgDisplay != ext) {
-                            console.log(contentMsgDisplay);
-                            if (ext == '.jpg' || '.png') {
+
+                            if (ext == '.jpg' || ext == '.png') {
+                                // console.log(ext);
                                 if (isClient) {
                                     mesContent +=
                                         `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
@@ -86,10 +89,9 @@ $(document).ready(function () {
                                     `;
                                 }
 
-                            }
-                            else if (ext == '.doc') {
+                            } else if (ext == '.doc' || ext == '.docx') {
+
                                 splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
-                                console.log(splitBack);
                                 if (isClient) {
                                     mesContent +=
                                         `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
@@ -97,14 +99,14 @@ $(document).ready(function () {
                                         <div>
                                             <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
                                             <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            <button type="button" class="fileBtnClient btn btn-info btn-sm mt-1">Download</button>
                                             </div>
                                         </div>
                                     </div>
-                                <div class="position-relative avatar">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                                </div>
-                            </div> `;
+                                    <div class="position-relative avatar">
+                                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                    </div>
+                                </div> `;
                                 } else {
                                     mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
@@ -115,7 +117,7 @@ $(document).ready(function () {
                                             <div>
                                                 <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
                                                 <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                                <button type="button" class="fileBtnClient btn btn-info btn-sm mt-1">Download</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,10 +125,10 @@ $(document).ready(function () {
                                     `;
                                 }
                             }
-                        }else {
-                                if (isClient) {
-                                    mesContent +=
-                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                        } else {
+                            if (isClient) {
+                                mesContent +=
+                                    `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
                                             <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
@@ -138,8 +140,8 @@ $(document).ready(function () {
                                     <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
                                 </div>
                             </div> `;
-                                } else {
-                                    mesContent += `
+                            } else {
+                                mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
                                         <div class="position-relative avatar">
                                             <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
@@ -153,23 +155,28 @@ $(document).ready(function () {
                                         </div>
                                 </div>
                                     `;
-                                }
-
                             }
+
                         }
-                    
+
+                    }
+
                 });
                 $('#contentID').trigger("reset");
                 // $('#messageBubble').show();
-                $("#splitBack").html(content);
+                // $("#splitBack").html(content);
                 // console.log(mesContent);
+                $('#mesBody').html(mesContent);
+
+
             }, error: function (response) {
                 console.error(response);
             }
         });
     }
     var messageContent =
-        `<div class="">
+        `<form id="messageForm">
+    <div class="">
         <div class="card mx-auto" style="width:400px">
             <div class="card-header bg-transparent">
                 <div class="navbar navbar-expand p-0">
@@ -194,50 +201,29 @@ $(document).ready(function () {
                     </ul>
                 </div>
             </div>
+            
             <div class="card-body p-4" id="mesBody" style="height: 480px;overflow: auto;">
 
-                <div class="d-flex align-items-baseline mb-4">
-                    <div class="position-relative avatar">
-                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                    </div>
-                    <div class="pe-2">
-                        <div>
-                            <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
-
-                            </div>
-                        </div>
-
+            </div>
+            
+                <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+                    <div class="d-flex justify-content-between">
+                            <textarea class="form-control border-0" type="text" name="clientMessage" style="height: 20px;" placeholder="Write a message..."></textarea>
+                            <button class="btn btn-light text-secondary">
+                                <i class="fas fa-paperclip text-primary"></i>
+                            </button>
+                            <button type="submit" class="btn btn-light text-secondary">
+                                <i class="far fa-paper-plane text-primary"></i>
+                            </button>
                     </div>
                 </div>
-
-                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                    <div class="pe-2">
-                        <div>
-                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb"></div>
-                        </div>
-                    </div>
-                    <div class="position-relative avatar">
-                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                    </div>
-                </div> 
-            </div>
-
-            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
-                <div class="d-flex justify-content-between">
-                    <textarea class="form-control border-0" type="text" style="height: 20px;" placeholder="Write a message..."></textarea>
-
-                        <button class="btn btn-light text-secondary">
-                            <i class="fas fa-paperclip text-primary"></i>
-                        </button>
-                        <button class="btn btn-light text-secondary">
-                            <i class="far fa-paper-plane text-primary"></i>
-                        </button>
-
-
                 </div>
-            </div>
-        </div>
-    </div>`;
+                
+                </div>
+                </form>
+                `;
+
+
 
     $("#fb").click(function (e) {
         e.preventDefault();
@@ -268,6 +254,7 @@ $(document).ready(function () {
         });
     });
 
+    // setInterval(messagePopover, 1000);
     $("#msg").popover({
         placement: "left",
         html: true,
@@ -278,11 +265,44 @@ $(document).ready(function () {
         $('#fb').popover('hide');
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
-
-        console.log('kahit ano');
         $('#mesBody').html(mesContent);
+        $('#messageForm').submit(function (e) {
+            console.log("okay naman");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "messageProcess.php",
+                data: new FormData(this),
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    $('#messageForm').trigger("reset");
+                    $('#contentID').html("");
+                    if (response.status == 'success') {
+                        messagePopover();
+                        $(".popover-body").html(messageContent);
+                        console.log("hehe");
+                    }
+                }, error: function (response) {
+                    console.error(response.responseText);
+                }
+            });
+        });
+        $('.fileBtnClient').click(function (e) {
+            e.preventDefault();
+            console.log("ayos naman");
+            var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
+            var url = path.concat(splitBack);
+            console.log(url);
+            var docuFilesMsg = window.open(url);
+            docuFilesMsg.location;
 
+        });
     });
+
 
 
     $("#profileForm").submit(function (event) {

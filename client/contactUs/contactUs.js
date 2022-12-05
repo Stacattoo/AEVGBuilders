@@ -122,7 +122,7 @@ $(document).ready(function () {
                 $.each(response.businessType, function (indexInArray, data) {
                     businessVar = response.businessType.join(', ');
                 });
-                console.log(businessVar);
+                // console.log(businessVar);
                 $('#editBtnID').attr("data-id", response.client_id);
                 $('#name_id').val(response.fullName);
                 $('#contact_id').val(response.contactNo);
@@ -182,7 +182,7 @@ $(document).ready(function () {
                 $("input[name=listGroupCheckableRadios][value='" + response.projImage + "']").attr('checked', 'checked');
 
                 $.each(response.businessType, function (indexInArray, data) {
-                    console.log($("input[value='" + data + "']").val());
+                    // console.log($("input[value='" + data + "']").val());
                     $("input[value='" + data + "']").attr('checked', 'checked');
                     // $("input[name=businessTypeName].val(data);
                     if (typeof $("input[value='" + data + "']").val() == 'undefined') {
@@ -207,7 +207,7 @@ $(document).ready(function () {
     $("[name='projectType']").change(function (event) {
         event.preventDefault();
         let type = $(this).val();
-        console.log($("[data-name='" + type + "']").val());
+        // console.log($("[data-name='" + type + "']").val());
         if (typeof $("[data-name='" + type + "']").val() == 'undefined') {
             $(".projectTypeListImages").show();
         } else {
@@ -256,15 +256,15 @@ $(document).ready(function () {
         success: function (response) {
 
             $.each(response, function (indexInArray, data) {
-                console.log(data);
+                // console.log(data);
                 let toString = `${data.date}`;
 
                 dateVar = toString;
-                console.log(dateVar);
+                // console.log(dateVar);
 
                 $("#targetDate").change(function (event) {
                     event.preventDefault();
-                    console.log("pasok");
+                    // console.log("pasok");
                     if ($(this).val() == dateVar) {
                         alert("This date has been occupied");
                         $("#targetDate").val('');

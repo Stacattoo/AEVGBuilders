@@ -13,10 +13,14 @@ $dbh = new dbHandler;
 
             <ul class="nav nav-pills mt-3 mb-3">
                 <li class="nav-item">
-                    <button type="button" id="listBtn" class="nav-link active pe-none" tabindex="-1" aria-disabled="true">Clients</button>
+                    <button type="button" id="listBtn" class="nav-link active" aria-current="page">Clients</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" id="pendingBtn" class="nav-link" aria-current="page">General Chat</button>
                 </li>
             </ul>
             <div id="list" class="list-group"></div>
+            <div id="pending" class="list-group"></div>
         </div>
         <div id="records" class="col">
             <div class="card mb-2  rounded-3">
@@ -61,12 +65,54 @@ $dbh = new dbHandler;
                 messageClient($(this).val());
             });
 
+<<<<<<< Updated upstream
 
         });
     </script>
 
 
+=======
+<script>
+    $(document).ready(function() {
 
+        $("#list").show();
+        $("#pending").hide();
+
+        messageClient();
+        generalClient();
+
+        $("#search").change(function(e) {
+            e.preventDefault();
+            messageClient($(this).val());
+            generalClient($(this).val());
+        });
+
+        $("#listBtn").click(function() {
+                $(this).addClass("active");
+                $("#pendingBtn").removeClass("active");
+                $("#list").show();
+                $("#pending").hide();
+                messageClient();
+                generalClient();
+
+
+                $("#listBtn").click(function() {
+                    $(this).addClass("active");
+                    $("#pendingBtn").removeClass("active");
+                    $("#list").show();
+                    $("#pending").hide();
+                });
+
+
+        });
+            $("#pendingBtn").click(function() {
+                $(this).addClass("active");
+                $("#listBtn").removeClass("active");
+                $("#pending").show();
+                $("#list").hide();
+>>>>>>> Stashed changes
+
+            });
 
     <!-- <div class="col-sm-8 conversation">
         <div class="row heading">

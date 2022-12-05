@@ -13,13 +13,13 @@ if (isset($_POST['clientMessage'])) {
         ]
     );
     $json = json_encode($json);
-    // if ($dbh->insertClientMessage($json, $_SESSION['id'])) {
-    //     echo json_encode(array(
-    //         "status" => 'success',
-    //         "msg" => 'Profile Update Successfully.'
-    //     ));
-    // }
-    var_dump("kahit ano");
+    if ($dbh->insertClientMessage($json, $_SESSION['id'])) {
+        echo json_encode(array(
+            "status" => 'success',
+            "msg" => 'Profile Update Successfully.'
+        ));
+    }
+    // var_dump("kahit ano");
 }
 
 if (isset($_POST['getMessage'])) {

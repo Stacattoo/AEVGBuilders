@@ -44,7 +44,7 @@ $dbh = new dbHandler;
 
                 <!-- Checking if the session is set -->
 
-                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
+                <?php if (!isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
 
                     <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
                     <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>

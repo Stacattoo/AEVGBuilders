@@ -329,6 +329,7 @@ class dbHandler
     {
         $sql = "SELECT * FROM message WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
+        // $msg = array();
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
                 $msg = json_decode($row["content"]);
@@ -363,7 +364,7 @@ class dbHandler
 
     function getContent($id)
     {
-        $sql = "SELECT * FROM message WHERE client_id='$id'";
+        $sql = "SELECT * FROM message WHERE employee_id='$id' AND client_id='$id'";
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {

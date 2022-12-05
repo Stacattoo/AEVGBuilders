@@ -16,8 +16,10 @@
                     <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
                 </li>
             </ul>
+            
             <div id="list" class="list-group"></div>
             <div id="pending" class="list-group"></div>
+
         </div>
         <div id="records" class="col">
             <div class="card mb-2  rounded-5">
@@ -140,8 +142,6 @@
                     $("#list").show();
                     $("#pending").hide();
                 });
-
-
 
 
             });

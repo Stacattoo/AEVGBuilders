@@ -20,6 +20,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </ul>
             </div>
         </div>
+<<<<<<< Updated upstream
 
         <form id="messageEmployee">
             <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id; ?>" hidden>
@@ -59,6 +60,48 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <div class="p-3" id="messageRetrieve">
                     <div class="">
                         <!-- <small class="text-start" id="clientNameHeader"></small>
+=======
+    </div>
+    <div class="card-body p-4">
+        <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
+        <div class="container-fluid">
+            <ul class="nav nav-pills nav-fill mb-1">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="messageTab">Message</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="filesTab">Files & Images</a>
+
+                </li>
+            </ul>
+            <form id="messageEmployee">
+                <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id ?>" hidden>
+                <div class="border" id="scrollBar" style="height: 400px; overflow-y:scroll;">
+                    <div class="p-3" id="messageRetrieve">
+                        <div class="">
+                            <small class="text-start" id="clientNameHeader"></small>
+                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <textarea class="form-control" aria-label="With textarea" id="contentID" name="employeeMessage"></textarea>
+                    <input type="file" class="filesEmp" id="filesEmployee" name="filesEmployee[]" multiple>
+                    <input type="file" class="costEst btn btn-success" id="costEstimate" name="costEstimate">                    
+                    <button type="submit" class="btn btn-primary px-5 mt-3">Send</button>
+                    <div class="alert alert-danger mt-3" role="alert" id="errorFiles">
+                    </div>
+                </div>
+            </form>
+            <!-- $q = "UPDATE mdl_user SET firstname=IF(LENGTH('$fname')=0, firstname, '$fname'),
+             lastname=IF(LENGTH('$lname')=0, lastname, '$lname'), email=IF(LENGTH('$email')=0, email, '$email'),
+              address='$address', city='$city', school='$school', phone1='$phone' WHERE id='$uid'"; -->
+            <div id="filesContent">
+                <div class="" id="scrollBar" style="height: 500px; overflow-y:scroll; background-color:bisque;">
+                    <div class="p-3" id="filesRetrieve">
+                        <div class="">
+                            <!-- <small class="text-start" id="clientNameHeader"></small>
+>>>>>>> Stashed changes
                             <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
                     </div>
                 </div>
@@ -96,6 +139,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#errorFiles').hide();
         displayMessage();
         // setInterval(displayMessage, 1000);
+
         $('#messageEmployee').submit(function(e) {
 
             e.preventDefault();
@@ -103,7 +147,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 type: "POST",
                 url: "../message/messageProcess.php",
                 data: new FormData(this),
-                dataType: "json",
+                // dataType: "json",
                 contentType: false,
                 cache: false,
                 processData: false,
@@ -111,6 +155,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     console.log(response);
                     $('#messageEmployee').trigger("reset");
                     $('#filesEmployee').trigger("reset");
+                    $('#costEstimate').trigger("reset");
                     $('#contentID').html("");
                     if (response.status == 'success') {
                         displayMessage();
@@ -129,11 +174,27 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             if (parseInt($fileUpload.get(0).files.length) > 5) {
 
                 $('#errorFiles').show();
+                $('#errorFiles').html("You can only upload a maximum of 5 files. Please Try again!");
                 $('#filesEmployee').trigger("reset");
+                
             } else {
                 $('#errorFiles').hide();
             }
         });
+
+        // $('#costEstimate').change(function(e){
+        //     e.preventDefault();
+        //     var costEstUpload = $("#costEstimate");
+        //     var dotIndex = costEstUpload.lastIndexOf('.');
+        //     var ext = costEstUpload.substring(dotIndex);
+        //     if(ext == '.xlsx' || '.xls' || '.pdf' || '.doc' || '.docx'){
+        //         $('#errorFiles').show();
+        //         $('#errorFiles').html("File type does not match correct format: .xlsx, .xls, .pdf, .docx, doc");
+        //         $('#costEstimate').trigger("reset");
+        //     }else{
+        //         $('#errorFiles').hide();
+        //     }
+        // });
 
         function displayMessage() {
             var id = $('#clientID').val();
@@ -150,7 +211,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     var splitBack = '';
                     var content = ``;
                     var filesContMsg = ``;
-                    console.log(response);
+                    // console.log(response);
                     $.each(response.content, function(indexInArray, val) {
                         response.content.sort(function(a, b) {
                             return new Date(a.dateTime) - new Date(b.dateTime);
@@ -168,7 +229,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                             var dotIndex = contentMsgDisplay.lastIndexOf('.');
                             var ext = contentMsgDisplay.substring(dotIndex);
-                            console.log(ext);
+                            // console.log(ext);
                             
 
                             // splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
@@ -177,7 +238,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             // console.log(filesContMsg);
                             if (contentMsgDisplay != ext) {
                                 // console.log(contentMsgDisplay);
-                                if (ext == '.jpg') {
+                                if (ext == '.jpg' || ext == '.png') {
 
                                     
                                     if (isEmployee) {
@@ -210,7 +271,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         </div>
                     `;
                                     }
-                                } else if (ext == '.doc') {
+                                } else if (ext == '.doc' || ext == '.docx') {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
                                     
                                     filesContMsg +=`

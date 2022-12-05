@@ -417,9 +417,14 @@ class dbHandler
             }
         }
     }
+    function insertEmployeeCostEstimate($content, $client, $id)
+    {
+        
+        $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id ='$id'";
+        return mysqli_query($this->conn, $sql);
+        
+    }
 
-
-    // ../../clientEmployeeFiles/0b7b018678e29c0c27f6a6aa967f3544.jpg,../../clientEmployeeFiles/0e9625a1104c9fd8f79929dcd698d35a.jpg
     function getContent($client_id, $id)
 
     {
