@@ -69,6 +69,7 @@ $(document).ready(function () {
             success: function (response) {
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
+                    
                     content += `
                     <div class="col">
                         <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">

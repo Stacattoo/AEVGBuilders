@@ -135,13 +135,13 @@ $dbh = new dbHandler;
 
                             <select class="form-select" aria-label="Default select example" id="edit-category" name="categoryEdit">
                                 <option selected disabled>Catergory</option>
-                                <option value="Interior">Residentials</option>
-                                <option value="Renovate">Commercial</option>
+                                <option value="Residentials">Residentials</option>
+                                <option value="Commercial">Commercial</option>
                                 <option value="Bungalo">Mixed-Use</option>
-                                <option value="Modern">Institutional</option>
-                                <option value="Modern">Industrial</option>
-                                <option value="Modern">Interior</option>
-                                <option value="Modern">Renovation</option>
+                                <option value="Institutional">Institutional</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Interior">Interior</option>
+                                <option value="Renovation">Renovation</option>
                                 
                             </select>
                         </div>

@@ -175,7 +175,6 @@ $(document).ready(function () {
                             processData: false,
                             dataType: "JSON",
                             success: function (response) {
-                                console.log(response);
                                 if (response.status == 'error') {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
