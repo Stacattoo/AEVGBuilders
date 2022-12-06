@@ -30,12 +30,12 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
         'description' => $_POST['description'],
     ];
 
-    if ($dbh->uploadProject($info)) {
-        echo json_encode(array(
-            "status" => 'success',
-            "msg" => 'Project Successfully Uploaded.'
-        ));
-    }
+    // if ($dbh->uploadProject($info)) {
+    //     echo json_encode(array(
+    //         "status" => 'success',
+    //         "msg" => 'Project Successfully Uploaded.'
+    //     ));
+    // }
 }
 
 if (isset($_POST["getAllProjects_req"])) {

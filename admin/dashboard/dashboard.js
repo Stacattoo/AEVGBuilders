@@ -9,8 +9,11 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (response) {
             let content = ``;
+            // var picPath = '';
             $.each(response, function (indexInArray, project) {
+                // picPath = project.profile_picture.replace('../profile/image/', '../projImGW/')
                 content += `
+                
                     <tr>
                         <td class="text-center"><img src="../employee/profile/${project.profile_picture}" class="rounded-circle" width="50px" height="50px" alt=""></td>
                         <td>${project.fullName}</td>

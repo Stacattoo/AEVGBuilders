@@ -72,9 +72,9 @@ $(document).ready(function () {
                     content += `
                     <div class="col">
                         <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
-                            <div class="card-img-top" style="height: 220px; background-image: url('projects/${data.image[0]}'); background-size: cover; ">
+                            <div class="card-img-top" style="height: 220px; background-image: url('../employee/projects/${data.image[0]}'); background-size: cover; ">
                             </div>
-
+                            
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">                       
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
@@ -106,7 +106,7 @@ $(document).ready(function () {
                             contentEdit += `
                                 <div class="col">
                                     <div class="border position-relative">
-                                        <img src="projects/${data}" class="d-block img-fluid img">
+                                        <img src="../employee/projects/${data}" class="d-block img-fluid img">
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                                             id="imageDeleteBtn"  data-id="${indexInArray}">
                                             X
