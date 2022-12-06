@@ -12,10 +12,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             <h2 class="text-capitalize text-bold mt-3"><?php echo $userData->fullname; ?></h2>
             <h3 class="card-subtitle text-muted align-bottom m-0" id="idClient" hidden><?php echo $userData->id ?></h3>
             <div class="d-flex flex-row-reverse">
-                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#deleteModal" data-id="<?php echo $userData->id; ?>">
+                <button class=" border-0  btn btn-outline-light" data-bs-toggle="modal" type="button" id="delete" href="#deleteModal" data-id="<?php echo $userData->id; ?>">
                     <i class="fas fa-trash fs-5"></i>
                 </button>
-                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editModal" data-id="<?php echo $userData->id; ?>">
+                <button class="border-0  btn btn-outline-light" data-bs-toggle="modal" type="button" id="edit" href="#editModal" data-id="<?php echo $userData->id; ?>">
                     <i class="fas fa-edit fs-5"></i>
                 </button>
             </div>

@@ -29,7 +29,7 @@ $(document).ready(function () {
     function messagePopover() {
         $.ajax({
             type: "POST",
-            url: "../message/messageProcess.php",
+            url: "messageProcess.php",
             data: { getMessage: true },
             dataType: "JSON",
             success: function (response) {
