@@ -58,6 +58,10 @@ class dbHandler
         } else {
             $total_count = $this->getAttempt($key, 'employee') - 1;
             $this->updateAttempt($key, $total_count);
+            // echo json_encode(array(
+            //     "status" => 'error',
+            //     'msg' => "Email and Password not match. Remaining attempts: " . $total_count
+            // ));
             // echo "Email and Password not match. Remaining attempts: " . $total_count;
             return false;
         }
@@ -73,6 +77,12 @@ class dbHandler
         } else {
             return 0;
         }
+    }
+
+    function updateStatusToBlock($key, $table)
+    {
+        $query = "UPDATE $table SET status='block' WHERE email='$key'";
+        return mysqli_query($this->conn, $query);
     }
 
     function updateAttempt($key, $attempt)

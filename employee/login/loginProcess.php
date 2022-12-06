@@ -10,7 +10,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     if ($dbh->checkIfEmployeeAccExist($email)) {
-        //echo "pasok naman";
         $total_count = $dbh->getAttempt($email, 'employee');
         if ($total_count == 0) {
             if ($dbh->updateStatusToBlock($email, 'employee')) {
@@ -33,7 +32,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             }
         }
     } else {
-        //echo "hinde";
         echo json_encode(array(
             "status" => 'error',
             'msg' => "Incorrect Email! Please Try Again."
