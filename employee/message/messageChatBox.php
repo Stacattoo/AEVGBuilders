@@ -54,10 +54,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
             </div>
         </form>
-        <div id="filesContent">
-            <div class="" id="scrollBar" style="height: 500px; overflow-y:scroll; background-color:bisque;">
-                <div class="p-3" id="filesRetrieve">
-                    <div class="">
+            <div id="filesContent">
+                <div class="" id="scrollBar" style="height: 500px; overflow-y:scroll; background-color:bisque;">
+                    <div class="p-3" id="filesRetrieve">
+                        <div class="">
+                            <!-- <small class="text-start" id="clientNameHeader"></small>
+                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
                     </div>
                 </div>
             </div>

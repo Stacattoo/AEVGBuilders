@@ -577,12 +577,12 @@ $dbh = new dbHandler;
         <div>
 
             <div class=" ">
-                <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
+                <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" >
                 <i class="fal fa-comment-alt-lines fs-2"></i>
                 </button>
             </div>
             <div class="mt-2">
-                <button type="button" class="btn text-white p-3 rounded-circle " id="fb" style="background-color: #843b62">
+                <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
                 <i class="fal fa-bullhorn fs-3"></i>
                 </button>
             </div>

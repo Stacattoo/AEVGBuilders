@@ -161,7 +161,7 @@ $dbh = new dbHandler;
                   <div class="form-check">
                     <input id="projectType8" name="projectType" type="radio" value="Renovation" class="form-check-input">
                     <label class="form-check-label" for="projectType8">Renovation</label>
-                    
+
                   </div>
                   <div class="form-check">
                     <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input">
@@ -488,6 +488,22 @@ $dbh = new dbHandler;
 
 
 
+    <div class="fixed-bottom  d-flex justify-content-end m-3 ">
+      <div>
+
+        <div class=" ">
+          <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+            <i class="fal fa-comment-alt-lines fs-2"></i>
+          </button>
+        </div>
+        <div class="mt-2">
+          <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
+            <i class="fal fa-bullhorn fs-3"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
 
 
 

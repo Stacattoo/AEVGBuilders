@@ -31,9 +31,9 @@ $dbh = new dbHandler;
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
 				<li><a href="../projects/project.php" class="nav-link px-2 link-secondary">Projects</a></li>
 				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
-                <?php }  ?>
+				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+				<?php }  ?>
 			</ul>
 
 			<div class="col-md-3 text-end">
@@ -56,10 +56,6 @@ $dbh = new dbHandler;
 							</a>
 							<ul class="dropdown-menu text-small shadow">
 								<li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-								<li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
 								<li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
 							</ul>
 						</div>
@@ -88,9 +84,25 @@ $dbh = new dbHandler;
 			<button class="p-2 link-secondary btn btn-link category">Industrial</button>
 			<button class="p-2 link-secondary btn btn-link category">Interior</button>
 			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
-			
+
 
 		</nav>
+		<div class="fixed-bottom  d-flex justify-content-end m-3 ">
+			<div>
+
+				<div class=" ">
+					<button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+						<i class="fal fa-comment-alt-lines fs-2"></i>
+					</button>
+				</div>
+				<div class="mt-2">
+					<button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
+						<i class="fal fa-bullhorn fs-3"></i>
+					</button>
+				</div>
+
+			</div>
+		</div>
 
 		<div class="container mt-5">
 

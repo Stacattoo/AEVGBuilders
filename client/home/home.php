@@ -20,6 +20,7 @@ $dbh = new dbHandler;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="home.js"></script>
+    
 </head>
 
 <body>
@@ -38,8 +39,8 @@ $dbh = new dbHandler;
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+                    <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
                 <?php }  ?>
             </ul>
 
@@ -109,7 +110,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" >
+                <div class="carousel-item">
                     <img src="../../images/pool.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
                     <div class="container">
                         <div class="container">
@@ -194,12 +195,28 @@ $dbh = new dbHandler;
                 </header>
                 <div class="swiper">
                     <div class="swiper-wrapper" id="feedbackContent">
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-        
+        <div class="fixed-bottom  d-flex justify-content-end m-3 ">
+            <div>
+
+                <div class=" ">
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+                <div class="mt-2">
+                    <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
+                        <i class="fal fa-bullhorn fs-3"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
         <div class="container">
             <footer class="py-3 my-4">
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
