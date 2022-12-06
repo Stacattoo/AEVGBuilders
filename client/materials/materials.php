@@ -60,10 +60,6 @@ $dbh = new dbHandler;
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
               </ul>
             </div>
