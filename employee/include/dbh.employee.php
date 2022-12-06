@@ -127,6 +127,11 @@ class dbHandler
             return 0;
         }
     }
+    function updateSpecificInfo($id, $col, $value)
+    {
+        $sql = "UPDATE `employee` SET $col='$value' WHERE id=$id";
+        return mysqli_query($this->conn, $sql);
+    }
 
     function checkIfSomeAlrExist($key, $table, $col)
     {

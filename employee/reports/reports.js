@@ -13,7 +13,7 @@ $(document).ready(function () {
             $.each(dataResult.clients, function (indexInArray, c) {
                 console.log(c.id);
                 content += `
-                        <tr id="clientid" class="clientReport" data-bs-toggle="modal" href="#activitiesModal" data-id="${c.id}">
+                        <tr id="clientid" class="clientReport" data-toggle="modal" data-target="#activitiesModal" data-id="${c.id}">
                             <td id="reportclientid">${c.id}</td>
                             <td>${c.name}</td>
                             <td>${c.email}</td>

@@ -89,10 +89,10 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (result) {
-                console.log(result);
+                // console.log(result);
                 if (result.status == "error") {
-                    $("#errorPass").html(result.msg);
                     $("#errorPass").show();
+                    $("#errorPass").html(result.msg);
                     $('#changePassForm').trigger("reset");
                 } else {
                     alert("Password Changed Succesfully");
@@ -102,7 +102,10 @@ $(document).ready(function () {
 
                 }
 
-            }
+            },
+            // error: function(errorResult){
+            //     console.log(errorResult);
+            // }
         });
     });
     //pa check kay kuya kase may mali pag nagsubmit ule di narerecognize hehe
