@@ -102,4 +102,9 @@ $(document).ready(function () {
         });
     });
 
+    $('#logOut').click(function (e){
+        e.preventDefault();
+        console.log("pasok");
+    });
+
 });

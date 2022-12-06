@@ -17,7 +17,7 @@ $dbh = new dbHandler();
 	</div>
 
 
-	<form id="dateFilter">
+	<!-- <form id="dateFilter">
 		<div class="d-flex justify-content-evenly mb-5">
 			<h5 class="">Filter Range:</h5>
 			<div> <input type="date" class="form-control" name="startDate" id="startDate" /> </div>
@@ -25,7 +25,7 @@ $dbh = new dbHandler();
 			<button type="submit" class="btn btn-primary">Apply</button>
 
 		</div>
-	</form>
+	</form> -->
 
 	<div id="tableContainer">
 		<table class="table table-bordered table-striped" id="resultTable" cellspacing="0" cellpadding="5" border="1">
@@ -33,10 +33,9 @@ $dbh = new dbHandler();
 				<tr>
 					<th scope="col">Client Name</th>
 					<th scope="col">Employee Name</th>
-					<th scope="col">Date Start</th>
-					<th scope="col">Date End</th>
+					<th scope="col">Employee ID</th>
 					<th scope="col">Status</th>
-
+					<th scope="col">Meeting Schedule</th>
 				</tr>
 			</thead>
 			<tbody id="table">
@@ -49,9 +48,47 @@ $dbh = new dbHandler();
 
 	</div>
 </div>
+
+
 <script>
 	$(document).ready(function() {
+		console.log("pasokk baaaa aaa");
+		displaySched();
 
-		displayResults();
+		function displaySched() {
+			$.ajax({
+				url: "schedule/scheduleProcess.php",
+				type: "POST",
+				data: {
+					displayResults: true
+				},
+				dataType: 'JSON',
+				success: function(result) {
+					console.log("pasok ka ba ha");
+					var content = ``;
+					$.each(result, function(i, data) {
+						content += `
+                    <tr>
+                    <td>` + data.clientName + `</td>
+                    <td>` + data.employeeName + `</td>
+                    <td>` + data.employee_id + `</td>
+                    <td>` + data.status + `</td>
+                    <td>` + data.tranaction_date + `</td>
+                    
+                    </tr>
+                    `;
+					});
+					$('#table').html(content);
+				},
+				error: function(errorres) {
+					console.error(errorres);
+				}
+			});
+
+			// $("#print").click(function (e) {
+			//     e.preventDefault();
+
+			// });
+		}
 	});
 </script>

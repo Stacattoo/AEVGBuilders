@@ -341,24 +341,41 @@ class dbHandler
 
     function displayAllResult()
     {
-        $sql = "SELECT schedule.*, CONCAT( employee.firstName,' ', employee.lastName) AS employeeName, CONCAT( client.firstName,' ', client.lastName) AS clientName   FROM `schedule`
-        INNER JOIN  employee ON schedule.employee_id = employee.id INNER JOIN  client ON schedule.user_id = client.id";
+        $sql = "SELECT client.*, employee.* ";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $res = array();
             while ($row = mysqli_fetch_assoc($result)) {
-                $dateStart = strtotime($row['dateStart']);
-                $dateEnd = strtotime($row['dateEnd']);
                 $res[] = (object)[
                     'id' => $row['id'],
-                    'dateStart' => date("M d, Y h:i A", $dateStart),
-                    'dateEnd' => date("M d, Y h:i A", $dateEnd),
-                    'status' => $row['status'],
+                    'clientName' => $row['clientName'],
                     'employeeName' => $row['employeeName'],
-                    'clientName' => $row['clientName']
+                    'employee_id' => $row['employee_id'],
+                    'status' => $row['status'],
+                    'transaction_date' => $row['transaction_date'],
                 ];
             }
             return $res;
+        }
+    }
+
+    function getAllMaterials()
+    {
+        $sql = "SELECT * FROM material ORDER BY id DESC";
+        $result =  mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $materials = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $materials[] = (object)[
+                    "id" => $row['id'],
+                    "code" => $row['code'],
+                    "name" => $row['name'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "image" => $row['image'],
+                ];
+            }
+            return $materials;
         }
     }
 
@@ -382,25 +399,7 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-    function getAllMaterials()
-    {
-        $sql = "SELECT * FROM material ORDER BY id DESC";
-        $result =  mysqli_query($this->conn, $sql);
-        if (mysqli_num_rows($result)) {
-            $materials = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                $materials[] = (object)[
-                    "id" => $row['id'],
-                    "code" => $row['code'],
-                    "name" => $row['name'],
-                    "category" => $row['category'],
-                    "description" => $row['description'],
-                    "image" => $row['image'],
-                ];
-            }
-            return $materials;
-        }
-    }
+   
 
     function getAllClients()
     {
@@ -504,4 +503,17 @@ class dbHandler
             return $projects;
         }
     }
+
+    // function getFullname($id)
+    // {
+    //     $sql = "SELECT username FROM admin WHERE id='$id'";
+    //     $result = mysqli_query($this->conn, $sql);
+    //     if (mysqli_num_rows($result)) {
+    //         $row = mysqli_fetch_assoc($result);
+    //         return $row['username'];
+    //     } else {
+    //         return '';
+    //     }
+    // }
+
 }

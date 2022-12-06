@@ -82,20 +82,23 @@ $dbh = new dbHandler();
                             </li>
                         </ul>
 
-                    
+
                         <medium id="timeNow"></medium>
                         <hr>
+                        <!-- <div id="shet">
+                            
+                        </div> -->
                         <div class="dropdown">
-                            <a href="" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" id="logOut" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fal fa-user me-2"></i>
-                                <strong class="d-none d-lg-inline text-uppercase">Admin</strong>
+                                <strong> ADMIN</strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="login/login.php">Sign out</a></li>
+                                <li><a class="dropdown-item" href="../logout/logout.php">Sign out</a></li>
                             </ul>
                         </div>
 
