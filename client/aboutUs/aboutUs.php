@@ -42,7 +42,7 @@ $dbh = new dbHandler;
         <?php if (!isset($_SESSION['id'])) { ?>
 
           <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-          <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+          <a href="../../index.php" class="btn btn-outline-dark me-2">Login</a>
 
         <?php } else { ?>
 
