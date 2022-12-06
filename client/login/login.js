@@ -5,7 +5,7 @@
         event.preventDefault();
         $.ajax({
             type: 'post',
-            url: 'loginProcess.php',
+            url: 'client/login/loginProcess.php',
             data: new FormData(this),
             contentType: false,
             cache: false,
@@ -17,7 +17,7 @@
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
                 } else {
-                    window.location.href = '../home/home.php';
+                    window.location.href = 'client/home/home.php';
 
                 }
             }
