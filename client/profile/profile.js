@@ -27,10 +27,13 @@ $(document).ready(function () {
     var splitBack = '';
 
     function messagePopover() {
+        // var id = '';
         $.ajax({
             type: "POST",
             url: "messageProcess.php",
-            data: { getMessage: true },
+            data: { getMessage: true,
+                    // clientID: id
+            },
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
@@ -211,15 +214,23 @@ $(document).ready(function () {
             
                 <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
                     <div class="d-flex justify-content-between">
+                    <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="" hidden>
                             <textarea class="form-control border-0" type="text" name="clientMessage" style="height: 20px;" placeholder="Write a message..."></textarea>
-                            <button class="btn btn-light text-secondary">
-                                <i class="fas fa-paperclip text-primary"></i>
+                            <div class="dropdown m-0">
+                            <button class="btn btn-light text-secondary  fas fa-paperclip text-primary" data-bs-toggle="dropdown" id="aria-expanded=" false>
+                                
                             </button>
+                            <ul class="dropdown-menu">
+                            <input type="file" class="filesEmp" id="filesEmployee" name="filesEmployee[]" multiple>
+                             </ul>
+                                
+                            </div>
                             <button type="submit" class="btn btn-light text-secondary">
                                 <i class="far fa-paper-plane text-primary"></i>
                             </button>
                     </div>
                 </div>
+                
                 </div>
                 
                 </div>
@@ -269,7 +280,9 @@ $(document).ready(function () {
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
+        // setInterval(messagePopover, 1000);
         $('#messageForm').submit(function (e) {
+            
             console.log("okay naman");
             e.preventDefault();
             $.ajax({
@@ -287,7 +300,8 @@ $(document).ready(function () {
                     if (response.status == 'success') {
                         messagePopover();
                         $(".popover-body").html(messageContent);
-                        console.log("hehe");
+                        // $('#mesBody').html(mesContent);
+                        // console.log("hehe");
                     }
                 }, error: function (response) {
                     console.error(response.responseText);

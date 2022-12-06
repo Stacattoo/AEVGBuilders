@@ -425,8 +425,18 @@ class dbHandler
     function insertEmployeeCostEstimate($content, $client, $id)
     {
         
-        $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id ='$id'";
+        $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
         return mysqli_query($this->conn, $sql);
+        // if (mysqli_num_rows($result)) {
+        //     $msg = array();
+        //     if ($row = mysqli_fetch_assoc($result)) {
+        //         $msg = json_decode($row["costEstimate"]);
+        //         array_push($msg,json_decode($content)[0]);
+        //         $msg = json_encode($msg);
+        //         $sql = "UPDATE `message` SET costEstimate='$msg' WHERE client_id='$client'";
+        //         return mysqli_query($this->conn, $sql);
+        //     }
+        // } 
         
     }
 

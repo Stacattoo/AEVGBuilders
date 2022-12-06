@@ -5,7 +5,7 @@ $dbh = new dbHandler;
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script src="../message/message.js"></script>
 <div class="container-fluid">
-    <h3><i class="fal fa-user-alt me-2 mx-4"></i>Message</h3>
+    <h3><i class="fad fa-calendar-alt bi me-2"></i></i>Message</h3>
     <hr>
     <div class="row g-2">
         <div class="col-4 mx-4">
@@ -16,7 +16,7 @@ $dbh = new dbHandler;
                     <button type="button" id="listBtn" class="nav-link active" aria-current="page">Clients</button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" id="pendingBtn" class="nav-link" aria-current="page">General Chat</button>
+                    <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
                 </li>
             </ul>
             <div id="list" class="list-group"></div>
@@ -54,40 +54,23 @@ $dbh = new dbHandler;
 
     </div>
 
+
     <script>
         $(document).ready(function() {
+
             $("#list").show();
-            // $("#pending").hide();
+            $("#pending").hide();
+
             messageClient();
+            // generalClient();
 
             $("#search").change(function(e) {
                 e.preventDefault();
                 messageClient($(this).val());
+                generalClient($(this).val());
             });
 
-<<<<<<< Updated upstream
-
-        });
-    </script>
-
-
-=======
-<script>
-    $(document).ready(function() {
-
-        $("#list").show();
-        $("#pending").hide();
-
-        messageClient();
-        generalClient();
-
-        $("#search").change(function(e) {
-            e.preventDefault();
-            messageClient($(this).val());
-            generalClient($(this).val());
-        });
-
-        $("#listBtn").click(function() {
+            $("#listBtn").click(function() {
                 $(this).addClass("active");
                 $("#pendingBtn").removeClass("active");
                 $("#list").show();
@@ -104,42 +87,12 @@ $dbh = new dbHandler;
                 });
 
 
-        });
+            });
             $("#pendingBtn").click(function() {
                 $(this).addClass("active");
                 $("#listBtn").removeClass("active");
                 $("#pending").show();
                 $("#list").hide();
->>>>>>> Stashed changes
 
             });
-
-    <!-- <div class="col-sm-8 conversation">
-        <div class="row heading">
-
-            <div class="col-sm-8 col-xs-7 heading-name">
-                <a class="heading-name-meta">John Doe
-                </a>
-
-            </div>
-            <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-            </div>
-        </div>
-
-
-        <div class="row reply">
-            <div class="col-sm-1 col-xs-1 reply-emojis">
-                <i class="fa fa-smile-o fa-2x"></i>
-            </div>
-            <div class="col-sm-9 col-xs-9 reply-main">
-                <textarea class="form-control" rows="1" id="comment"></textarea>
-            </div>
-            <div class="col-sm-1 col-xs-1 reply-recording">
-                <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-            </div>
-            <div class="col-sm-1 col-xs-1 reply-send">
-                <i class="fa fa-send fa-2x" aria-hidden="true"></i>
-            </div>
-        </div>
-    </div> -->
+        });

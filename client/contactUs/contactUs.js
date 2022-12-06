@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    console.log($(this).val());
+    // console.log($(this).val());
     $("#alertError").hide();
     $("#projectID").hide();
     // $("#step1").hide();

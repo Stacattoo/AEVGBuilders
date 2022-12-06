@@ -35,11 +35,11 @@ function messageClient(searchQuery = '') {
 			// },
 			complete: function () {
 				$(".client").click(function (e) {
-
 					e.preventDefault();
 					$(".client").removeClass("active");
 					$(this).addClass("active");
 					var userid = $(this).attr("data-id");
+					console.log("client click");
 					console.log(userid);
 					$.ajax({
 						url: "../message/messageChatBox.php",
