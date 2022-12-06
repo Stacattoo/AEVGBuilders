@@ -52,13 +52,13 @@ $dbh = new dbHandler;
 
                             <select class="form-select" aria-label="Default select example" id="edit-category" name="categoryEdit">
                             <option selected disabled>Catergory</option>
-                                <option value="Interior">Residentials</option>
-                                <option value="Renovate">Commercial</option>
-                                <option value="Bungalo">Mixed-Use</option>
-                                <option value="Modern">Institutional</option>
-                                <option value="Modern">Industrial</option>
-                                <option value="Modern">Interior</option>
-                                <option value="Modern">Renovation</option>
+                                <option value="Residentials">Residentials</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Mixed-Use">Mixed-Use</option>
+                                <option value="Institutional">Institutional</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Interior">Interior</option>
+                                <option value="Renovation">Renovation</option>
                             </select>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ $dbh = new dbHandler;
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
                     <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</a>
-                        <button type="button" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
+                        <button type="submit" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
                         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

@@ -148,17 +148,17 @@ $(document).ready(function () {
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
+                        console.log("ok log check");
                         //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
-                            url: '../projects/editProfileProcess.php',
+                            url: '../admin/projects/editProfileProcess.php',
                             data: new FormData(this),
                             contentType: false,
                             cache: false,
                             processData: false,
                             dataType: "JSON",
                             success: function (response) {
-                                console.log(response);
                                 if (response.status == 'error') {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
@@ -177,8 +177,6 @@ $(document).ready(function () {
                     });
 
                 });
-
-                // console.log(response);
             }
             ,
             error: function (response) {
