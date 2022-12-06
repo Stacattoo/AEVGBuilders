@@ -61,6 +61,8 @@ function messageClient(searchQuery = '') {
 	});
 }
 
+
+
 function generalClient(searchQuery = ''){
 	$(document).ready(function () {
 

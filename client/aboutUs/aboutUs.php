@@ -177,23 +177,7 @@ $dbh = new dbHandler;
       </div>
     </div>
 
-    <div class="fixed-bottom  d-flex justify-content-end m-3 ">
-        <div>
-
-            <div class=" ">
-                <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" >
-                <i class="fal fa-comment-alt-lines fs-2"></i>
-                </button>
-            </div>
-            <div class="mt-2">
-                <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
-                <i class="fal fa-bullhorn fs-3"></i>
-                </button>
-            </div>
-
-        </div>
-    </div>
-
+    
     <div class="container">
       <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">

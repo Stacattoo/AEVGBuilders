@@ -5,8 +5,8 @@ $dbh = new dbHandler;
 
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
-    "></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
+    "></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="dashboard/dashboard.js"></script>
 </head>

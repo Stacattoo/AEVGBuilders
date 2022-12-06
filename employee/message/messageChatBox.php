@@ -10,12 +10,22 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body h-100">
         <div class="d-flex justify-content-between">
             <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
+
             <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn" type="button"  id="filesTab" href="#fileModal" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-images fs-4"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="filesTab" data-bs-toggle="modal" href="#fileModal" data-id="<?php echo $userData->id; ?>">Files & Images</a></li>
+                    <div id="filesContent">
+                        <div class="" id="scrollBar" style="height: 500px; overflow-y:scroll; background-color:#f8f9fa;">
+                            <div class="p-3" id="filesRetrieve">
+                                <div class="">
+                                    <!-- <small class="text-start" id="clientNameHeader"></small>
+                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </ul>
             </div>
@@ -54,16 +64,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
             </div>
         </form>
-            <div id="filesContent">
-                <div class="" id="scrollBar" style="height: 500px; overflow-y:scroll; background-color:bisque;">
-                    <div class="p-3" id="filesRetrieve">
-                        <div class="">
-                            <!-- <small class="text-start" id="clientNameHeader"></small>
-                            <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
 
     </div>
@@ -86,17 +87,16 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             $(this).addClass("active");
             $("#messageTab").removeClass("active");
             $("#filesContent").show();
-            $("#messageEmployee").hide();
+            // $("#messageEmployee").hide();
 
         });
 
         $(".border").scrollTop($(".border")[0].scrollHeight);
-
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        setInterval(displayMessage, 1000);
-        $("#subBtn").click(function (e) { 
+        // setInterval(displayMessage, 1000);
+        $("#subBtn").click(function(e) {
             // e.preventDefault();
             console.log("subBtn");
         });
@@ -166,7 +166,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     getMessage: true,
                     id: id
                 },
-                
+
                 dataType: "JSON",
                 success: function(response) {
                     var splitBack = '';
@@ -201,24 +201,24 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     <div class="pe-2">
                                         <div>
                                             <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
-                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4" style="max-height: 150px;">
+                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="position-relative avatar">
-                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
                                     } else {
                                         content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle rounded-4" alt="">
+                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle rounded-4" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
-                                    <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
+                                    <div class="card  text-white d-inline-block p-1  border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
                                     </div>
                                 </div>
 
@@ -232,7 +232,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     filesContMsg += `
                                             <div class="form-control">
                                             <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
                                             </div>`;
 
 
@@ -241,27 +241,27 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #fdfffc">
+                                            <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6t" title="${val.dateTime}" style="background-color: #00a6fb;">
                                             <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="position-relative avatar">
-                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
                                     } else {
                                         content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
                                     <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-info btn-sm mt-1">Download</button>
+                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1" >Download</button>
                                     </div>
                                 </div>
 
@@ -279,24 +279,24 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
                                             ${contentMsgDisplay}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="position-relative avatar">
-                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
                                 } else {
                                     content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 50px;" class="img-fluid rounded-circle" alt="">
+                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
                                     ${contentMsgDisplay}
                                     </div>
                                 </div>
