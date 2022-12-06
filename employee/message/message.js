@@ -61,8 +61,6 @@ function messageClient(searchQuery = '') {
 	});
 }
 
-<<<<<<< Updated upstream
-=======
 function generalClient(searchQuery = ''){
 	$(document).ready(function () {
 
@@ -124,4 +122,3 @@ function generalClient(searchQuery = ''){
 		});
 	});
 }
->>>>>>> Stashed changes

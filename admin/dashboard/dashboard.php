@@ -21,9 +21,9 @@ $dbh = new dbHandler;
 
         <div class="container-fluid">
             <div class="mt-5">
-                <div class="row">
+                <div class="row my-3">
                     <div class="col">
-                        <div class="card mb-3 border-0 " style="background-color:#c4fff9;">
+                        <div class="card h-100 mb-3 border-0 " style="background-color:#c4fff9;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -42,7 +42,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card mb-3 border-0 " style="background-color:#90e0ef;">
+                        <div class="card h-100 mb-3 border-0 " style="background-color:#90e0ef;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -59,7 +59,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card mb-3 border-0 " style="background-color:#fcb9b2;">
+                        <div class="card h-100 mb-3 border-0 " style="background-color:#fcb9b2;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -76,7 +76,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card mb-3 border-0  " style="background-color:#a0c4ff;">
+                        <div class="card h-100 mb-3 border-0  " style="background-color:#a0c4ff;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
