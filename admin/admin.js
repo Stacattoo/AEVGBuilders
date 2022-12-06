@@ -87,11 +87,12 @@ $(document).ready(function () {
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
+                // console.log("pasok ba sa success?");
                 if (response.status == 'error') {
                     $("#errorAlert").html(response.msg);
                     $("#errorAlert").show();
                 } else {
+                    console.log("andito ka ba gurl??");
                     $("#updateProfileModal").modal('hide');
                 }
             },

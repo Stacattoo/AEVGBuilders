@@ -252,7 +252,7 @@ class dbHandler
 
 
 
-    function updateSpecificInfo($id, $col, $value, $table = 'employee')
+    function updateSpecificInfo($id, $col, $value, $table = 'admin')
     {
         $sql = "UPDATE `$table` SET $col='$value' WHERE id=$id";
         return mysqli_query($this->conn, $sql);
