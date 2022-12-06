@@ -383,6 +383,28 @@ class dbHandler
         return $message;
     }
 
+    function getCostEstimate($id)
+    {
+        $sql = "SELECT * FROM message WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $message = array();
+        $mesCost = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                // $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
+                $mesCost = json_decode($row['costEstimate']);
+                $message[] = (object) [
+                    'id' => $row['client_id'],
+                    'employee_id' => $row['employee_id'],
+                    'content' => $mesCost,
+                    'date' => $row['dateTime'],
+                    'status' => $row['status']
+                ];
+            }
+        }
+        return $message;
+    }
+
 
 
     //message end

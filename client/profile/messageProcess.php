@@ -51,9 +51,7 @@ if (isset($_FILES['filesEmployee'])) {
         );
 
         $jsonFiles = json_encode($jsonFiles);
-        // var_dump($jsonFiles);
-        // var_dump($_FILES);
-        // var_dump($_POST);
+
         if ($dbh->insertClientFiles($jsonFiles, $_SESSION['id'])) {
             echo json_encode(array(
                 "status" => 'success',

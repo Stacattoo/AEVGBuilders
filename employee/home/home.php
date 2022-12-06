@@ -67,6 +67,13 @@ $dbh = new dbHandler;
                                     Projects
                                 </a>
                             </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="portfolio">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Portfolio
+                                </a>
+                            </li>
                         </ul>
                         <medium id="timeNow"></medium>             
                         <hr>

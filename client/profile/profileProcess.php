@@ -42,3 +42,7 @@ if (isset($_POST['firstName'])) {
         ));
     }
 }
+if (isset($_POST['getCostEstimate'])) {
+    echo json_encode((array)$dbh->getCostEstimate($_SESSION['id'])[0]);
+    // echo "cost estimate";
+}

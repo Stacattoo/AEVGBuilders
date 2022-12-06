@@ -107,6 +107,13 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function uploadPortfolio($info, $clientId, $id)
+    {
+        $query = "INSERT INTO portfolio(employee_id, client_id, title, image, description) 
+        VALUES ($id, $clientId,'$info->title' ,'$info->image', '$info->description')";
+        return mysqli_query($this->conn, $query);
+    }
+
     function profileUpdate($value, $id)
     {
         $sql = "UPDATE `employee` SET firstName='$value->firstName', middleName='$value->middleName', lastName='$value->lastName', username='$value->username', email='$value->email',
@@ -159,6 +166,24 @@ class dbHandler
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "category" => $row["category"],
+                    "image" => explode(",", $row["image"]),
+                ];
+            }
+        }
+        return $projects;
+    }
+
+    function getAllPortfolio()
+    {
+        $query = "SELECT * FROM portfolio";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
                     "image" => explode(",", $row["image"]),
                 ];
             }

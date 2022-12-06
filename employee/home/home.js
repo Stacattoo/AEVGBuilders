@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#content").load("../client/client.php");
+    $("#content").load("../portfolio/portfolio.php");
     $("#errorAlert").hide();
 
     $(".nav-link").click(function (e) {
@@ -42,6 +42,10 @@ $(document).ready(function () {
     $("#profileNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../profile/profile.php");
+    });
+    $("#portfolio").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../portfolio/portfolio.php");
     });
 
 

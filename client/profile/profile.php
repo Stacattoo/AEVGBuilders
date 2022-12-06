@@ -243,11 +243,11 @@ $dbh = new dbHandler;
     <div class="container mt-5 ">
         <h2>List of Previous Quotation</h2>
         <div class="table-responsive ">
-            <table class="table table-striped table-hover" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Quotation #</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Date & Time</th>
+                        <!-- <th scope="col">Date</th> -->
 
                         <th scope="col">Status</th>
                     </tr>
@@ -255,33 +255,7 @@ $dbh = new dbHandler;
 
 
                 <tbody>
-                <tbody id="qoute-table" class="table table-striped table-hover " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                    <tr>
-                        <td>001</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-
+                <tbody id="costEstiTable" class="table table-striped table-hover">
 
                 </tbody>
             </table>

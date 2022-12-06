@@ -1,5 +1,8 @@
 $(document).ready(function () {
+
     messagePopover();
+    appStatus();
+    showCostEstimate();
 
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
@@ -7,8 +10,6 @@ $(document).ready(function () {
     $("#schedAppProfile").show();
     $("#viewAppModal").hide();
     $("#haveASchedule").hide();
-    appStatus()
-
     var feedbackContent = `
     <div>
         <h5><b>Thank you for trusting us!</b></h5>
@@ -38,7 +39,7 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
-                console.log(response);
+                // console.log(response);
                 var contentMsgDisplay = '';
                 $.each(response.content, function (indexInArray, val) {
 
@@ -290,169 +291,214 @@ $(document).ready(function () {
                         // $('#mesBody').html(mesContent);
                         // console.log("hehe");
                     }
-                   
-
-        }, error: function (response) {
-            console.error(response.responseText);
-        }
+                }, error: function (response) {
+                    console.error(response.responseText);
+                }
             });
-});
-$('.fileBtnClient').click(function (e) {
-    e.preventDefault();
-    console.log("ayos naman");
-    var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
-    var url = path.concat(splitBack);
-    console.log(url);
-    var docuFilesMsg = window.open(url);
-    docuFilesMsg.location;
+        });
+        $('.fileBtnClient').click(function (e) {
+            e.preventDefault();
+            console.log("ayos naman");
+            var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
+            var url = path.concat(splitBack);
+            console.log(url);
+            var docuFilesMsg = window.open(url);
+            docuFilesMsg.location;
 
-});
+        });
     });
 
 
 
-$("#profileForm").submit(function (event) {
-    // console.log('test lang');
-    event.preventDefault();
-    $.ajax({
-        url: "profileProcess.php",
-        type: "POST",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        dataType: 'json',
-        success: function (result) {
-            console.log(result);
-            //alert("Record successfully updated");
-            if (result.status == 'error') {
-                $("#alertError").html(result.msg);
-                $("#alertError").fadeIn();
-            } else {
-                $("#alertSuccess").html(result.msg);
-                $("#alertSuccess").fadeIn();
+    $("#profileForm").submit(function (event) {
+        // console.log('test lang');
+        event.preventDefault();
+        $.ajax({
+            url: "profileProcess.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                //alert("Record successfully updated");
+                if (result.status == 'error') {
+                    $("#alertError").html(result.msg);
+                    $("#alertError").fadeIn();
+                } else {
+                    $("#alertSuccess").html(result.msg);
+                    $("#alertSuccess").fadeIn();
+                }
+            },
+            error: function (result) {
+                console.error(result);
             }
-        },
-        error: function (result) {
-            console.error(result);
-        }
+        });
     });
-});
 
 
 
-$('input').focus(function (e) {
-    e.preventDefault();
-    $("#alertError").fadeOut();
-    $("#alertSuccess").fadeOut();
+    $('input').focus(function (e) {
+        e.preventDefault();
+        $("#alertError").fadeOut();
+        $("#alertSuccess").fadeOut();
 
-});
+    });
 
-$('#imgBtn').change(function () {
+    $('#imgBtn').change(function () {
 
-    var file = $("input[type=file]").get(0).files[0];
+        var file = $("input[type=file]").get(0).files[0];
 
-    if (file) {
+        if (file) {
 
-        var reader = new FileReader();
+            var reader = new FileReader();
 
-        reader.onload = function () {
-            $("#profileImg").attr("src", reader.result);
+            reader.onload = function () {
+                $("#profileImg").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
         }
 
-        reader.readAsDataURL(file);
-    }
+    });
 
-});
-
-$("#errorPass").hide();
-$("#changePassForm").hide();
-
-$("#profileInfo").click(function () {
-
-    $(this).addClass("active");
-    $("#passBtn").removeClass("active");
-    $("#profileForm").show();
+    $("#errorPass").hide();
     $("#changePassForm").hide();
 
-});
+    $("#profileInfo").click(function () {
 
-$("#passBtn").click(function () {
+        $(this).addClass("active");
+        $("#passBtn").removeClass("active");
+        $("#profileForm").show();
+        $("#changePassForm").hide();
 
-    $(this).addClass("active");
-    $("#profileInfo").removeClass("active");
-    $("#changePassForm").show();
-    $("#profileForm").hide();
+    });
 
-});
+    $("#passBtn").click(function () {
+
+        $(this).addClass("active");
+        $("#profileInfo").removeClass("active");
+        $("#changePassForm").show();
+        $("#profileForm").hide();
+
+    });
 
 
-$("#changePassForm").submit(function (event) {
-    // console.log('test lang');
-    event.preventDefault();
-    $.ajax({
-        url: "changePassProcess.php",
-        type: "POST",
-        dataType: "json",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function (result) {
-            console.log(result);
-            if (result.status == "error") {
-                $("#errorPass").html(result.msg);
-                $("#errorPass").show();
-            } else {
-                alert("Password Changed Succesfully");
-                $("#changePass").hide();
-                $("#errorPass").hide();
-                $('#changePassForm').trigger("reset");
+    $("#changePassForm").submit(function (event) {
+        // console.log('test lang');
+        event.preventDefault();
+        $.ajax({
+            url: "changePassProcess.php",
+            type: "POST",
+            dataType: "json",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);
+                if (result.status == "error") {
+                    $("#errorPass").html(result.msg);
+                    $("#errorPass").show();
+                } else {
+                    alert("Password Changed Succesfully");
+                    $("#changePass").hide();
+                    $("#errorPass").hide();
+                    $('#changePassForm').trigger("reset");
+
+                }
 
             }
-
-        }
+        });
     });
-});
 
-$('#changePassForm').click(function () {
-    $("#errorPass").hide();
-});
+    $('#changePassForm').click(function () {
+        $("#errorPass").hide();
+    });
 
 
-//     $("#scheduleForm").submit(function (event) {
-//         event.preventDefault();
-function appStatus() {
-    $.ajax({
-        url: "../contactUs/getData.php",
-        type: "POST",
-        dataType: "json",
-        data: {
-            checkAppointmentProfile: true
-        },
-        success: function (result) {
-            // console.log(result.status);
-            if (result.status == 'pending') {
-                $("#schedAppProfile").hide();
-                $("#haveASchedule").hide();
-                $("#viewAppModal").show();
-                $("#viewModBtn").show();
-            } else if (result.status == 'canceled') {
-                $("#schedAppProfile").show();
-                $("#haveASchedule").hide();
-                $("#viewAppModal").hide();
-                $("#editBtnSched").show();
-                $("#viewModBtn").show();
-            } else if (result.status == 'ongoing') {
-                $("#schedAppProfile").hide();
-                $("#haveASchedule").show();
-                $("#viewAppModal").hide();
-                $("#editBtnSched").hide();
-                $("#viewModBtn").show();
+    //     $("#scheduleForm").submit(function (event) {
+    //         event.preventDefault();
+    function appStatus() {
+        $.ajax({
+            url: "../contactUs/getData.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                checkAppointmentProfile: true
+            },
+            success: function (result) {
+                // console.log(result.status);
+                if (result.status == 'pending') {
+                    $("#schedAppProfile").hide();
+                    $("#haveASchedule").hide();
+                    $("#viewAppModal").show();
+                    $("#viewModBtn").show();
+                } else if (result.status == 'canceled') {
+                    $("#schedAppProfile").show();
+                    $("#haveASchedule").hide();
+                    $("#viewAppModal").hide();
+                    $("#editBtnSched").show();
+                    $("#viewModBtn").show();
+                } else if (result.status == 'ongoing') {
+                    $("#schedAppProfile").hide();
+                    $("#haveASchedule").show();
+                    $("#viewAppModal").hide();
+                    $("#editBtnSched").hide();
+                    $("#viewModBtn").show();
+                }
+
             }
+        });
+    }
+    function showCostEstimate() {
+        $.ajax({
+            type: "POST",
+            url: "profileProcess.php",
+            data: {
+                getCostEstimate: true
+            },
+            dataType: "json",
+            success: function (response) {
+                // console.log(response.content);
+                var content = ``;
+                var dateTime = '';
+                
+                $.each(response.content, function (indexInArray, val) {
+                    // dateTime = ;
+                    var d = new Date(val.dateTime);
+                    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-        }
-    });
-}
+                    var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
+                    var time = d.toLocaleTimeString().toLowerCase();
+                    dateTime = date + " at " + time;
+                    // console.log(val.content);
+                    splitBack = val.content.replace("../../clientEmployeeFiles/", '');
+                    content += `
+                    <tr>
+
+                        <td>${dateTime}</td>
+                        <td>${splitBack}</td>
+                        <td><button type="button" class="fileBtn btn btn-info btn-sm">Download</button></td>
+                    </tr>`;
+                });
+                $('#costEstiTable').html(content);
+                $('.fileBtn').click(function(e) {
+                    e.preventDefault();
+                    var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
+                    var url = path.concat(splitBack);
+                    console.log(url);
+                    var docuFilesMsg = window.open(url);
+                    docuFilesMsg.location;
+
+                });
+            },
+            error: function (responseError) {
+                console.log(responseError);
+            }
+        });
+    }
 
 }); // end of document ready function
