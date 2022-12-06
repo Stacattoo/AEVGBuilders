@@ -25,6 +25,7 @@ $(document).ready(function () {
 
     var mesContent = ``;
     var splitBack = '';
+
     function messagePopover() {
         $.ajax({
             type: "POST",
@@ -63,25 +64,25 @@ $(document).ready(function () {
                                         `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
-                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 90px;">
+                                            <div class="card text-white d-inline-block p-1 border-0 rounded-4" style="background-color: #00a6fb">
+                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4" style="max-height: 90px;">
                                             </div>
                                         </div>
                                     </div>
-                                <div class="position-relative avatar">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                <div class="position-relative avatar border-0 px-1">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle border-0" alt="">
                                 </div>
                             </div> `;
                                 } else {
                                     mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        <div class="position-relative avatar  border-0 px-1">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle border-0" alt="">
                                         </div>
                                         <div class="pe-2">
                                             <div>
-                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
-                                                <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 90px;">
+                                                <div class="card  text-white d-inline-block p-1 border-0 rounded-4" style="background-color: #0582ca">
+                                                <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4" style="max-height: 90px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -97,25 +98,27 @@ $(document).ready(function () {
                                         `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                                       
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" style="background-color: #00a6fb">
                                             <div>${splitBack}</div>
                                             <button type="button" class="fileBtnClient btn btn-info btn-sm mt-1">Download</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="position-relative avatar">
-                                        <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
-                                    </div>
-                                </div> `;
+                                <div class="position-relative avatar  border-0 px-1">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " alt="">
+                                </div>
+                            </div> `;
                                 } else {
                                     mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        <div class="position-relative avatar  border-0 px-1">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " alt="">
                                         </div>
                                         <div class="pe-2">
                                             <div>
-                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                                           
+                                                <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" style="background-color: #0582ca">
                                                 <div>${splitBack}</div>
                                                 <button type="button" class="fileBtnClient btn btn-info btn-sm mt-1">Download</button>
                                                 </div>
@@ -131,24 +134,24 @@ $(document).ready(function () {
                                     `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1" style="background-color: #00a6fb">
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" style="background-color: #00a6fb">
                                             ${val.content}
                                             </div>
                                         </div>
                                     </div>
-                                <div class="position-relative avatar">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                <div class="position-relative avatar  border-0 px-1">
+                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " alt="">
                                 </div>
                             </div> `;
                             } else {
                                 mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle" alt="">
+                                        <div class="position-relative avatar  border-0 px-1">
+                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " alt="">
                                         </div>
                                         <div class="pe-2">
                                             <div>
-                                                <div class="card  text-white d-inline-block p-2 px-3 m-1" style="background-color: #0582ca">
+                                                <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4" style="background-color: #0582ca">
                                                 ${val.content}
                                                 </div>
                                             </div>
@@ -183,7 +186,7 @@ $(document).ready(function () {
                     <ul class="navbar-nav me-auto align-items-center">
 
                         <li class="nav-item">
-                            <a href="#!" class="nav-link text-bold">AEVG Live Chat</a>
+                        <h5 class="mt-2">AEVG Live Chat</h5> 
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
