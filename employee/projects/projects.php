@@ -137,7 +137,7 @@ $dbh = new dbHandler;
                                 <option selected disabled>Catergory</option>
                                 <option value="Residentials">Residentials</option>
                                 <option value="Commercial">Commercial</option>
-                                <option value="Bungalo">Mixed-Use</option>
+                                <option value="Mixed-Use">Mixed-Use</option>
                                 <option value="Institutional">Institutional</option>
                                 <option value="Industrial">Industrial</option>
                                 <option value="Interior">Interior</option>
