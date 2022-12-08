@@ -175,9 +175,9 @@ class dbHandler
     }
 
 
-    function getAllProjects()
+    function getAllProjects($id, $status)
     {
-        $query = "SELECT * FROM projects";
+        $query = "SELECT * FROM projects WHERE employee_id = $id AND project_status='$status'";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
@@ -187,6 +187,7 @@ class dbHandler
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "category" => $row["category"],
+                    "status" => $row["project_status"],
                     "image" => explode(",", $row["image"]),
                 ];
             }
