@@ -57,9 +57,9 @@ $dbh = new dbHandler();
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="projectNav">
+                                <a href="#" class="nav-link text-white" id="preprojectNav">
                                     <i class="fad fa-folder-open bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Pre-Approve Projects</span>
+                                    <span class="d-none d-lg-inline">Pre-Posted Projects</span>
                                 </a>
                             </li>
                             <li>

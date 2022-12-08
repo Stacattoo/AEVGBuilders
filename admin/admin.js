@@ -27,6 +27,11 @@ $(document).ready(function () {
         $("#content").load("projects/projects.php");
     });
 
+    $("#preprojectNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("projects/preProjects.php");
+    });
+
     $("#scheduleNav").click(function (e) {
         e.preventDefault();
         $("#content").load("schedule/schedule.php");

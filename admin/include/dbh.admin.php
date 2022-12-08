@@ -45,7 +45,7 @@ class dbHandler
 
     function getAllProjects()
     {
-        $query = "SELECT * FROM projects";
+        $query = "SELECT * FROM projects where project_status = 'active' || project_status = 'pending'";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
@@ -60,6 +60,46 @@ class dbHandler
             }
         }
         return $projects;
+    }
+
+    function getAdminPendingProjects()
+    {
+        $query = "SELECT * FROM projects where project_status = 'pending'";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
+                    "category" => $row["category"],
+                    "image" => explode(",", $row["image"]),
+                ];
+            }
+        }
+        return $projects;
+    }
+
+
+    function getPendingProjects(){
+        $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "id" => $row['id'],
+                    "fullname" => $row['fullname'],
+                    "employee_id" => $row['employee_id'],
+                    "title" => $row['title'],
+                    "category" => $row['category'],
+                    "description" => $row['description'],
+                    "date_time" => $row['date_time'],
+                ];
+            }
+        }
+        return $data;
     }
 
     function checkIfEmailExist($email)
@@ -442,25 +482,7 @@ class dbHandler
         return $data;
     }
 
-    function getPendingProjects(){
-        $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
-        $result = mysqli_query($this->conn, $sql);
-        $data = array();
-        if (mysqli_num_rows($result)) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $data[] = (object)[
-                    "id" => $row['id'],
-                    "fullname" => $row['fullname'],
-                    "employee_id" => $row['employee_id'],
-                    "title" => $row['title'],
-                    "category" => $row['category'],
-                    "description" => $row['description'],
-                    "date_time" => $row['date_time'],
-                ];
-            }
-        }
-        return $data;
-    }
+    
 
     function approveFeedback($id){
         $query = "UPDATE feedback SET feedback_status='approved' where id='$id'";
