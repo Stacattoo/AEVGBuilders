@@ -477,7 +477,6 @@ class dbHandler
     {
 
         $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
-<<<<<<< Updated upstream
         $result = mysqli_query($this->conn, $sql);
         if ($result){
             $this->insertActivity($client, "Send a Cost Estimate ");
@@ -488,20 +487,6 @@ class dbHandler
     function insertActivity($clientId, $statusMessage){
         $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
         return mysqli_query($this->conn, $query);
-=======
-        return mysqli_query($this->conn, $sql);
-        // if (mysqli_num_rows($result)) {
-        //     $msg = array();
-        //     if ($row = mysqli_fetch_assoc($result)) {
-        //         $msg = json_decode($row["costEstimate"]);
-        //         array_push($msg,json_decode($content)[0]);
-        //         $msg = json_encode($msg);
-        //         $sql = "UPDATE `message` SET costEstimate='$msg' WHERE client_id='$client'";
-        //         return mysqli_query($this->conn, $sql);
-        //     }
-        // } 
-
->>>>>>> Stashed changes
     }
 
     function getContent($client_id, $id)
@@ -581,15 +566,8 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
-<<<<<<< Updated upstream
                     "date_time" => $row['date_time'],
                     "status" => $row['status_message']
-                    
-=======
-                    "client_id" => $row['client_id'],
-                    "date_time" => $row['date_time']
-
->>>>>>> Stashed changes
                 ];
             }
         }

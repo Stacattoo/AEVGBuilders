@@ -144,7 +144,7 @@ class dbHandler
         $result = mysqli_query($this->conn, $query);
         if($result){
             $last_id = $this->conn->insert_id;
-            $this->insertActivity($last_id, "Registration Date ");
+            $this->insertActivity($last_id, "Registration Date: ");
             
         }
 
@@ -166,17 +166,17 @@ class dbHandler
         return $result;
     }
 
-    function insertSchedule($sched)
-    {
-        $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
-        $result =  mysqli_query($this->conn, $sql);
-        if ($result){
-            $last_id = $this->conn->insert_id;
-            $this->insertActivity($last_id, "Set an Appointment ");
-        }
+    // function insertSchedule($sched)
+    // {
+    //     $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
+    //     $result =  mysqli_query($this->conn, $sql);
+    //     if ($result){
+    //         $last_id = $this->conn->insert_id;
+    //         $this->insertActivity($last_id, "Set an Appointment ");
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     function insertActivity($clientId, $statusMessage){
         $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
