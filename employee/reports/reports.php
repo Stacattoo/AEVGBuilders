@@ -32,7 +32,6 @@
                 <table id="table" class="table table-sm table-hover">
                     <thead>
                         <tr id="first-tr">
-                            <th>ID</th>
                             <th>ACTIVITY</th>
                             <th>DATE AND TIME</th>
                         </tr>

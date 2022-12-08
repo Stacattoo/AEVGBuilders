@@ -461,18 +461,16 @@ class dbHandler
     {
         
         $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
-        return mysqli_query($this->conn, $sql);
-        // if (mysqli_num_rows($result)) {
-        //     $msg = array();
-        //     if ($row = mysqli_fetch_assoc($result)) {
-        //         $msg = json_decode($row["costEstimate"]);
-        //         array_push($msg,json_decode($content)[0]);
-        //         $msg = json_encode($msg);
-        //         $sql = "UPDATE `message` SET costEstimate='$msg' WHERE client_id='$client'";
-        //         return mysqli_query($this->conn, $sql);
-        //     }
-        // } 
-        
+        $result = mysqli_query($this->conn, $sql);
+        if ($result){
+            $this->insertActivity($client, "Send a Cost Estimate ");
+        }
+        return $result;
+    }
+
+    function insertActivity($clientId, $statusMessage){
+        $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
+        return mysqli_query($this->conn, $query);
     }
 
     function getContent($client_id, $id)
@@ -545,13 +543,12 @@ class dbHandler
 
     function activities($id){
         $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
-        ON client.id = activity_log.client_id WHERE client.id = $id";
+        ON client.id = activity_log.client_id WHERE client.id = $id ORDER BY date_time DESC";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
-                    "client_id" => $row['client_id'],
                     "date_time" => $row['date_time'],
                     "status" => $row['status_message']
                     

@@ -36,7 +36,7 @@
                                 <input type="text" class="form-control mt-2" name="contact" placeholder="Contact Number" required>
 
                                 <div class="d-flex justify-content-evenly mt-4">
-                                    <a href="../login/login.php">Already Have an Account?</a>
+                                    <a href="../../index.php">Already Have an Account?</a>
                                 </div>
                                 <div class="d-flex justify-content-end mx-3 my-3 px-2">
                                     <button type="button" id="step1Btn" class="btn btn-outline-dark btn-sm ">Next <i class="fas fa-chevron-right"></i></button>
@@ -69,12 +69,12 @@
                         <div id="step3">
 
                             <div class="d-flex flex-column mb-3 mt-5">
-                                <input type="password" class="form-control mt-2" name="password" placeholder="Password" required>
+                                <input type="password" class="form-control mt-2" name="password"  minlength="8" placeholder="Password" required>
                                 <input type="password" class="form-control mt-2" name="confirmPassword" placeholder="Confirm Password" required>
                             </div>
                             <div class="alert alert-danger mt-3" role="alert" id="alertError">
                             </div>
-                            <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                            <div class="alert alert-success mt-3" role="alert" id="alertSuccess">Successfully Registered! Proceed to <a href="../../index.php">Log-in</a>
                             </div>
                             <button type="submit" class="btn btn-primary form-control mt-3">Sign Up</button>
                             <div class="d-flex justify-content-between ">

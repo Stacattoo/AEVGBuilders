@@ -115,15 +115,13 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if (response.status == 'error') {
-                    console.log("pasok ba here");
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
                 } else {
-                    console.log("pasok ba here 2");
                     $("#alertError").hide();
-                    $("#alertSuccess").html(response.msg);
                     $("#alertSuccess").show();
                     $('#registerForm').trigger("reset");
+                    
 
 
                 }

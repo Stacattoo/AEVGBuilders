@@ -47,7 +47,7 @@
                     </div>
                     <div class="modal-body p-5 pt-0">
 
-                        <div class="    text-center p-5">
+                        <div class="text-center p-5">
                             <form id="forgotPassForm">
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control rounded-3" name="email" id="floatingInput" placeholder="name@example.com">
@@ -55,7 +55,6 @@
                                     <div class="alert alert-danger mt-2" role="alert" id="alertErrorfp"> </div>
                                     <div class="alert alert-success mt-2" role="alert" id="alertSuccess">
                                         A new password was successfully sent on your email.
-                                        <a href="client/login/login.php">Login</a>
                                     </div>
                                 </div>
 

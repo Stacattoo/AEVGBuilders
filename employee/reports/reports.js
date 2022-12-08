@@ -45,8 +45,7 @@ $(document).ready(function () {
                         $.each(activities, function (indexInArray, act) { 
                             console.log(act);
                             content += `
-                                <tr id="actrow" >
-                                    <td>${act.client_id}</td>
+                                <tr>
                                     <td>${act.status} </td>
                                     <td>${act.date_time}</td>
                                 </tr>
