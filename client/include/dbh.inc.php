@@ -145,6 +145,34 @@ class dbHandler
         if($result){
             $last_id = $this->conn->insert_id;
             $this->insertActivity($last_id, "Registration Date ");
+            
+        }
+
+        return $result;
+    }
+
+    function setAppointment($value, $id)
+    {
+
+        $sql = "INSERT INTO appointment(client_id, projectLocation, targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
+        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
+        '$value->meetLoc', '$value->image', '$value->appointmentDate', '$value->appointmentTime')";
+        $result =  mysqli_query($this->conn, $sql);
+        if ($result){
+            $last_id = $this->conn->insert_id;
+            $this->insertActivity($id, "Set an Appointment ");
+        }
+
+        return $result;
+    }
+
+    function insertSchedule($sched)
+    {
+        $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
+        $result =  mysqli_query($this->conn, $sql);
+        if ($result){
+            $last_id = $this->conn->insert_id;
+            $this->insertActivity($last_id, "Set an Appointment ");
         }
 
         return $result;
@@ -223,11 +251,7 @@ class dbHandler
         return mysqli_query($this->conn, $sql);
     }
 
-    function insertSchedule($sched)
-    {
-        $sql = "INSERT INTO `schedule`(`user_id`, `reason`) VALUES ('$sched->id', '$sched->reason')";
-        return mysqli_query($this->conn, $sql);
-    }
+    
     function getSched($id)
     {
         $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
@@ -263,14 +287,7 @@ class dbHandler
         return $sched;
     }
 
-    function setAppointment($value, $id)
-    {
-
-        $sql = "INSERT INTO appointment(client_id, projectLocation, targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
-        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
-        '$value->meetLoc', '$value->image', '$value->appointmentDate', '$value->appointmentTime')";
-        return mysqli_query($this->conn, $sql);
-    }
+    
 
     function editSetAppointment($value, $id)
     {

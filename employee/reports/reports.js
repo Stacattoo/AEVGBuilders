@@ -13,7 +13,7 @@ $(document).ready(function () {
             $.each(dataResult.clients, function (indexInArray, c) {
                 console.log(c.id);
                 content += `
-                        <tr id="clientid" class="clientReport" data-toggle="modal" data-target="#activitiesModal" data-id="${c.id}">
+                        <tr id="clientid" class="clientReport" data-id="${c.id}">
                             <td id="reportclientid">${c.id}</td>
                             <td>${c.name}</td>
                             <td>${c.email}</td>
@@ -47,13 +47,14 @@ $(document).ready(function () {
                             content += `
                                 <tr id="actrow" >
                                     <td>${act.client_id}</td>
-                                    <td>Registration date: </td>
+                                    <td>${act.status} </td>
                                     <td>${act.date_time}</td>
                                 </tr>
                             `;
                         });
                         console.log(content);
                         $("#activities").html(content);
+                        $("#activitiesModal").modal("show");
                     }, error: function(error){
                         //
                     }

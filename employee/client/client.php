@@ -5,7 +5,7 @@
     <h3><i class="fal fa-user-alt me-2 mx-4"></i>Clients</h3>
     <hr>
     <div class="row g-2">
-        <div class="col-4 mx-4">
+        <div class="col-4 px-4">
             <input type="search" name="search" id="search" class="form-control mb-2" placeholder="Search">
 
             <ul class="nav nav-pills mt-3 mb-3">
@@ -25,10 +25,10 @@
             </div>
 
         </div>
-        <div id="records" class="col">
+        <div id="records" class="col-8">
             <div class="card mb-2  rounded-5">
                 <div class="card-body text-white rounded-3" style="background-color:#343a40;">
-                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 700px; background-color:#495057;"></div>
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 90%; background-color:#495057;"></div>
                     <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
                     <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 300px; background-color:#495057;"></div>
                     <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 600px; background-color:#495057;"></div>
@@ -46,71 +46,59 @@
                         <div class="row g-3">
                             <div class="col">
                                 <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 300px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 700px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 90%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 90%; background-color:#e9ecef;"></div>
                             </div>
 
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 90%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-9">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
                                 <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 600px; background-color:#e9ecef;"></div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 100px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 200px; background-color:#e9ecef;"></div>
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
 
                             </div>
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
 
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
 
                             </div>
                             <div class="col-sm-6">
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 200px; background-color:#e9ecef;"></div>
-                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 400px; background-color:#e9ecef;"></div>
+                                <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
 
