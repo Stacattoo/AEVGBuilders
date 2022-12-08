@@ -47,6 +47,7 @@ $(document).ready(function () {
                             content += `
                                 <tr>
                                     <td>${act.status} </td>
+                                    <td>${act.status} </td>
                                     <td>${act.date_time}</td>
                                 </tr>
                             `;

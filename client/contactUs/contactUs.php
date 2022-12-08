@@ -104,7 +104,7 @@ $dbh = new dbHandler;
                 <div class="col-sm-4">
                   <label for="contactNo" class="form-label">Contact Number</label>
                   <div class="input-group has-validation">
-                    <input type="text" class="form-control" name="contactNo" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" readonly>
+                    <input type="text" class="form-control" name="contactNo" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
                   </div>
                 </div>
               </div>
