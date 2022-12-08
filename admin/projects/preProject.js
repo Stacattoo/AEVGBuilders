@@ -128,19 +128,17 @@ $(document).ready(function () {
                 $("#preprojects").html(content);
 
                 $('.projectEditDiv').click(function (e) {
+                    console.log("nacclick ba");
                     e.preventDefault();
                     projectId = $(this).data("id");
                     $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
-                        //console.log(eachEditInfo);
+                        
                         return eachEditInfo.id == projectId;
                     })[0];
                     function imageRefresh() {
                         let contentEdit = ``;
                         $.each(dataFilter.image, function (indexInArray, data) {
-
-                            // removeItem = dataFilter.image.splice()
-                            console.log(data);
                             contentEdit += `
                                 <div class="col">
                                     <div class="border position-relative">
