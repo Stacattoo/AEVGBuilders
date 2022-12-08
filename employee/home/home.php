@@ -1,6 +1,6 @@
 <?php
 include_once("../include/dbh.employee.php");
-$dbh = new dbHandler;   
+$dbh = new dbHandler;
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,6 +68,13 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
+                                <a href="#" class="nav-link text-white" id="preProjectNav">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Pre-Posted Projects
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#" class="nav-link text-white" id="portfolio">
 
                                     <i class="fas fa-city bi me-2"></i>
@@ -75,7 +82,7 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                         </ul>
-                        <medium id="timeNow"></medium>             
+                        <medium id="timeNow"></medium>
                         <hr>
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

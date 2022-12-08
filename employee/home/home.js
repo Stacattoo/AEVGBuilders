@@ -39,6 +39,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../projects/projects.php");
     });
+    $("#preProjectNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../projects/preProject.php");
+    });
     $("#profileNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../profile/profile.php");
