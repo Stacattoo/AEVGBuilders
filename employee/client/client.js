@@ -1,7 +1,7 @@
 function displayApproveClient(searchQuery = '') {
 	$(document).ready(function () {
 		// $("#records").html("");
-		
+		console.log("displayApproveClient");
 		$.ajax({
 			type: "POST",
 			url: "../client/clientProcess.php",
@@ -25,6 +25,7 @@ function displayApproveClient(searchQuery = '') {
 					</button>`;
 				});
 				$('#list').html(content);
+				console.log(content);
 			},
 			error: function (dataResult) {
 				console.log(dataResult);
@@ -43,6 +44,7 @@ function displayApproveClient(searchQuery = '') {
 							id: userid
 						},
 						success: function (dataResult) {
+							console.log(dataResult);
 							$("#records").html(dataResult);
 							
 						},

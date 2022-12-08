@@ -4,10 +4,9 @@ $dbh = new dbHandler();
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-<script src="../portfolio/portfolio.js"></script>
-<script src="../portfolio/app.js"></script>
-
 <link rel="stylesheet" type="text/css" href="../portfolio/app.css">
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div class="card" style="background-color:#f8f9fa;">
     <div class="card-body h-100">
@@ -95,7 +94,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 </div> 
 <!-- upload of edit modal -->
 <!-- Edit Project Modal -->
-<div class="Editmodal fade" id="editProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -104,6 +103,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             </div>
             <form id="editUploadProjects">
                 <div class="modal-body">
+                <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id; ?>" hidden>
                     <input type="hidden" id="hiddenId" name="hiddenId">
                     <div class="container text-center">
                         <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3" id="view-editImage">
@@ -120,7 +120,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     <div class="mb-3 row">
                         <h5 class="col-sm-2 ">Add Image: &nbsp;</h5>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple require>
+                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
                             <input type="hidden" id="edit-image" name="imageEditStore" value="">
                         </div>
                     </div>
@@ -137,13 +137,15 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
                     <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</button>
-                    <button type="submit" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
+                    <button type="submit" class="btn  btn-outline-success" data-id="alertSuccessEdit">Save changes</button>
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script src="../portfolio/portfolio.js"></script>
+<script src="../portfolio/app.js"></script>
 <script>
     $(document).ready(function() {
         $('#alertError').hide();

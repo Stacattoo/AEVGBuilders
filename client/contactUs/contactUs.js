@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     // console.log($(this).val());
     $("#alertError").hide();
+    $("#alertErrorApp").hide();
     $("#projectID").hide();
     // $("#step1").hide();
     $("#step2").hide();
@@ -262,12 +263,16 @@ $(document).ready(function () {
                 dateVar = toString;
                 // console.log(dateVar);
 
-                $("#targetDate").change(function (event) {
+                $("#appointmentDate").change(function (event) {
+                    // $("#alertErrorApp").hide();
                     event.preventDefault();
                     // console.log("pasok");
                     if ($(this).val() == dateVar) {
-                        alert("This date has been occupied");
-                        $("#targetDate").val('');
+                        $("#alertErrorApp").show();
+                        $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
+                        // alert("This date has been occupied");
+                        $("#appointmentDate").val('');
+                        
                     } else {
                         $.ajax({
                             type: "POST",

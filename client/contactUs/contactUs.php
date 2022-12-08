@@ -466,8 +466,9 @@ $dbh = new dbHandler;
                   <label for="address2" class="form-label">Preferred Time</label>
                   <input type="time" class="form-control" name="appointmentTime" id="appointmentTime" placeholder="" required>
                 </div>
-                <div class="alert alert-danger" role="alert" id="alertError">
-                  Error!
+                <div class="col-6">
+                  <div class="alert alert-danger mt-2" role="alert" id="alertErrorApp">
+                  </div>
                 </div>
 
                 <button class="btn btn-primary mt-4" type="submit">Set an Appointment</button>

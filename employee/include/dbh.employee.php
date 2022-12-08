@@ -109,6 +109,12 @@ class dbHandler
         image='$value->image',  description='$value->description' WHERE id='$value->id'";
         return mysqli_query($this->conn, $query);
     }
+    function updatePortfolio($value)
+    {
+        $query = "UPDATE `portfolio` SET title='$value->title', 
+        image='$value->image',  description='$value->description' WHERE id='$value->id'";
+        return mysqli_query($this->conn, $query);
+    }
 
     function uploadProject($info, $id)
     {
@@ -162,6 +168,11 @@ class dbHandler
         $sql = "DELETE FROM `projects` WHERE `id`=$id";
         return mysqli_query($this->conn, $sql);
     }
+    function deletePortfolio($id)
+    {
+        $sql = "DELETE FROM `portfolio` WHERE `id`=$id";
+        return mysqli_query($this->conn, $sql);
+    }
 
 
     function getAllProjects()
@@ -192,6 +203,8 @@ class dbHandler
             while ($row = mysqli_fetch_assoc($result)) {
                 $projects[] = (object)[
                     "id" => $row["id"],
+                    "client_id" => $row["client_id"],
+                    "employee_id" => $row["employee_id"],
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "image" => explode(",", $row["image"]),
@@ -393,25 +406,28 @@ class dbHandler
 
     function assignEmployee($employeeID, $clientID)
     {
-        $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
-        // $sql = "INSERT INTO `message`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','delivered')";
-        return mysqli_query($this->conn, $query);
-        // return mysqli_query($this->conn, $sql);
-
-
+        $query1 = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
+        if (mysqli_query($this->conn, $query1)) {
+            $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
+            if (mysqli_query($this->conn, $sql)) {
+                $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
+                if (mysqli_query($this->conn, $query)) {
+                    return (object)[
+                        "status" => 'success',
+                        "msg" => 'Profile Update Successfully.'
+                    ];
+                }
+            } else {
+                return (object)[
+                    "status" => 'error'
+                ];
+            }
+        } else {
+            return (object)[
+                "status" => 'error'
+            ];
+        }
     }
-    function updateAppDetails($employeeID, $clientID)
-    {
-        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
-        return mysqli_query($this->conn, $sql);
-    }
-
-    function updateMessageDetails($employeeID, $clientID)
-    {
-        $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
-        return mysqli_query($this->conn, $query);
-    }
-
 
     function isClientUserAccountExist($id, $username, $email)
     {
@@ -459,8 +475,9 @@ class dbHandler
     }
     function insertEmployeeCostEstimate($content, $client, $id)
     {
-        
+
         $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
+<<<<<<< Updated upstream
         $result = mysqli_query($this->conn, $sql);
         if ($result){
             $this->insertActivity($client, "Send a Cost Estimate ");
@@ -471,6 +488,20 @@ class dbHandler
     function insertActivity($clientId, $statusMessage){
         $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
         return mysqli_query($this->conn, $query);
+=======
+        return mysqli_query($this->conn, $sql);
+        // if (mysqli_num_rows($result)) {
+        //     $msg = array();
+        //     if ($row = mysqli_fetch_assoc($result)) {
+        //         $msg = json_decode($row["costEstimate"]);
+        //         array_push($msg,json_decode($content)[0]);
+        //         $msg = json_encode($msg);
+        //         $sql = "UPDATE `message` SET costEstimate='$msg' WHERE client_id='$client'";
+        //         return mysqli_query($this->conn, $sql);
+        //     }
+        // } 
+
+>>>>>>> Stashed changes
     }
 
     function getContent($client_id, $id)
@@ -541,7 +572,8 @@ class dbHandler
         }
     }
 
-    function activities($id){
+    function activities($id)
+    {
         $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
         ON client.id = activity_log.client_id WHERE client.id = $id ORDER BY date_time DESC";
         $result = mysqli_query($this->conn, $sql);
@@ -549,9 +581,15 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = (object)[
+<<<<<<< Updated upstream
                     "date_time" => $row['date_time'],
                     "status" => $row['status_message']
                     
+=======
+                    "client_id" => $row['client_id'],
+                    "date_time" => $row['date_time']
+
+>>>>>>> Stashed changes
                 ];
             }
         }

@@ -64,13 +64,12 @@ $(document).ready(function () {
     refreshTable();
     $("#uploadProjects").submit(function (event) {
         event.preventDefault();
-        // console.log($('#imgBtn').val());
+        console.log($('#imgBtn').val());
         if ($('#imgBtn').val() == '') {
             $("#alertError").show();
             $("#alertError").html("Image Required!");
-        }
+        } 
         else {
-            // console.log("easy on me");
             $.ajax({
                 type: 'post',
                 url: '../portfolio/portfolioProcess.php',
@@ -78,7 +77,7 @@ $(document).ready(function () {
                 contentType: false,
                 cache: false,
                 processData: false,
-                // dataType: "JSON",
+                dataType: "JSON",
                 success: function (response) {
                     console.log(response);
                     refreshTable();
@@ -88,9 +87,8 @@ $(document).ready(function () {
                     } else {
                         // imageRefresh();
                         $("#alertSuccess").html(response.msg);
-                        $("#alertSuccess").show();
                         $("#imgCon").html("");
-                        // refreshTable();
+                        $("#alertSuccess").show();
                         $("#uploadProjects").trigger("reset");
 
                     }
@@ -138,19 +136,18 @@ $(document).ready(function () {
 
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
-                    //console.log(data);
                     content += `
                     <div class="col">
-                        <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
+                        <div class="projectEditDiv card shadow-sm" data-bs-target="#editProjectModal" data-bs-toggle="modal" data-id="${data.id}" style="cursor: pointer;">
                             <div class="card-img-top" style="height: 220px; background-image: url('${data.image[0]}'); background-size: cover; ">
                             </div>
 
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">                       
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
-                                <small class="text-muted">${data.category}</small>
                                 </div>
                                 <p class="card-text text-truncate">${data.description}</p>
+                                </div>
                             </div>
                         </div>
                     </div>    
@@ -159,26 +156,27 @@ $(document).ready(function () {
                 });
 
                 $("#projects").html(content);
-                
+
                 $('.projectEditDiv').click(function (e) {
                     e.preventDefault();
-                    console.log("oks");
                     projectId = $(this).data("id");
+                    console.log(projectId);
                     $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
-                        //console.log(eachEditInfo);
+                        console.log(eachEditInfo);
                         return eachEditInfo.id == projectId;
                     })[0];
                     function imageRefresh() {
                         let contentEdit = ``;
+                        // console.log(dataFilter.image);
                         $.each(dataFilter.image, function (indexInArray, data) {
 
                             // removeItem = dataFilter.image.splice()
-                            console.log(data);
+                            // console.log(data);
                             contentEdit += `
                                 <div class="col">
                                     <div class="border position-relative">
-                                        <img src="../projects/${data}" class="d-block img-fluid img">
+                                        <img src="${data}" class="d-block img-fluid img">
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                                             id="imageDeleteBtn"  data-id="${indexInArray}">
                                             -
@@ -200,25 +198,25 @@ $(document).ready(function () {
 
                         $('#view-editImage').html(contentEdit);
                         $('#edit-image').val(dataFilter.image);
+
+                        $('.deleteImgBtn').click(function (e) {
+                            e.preventDefault();
+                            deleteId = $(this).attr('data-id');
+                            imageSplice = dataFilter.image.splice(deleteId, 1);
+                            console.log(dataFilter.image);
+                            imageRefresh();
+    
+                        });
                     }
 
                     imageRefresh();
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);
                     $('#edit-title').val(dataFilter.title);
-                    $('#edit-category').val(dataFilter.category);
                     $('#edit-description').html(dataFilter.description);
-                    $('#editProjectModal').modal("show");
-                    console.log($('#editProjectModal').modal("show"));
+                    // $('#editProjectModal').modal("show");
 
-                    $('.deleteImgBtn').click(function (e) {
-                        e.preventDefault();
-                        deleteId = $(this).attr('data-id');
-                        imageSplice = dataFilter.image.splice(deleteId, 1);
-                        console.log(imageSplice);
-                        imageRefresh();
-
-                    });
+                   
                     $("#alertErrorEdit").hide();
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
@@ -226,7 +224,7 @@ $(document).ready(function () {
                         //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
-                            url: '../projects/editProfileProcess.php',
+                            url: '../portfolio/portfolioEdit.php',
                             data: new FormData(this),
                             contentType: false,
                             cache: false,
@@ -239,14 +237,17 @@ $(document).ready(function () {
                                 } else {
                                     $("#alertSuccessEdit").html(response.msg);
                                     $("#alertSuccessEdit").show();
-                                    $("#editUploadProjects").trigger("reset");
-                                    $('#editProjectModal').modal("hide");
-                                    refreshTable();
-
+                                    // $('#editProjectModal').modal("hide");
+                                    $.each(response.img, function (indexInArray, val) { 
+                                        dataFilter.image.push(val)
+                                        console.log(val);
+                                    });
                                 }
-                            }, error: function (response) {
-                                console.error(response);
+                                imageRefresh();
                             }
+                            // , error: function (response) {
+                            //     console.error(response);
+                            // }
                         });
                     });
 
@@ -262,4 +263,29 @@ $(document).ready(function () {
 
         });
     } // End of Refresh Table :D
+
+
+    $('#deleteBtn').click(function (e) {
+        e.preventDefault();
+        deleteId = $(this).attr("data-id");
+        console.log(deleteId);
+        $.ajax({
+            type: "post",
+            url: "../portfolio/portfolioDelete.php",
+            data: {
+                deleteProjects_req: true,
+                id: deleteId
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#editProjectModal').modal("hide");
+                refreshTable();
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
+
+        });
+    });
     });

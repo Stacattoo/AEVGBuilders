@@ -430,13 +430,13 @@ class dbHandler
     function checkSched()
     {
 
-        $sql = "SELECT `targetConsDate` FROM appointment";
+        $sql = "SELECT `meetingDate` FROM appointment";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $time = array();
             while ($row = mysqli_fetch_assoc($result)) {
                 $time[] = (object) [
-                    'date' => $row['targetConsDate']
+                    'date' => $row['meetingDate']
                 ];
             }
             return $time;

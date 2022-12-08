@@ -12,7 +12,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
 
             <div class="dropdown m-0">
-                <button class="btn" type="button"  id="filesTab" href="#fileModal" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn" type="button" id="filesTab" href="#fileModal" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-images fs-4"></i>
                 </button>
                 <ul class="dropdown-menu">
@@ -33,14 +33,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         <form id="messageEmployee">
             <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="<?php echo $userData->id; ?>" hidden>
-            <div class="border" id="scrollBar" style="height: 700px; overflow-y:scroll;">
-                <div class="p-3" id="messageRetrieve">
-                    <div class="">
-                        <small class="text-start" id="clientNameHeader"></small>
-                        <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
-                    </div>
+            <!-- <div class="card-body p-4" id="scrollBar" style="height: 700px; overflow: scroll; overflow-x: hidden;"> -->
+            <div class="p-3" id="messageRetrieve" style="height: 700px; overflow: scroll; overflow-x: hidden;">
+                <div class="">
+                    <small class="text-start" id="clientNameHeader"></small>
+                    <div class="text-bg-secondary p-2 rounded-4" id="messageBubble"></div>
                 </div>
             </div>
+            <!-- </div> -->
 
 
             <div class="card-footer d-flex justify-content-start align-items-center px-0" style="background-color:#f8f9fa;">
@@ -91,10 +91,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         });
 
-        $(".border").scrollTop($(".border")[0].scrollHeight);
+
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
+
         // setInterval(displayMessage, 1000);
         $("#subBtn").click(function(e) {
             // e.preventDefault();
@@ -157,6 +158,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         // });
 
         function displayMessage() {
+
             var id = $('#clientID').val();
 
             $.ajax({
@@ -197,11 +199,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
 
                                     if (isEmployee) {
-                                        content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                        content += `
+                                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
                                             <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
-                                            <img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;">
+                                            <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;">
                                             </div>
                                         </div>
                                     </div>
@@ -213,12 +216,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle rounded-4" alt="">
+                            <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle rounded-4" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
                                     <div class="card  text-white d-inline-block p-1  border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
-                                    <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;">
+                                    <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;"><a href="${contentMsgDisplay}" target="_blank">
                                     </div>
                                 </div>
 
@@ -321,6 +324,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         docuFilesMsg.location;
 
                     });
+                    $("#messageRetrieve").animate({
+                        scrollTop: $("#messageRetrieve").get(0).scrollHeight
+                    }, 10);
                 },
                 error: function(response) {
                     console.error(response);

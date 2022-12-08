@@ -63,26 +63,26 @@ $dbh = new dbHandler;
 
         $("#search").change(function(e) {
             e.preventDefault();
-            messageClient($(this).val());
+            portfolioDisplay($(this).val());
             generalClient($(this).val());
         });
 
-        $("#listBtn").click(function() {
-            $(this).addClass("active");
-            $("#pendingBtn").removeClass("active");
-            $("#list").show();
-            $("#pending").hide();
-            messageClient();
-            generalClient();
+        // $("#listBtn").click(function() {
+        //     $(this).addClass("active");
+        //     $("#pendingBtn").removeClass("active");
+        //     $("#list").show();
+        //     $("#pending").hide();
+        //     messageClient();
+        //     generalClient();
 
 
-            $("#listBtn").click(function() {
-                $(this).addClass("active");
-                $("#pendingBtn").removeClass("active");
-                $("#list").show();
-                $("#pending").hide();
-            });
+        //     $("#listBtn").click(function() {
+        //         $(this).addClass("active");
+        //         $("#pendingBtn").removeClass("active");
+        //         $("#list").show();
+        //         $("#pending").hide();
+        //     });
 
 
-        });
+        // });
     });

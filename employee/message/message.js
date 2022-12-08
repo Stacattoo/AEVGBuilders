@@ -2,6 +2,7 @@ function messageClient(searchQuery = '') {
 	$(document).ready(function () {
 		// $("#records").html("");
 		
+		
 		$.ajax({
 			type: "POST",
 			url: "../message/messageDisplay.php",
@@ -66,7 +67,6 @@ function messageClient(searchQuery = '') {
 function generalClient(searchQuery = ''){
 	$(document).ready(function () {
 
-		
 		$.ajax({
 			type: "POST",
 			url: "../message/messageDisplay.php",

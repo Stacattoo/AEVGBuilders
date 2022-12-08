@@ -143,6 +143,14 @@ $(document).ready(function () {
 
                         $('#view-editImage').html(contentEdit);
                         $('#edit-image').val(dataFilter.image);
+                        $('.deleteImgBtn').click(function (e) {
+                            e.preventDefault();
+                            deleteId = $(this).attr('data-id');
+                            imageSplice = dataFilter.image.splice(deleteId, 1);
+                            console.log(imageSplice);
+                            imageRefresh();
+    
+                        });
                     }
 
                     imageRefresh();
@@ -153,14 +161,7 @@ $(document).ready(function () {
                     $('#edit-description').html(dataFilter.description);
                     $('#editProjectModal').modal("show");
 
-                    $('.deleteImgBtn').click(function (e) {
-                        e.preventDefault();
-                        deleteId = $(this).attr('data-id');
-                        imageSplice = dataFilter.image.splice(deleteId, 1);
-                        console.log(imageSplice);
-                        imageRefresh();
-
-                    });
+                    
                     $("#alertErrorEdit").hide();
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {

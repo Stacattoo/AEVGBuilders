@@ -25,13 +25,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
         <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
+        
         <!-- TODO: fix names, hindi similar pag cinlick
                     lalagyan ng condition na palitan yung name-->
-        <div>Assigned Employee: <span class="fw-bolder">
+        <div><span class="fw-bolder">
                 <?php if ($userData->employeeName == "") {
-                    echo '<a id="choose" data-bs-toggle="modal" href="#chooseModal">Choose an Employee </a>';
+                    echo '<button class="btn btn-primary" id="acceptClientBtn" type="button">Assign To Me</button>';
                 } else {
-                    echo $userData->employeeName;
+                    echo 'Assigned Employee: ' . $userData->employeeName;
                 } ?></span></div>
     </div>
 </div>
@@ -186,6 +187,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Employee</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -211,7 +213,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     </div>
 </div>
 
-
+<script src="../client/client.js"></script>
 
 
 <script>
@@ -254,9 +256,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             }
         });
         console.log($('#idClient').html());
-        $("#chooseBtn").click(function(e) {
+        $("#acceptClientBtn").click(function(e) {
+            // var clientDiv = (this).html();
+            
             e.preventDefault();
-            var employeeID = $('input[name="select"]:checked').val();
             var clientID = $('#idClient').html();
             console.log(clientID);
 
@@ -264,16 +267,23 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 type: "POST",
                 url: "../client/clientProcess.php",
                 data: {
-                    employeeID: employeeID,
+                    accept_client: true,
                     clientID: clientID
                 },
                 dataType: "JSON",
                 success: function(response) {
+                    console.log(response);
+
                     if (response.status == 'success') {
+                        // $("#content").load("../client/client.php");
+                        console.log("dsplay");
                         displayApproveClient();
+                        displayPendingClient();
                         $('#chooseModal').modal("hide");
                     }
 
+                }, error: function(response) {
+                    console.error(response);
                 }
             });
         });
