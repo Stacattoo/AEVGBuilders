@@ -37,10 +37,10 @@ $(document).ready(function () {
         $("#content").load("schedule/schedule.php");
     });
 
-    $("#materialsNav").click(function (e) {
-        e.preventDefault();
-        $("#content").load("materials/materials.php");
-    });
+    // $("#materialsNav").click(function (e) {
+    //     e.preventDefault();
+    //     $("#content").load("materials/materials.php");
+    // });
 
     $("#blockedNav").click(function (e) {
         e.preventDefault();

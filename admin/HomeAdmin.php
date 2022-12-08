@@ -68,12 +68,12 @@ $dbh = new dbHandler();
                                     <span class="d-none d-lg-inline">Project Status</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#" class="nav-link text-white" id="materialsNav">
                                     <i class="fal fa-paperclip bi me-2"></i>
                                     <span class="d-none d-lg-inline">Materials</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="#" class="nav-link text-white" id="blockedNav">
                                     <i class="fas fa-ban bi me-2"></i>
@@ -85,9 +85,6 @@ $dbh = new dbHandler();
 
                         <medium id="timeNow"></medium>
                         <hr>
-                        <!-- <div id="shet">
-                            
-                        </div> -->
                         <div class="dropdown">
                             <a href="#" id="logOut" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fal fa-user me-2"></i>
