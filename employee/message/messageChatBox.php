@@ -96,7 +96,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#errorFiles').hide();
         displayMessage();
 
-        // setInterval(displayMessage, 1000);
+        setInterval(displayMessage, 1000);
         $("#subBtn").click(function(e) {
             // e.preventDefault();
             console.log("subBtn");

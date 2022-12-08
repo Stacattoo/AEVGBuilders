@@ -264,8 +264,8 @@ $(document).ready(function () {
                 // console.log(dateVar);
 
                 $("#appointmentDate").change(function (event) {
-                    // $("#alertErrorApp").hide();
                     event.preventDefault();
+                    $("#alertErrorApp").hide();
                     // console.log("pasok");
                     if ($(this).val() == dateVar) {
                         $("#alertErrorApp").show();

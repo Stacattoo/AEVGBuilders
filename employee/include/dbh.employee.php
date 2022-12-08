@@ -455,12 +455,15 @@ class dbHandler
                 $sql = "UPDATE `message` SET content='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
+        }else {
+            $sql = "INSERT INTO message(employee_id, client_id ,content) VALUES ('$id', '$client','$content')";
+            return mysqli_query($this->conn, $sql);
         }
     }
 
     function insertEmployeeFiles($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
+        $sql = "SELECT * FROM message WHERE client_id='$client' AND employee_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $msg = array();
@@ -468,9 +471,12 @@ class dbHandler
                 $msg = json_decode($row["files"]);
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
+                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client' AND employee_id = '$id'";
                 return mysqli_query($this->conn, $sql);
             }
+        }else {
+            $sql = "INSERT INTO message(employee_id, files) VALUES ('$id', '$content')";
+            return mysqli_query($this->conn, $sql);
         }
     }
     function insertEmployeeCostEstimate($content, $client, $id)
@@ -568,6 +574,7 @@ class dbHandler
                 $data[] = (object)[
                     "date_time" => $row['date_time'],
                     "status" => $row['status_message']
+                    
                 ];
             }
         }
