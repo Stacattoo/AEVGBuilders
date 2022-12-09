@@ -298,11 +298,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     console.log(response);
 
                     if (response.status == 'success') {
-                        // $("#content").load("../client/client.php");
                         console.log("dsplay");
                         displayApproveClient();
                         displayPendingClient();
                         $('#chooseModal').modal("hide");
+                        location.reload(); //RELOAD NG PAGE
+
                     }
 
                 },
