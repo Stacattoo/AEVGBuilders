@@ -43,6 +43,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../projects/preProject.php");
     });
+    $("#disProjectNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../projects/disapproveProj.php");
+    });
     $("#profileNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../profile/profile.php");

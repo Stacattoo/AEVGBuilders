@@ -175,7 +175,7 @@ class dbHandler
     }
 
 
-    function getAllProjects($id, $status)
+    function getSpecificProjects($id, $status)
     {
         $query = "SELECT * FROM projects WHERE employee_id = $id AND project_status='$status'";
         $result = mysqli_query($this->conn, $query);
@@ -188,6 +188,25 @@ class dbHandler
                     "description" => $row["description"],
                     "category" => $row["category"],
                     "status" => $row["project_status"],
+                    "image" => explode(",", $row["image"]),
+                ];
+            }
+        }
+        return $projects;
+    }
+    function getAllProjects($id)
+    {
+        $query = "SELECT * FROM projects WHERE employee_id = $id AND( project_status='active' OR (project_status = 'pending'))";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
+                    "category" => $row["category"],
+                    // "status" => $row["project_status"],
                     "image" => explode(",", $row["image"]),
                 ];
             }

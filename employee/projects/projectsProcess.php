@@ -44,5 +44,8 @@ if (isset($_POST["getAllProjects_req"])) {
     echo json_encode((array)$dbh->getAllProjects($_SESSION['id'], 'active'));
 }
 if (isset($_POST["getAllProjects_pending"])) {
-    echo json_encode((array)$dbh->getAllProjects($_SESSION['id'], 'pending'));
+    echo json_encode((array)$dbh->getSpecificProjects($_SESSION['id'], 'pending'));
+}
+if (isset($_POST["getAllProjects_disapprove"])) {
+    echo json_encode((array)$dbh->getSpecificProjects($_SESSION['id'], 'disapproved'));
 }

@@ -75,6 +75,13 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
+                                <a href="#" class="nav-link text-white" id="disProjectNav">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Disapproved Post Projects
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#" class="nav-link text-white" id="portfolio">
 
                                     <i class="fas fa-city bi me-2"></i>
