@@ -4,7 +4,7 @@ $dbh = new dbHandler;
 
 // echo "pasok portfolio";
 $trimmed_array = '';
-
+// $clientId = ;
 if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
     $imageCount = count($_FILES['image']['name']);
     $paths = "";
@@ -40,5 +40,7 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
 }
 
 if (isset($_POST["getAllProjects_req"])) {
-    echo json_encode((array)$dbh->getAllPortfolio($_POST['id'], $_SESSION['id']));
+    $clientid_refresh = $_POST['clientid_refresh'];
+    
+    echo json_encode((array)$dbh->getAllPortfolio($clientid_refresh, $_SESSION['id']));
 }

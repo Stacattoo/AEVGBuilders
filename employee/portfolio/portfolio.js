@@ -1,7 +1,8 @@
 function portfolioDisplay(searchQuery = '') {
     $(document).ready(function () {
         // $("#records").html("");
-
+        $listClientId = '';
+        //  = '';
         $.ajax({
             type: "POST",
             url: "../message/messageDisplay.php",
@@ -16,10 +17,11 @@ function portfolioDisplay(searchQuery = '') {
                     return data.email.includes(searchQuery)
                         || data.fullName.toLowerCase().includes(searchQuery)
                         || data.email.toLowerCase().includes(searchQuery)
-
+// uploadProjects
                 });
                 $.each(filtered, function (i, data) {
-
+                    // $listClientId = data.id;
+                    // console.log(data.id);
                     content += `
 					<button type="button" class="client list-group-item list-group-item-action" data-id='`+ data.id + `'>
 						<h5 class="text-capitalize mb-1">`+ data.fullName + `</h5>
@@ -39,7 +41,7 @@ function portfolioDisplay(searchQuery = '') {
                     $(".client").removeClass("active");
                     $(this).addClass("active");
                     var userid = $(this).attr("data-id");
-                    console.log("client click");
+                    // console.log("client click");
                     console.log(userid);
                     $.ajax({
                         url: "../portfolio/portfolioContent.php",
@@ -125,19 +127,23 @@ $(document).ready(function () {
 
     });
     function refreshTable() {
-        var userid = $(this).attr("data-id");
+        // var idDivClient = userid;
+        // console.log(idDivClient);
+
+        var idDivClient = $('#clientID').val();
         $.ajax({
             type: "post",
             url: "../portfolio/portfolioProcess.php",
             data: {
                 getAllProjects_req: true,
-                id: userid
+                clientid_refresh: idDivClient
             },
             dataType: "json",
             success: function (response) {
 
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
+                    console.log(response);
                     content += `
                     <div class="col">
                         <div class="projectEditDiv card shadow-sm" data-bs-target="#editProjectModal" data-bs-toggle="modal" data-id="${data.id}" style="cursor: pointer;">
