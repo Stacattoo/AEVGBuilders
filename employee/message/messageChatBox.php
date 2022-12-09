@@ -95,13 +95,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        // setTimeout(()=>{
-        //     $("#messageRetrieve").animate({
-        //                 scrollTop: $("#messageRetrieve").get(0).scrollHeight
-        //             }, 1000);
-        // },1000)
+        setTimeout(()=>{
+            $("#messageRetrieve").animate({
+                        scrollTop: $("#messageRetrieve").get(0).scrollHeight
+                    }, 1000);
+        },1000)
        
-        // setInterval(displayMessage, 1000);
+        setInterval(displayMessage, 1000);
         $("#subBtn").click(function(e) {
             // e.preventDefault();
             console.log("subBtn");
@@ -119,7 +119,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 processData: false,
                 success: function(response) {
                     console.log(response);
-                    // $('#contentID').html("");
+                    $('#contentID').html("");
                     if (response.status == 'success') {
                         $('#messageEmployee').trigger("reset");
                         $('#filesEmployee').trigger("reset");
@@ -189,20 +189,20 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             isEmployee = true;
                         }
                         var contentMsgDisplay = '';
-                        console.log(val.content);
-                        var imgArr = val.content.split('&**..%@_');
+                        var imgArr = val.content.split(',');
+                        console.log(imgArr);
+
                         for (let i in imgArr) {
                             contentMsgDisplay = imgArr[i];
-
+                            
                             var dotIndex = contentMsgDisplay.lastIndexOf('.');
                             var ext = contentMsgDisplay.substring(dotIndex);
 
                             //--- para sa mga files ---
                             
                             if (contentMsgDisplay != ext) {
-                                
                                 if (ext == '.jpg' || ext == '.png') {
-
+                                    console.log(contentMsgDisplay);
 
                                     if (isEmployee) {
                                         content += `

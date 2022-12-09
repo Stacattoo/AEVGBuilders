@@ -483,19 +483,25 @@ class dbHandler
 
     function insertEmployeeFiles($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE client_id='$client' AND employee_id = '$id'";
+        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $msg = array();
             if ($row = mysqli_fetch_assoc($result)) {
-                $msg = json_decode($row["files"]);
+                if($row["files"] != ''){
+                    $msg = json_decode($row["files"]);
+                }else{
+                    $msg = array();
+                }
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg',employee_id='$id' WHERE client_id='$client'";
+                $sql = "UPDATE `message` SET files='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
-        } else {
-            $sql = "INSERT INTO message(employee_id, client_id ,content) VALUES ('$id', '$client','$content')";
+        }
+        else {
+            $content = json_encode($content);
+            $sql = "INSERT INTO message(employee_id, client_id , files) VALUES ('$id', '$client', '$content')";
             return mysqli_query($this->conn, $sql);
         }
     }
@@ -508,12 +514,10 @@ class dbHandler
             $date = date('Y-m-d H:i:s');
             $jsonContent = array(
                 (object)[
-                    "content" => "Cost Estimate has been sent! Kindly Check your profile to view and download.",
+                    "content" => "Cost Estimate has been sent! Kindly Check your profile to view and download",
                     "dateTime" => $date,
                     "sender" => "employee"
                 ]
-                // {"content":"Cost Estimate has been sent","dateTime":"2022-12-08 17:25:22","sender":"employee"}
-                // [{"content":"hello harold","dateTime":"2022-12-08 17:35:50","sender":"employee"},{"content":"unproblematic woman freak up tonighttttt, We aint gonna live until tonight!~","dateTime":"2022-12-08 17:42:01","sender":"employee"},{"content":"ay bakit ganon? hala","dateTime":"2022-12-08 17:42:23","sender":"employee"},{"content":"unproblematic woman fk up tonightt, gonna use up my energy lmao. hahahaha","dateTime":"2022-12-08 17:42:51","sender":"employee"},{"content":"hahahah kasjdsahd adsajsdknauabaskd ajsdbakjbd adabsdkjabsdkja sdkjabdkjasb","dateTime":"2022-12-08 17:45:07","sender":"employee"},{"content":"adasdhasbdbasidhasiohd, asdouasdbas auisdgabsd","dateTime":"2022-12-08 17:45:13","sender":"employee"}]
                 
             );
             $jsonContent = json_encode($jsonContent);
@@ -536,7 +540,6 @@ class dbHandler
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {
-            // $filesobj = '';
             while ($row = mysqli_fetch_assoc($result)) {
                 $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
                 $message[] = (object) [

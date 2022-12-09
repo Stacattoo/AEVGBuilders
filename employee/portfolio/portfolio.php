@@ -12,9 +12,9 @@ $dbh = new dbHandler;
             <input type="search" name="search" id="search" class="form-control mb-2" placeholder="Search">
 
             <ul class="nav nav-pills mt-3 mb-3">
-                <li class="nav-item">
-                    <button type="button" id="listBtn" class="nav-link fs-5" aria-current="page">List of Clients</button>
-                </li>
+                
+                    <h4 class="fw-bold fs-4 mt-2 mx-2">List of Clients</h3>
+                
                 <!-- <li class="nav-item">
                     <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
                 </li> -->

@@ -421,6 +421,27 @@ class dbHandler
         }
         return $message;
     }
+    function getSpecificClientPortoflio($id)
+    {
+        $sql = "SELECT * FROM portfolio WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $message = array();
+        $mesCost = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $imgExplode = explode(",", $row['imageApp']);
+                $mesCost = json_decode($row['costEstimate']);
+                $message[] = (object) [
+                    'id' => $row['client_id'],
+                    'employee_id' => $row['employee_id'],
+                    'image' =>$imgExplode,
+                    'date' => $row['dateTime'],
+                    'status' => $row['status']
+                ];
+            }
+        }
+        return $message;
+    }
 
 
 

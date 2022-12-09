@@ -500,5 +500,16 @@ $(document).ready(function () {
             }
         });
     }
+    $.ajax({
+        type: "POST",
+        url: "profileProcess.php",
+        data: {
+            getPortfolioUploads: true,
+        },
+        dataType: "JSON",
+        success: function (response) {
+            
+        }
+    });
 
 }); // end of document ready function

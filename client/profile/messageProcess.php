@@ -2,6 +2,7 @@
 include_once('../include/dbh.inc.php');
 $dbh = new dbHandler();
 $trimmed_array1 = '';
+
 if (isset($_POST['clientMessage']) && $_POST['clientMessage'] != '') {
 
     $date = date('Y-m-d H:i:s');
