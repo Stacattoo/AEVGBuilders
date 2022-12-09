@@ -95,8 +95,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-
-        setInterval(displayMessage, 1000);
+        // setTimeout(()=>{
+        //     $("#messageRetrieve").animate({
+        //                 scrollTop: $("#messageRetrieve").get(0).scrollHeight
+        //             }, 1000);
+        // },1000)
+       
+        // setInterval(displayMessage, 1000);
         $("#subBtn").click(function(e) {
             // e.preventDefault();
             console.log("subBtn");
@@ -184,7 +189,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             isEmployee = true;
                         }
                         var contentMsgDisplay = '';
-                        var imgArr = val.content.split(',');
+                        console.log(val.content);
+                        var imgArr = val.content.split('&**..%@_');
                         for (let i in imgArr) {
                             contentMsgDisplay = imgArr[i];
 
@@ -192,9 +198,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             var ext = contentMsgDisplay.substring(dotIndex);
 
                             //--- para sa mga files ---
-                            // console.log(filesContMsg);
+                            
                             if (contentMsgDisplay != ext) {
-                                // console.log(contentMsgDisplay);
+                                
                                 if (ext == '.jpg' || ext == '.png') {
 
 
@@ -295,7 +301,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
+                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="pe-2">
                                 <div>
@@ -324,9 +330,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         docuFilesMsg.location;
 
                     });
-                    $("#messageRetrieve").animate({
-                        scrollTop: $("#messageRetrieve").get(0).scrollHeight
-                    }, 10);
                 },
                 error: function(response) {
                     console.error(response);

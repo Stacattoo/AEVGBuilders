@@ -125,11 +125,13 @@ $(document).ready(function () {
 
     });
     function refreshTable() {
+        var userid = $(this).attr("data-id");
         $.ajax({
             type: "post",
             url: "../portfolio/portfolioProcess.php",
             data: {
-                getAllProjects_req: true
+                getAllProjects_req: true,
+                id: userid
             },
             dataType: "json",
             success: function (response) {
@@ -171,8 +173,6 @@ $(document).ready(function () {
                         // console.log(dataFilter.image);
                         $.each(dataFilter.image, function (indexInArray, data) {
 
-                            // removeItem = dataFilter.image.splice()
-                            // console.log(data);
                             contentEdit += `
                                 <div class="col">
                                     <div class="border position-relative">

@@ -195,9 +195,9 @@ class dbHandler
         return $projects;
     }
 
-    function getAllPortfolio()
+    function getAllPortfolio($client, $empID)
     {
-        $query = "SELECT * FROM portfolio";
+        $query = "SELECT * FROM portfolio WHERE client_id='$client' AND employee_id ='$empID'";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
@@ -456,7 +456,7 @@ class dbHandler
                 $sql = "UPDATE `message` SET content='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
-        }else {
+        } else {
             $sql = "INSERT INTO message(employee_id, client_id ,content) VALUES ('$id', '$client','$content')";
             return mysqli_query($this->conn, $sql);
         }
@@ -472,11 +472,11 @@ class dbHandler
                 $msg = json_decode($row["files"]);
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client' AND employee_id = '$id'";
+                $sql = "UPDATE `message` SET files='$msg',employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
-        }else {
-            $sql = "INSERT INTO message(employee_id, files) VALUES ('$id', '$content')";
+        } else {
+            $sql = "INSERT INTO message(employee_id, client_id ,content) VALUES ('$id', '$client','$content')";
             return mysqli_query($this->conn, $sql);
         }
     }
@@ -485,13 +485,27 @@ class dbHandler
 
         $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
         $result = mysqli_query($this->conn, $sql);
-        if ($result){
+        if ($result) {
+            $date = date('Y-m-d H:i:s');
+            $jsonContent = array(
+                (object)[
+                    "content" => "Cost Estimate has been sent! Kindly Check your profile to view and download.",
+                    "dateTime" => $date,
+                    "sender" => "employee"
+                ]
+                // {"content":"Cost Estimate has been sent","dateTime":"2022-12-08 17:25:22","sender":"employee"}
+                // [{"content":"hello harold","dateTime":"2022-12-08 17:35:50","sender":"employee"},{"content":"unproblematic woman freak up tonighttttt, We aint gonna live until tonight!~","dateTime":"2022-12-08 17:42:01","sender":"employee"},{"content":"ay bakit ganon? hala","dateTime":"2022-12-08 17:42:23","sender":"employee"},{"content":"unproblematic woman fk up tonightt, gonna use up my energy lmao. hahahaha","dateTime":"2022-12-08 17:42:51","sender":"employee"},{"content":"hahahah kasjdsahd adsajsdknauabaskd ajsdbakjbd adabsdkjabsdkja sdkjabdkjasb","dateTime":"2022-12-08 17:45:07","sender":"employee"},{"content":"adasdhasbdbasidhasiohd, asdouasdbas auisdgabsd","dateTime":"2022-12-08 17:45:13","sender":"employee"}]
+                
+            );
+            $jsonContent = json_encode($jsonContent);
+            $this->insertEmployeeMessage($jsonContent, $client, $id);
             $this->insertActivity($client, "Send a Cost Estimate ");
         }
         return $result;
     }
 
-    function insertActivity($clientId, $statusMessage){
+    function insertActivity($clientId, $statusMessage)
+    {
         $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
         return mysqli_query($this->conn, $query);
     }
@@ -575,7 +589,7 @@ class dbHandler
                 $data[] = (object)[
                     "date_time" => $row['date_time'],
                     "status" => $row['status_message']
-                    
+
                 ];
             }
         }

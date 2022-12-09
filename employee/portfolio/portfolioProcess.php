@@ -40,5 +40,5 @@ if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
 }
 
 if (isset($_POST["getAllProjects_req"])) {
-    echo json_encode((array)$dbh->getAllPortfolio());
+    echo json_encode((array)$dbh->getAllPortfolio($_POST['id'], $_SESSION['id']));
 }

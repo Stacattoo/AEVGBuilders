@@ -12,7 +12,7 @@ if (isset($_FILES['filesEmployee'])) {
             $file_name = $_FILES['filesEmployee']['name'][$i];
             $file_tmp = $_FILES["filesEmployee"]["tmp_name"][$i];
             $img_path = "../../clientEmployeeFiles/" . basename($file_name);
-            $paths .= $img_path . ",";
+            $paths .= $img_path . "&**..%@_";
             if (!move_uploaded_file($file_tmp, $img_path)) {
                 $paths = "";
             }
@@ -58,6 +58,7 @@ if (isset($_FILES['costEstimate'])) {
                 "content" => $img_path,
                 "dateTime" => $date,
                 "sender" => "employee"
+                
             ]
         );
 
