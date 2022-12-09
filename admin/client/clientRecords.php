@@ -121,10 +121,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             },
             dataType: "JSON",
             success: function(response) {
-                // console.log(response);
                 var content = ``;
                 $.each(response, function(i, val) {
-                    //  console.log(val.id);
                     content += `
                     <tr>
                             <td><input type="radio" id="empChoose" value="${val.id}" name="select"></td>
@@ -135,7 +133,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         </tr>
                     `;
                 });
-                // console.log(content);
                 $('#chooseEmployee').html(content);
 
                 $('#table tr').click(function() {
@@ -151,7 +148,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             e.preventDefault();
             var employeeID = $('input[name="select"]:checked').val();
             var clientID = <?php echo ($userData->id); ?>;
-            console.log(clientID);
 
             $.ajax({
                 type: "POST",
@@ -162,7 +158,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    console.log(response);
                 }
             });
         });
@@ -208,7 +203,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
                     if (response) {
                         $.getScript("students/students.js", function(script) {
                             $("#editForm").trigger('reset');
@@ -220,7 +214,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     }
                 },
                 error: function(response) {
-                    console.log(response);
                 }
             });
         });
@@ -249,11 +242,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
     $(document).ready(function() {
         $('#resultTable').DataTable();
-
         $(".modal-btn").click(function() {
-            console.log($(this));
             $("#viewTestResult").modal('show');
-            // $id = $(this).closest('tr').children('td:eq(0)').text();
             $date = $(this).closest('tr').children('td:eq(0)').text();
             $result = $(this).closest('tr').children('td:eq(1)').text();
             $q1 = $(this).closest('tr').children('td:eq(2)').text();

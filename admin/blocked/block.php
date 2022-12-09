@@ -44,9 +44,6 @@ $dbh = new dbHandler();
 					success: function(dataResult) {
 						displayBlockedUser();
 					},
-					error: function(result) {
-						console.log(result);
-					}
 				});
 			});
 		}
@@ -76,9 +73,6 @@ $dbh = new dbHandler();
 						`;
 						$("#table").append(content);
 					});
-				},
-				error: function(result) {
-					console.log(result);
 				},
 				complete: function() {
 					$('#resultTable').DataTable();

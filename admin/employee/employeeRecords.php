@@ -2,7 +2,6 @@
 include('../include/dbh.admin.php');
 $dbh = new dbHandler();
 $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
-// var_dump($userData);
 ?>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -73,7 +72,7 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
             </div>
         </div>
     </div>
-</div><!-- END OF DELETE EMPLOYEE MODAL -->
+</div>
 
 <!-- Edit Employee Modal -->
 <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeLabel" aria-hidden="true">
@@ -178,7 +177,6 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                         displayUsers();
                         $("#removeEmployeeModal").modal("hide");
                     } else {
-                        console.error(REMOVE_EMPLOYEE_RESP);
                         $("#error").html(REMOVE_EMPLOYEE_RESP.msg);
                     }
                 },
@@ -210,7 +208,6 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                         displayUsers();
                         $("#editEmployeeModal").modal("hide");
                     } else {
-                        console.error(EDIT_EMPLOYEE_RESP);
                         $("#error").html(EDIT_EMPLOYEE_RESP.msg);
                     }
                 },
@@ -218,7 +215,6 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                     $("#error").html(response.responseText);
                 }
             });
-            console.log("edit");
         });
     });
 </script>

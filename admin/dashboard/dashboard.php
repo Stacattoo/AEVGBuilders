@@ -5,8 +5,6 @@ $dbh = new dbHandler;
 
 
 <head>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
-    "></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="dashboard/dashboard.js"></script>
 </head>
@@ -31,9 +29,7 @@ $dbh = new dbHandler;
 
                                     </div>
                                     <div class="col text-end">
-                                        <h1 class="card-title"><span id="totalClients1">
-                                                <!-- DITO NAGDIDISPLAY YUNG TOTAL -->
-                                            </span></h1>
+                                        <h1 class="card-title"><span id="totalClients1"></span></h1>
                                         <h6>Total number of Clients</h6>
 
                                     </div>
@@ -49,9 +45,7 @@ $dbh = new dbHandler;
                                         <i class="fad fa-folder-open bi me-2 fa-3x"></i>
                                     </div>
                                     <div class="col text-end">
-                                        <h1 class="card-title"><span id="totalProjects">
-                                                <!-- DITO NAGDIDISPLAY YUNG TOTAL -->
-                                            </span></h1>
+                                        <h1 class="card-title"><span id="totalProjects"></span></h1>
                                         <h6> Finished Projects</h6>
                                     </div>
                                 </div>
@@ -66,9 +60,7 @@ $dbh = new dbHandler;
                                         <i class="far fa-solid fa-users fa-3x"></i>
                                     </div>
                                     <div class="col text-end">
-                                        <h1 class="card-title"><span id="totalRegisteredUser">
-                                                <!-- DITO NAGDIDISPLAY YUNG TOTAL -->
-                                            </span></h1>
+                                        <h1 class="card-title"><span id="totalRegisteredUser"></span></h1>
                                         <h6> Registered Users</h6>
                                     </div>
                                 </div>
@@ -83,9 +75,7 @@ $dbh = new dbHandler;
                                         <i class="far fa-solid fa-users fa-3x"></i>
                                     </div>
                                     <div class="col text-end">
-                                        <h1 class="card-title"><span id="totalEmployees">
-                                                <!-- DITO NAGDIDISPLAY YUNG TOTAL -->
-                                            </span></h1>
+                                        <h1 class="card-title"><span id="totalEmployees"></span></h1>
                                         <h6> Employees</h6>
                                     </div>
                                 </div>
@@ -137,18 +127,6 @@ $dbh = new dbHandler;
                                     </tr>
                                 </thead>
                                 <tbody id="popularProject">
-                                    <!-- <tr>
-                                        <td class="text-center"><img src="../images/500.jpg" class="rounded-circle" width="50px" height="50px" alt=""></td>
-                                        <td>Brit Macahilig</td>
-                                        <td>4 likes</td>
-                                        <td>udhfbfsdub</td>
-                                        <td>Interior</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                                view
-                                            </button>
-                                        </td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -157,7 +135,7 @@ $dbh = new dbHandler;
 
                 <div class="row">
                     <div class="col">
-                        <div class="mt-3" >
+                        <div class="mt-3">
                             <h3>Clients Feedback</h3>
                             <table class="table">
                                 <thead>
@@ -177,13 +155,13 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                    <div class="mt-3" >
+                        <div class="mt-3">
                             <h3>Project Approval</h3>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Employee Name</th> 
+                                        <th>Employee Name</th>
                                         <th>Employee ID</th>
                                         <th>Project Name</th>
                                         <th>Category</th>
@@ -198,7 +176,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                 </div>
-                
+
 
             </div>
         </div>

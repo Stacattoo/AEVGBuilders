@@ -1,7 +1,5 @@
-
 function displayUsers(searchQuery='') {
 	$(document).ready(function () {
-		// $("#records").html("<h1>hi guys</h1>");
 		$.ajax({
 			type: "POST",
 			url: "employee/employeeProcess.php",
@@ -46,13 +44,11 @@ function displayUsers(searchQuery='') {
 
 						},
 						error: function (result) {
-							console.error(result);
 						}
 					});
 				});
 			},
 			error: function (dataResult) {
-				console.log(dataResult);
 				$("#error").html(dataResult.responseText);
 			}
 		});
@@ -60,12 +56,10 @@ function displayUsers(searchQuery='') {
 }
 
 $(document).ready(function () {
-	console.log("asd");
-	console.log($("#addSpinner"));
 	$("#addSpinner").hide();
 	$("#addEmployeeForm").submit(function (e) { 
 		e.preventDefault();
-		var data = $(this).serializeArray();  // Form Data
+		var data = $(this).serializeArray();
         data.push({ name: 'ADD_EMPLOYEE_REQ', value: true });
 		$.ajax({
 			type: "POST",
@@ -73,18 +67,15 @@ $(document).ready(function () {
 			data: data,
 			dataType: "JSON",
 			success: function (ADD_EMPLOYEE_RESP) {
-				console.log(ADD_EMPLOYEE_RESP);
 				if (ADD_EMPLOYEE_RESP) {
 					displayUsers();
 					$("#addEmployeeModal").modal("hide");
 				} else {
-					console.error(ADD_EMPLOYEE_RESP);
 					$("#error").html(ADD_EMPLOYEE_RESP.msg);
 				}
 				$("#addBtn").removeAttr("disabled");
 				$("#addSpinner").hide();
 			}, error: function(response) {
-				console.error(response.responseText);
 				$("#error").html(response.responseText);
 			}, beforeSend: function() {
 				$("#addBtn").attr("disabled", true);
@@ -95,7 +86,7 @@ $(document).ready(function () {
 
 	$("#editEmployeeForm").submit(function (e) { 
 		e.preventDefault();
-		var data = $(this).serializeArray();  // Form Data
+		var data = $(this).serializeArray();
         data.push({ name: 'EDIT_EMPLOYEE_REQ', value: true });
 		$.ajax({
 			type: "POST",
@@ -103,12 +94,10 @@ $(document).ready(function () {
 			data: data,
 			dataType: "JSON",
 			success: function (EDIT_EMPLOYEE_RESP) {
-				console.log(EDIT_EMPLOYEE_RESP);
 				if (EDIT_EMPLOYEE_RESP) {
 					displayUsers();
 					$("#editEmployeeModal").modal("hide");
 				} else {
-					console.error(EDIT_EMPLOYEE_RESP);
 					$("#error").html(EDIT_EMPLOYEE_RESP.msg);
 				}
 			}, error: function(response) {

@@ -1,40 +1,3 @@
-// $(document).ready(function () {
-//     console.log("pasok ka ");
-//     refreshTable();
-//     function refreshTable() {
-//         $.ajax({
-//             type: "POST",
-//             url: "projects/preProjectProcess.php",
-//             data: {getPendingProjects: true},
-//             dataType: "JSON",
-//             success: function (response) {
-//                 console.log("pasok?");
-//                 let content = ``;
-//                 $.each(response, function (indexInArray, data) { 
-//                     content += `
-//                     <div class="col">
-//                         <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
-//                             <div class="card-img-top" style="height: 220px; background-image: url('../employee/projects/${data.image[0]}'); background-size: cover; ">
-//                             </div>
-                            
-//                             <div class="card-body">
-//                                 <div class="d-flex justify-content-between align-items-center mb-2">                       
-//                                 <div class="fw-bold text-capitalize">${data.title}</div> 
-//                                 <small class="text-muted">${data.category}</small>
-//                                 </div>
-//                                 <p class="card-text text-truncate">${data.description}</p>
-//                             </div>
-//                         </div>
-//                     </div>    
-//                         `;
-//                 });
-//             }, error: function (wut) {
-//                 console.error(wut);
-//             }
-//         });
-//     }
-// });
-
 $(document).ready(function () {
 
     $("#alertError").hide();
@@ -52,7 +15,6 @@ $(document).ready(function () {
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
                 if (response.status == 'error') {
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
@@ -128,7 +90,6 @@ $(document).ready(function () {
                 $("#preprojects").html(content);
 
                 $('.projectEditDiv').click(function (e) {
-                    console.log("nacclick ba");
                     e.preventDefault();
                     projectId = $(this).data("id");
                     $('#hiddenId').val(projectId);
@@ -176,7 +137,6 @@ $(document).ready(function () {
                         e.preventDefault();
                         deleteId = $(this).attr('data-id');
                         imageSplice = dataFilter.image.splice(deleteId, 1);
-                        console.log(imageSplice);
                         imageRefresh();
 
                     });
@@ -184,8 +144,6 @@ $(document).ready(function () {
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
-                        console.log("ok log check");
-                        //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
                             url: '../admin/projects/editProfileProcess.php',
@@ -203,11 +161,11 @@ $(document).ready(function () {
                                     $("#alertSuccessEdit").show();
                                     $("#editUploadProjects").trigger("reset");
                                     $('#editProjectModal').modal("hide");
+                                    
                                     refreshTable();
                                    
                                 }
                             }, error: function (response) {
-                                console.error(response);
                             }
                         });
                     });
@@ -216,7 +174,6 @@ $(document).ready(function () {
             }
             ,
             error: function (response) {
-                console.error(response.responseText);
             }
 
 
@@ -227,7 +184,6 @@ $(document).ready(function () {
     $('#deleteBtn').click(function (e) {
         e.preventDefault();
         deleteId = $(this).attr("data-id");
-        console.log(deleteId);
         $.ajax({
             type: "post",
             url: "projects/deleteProject.php",
@@ -237,12 +193,10 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                console.log(response);
                 $('#editProjectModal').modal("hide");
                 refreshTable();
             },
             error: function (response) {
-                console.error(response.responseText);
             }
 
         });

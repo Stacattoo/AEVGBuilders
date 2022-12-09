@@ -16,17 +16,6 @@ $dbh = new dbHandler();
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 	</div>
 
-
-	<!-- <form id="dateFilter">
-		<div class="d-flex justify-content-evenly mb-5">
-			<h5 class="">Filter Range:</h5>
-			<div> <input type="date" class="form-control" name="startDate" id="startDate" /> </div>
-			<div><input type="date" class="form-control" name="endDate" id="endDate" /></div>
-			<button type="submit" class="btn btn-primary">Apply</button>
-
-		</div>
-	</form> -->
-
 	<div id="tableContainer">
 		<table class="table table-bordered table-striped" id="resultTable" cellspacing="0" cellpadding="5" border="1">
 			<thead>
@@ -52,7 +41,6 @@ $dbh = new dbHandler();
 
 <script>
 	$(document).ready(function() {
-		console.log("pasokk baaaa aaa");
 		displaySched();
 
 		function displaySched() {
@@ -64,7 +52,6 @@ $dbh = new dbHandler();
 				},
 				dataType: 'JSON',
 				success: function(result) {
-					console.log("pasok ka ba ha");
 					var content = ``;
 					$.each(result, function(i, data) {
 						content += `
@@ -81,14 +68,8 @@ $dbh = new dbHandler();
 					$('#table').html(content);
 				},
 				error: function(errorres) {
-					console.error(errorres);
 				}
 			});
-
-			// $("#print").click(function (e) {
-			//     e.preventDefault();
-
-			// });
 		}
 	});
 </script>

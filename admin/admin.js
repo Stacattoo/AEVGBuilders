@@ -74,7 +74,6 @@ $(document).ready(function () {
                 $("#email").val(data.email);
             },
             error: function (response) {
-                console.error(response.responseText);
                 alert("SESSION expired login again");
                 window.location.href = 'login/login.php';
             }
@@ -85,31 +84,27 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             type: "POST",
-            url: "profileProcess.php", //wala pa to
+            url: "profileProcess.php",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                // console.log("pasok ba sa success?");
                 if (response.status == 'error') {
                     $("#errorAlert").html(response.msg);
                     $("#errorAlert").show();
                 } else {
-                    console.log("andito ka ba gurl??");
                     $("#updateProfileModal").modal('hide');
                 }
             },
             error: function (response) {
-                console.log(response.responseText);
             }
         });
     });
 
     $('#logOut').click(function (e){
         e.preventDefault();
-        console.log("pasok");
     });
 
 });

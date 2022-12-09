@@ -9,9 +9,7 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (response) {
             let content = ``;
-            // var picPath = '';
             $.each(response, function (indexInArray, project) {
-                // picPath = project.profile_picture.replace('../profile/image/', '../projImGW/')
                 content += `
                 
                     <tr>
@@ -32,7 +30,6 @@ $(document).ready(function () {
                     return data.id == id;
                 })[0];
                 let images = ``;
-                console.log(selected);
                 $.each(selected.image, function (indexInArray, path) {
                     let active = '';
                     if (indexInArray == 0) {
@@ -68,7 +65,6 @@ $(document).ready(function () {
             });
 
         }, error: function (response) {
-            // console.error(response); 4
         }
     });
 
@@ -124,14 +120,12 @@ $(document).ready(function () {
                         data: {disapprovedFeedback: true, feedbackId2: id},
                         dataType: "JSON",
                         success: function (response) {
-                            console.log("PASOK KA BA");
                             displayFeedback();
                         }
                     });
                     
                 });
             }, error: function (response) {
-                console.error(response);
             }
         });
     }
@@ -175,7 +169,6 @@ $(document).ready(function () {
                         data: { approveProjects: true, projectId: id },
                         dataType: "JSON",
                         success: function (response) {
-                            console.log("pasok???");
                             displayProjects();
                         }
                     });
@@ -191,7 +184,6 @@ $(document).ready(function () {
                         data: {disapprovedProjects: true, projectId2: id},
                         dataType: "JSON",
                         success: function (response) {
-                            console.log("pasok ba 'to");
                             displayProjects();
                         }
                     });
@@ -207,10 +199,8 @@ $(document).ready(function () {
         data: { getProjects: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalProjects").html(response.length);
         }, error: function (error) {
-            console.log(error);
         }
     });
 
@@ -221,10 +211,8 @@ $(document).ready(function () {
         data: { getRegisteredUsers: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalRegisteredUser").html(response.length);
         }, error: function (error) {
-            console.log(error);
         }
     });
 
@@ -235,10 +223,8 @@ $(document).ready(function () {
         data: { getEmployees: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalEmployees").html(response.length);
         }, error: function (error) {
-            console.log(error);
         }
     });
 
@@ -263,7 +249,6 @@ $(document).ready(function () {
                     var formattedDate = new Date(val.transaction_date);
                     var y = formattedDate.getFullYear();
                     var m = formattedDate.getMonth();
-                    // console.log(); 2
                     if (year == y) {
                         ctr[m]++;
                     }
@@ -284,7 +269,6 @@ $(document).ready(function () {
                 myChart.update();
             },
             error: function (error) {
-                // console.error(error); 1
             }
         });
     }

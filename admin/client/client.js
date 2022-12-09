@@ -1,8 +1,6 @@
 
 function displayUsers(searchQuery='') {
 	$(document).ready(function () {
-		// $("#records").html("");
-		
 		$.ajax({
 			type: "POST",
 			url: "client/clientProcess.php",
@@ -25,9 +23,6 @@ function displayUsers(searchQuery='') {
 				});
 				$('#list').html(content);
 			},
-			error: function (dataResult) {
-				console.log(dataResult);
-			},
 			complete: function () {
 				$(".student").click(function (e) {
 					e.preventDefault();
@@ -42,9 +37,6 @@ function displayUsers(searchQuery='') {
 						},
 						success: function (dataResult) {
 							$("#records").html(dataResult);
-						},
-						error: function (result) {
-							console.log(result);
 						}
 					});
 				});
