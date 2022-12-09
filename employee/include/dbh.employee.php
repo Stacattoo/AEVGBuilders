@@ -106,7 +106,7 @@ class dbHandler
     function updateProject($value)
     {
         $query = "UPDATE `projects` SET title='$value->title', category='$value->category', 
-        image='$value->image',  description='$value->description' WHERE id='$value->id'";
+        image='$value->image',  description='$value->description', project_status='pending' WHERE id='$value->id'";
         return mysqli_query($this->conn, $query);
     }
     function updatePortfolio($value)

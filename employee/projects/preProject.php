@@ -167,7 +167,7 @@ $dbh = new dbHandler;
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
                     <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</button>
-                    <button type="submit" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
+                    <button type="submit" class="btn  btn-outline-success save" data-id="alertSuccessEdit">Save changes</button>
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
