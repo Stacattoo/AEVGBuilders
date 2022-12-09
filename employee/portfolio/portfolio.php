@@ -5,7 +5,11 @@ $dbh = new dbHandler;
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script src="../portfolio/portfolio.js"></script>
 <div class="container-fluid">
-    <h3><i class="fad fa-calendar-alt bi me-2"></i></i>Portfolio</h3>
+    <div class="d-flex justify-content-between mx-4">
+
+        <h3><i class="fal fa-file-alt me-2"></i></i>Portfolio</h3>
+        <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button>
+    </div>
     <hr>
     <div class="row g-2">
         <div class="col-4 mx-4">

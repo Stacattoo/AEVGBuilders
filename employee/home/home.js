@@ -19,6 +19,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../client/client.php");
     });
+    $("#fclientsNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../client/finishedClients.php");
+    });
     //Materials
     $("#materialsNav").click(function (e) {
         e.preventDefault();

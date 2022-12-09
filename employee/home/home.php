@@ -84,8 +84,15 @@ $dbh = new dbHandler;
                             <li>
                                 <a href="#" class="nav-link text-white" id="portfolio">
 
-                                    <i class="fas fa-city bi me-2"></i>
+                                    <i class="fas fa-file bi me-2"></i>
                                     Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link active text-white" id="fclientsNav">
+
+                                    <i class="far fa-user-alt bi me-2"></i>
+                                    Finished Transactions
                                 </a>
                             </li>
                         </ul>

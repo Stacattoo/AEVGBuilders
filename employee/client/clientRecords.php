@@ -3,6 +3,7 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler();
 
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
+// $status = $dbh->getStatus($_POST['clientid']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
@@ -22,10 +23,32 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         </div>
 
-        <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
-        <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
-        <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
-        
+        <div class="row">
+            <div class="col-8">
+                <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
+                <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
+                <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
+            </div>
+            <div class="col-4">
+                <div>Client Status: <strong></strong></div> <!-- dito yung status grr -->
+                <div>Change Status:
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="ongoing" href="#">Ongoing</a></li>
+                            <li><a class="dropdown-item" id="onhold" href="#">Onhold</a></li>
+                            <li><a class="dropdown-item" id="stop" href="#">Stopped</a></li>
+                            <li><a class="dropdown-item" id="finish" href="#">Finished</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         <!-- TODO: fix names, hindi similar pag cinlick
                     lalagyan ng condition na palitan yung name-->
         <div><span class="fw-bolder">
@@ -187,7 +210,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                
+
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Employee</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -258,7 +281,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         console.log($('#idClient').html());
         $("#acceptClientBtn").click(function(e) {
             // var clientDiv = (this).html();
-            
+
             e.preventDefault();
             var clientID = $('#idClient').html();
             console.log(clientID);
@@ -282,7 +305,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         $('#chooseModal').modal("hide");
                     }
 
-                }, error: function(response) {
+                },
+                error: function(response) {
                     console.error(response);
                 }
             });
@@ -441,5 +465,28 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             });
 
         }
+
+        $(selector).click(function (e) { 
+            e.preventDefault();
+            $.ajax({
+					url: "../client/reportProcess.php",
+					type: "POST",
+					data: {
+						updateToOnhold: id
+					},
+					success: function(dataResult) {
+						
+					},
+				});
+        });
+        function changeStatus(id) {
+		if (confirm("Are you sure you want to unblock this user?")) {
+			$(document).ready(function() {
+				
+			});
+		}
+	}
+
+        //
     });
 </script>

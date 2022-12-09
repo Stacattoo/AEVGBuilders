@@ -50,14 +50,14 @@ $dbh = new dbHandler;
                             <h5 class="col-sm-2 ">Category: &nbsp;</h5>
                             <div class="col-sm-10">
                                 <select class="form-select" aria-label="Default select example" name="category" required>
-                                <option selected disabled>Catergory</option>
-                                <option value="Residentials">Residentials</option>
-                                <option value="Commercial">Commercial</option>
-                                <option value="Mixed-Use">Mixed-Use</option>
-                                <option value="Institutional">Institutional</option>
-                                <option value="Industrial">Industrial</option>
-                                <option value="Interior">Interior</option>
-                                <option value="Renovation">Renovation</option>
+                                    <option selected disabled>Catergory</option>
+                                    <option value="Residentials">Residentials</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Mixed-Use">Mixed-Use</option>
+                                    <option value="Institutional">Institutional</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Interior">Interior</option>
+                                    <option value="Renovation">Renovation</option>
                                 </select>
                             </div>
                         </div>
@@ -142,11 +142,11 @@ $dbh = new dbHandler;
                                 <option value="Industrial">Industrial</option>
                                 <option value="Interior">Interior</option>
                                 <option value="Renovation">Renovation</option>
-                                
+
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="mb-3 row">
                         <h5 class="col-sm-2 ">Add Image: &nbsp;</h5>
                         <div class="col-sm-10">

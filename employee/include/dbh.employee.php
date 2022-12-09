@@ -387,6 +387,42 @@ class dbHandler
         }
     }
 
+    function getStatus($clientId)
+    {
+        $sql = "SELECT * from employee_client WHERE client_id = $clientId"; // employee_id = $empId AND 
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return (object)[
+                    "status" => $row['status']
+                ];
+            }
+        }
+    }
+
+    function updateClientStatus($id, $status)
+    {
+        $query = "UPDATE employee_client SET status='$status', where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function activities($id)
+    {
+        $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
+        ON client.id = activity_log.client_id WHERE client.id = $id ORDER BY date_time DESC";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "date_time" => $row['date_time'],
+                    "status" => $row['status_message']
+
+                ];
+            }
+        }
+        return $data;
+    }
 
     function getClientScheduleDetails($id)
     {
@@ -488,9 +524,9 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             $msg = array();
             if ($row = mysqli_fetch_assoc($result)) {
-                if($row["files"] != ''){
+                if ($row["files"] != '') {
                     $msg = json_decode($row["files"]);
-                }else{
+                } else {
                     $msg = array();
                 }
                 array_push($msg, json_decode($content)[0]);
@@ -498,8 +534,7 @@ class dbHandler
                 $sql = "UPDATE `message` SET files='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
-        }
-        else {
+        } else {
             $content = json_encode($content);
             $sql = "INSERT INTO message(employee_id, client_id , files) VALUES ('$id', '$client', '$content')";
             return mysqli_query($this->conn, $sql);
@@ -518,7 +553,7 @@ class dbHandler
                     "dateTime" => $date,
                     "sender" => "employee"
                 ]
-                
+
             );
             $jsonContent = json_encode($jsonContent);
             $this->insertEmployeeMessage($jsonContent, $client, $id);
@@ -600,23 +635,7 @@ class dbHandler
         }
     }
 
-    function activities($id)
-    {
-        $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
-        ON client.id = activity_log.client_id WHERE client.id = $id ORDER BY date_time DESC";
-        $result = mysqli_query($this->conn, $sql);
-        $data = array();
-        if (mysqli_num_rows($result)) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $data[] = (object)[
-                    "date_time" => $row['date_time'],
-                    "status" => $row['status_message']
 
-                ];
-            }
-        }
-        return $data;
-    }
 
     // INSERT INTO activity_log (status_message) VALUES ("Registration Date: ")
 }
