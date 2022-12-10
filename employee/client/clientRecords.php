@@ -3,6 +3,7 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler();
 
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
+$pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
 // $status = $dbh->getStatus($_POST['clientid']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -29,12 +30,15 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
                 <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
             </div>
+
+                    <?php if ($userData->status != '' && $pendingUserData->status != '') {
+                     ?>
             <div class="col-4">
                 <div>Client Status: <strong><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
                 <div>Change Status:
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php echo $userData->status; ?>
+
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
@@ -42,10 +46,16 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             <li><a class="dropdown-item" id="stop" value="stop" href="#">Stopped</a></li>
                             <li><a class="dropdown-item" id="finish" value="finish" href="#">Finished</a></li>
                         </ul>
+
                     </div>
+                    
                 </div>
 
             </div>
+            <?php 
+                } 
+            ?>
+       
         </div>
 
 
@@ -467,26 +477,27 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
         }
 
-        $(selector).click(function (e) { 
+        $(selector).click(function(e) {
             e.preventDefault();
             $.ajax({
-					url: "../client/reportProcess.php",
-					type: "POST",
-					data: {
-						updateToOnhold: id
-					},
-					success: function(dataResult) {
-						
-					},
-				});
+                url: "../client/reportProcess.php",
+                type: "POST",
+                data: {
+                    updateToOnhold: id
+                },
+                success: function(dataResult) {
+
+                },
+            });
         });
+
         function changeStatus(id) {
-		if (confirm("Are you sure you want to unblock this user?")) {
-			$(document).ready(function() {
-				
-			});
-		}
-	}
+            if (confirm("Are you sure you want to unblock this user?")) {
+                $(document).ready(function() {
+
+                });
+            }
+        }
 
         //
     });
