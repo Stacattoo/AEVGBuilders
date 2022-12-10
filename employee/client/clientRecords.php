@@ -30,17 +30,17 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
             </div>
             <div class="col-4">
-                <div>Client Status: <strong></strong></div> <!-- dito yung status grr -->
+                <div>Client Status: <strong><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
                 <div>Change Status:
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
+                        <?php echo $userData->status; ?>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" id="ongoing" href="#">Ongoing</a></li>
-                            <li><a class="dropdown-item" id="onhold" href="#">Onhold</a></li>
-                            <li><a class="dropdown-item" id="stop" href="#">Stopped</a></li>
-                            <li><a class="dropdown-item" id="finish" href="#">Finished</a></li>
+                            <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
+                            <li><a class="dropdown-item" id="onhold" value="onhold" href="#">Onhold</a></li>
+                            <li><a class="dropdown-item" id="stop" value="stop" href="#">Stopped</a></li>
+                            <li><a class="dropdown-item" id="finish" value="finish" href="#">Finished</a></li>
                         </ul>
                     </div>
                 </div>

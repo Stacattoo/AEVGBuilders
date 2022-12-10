@@ -17,13 +17,6 @@ $dbh = new dbHandler;
             </tr>
         </thead>
         <tbody id="handledClientContent">
-            <!-- <tr>
-            <td>$client->id</td>
-            <td>$client->name</td>
-            <td>$client->email</td>
-            <td>$client->contact_no</td>
-            <td>$client->status</td>
-        </tr> -->
         </tbody>
     </table>
 

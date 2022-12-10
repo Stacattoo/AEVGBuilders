@@ -367,6 +367,40 @@ class dbHandler
 
 
                 $empName = "";
+                $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status FROM employee_client 
+                INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
+                $res = mysqli_query($this->conn, $sql);
+                if (mysqli_num_rows($result)) {
+                    if ($row2 = mysqli_fetch_assoc($res)) {
+                        $empName = $row2['fullname'];
+                    }
+                }
+                return (object)[
+                    'id' => $row['id'],
+                    'fullname' => $row['fullname'],
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address'],
+                    'employeeName' => $empName,
+                    'status' => $row2['status']
+                ];
+            }
+        }
+    }
+
+    function PgetAllClientInfoByID($id)
+    {
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
+        FROM client WHERE id=$id INNER JOIN employee_client";
+        $result = mysqli_query($this->conn, $query);
+        // $info = array();
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+
+
+                $empName = "";
                 $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname FROM employee_client INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
                 if (mysqli_num_rows($result)) {
@@ -381,6 +415,7 @@ class dbHandler
                     'email' => $row['email'],
                     'password' => $row['password'],
                     'address' => $row['address'],
+                    'status' => $row['status'],
                     'employeeName' => $empName
                 ];
             }
