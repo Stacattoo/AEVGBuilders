@@ -367,7 +367,7 @@ class dbHandler
 
 
                 $empName = "";
-                $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status FROM employee_client 
+                $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status as empclistatus  FROM employee_client 
                 INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
                 if (mysqli_num_rows($result)) {
@@ -375,6 +375,7 @@ class dbHandler
                         $empName = $row2['fullname'];
                     }
                 }
+
                 return (object)[
                     'id' => $row['id'],
                     'fullname' => $row['fullname'],
@@ -383,7 +384,7 @@ class dbHandler
                     'password' => $row['password'],
                     'address' => $row['address'],
                     'employeeName' => $empName,
-                    'status' => $row2['status']
+                    'status' => $row2['empclistatus']
                 ];
             }
         }
@@ -393,7 +394,7 @@ class dbHandler
     {
         $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
         CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
-        FROM client WHERE id=$id INNER JOIN employee_client";
+        FROM client WHERE id='$id'";
         $result = mysqli_query($this->conn, $query);
         // $info = array();
         if (mysqli_num_rows($result)) {
