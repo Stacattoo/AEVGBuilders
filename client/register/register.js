@@ -10,6 +10,13 @@ $(document).ready(function () {
 
     $("#step1Btn").click(function (e) {
         e.preventDefault();
+       
+            var checkvalue = $('#contactNo').val();
+            if (checkvalue != parseInt(checkvalue)){
+
+                $('#contactNo').val('');
+                alert("Contact Number should be numbers only");
+            }
 
         var form = $("#registerForm")[0];
         console.log($("#registerForm"));
@@ -22,6 +29,7 @@ $(document).ready(function () {
                         $(".progress-bar").width("40%");
                     } else {
                         form[4].reportValidity();
+                        
                     }
 
                 } else {
@@ -65,7 +73,7 @@ $(document).ready(function () {
         } else {
             form[8].reportValidity();
         }
-        
+
     });
 
     $("#prev2Btn").click(function (e) {
@@ -84,13 +92,13 @@ $(document).ready(function () {
                 $(".progress-bar").width("100%");
             } else {
                 form[14].reportValidity();
-                
+
             }
         } else {
             form[13].reportValidity();
-            
+
         }
-       
+
     });
 
     $("#prev3Btn").click(function (e) {
@@ -121,7 +129,7 @@ $(document).ready(function () {
                     $("#alertError").hide();
                     $("#alertSuccess").show();
                     $('#registerForm').trigger("reset");
-                    
+
 
 
                 }
@@ -135,4 +143,6 @@ $(document).ready(function () {
         $("#alertError").hide();
         $("#alertSuccess").hide();
     });
+
+    
 });
