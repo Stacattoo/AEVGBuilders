@@ -88,13 +88,13 @@ $dbh = new dbHandler;
                                     Portfolio
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#" class="nav-link active text-white" id="fclientsNav">
 
                                     <i class="far fa-user-alt bi me-2"></i>
                                     Finished Transactions
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                         <medium id="timeNow"></medium>
                         <hr>
