@@ -32,9 +32,10 @@
                                 <input type="text" class="form-control mt-5 p-2" name="firstName" placeholder="First Name" required>
                                 <input type="text" class="form-control mt-2 p-2" name="middleName" placeholder="Middle Name (optional)">
                                 <input type="text" class="form-control mt-2 p-2" name="lastName" placeholder="Last Name" required>
-                                <input type="email" class="form-control mt-2" name="email" placeholder="Email" required>
+                                <input type="email" class="form-control mt-2" name="email" id="emailRegister" placeholder="Email" required>
                                 <input type="text" class="form-control mt-2" name="contact" id="contactNo" placeholder="Contact Number" required>
-
+                                <div class="alert alert-danger mt-3" role="alert" id="alertErrorbtn1">
+                            </div>
                                 <div class="d-flex justify-content-evenly mt-4">
                                     <a href="../../index.php">Already Have an Account?</a>
                                 </div>

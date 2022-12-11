@@ -3,7 +3,7 @@ $(document).ready(function () {
     messagePopover();
     appStatus();
     showCostEstimate();
-
+    filterPortfolio();
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
@@ -253,8 +253,8 @@ $(document).ready(function () {
         });
     });
 
-    // setInterval(messagePopover, 1000);
     $("#msg").popover({
+        // setInterval(messagePopover, 1000);
         placement: "left",
         html: true,
         sanitize: false,
@@ -265,10 +265,10 @@ $(document).ready(function () {
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
-        // setInterval(messagePopover, 1000);
         $("#mesBody").animate({
             scrollTop: $("#mesBody").get(0).scrollHeight
         }, 10);
+        // setInterval(displayMessage, 1000);
         $('#messageForm').submit(function (e) {
 
             console.log("okay naman");
@@ -286,10 +286,14 @@ $(document).ready(function () {
                     $('#messageForm').trigger("reset");
                     $('#contentID').html("");
                     if (response.status == 'success') {
-                        messagePopover();
+                        // messagePopover();
                         $(".popover-body").html(messageContent);
-                        // $('#mesBody').html(mesContent);
-                        // console.log("hehe");
+                        $('#mesBody').html(mesContent);
+                        
+                        $("#mesBody").animate({
+                            scrollTop: $("#mesBody").get(0).scrollHeight
+                        }, 10);
+
                     }
                 }, error: function (response) {
                     console.error(response.responseText);
@@ -387,7 +391,7 @@ $(document).ready(function () {
 
 
     $("#changePassForm").submit(function (event) {
-        // console.log('test lang');
+        
         event.preventDefault();
         $.ajax({
             url: "changePassProcess.php",
@@ -511,5 +515,108 @@ $(document).ready(function () {
             
         }
     });
+
+    function filterPortfolio() {
+        $.ajax({
+            type: "post",
+            url: "portfolioProcess.php",
+            data: {
+                getAllPortfolioClient: true
+            },
+            dataType: "json",
+            success: function (response) {
+                let content = ``;
+                $.each(response, function (indexInArray, data) {
+                    let images = ``;
+                    $.each(data.image, function (indexInArray, path) {
+                        let active = '';
+                        if (indexInArray == 0) {
+                            active = "active";
+                        }
+                        images += `<div class="carousel-item ${active}">
+                                        <img src="${path}" class="d-block w-70 img-fluid img ">
+                                        
+                                        </div>`;
+                    });
+                    
+                    content += `
+                    <div class="col">
+                            <div class="card">
+    
+                                <div id="carouselExampleInterval${indexInArray}" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        ${images}
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval${indexInArray}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval${indexInArray}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                <div class="card-body">
+
+                                    <h6 class="card-text">${data.title}</h6> 
+                                    <p class="card-text text-truncate">${data.description}</p> 
+                                    <div class= "d-flex justify-content-between"> 
+                                    
+                                    <button class="btn btn-link text-secondary text-decoration-none portfolioBtn" data-bs-toggle="modal" data-bs-target="#openPortfolioModal" data-id="${data.client_id}">See more...</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     `;
+                });
+                $("#portfolioOnsite").html(content);
+                console.log(images);
+
+
+                $(".portfolioBtn").click(function (e) {
+                    e.preventDefault();
+                    let id = $(this).data("client_id");
+                    var selected = response.client_id(function (data) {
+                        return data == id;
+                    })[0];
+                    let images = ``;
+                    $.each(selected.image, function (indexInArray, path) {
+                        let active = '';
+                        if (indexInArray == 0) {
+                            active = "active";
+                        }
+                        images += `<div class="carousel-item ${active}">
+                                    <img src="${path}" class="d-block w-100 img-fluid img-modal">
+                                    </div>`;
+                    });
+                    let content = `
+                    <div id="carouselExampleIntervalModal" class="carousel slide">
+                        <div class="carousel-inner">
+                            ${images}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <p>${selected.description}</p>
+                    `;
+
+
+                    
+                    $("#portfolioContent").html(content);
+                });
+
+
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
+        });
+    }
 
 }); // end of document ready function

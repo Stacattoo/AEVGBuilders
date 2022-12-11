@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // console.log($(this).val());
+
     $("#alertError").hide();
     $("#alertErrorApp").hide();
     $("#projectID").hide();
@@ -10,8 +10,7 @@ $(document).ready(function () {
     $("#step4").hide();
     $("#meetLoc").prop('disabled', true);
     $(".projectTypeListImages").hide();
-    // console.log(disableDate());
-    // disableDate();
+
     var dateVar = ``;
     const params1 = new URLSearchParams(location.search);
 
@@ -58,7 +57,7 @@ $(document).ready(function () {
 
 
     $("#appointForm").submit(function (event) {
-        // console.log("okey naman huehue");
+
         event.preventDefault();
         if (params1.has('editing')) {
             console.log("sa una");
@@ -71,7 +70,7 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (result) {
-                    console.log(result);
+
                     if (result.status == 'error') {
                         $("#alertError").html(result.msg);
                         $("#alertError").fadeIn();
@@ -82,7 +81,7 @@ $(document).ready(function () {
                 }
             });
         } else {
-            // console.log("sa pangalawa");
+
             $.ajax({
                 url: "../contactUs/appointmentProcess.php",
                 type: "POST",
@@ -110,7 +109,6 @@ $(document).ready(function () {
     var valueEdit = {};
     $('#viewAppModal').click(function (e) {
         e.preventDefault();
-        // projectId = $(this).data("id");
         $.ajax({
             type: "post",
             url: "../contactUs/getData.php",
@@ -123,7 +121,6 @@ $(document).ready(function () {
                 $.each(response.businessType, function (indexInArray, data) {
                     businessVar = response.businessType.join(', ');
                 });
-                // console.log(businessVar);
                 $('#editBtnID').attr("data-id", response.client_id);
                 $('#name_id').val(response.fullName);
                 $('#contact_id').val(response.contactNo);
@@ -229,7 +226,6 @@ $(document).ready(function () {
 
     $("#meetType").change(function (event) {
         event.preventDefault();
-        // console.log("gumana naman");
         var type = $(this).val();
         if (type == "virtual") {
             $("#meetLoc").prop('disabled', true);
@@ -261,19 +257,21 @@ $(document).ready(function () {
                 let toString = `${data.date}`;
 
                 dateVar = toString;
-                // console.log(dateVar);
+               
 
+                
                 $("#appointmentDate").change(function (event) {
+
                     event.preventDefault();
-                    $("#alertErrorApp").hide();
                     // console.log("pasok");
                     if ($(this).val() == dateVar) {
-                        $("#alertErrorApp").show();
-                        $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
-                        // alert("This date has been occupied");
+                        // $("#alertErrorApp").show();
+                        // $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
+                        alert("This date has been occupied");
                         $("#appointmentDate").val('');
                         
                     } else {
+                        
                         $.ajax({
                             type: "POST",
                             url: "../contactUs/getData.php",
@@ -282,8 +280,7 @@ $(document).ready(function () {
                             },
                             dataType: "json",
                             success: function (response) {
-                                // console.log("kahit ano");
-                                // if(disableDate() == response)
+                                
                             }
                         });
                     }

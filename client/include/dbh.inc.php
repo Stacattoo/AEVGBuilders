@@ -423,27 +423,23 @@ class dbHandler
     }
     function getSpecificClientPortoflio($id)
     {
-        $sql = "SELECT * FROM portfolio WHERE client_id='$id'";
-        $result = mysqli_query($this->conn, $sql);
-        $message = array();
-        $mesCost = array();
+        $query = "SELECT * FROM portfolio WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $imgExplode = explode(",", $row['imageApp']);
-                $mesCost = json_decode($row['costEstimate']);
-                $message[] = (object) [
-                    'id' => $row['client_id'],
-                    'employee_id' => $row['employee_id'],
-                    'image' =>$imgExplode,
-                    'date' => $row['dateTime'],
-                    'status' => $row['status']
+                $projects[] = (object)[
+
+                    "client_id" => $row["client_id"],
+                    "employee_id" => $row["employee_id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
+                    "image" => explode(",", $row["image"]),
                 ];
             }
         }
-        return $message;
+        return $projects;
     }
-
-
 
     //message end
 
@@ -464,6 +460,7 @@ class dbHandler
         }
 
     }
+    
     function __destroy()
     {
         $this->conn->close();

@@ -46,7 +46,3 @@ if (isset($_POST['getCostEstimate'])) {
     // echo "cost estimate";
 }
 
-if (isset($_POST['getPortfolioUploads'])) {
-    echo json_encode((array)$dbh->getSpecificClientPortoflio($_SESSION['id'])[0]);
-    // echo "cost estimate";
-}

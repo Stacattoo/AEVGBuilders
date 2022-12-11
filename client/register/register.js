@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#alertError").hide();
     $("#alertSuccess").hide();
-
+    $("#alertErrorbtn1").hide();
     // $("#step1").hide();
     $("#step2").hide();
     $("#step3").hide();
@@ -10,9 +10,36 @@ $(document).ready(function () {
 
     $("#step1Btn").click(function (e) {
         e.preventDefault();
-       
-            var checkvalue = $('#contactNo').val();
-            if (checkvalue != parseInt(checkvalue)){
+        var checkContactValue = $('#contactNo').val();
+        var checkEmailValue = $('#emailRegister').val();
+        checkEmailExist();
+            
+            
+            function checkEmailExist(){
+                $.ajax({
+                    type: 'post',
+                    url: 'registerProcess.php',
+                    data: {
+                        email: checkEmailValue,
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 'error') {
+                            $('#emailRegister').val('');
+                            // $("#alertErrorbtn1").html(response.msg);
+                            // $("#alertErrorbtn1").show();
+                            alert("Email Address already exist, please enter another email address.");
+                        } 
+                        // else {
+                        //     $("#alertErrorbtn1").hide();
+                        // }
+                    }, error: function (response) {
+                        console.error(response);
+                    }
+                });
+            }
+            if (checkContactValue != parseInt(checkContactValue)){
 
                 $('#contactNo').val('');
                 alert("Contact Number should be numbers only");
@@ -144,5 +171,22 @@ $(document).ready(function () {
         $("#alertSuccess").hide();
     });
 
-    
+    // function validatePassword() {
+    //     var p = document.getElementById('newPassword').value,
+    //         errors = [];
+    //     if (p.length < 8) {
+    //         errors.push("Your password must be at least 8 characters"); 
+    //     }
+    //     if (p.search(/[a-z]/i) < 0) {
+    //         errors.push("Your password must contain at least one letter.");
+    //     }
+    //     if (p.search(/[0-9]/) < 0) {
+    //         errors.push("Your password must contain at least one digit."); 
+    //     }
+    //     if (errors.length > 0) {
+    //         alert(errors.join("\n"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
 });

@@ -10,6 +10,7 @@ if (isset($_POST['getSchedEdit']) == $_SESSION['id']) {
 }
 if (isset($_POST['checkSched'])) {
     echo json_encode((array)$dbh->checkSched());
+
 }
 if (isset($_POST['checkAppointment'])) {
     echo json_encode((array)$dbh->getSched($_SESSION['id'])[0]);

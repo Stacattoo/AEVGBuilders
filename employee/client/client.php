@@ -1,3 +1,8 @@
+<?php
+include_once("../include/dbh.employee.php");
+$dbh = new dbHandler;
+?>
+
 <script src="../client/client.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 

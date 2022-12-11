@@ -36,8 +36,8 @@ $dbh = new dbHandler;
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
                 <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+                    <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
                 <?php }  ?>
             </ul>
 
@@ -46,7 +46,7 @@ $dbh = new dbHandler;
 
                 <!-- Checking if the session is set -->
 
-                <?php if (!isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1' ) { ?>
+                <?php if (!isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
 
                     <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
                     <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
@@ -67,7 +67,7 @@ $dbh = new dbHandler;
                         </div>
                         <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
                             <div>
-                                
+
                             </div>
                         <?php } ?>
                     </div>
@@ -261,7 +261,24 @@ $dbh = new dbHandler;
             </table>
         </div>
     </div>
-    <!-- modal for quotation -->
+
+    <div class="container mt-3">
+        <h2>On site portfolio.</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
+
+            </div>
+    </div>
+    <!-- MODAL PROJECTS -->
+	<div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content rounded-4 shadow">
+				<div class="modal-body p-5" id="portfolioContent">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- modal for quotation
     <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -393,7 +410,7 @@ $dbh = new dbHandler;
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
 
 
@@ -551,13 +568,13 @@ $dbh = new dbHandler;
         <div>
 
             <div class=" ">
-                <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" >
-                <i class="fal fa-comment-alt-lines fs-2"></i>
+                <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+                    <i class="fal fa-comment-alt-lines fs-2"></i>
                 </button>
             </div>
             <div class="mt-2">
                 <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
-                <i class="fal fa-bullhorn fs-3"></i>
+                    <i class="fal fa-bullhorn fs-3"></i>
                 </button>
             </div>
 
@@ -566,7 +583,7 @@ $dbh = new dbHandler;
 
 
     <div class="container">
-        
+
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
