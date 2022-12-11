@@ -28,34 +28,34 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
             <div class="col-8">
                 <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-light"><?php echo $userData->email; ?></a></div>
                 <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
-                <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
+                <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
             </div>
 
-                    <?php if ($userData->status != '' && $pendingUserData->status != '') {
-                     ?>
-            <div class="col-4">
-                <div>Client Status: <strong><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
-                <div>Change Status:
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php if ($userData->status != '' && $pendingUserData->status != '') {
+            ?>
+                <div class="col-4">
+                    <div >Client Status: <strong id="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
+                    <div>Change Status:
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
-                            <li><a class="dropdown-item" id="onhold" value="onhold" href="#">Onhold</a></li>
-                            <li><a class="dropdown-item" id="stop" value="stop" href="#">Stopped</a></li>
-                            <li><a class="dropdown-item" id="finish" value="finish" href="#">Finished</a></li>
-                        </ul>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><button type="button" class="dropdown-item statusBtn" data-status="Ongoing">Ongoing</button></li>
+                                <li><button type="button" class="dropdown-item statusBtn" data-status="Onhold">Onhold</button></li>
+                                <li><button type="button" class="dropdown-item statusBtn" data-status="Stopped">Stopped</button></li>
+                                <li><button type="button" class="dropdown-item statusBtn" data-status="Finished">Finished</button></li>
+                            </ul>
+
+                        </div>
 
                     </div>
-                    
-                </div>
 
-            </div>
-            <?php 
-                } 
+                </div>
+            <?php
+            }
             ?>
-       
+
         </div>
 
 
@@ -251,8 +251,7 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
 
 <script>
     $(document).ready(function() {
-
-        console.log(displayDetails());
+        console.log("call");
         displayDetails();
 
         $.ajax({
@@ -288,13 +287,11 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                 })
             }
         });
-        console.log($('#idClient').html());
         $("#acceptClientBtn").click(function(e) {
             // var clientDiv = (this).html();
 
             e.preventDefault();
             var clientID = $('#idClient').html();
-            console.log(clientID);
 
             $.ajax({
                 type: "POST",
@@ -305,7 +302,6 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    console.log(response);
 
                     if (response.status == 'success') {
                         console.log("dsplay");
@@ -414,7 +410,6 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                     dataType: 'JSON',
                     success: function(details) {
 
-                        console.log(details);
                         var location = details.meetLoc;
                         if (details.meetLoc == '') {
                             details.meetLoc = "N/A";
@@ -449,8 +444,7 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                             `;
                             }
                         });
-                        console.log(imgAppDetails);
-                        console.log(businessVar);
+
                         $('#editBtnID').attr("data-id", details.client_id);
                         $('#name_id').html(details.fullName);
                         $('#contact_id').html(details.contactNo);
@@ -475,28 +469,6 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                 });
             });
 
-        }
-
-        $(selector).click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "../client/reportProcess.php",
-                type: "POST",
-                data: {
-                    updateToOnhold: id
-                },
-                success: function(dataResult) {
-
-                },
-            });
-        });
-
-        function changeStatus(id) {
-            if (confirm("Are you sure you want to unblock this user?")) {
-                $(document).ready(function() {
-
-                });
-            }
         }
 
         //

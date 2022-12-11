@@ -21,12 +21,9 @@ $dbh = new dbHandler;
                     <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
                 </li>
             </ul>
-            
-            <div class="card mb-2 rounded-2 ">
-            <div id="list" class="list-group"></div>
-            <div id="pending" class="list-group"></div>
-                <div class="card-body text-white rounded-2 " style="background-color:#f8f9fa; height: 800px;">
-                </div>
+
+            <div class="card mb-2 rounded-2 sticky-top" style="background-color:#f8f9fa; height: 100vh; overflow:scroll;">
+                <div id="list" class="list-group"></div>
             </div>
 
         </div>
@@ -100,61 +97,35 @@ $dbh = new dbHandler;
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
-
                             </div>
                             <div class="col-sm-6">
                                 <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 80%; background-color:#e9ecef;"></div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <script>
         $(document).ready(function() {
-
             $("#list").show();
             $("#pending").hide();
-            displayApproveClient();
-            displayPendingClient();
-
-
+            displayClient('active');
             $("#listBtn").click(function() {
                 $(this).addClass("active");
                 $("#pendingBtn").removeClass("active");
-                $("#list").show();
-                $("#pending").hide();
-                displayApproveClient();
-                displayPendingClient();
-
-
-                $("#listBtn").click(function() {
-                    $(this).addClass("active");
-                    $("#pendingBtn").removeClass("active");
-                    $("#list").show();
-                    $("#pending").hide();
-                });
-
-
+                displayClient('active');
             });
             $("#pendingBtn").click(function() {
                 $(this).addClass("active");
                 $("#listBtn").removeClass("active");
-                $("#pending").show();
-                $("#list").hide();
-                // $(".dropdown").hide();
+                displayClient('pending');
             });
-
             $("#search").change(function(e) {
                 e.preventDefault();
-                displayApproveClient($(this).val());
-                displayPendingClient($(this).val());
+                displayClient($(this).val());
             });
         });
     </script>
