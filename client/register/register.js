@@ -12,39 +12,56 @@ $(document).ready(function () {
         e.preventDefault();
         var checkContactValue = $('#contactNo').val();
         var checkEmailValue = $('#emailRegister').val();
-        checkEmailExist();
-            
-            
-            function checkEmailExist(){
-                $.ajax({
-                    type: 'post',
-                    url: 'registerProcess.php',
-                    data: {
-                        email: checkEmailValue,
-                    },
-                    dataType: "JSON",
-                    success: function (response) {
-                        console.log(response);
-                        if (response.status == 'error') {
-                            $('#emailRegister').val('');
-                            // $("#alertErrorbtn1").html(response.msg);
-                            // $("#alertErrorbtn1").show();
-                            alert("Email Address already exist, please enter another email address.");
-                        } 
-                        // else {
-                        //     $("#alertErrorbtn1").hide();
-                        // }
-                    }, error: function (response) {
-                        console.error(response);
+        // checkEmailExist();
+
+        $.ajax({
+            type: 'post',
+            url: 'registerProcess.php',
+            data: {
+                emailCheck: checkEmailValue,
+            },
+
+            success: function (response) {
+                if (response == "error") {
+                    $('#emailRegister').val('')
+                    alert("Email Already Exist")
+                } else {
+                    var form = $("#registerForm")[0];
+                    console.log($("#registerForm"));
+                    if (form[0].checkValidity()) {
+                        if (form[2].checkValidity()) {
+                            if (form[3].checkValidity()) {
+                                if (form[4].checkValidity()) {
+                                    $("#step1").hide();
+                                    $("#step2").show();
+                                    $(".progress-bar").width("40%");
+                                } else {
+                                    form[4].reportValidity();
+
+                                }
+
+                            } else {
+                                form[3].reportValidity();
+                            }
+                        } else {
+                            form[2].reportValidity();
+                        }
+
+                    } else {
+                        form[0].reportValidity();
                     }
-                });
-            }
-            if (checkContactValue != parseInt(checkContactValue)){
-
-                $('#contactNo').val('');
-                alert("Contact Number should be numbers only");
+                }
             }
 
+        });
+
+        if (checkContactValue != parseInt(checkContactValue)) {
+
+            $('#contactNo').val('');
+            alert("Contact Number should be numbers only");
+        }
+
+        /*
         var form = $("#registerForm")[0];
         console.log($("#registerForm"));
         if (form[0].checkValidity()) {
@@ -70,7 +87,7 @@ $(document).ready(function () {
             form[0].reportValidity();
         }
 
-
+*/
     });
 
     $("#prev1Btn").click(function (e) {

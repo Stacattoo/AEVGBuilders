@@ -3,7 +3,7 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler();
 
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
-$pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
+$pendingUserData = $dbh->getClientScheduleDetails($_POST['id']);
 // $status = $dbh->getStatus($_POST['clientid']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -31,17 +31,17 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                 <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
             </div>
 
-                    <?php if ($userData->status != '' && $pendingUserData->status != '') {
+            <?php if ($pendingUserData->status != 'pending') {
                      ?>
             <div class="col-4">
-                <div>Client Status: <strong><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
+                <div>Client Status: <strong><?php echo $pendingUserData->status; ?></strong></div> <!-- dito yung status grr -->
                 <div>Change Status:
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
+                        <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
                             <li><a class="dropdown-item" id="onhold" value="onhold" href="#">Onhold</a></li>
                             <li><a class="dropdown-item" id="stop" value="stop" href="#">Stopped</a></li>
                             <li><a class="dropdown-item" id="finish" value="finish" href="#">Finished</a></li>
@@ -53,7 +53,11 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
 
             </div>
             <?php 
-                } 
+                } else{
+                    ?>
+                    
+                    <?php
+                }
             ?>
        
         </div>

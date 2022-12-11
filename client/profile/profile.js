@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    messagePopover();
     appStatus();
     showCostEstimate();
     filterPortfolio();
@@ -24,9 +23,9 @@ $(document).ready(function () {
         </form>
     </div>`;
 
-    var mesContent = ``;
+    var mesContent = "";
     var splitBack = '';
-
+    var filesContMsg = "";
     function messagePopover() {
         // var id = '';
         $.ajax({
@@ -41,6 +40,7 @@ $(document).ready(function () {
                 // $('#contentID').trigger("reset");
                 // console.log(response);
                 var contentMsgDisplay = '';
+                mesContent = "<></>"
                 $.each(response.content, function (indexInArray, val) {
 
                     response.content.sort(function (a, b) {
@@ -52,124 +52,129 @@ $(document).ready(function () {
                         isClient = true;
                     }
 
-                    var imgArr = val.content.split(',');
+                    var imgArr = val.content.split('&&^%$%$');
+                    var fileArr = val.type.split("&^%$%$")
                     for (let i in imgArr) {
                         contentMsgDisplay = imgArr[i];
-                        // console.log(contentMsgDisplay);
-
-                        var dotIndex = contentMsgDisplay.lastIndexOf('.');
-                        var ext = contentMsgDisplay.substring(dotIndex);
-                        // console.log(ext);
-                        if (contentMsgDisplay != ext) {
-
-                            if (ext == '.jpg' || ext == '.png') {
-                                // console.log(ext);
-                                if (isClient) {
-                                    mesContent +=
-                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                                    <div class="pe-2">
-                                        <div>
-                                            <div class="card text-white d-inline-block p-1 border-0 rounded-6" style="background-color: #00a6fb">
-                                            <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-6" style="max-height: 150px;">
-                                            </div>
+                        if (isClient) {
+                            if (fileArr[i] == "image") {
+                                mesContent += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                <div class="pe-2">
+                                    <div>
+                                        <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
+                                        <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;">
                                         </div>
                                     </div>
-                                <div class="position-relative avatar border-0 px-1">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle border-0" style="max-height: 30px;" alt="">
+                                </div>
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                 </div>
                             </div> `;
-                                } else {
-                                    mesContent += `
-                                    <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar  border-0 px-1">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle border-0" style="max-height: 30px;" alt="">
-                                        </div>
-                                        <div class="pe-2">
-                                            <div>
-                                                <div class="card  text-white d-inline-block p-1 border-0 rounded-4" style="background-color: #0582ca">
-                                                <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4" style="max-height: 150px;"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                    `;
-                                }
-
-                            } else if (ext == '.doc' || ext == '.docx') {
-
+                            } else if (fileArr[i] == "file") {
                                 splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
-                                if (isClient) {
-                                    mesContent +=
-                                        `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                                    <div class="pe-2">
-                                        <div>
-                                       
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-2" style="background-color: #00a6fb">
-                                            <div>${splitBack}</div>
-                                            <button type="button" class="fileBtnClient btn btn-dark btn-sm mt-1">Download</button>
-                                            </div>
+
+                                filesContMsg += `
+                                        <div class="form-control">
+                                        <div>${splitBack}</div>
+                                        <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
+                                        </div>`;
+
+                                mesContent += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                <div class="pe-2">
+                                    <div>
+                                        <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6t" title="${val.dateTime}" style="background-color: #00a6fb;">
+                                        <div>${splitBack}</div>
+                                        <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
                                         </div>
                                     </div>
-                                <div class="position-relative avatar  border-0 px-1">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " style="max-height: 30px;" alt="">
+                                </div>
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                 </div>
                             </div> `;
-                                } else {
-                                    mesContent += `
-                                    <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar  border-0 px-1">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0 " style="max-height: 30px;" alt="">
+                            } else if (fileArr[i] == "text") {
+                                mesContent += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
+                                <div class="pe-2">
+                                    <div>
+                                        <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
+                                        ${contentMsgDisplay}
                                         </div>
-                                        <div class="pe-2">
-                                            <div>
-                                           
-                                                <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-2" style="background-color: #0582ca">
-                                                <div>${splitBack}</div>
-                                                <button type="button" class="fileBtnClient btn btn-dark btn-sm mt-1">Download</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
                                 </div>
-                                    `;
-                                }
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
+                                </div>
+                            </div> `;
                             }
+
                         } else {
-                            if (isClient) {
-                                mesContent +=
-                                    `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                                    <div class="pe-2">
-                                        <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-5 fs-6" style="background-color: #00a6fb">
-                                            ${val.content}
-                                            </div>
+
+                            if (fileArr[i] == "image") {
+                                mesContent += `
+                        <div class="d-flex align-items-baseline mb-4">
+                        <div class="position-relative avatar">
+                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle rounded-4" alt="">
+                        </div>
+                        <div class="pe-2">
+                            <div>
+                                <div class="card  text-white d-inline-block p-1  border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
+                                <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;"><a href="${contentMsgDisplay}" target="_blank">
+                                </div>
+                            </div>
+
+                        </div>
+                                </div>
+                            `;
+                            } else if (fileArr[i] == "file") {
+                                splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
+
+                                filesContMsg += `
+                                <div class="form-control">
+                                <div>${splitBack}</div>
+                                <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
+                                </div>`;
+
+                                mesContent += `
+                                <div class="d-flex align-items-baseline mb-4">
+                                <div class="position-relative avatar">
+                                    <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
+                                </div>
+                                <div class="pe-2">
+                                    <div>
+                                        <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
+                                        <div>${splitBack}</div>
+                                                <button type="button" class="fileBtn btn btn-dark btn-sm mt-1" >Download</button>
                                         </div>
                                     </div>
-                                <div class="position-relative avatar  border-0 px-1">
-                                    <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle border-0  style="max-height: 30px;" alt="">
+
                                 </div>
-                            </div> `;
+                            </div>
+                        `;
                             } else {
                                 mesContent += `
                                     <div class="d-flex align-items-baseline mb-4">
-                                        <div class="position-relative avatar  border-0 px-1">
-                                            <img src="../../images/defaultUserImage.jpg" class="img-fluid rounded-circle  border-0"style="max-height: 30px;" alt="">
-                                        </div>
-                                        <div class="pe-2">
-                                            <div>
-                                                <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-5 fs-6" style="background-color: #0582ca">
-                                                ${val.content}
-                                                </div>
+                                    <div class="position-relative avatar">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px" class="img-fluid rounded-circle" alt="">
+                                    </div>
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card  text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
+                                            ${contentMsgDisplay}
                                             </div>
                                         </div>
+
+                                    </div>
                                 </div>
-                                    `;
+                            `;
                             }
-
                         }
-
                     }
+                   
 
                 });
+                // $("#mesBody").animate({
+                //     scrollTop: $("#mesBody").get(0).scrollHeight
+                // }, 10);
                 $('#contentID').trigger("reset");
                 // $('#messageBubble').show();
                 // $("#splitBack").html(content);
@@ -182,6 +187,9 @@ $(document).ready(function () {
             }
         });
     }
+
+    setInterval(messagePopover, 1000);
+
     var messageContent =
         `<form id="messageForm" class="mb-0">
                 <div class="card mx-auto" style="width:400px">
@@ -213,7 +221,7 @@ $(document).ready(function () {
                                 <input type="file" class="filesEmp" id="filesEmployee" name="filesEmployee[]" multiple>
                                 </ul>
                             </div>
-                            <button type="submit" class="btn btn-light text-secondary">
+                            <button class="btn btn-light text-secondary">
                                 <i class="far fa-paper-plane text-primary"></i>
                             </button>
                         </div>
@@ -261,17 +269,14 @@ $(document).ready(function () {
         content: messageContent,
 
     }).on("shown.bs.popover", function () {
+
         $('#fb').popover('hide');
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
-        $("#mesBody").animate({
-            scrollTop: $("#mesBody").get(0).scrollHeight
-        }, 10);
-        // setInterval(displayMessage, 1000);
+        
         $('#messageForm').submit(function (e) {
 
-            console.log("okay naman");
             e.preventDefault();
             $.ajax({
                 type: "POST",
@@ -282,18 +287,12 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
-                    $('#messageForm').trigger("reset");
-                    $('#contentID').html("");
                     if (response.status == 'success') {
-                        // messagePopover();
-                        $(".popover-body").html(messageContent);
-                        $('#mesBody').html(mesContent);
-                        
+                        $('#messageForm').trigger("reset");
+                        $('#contentID').html("");
                         $("#mesBody").animate({
                             scrollTop: $("#mesBody").get(0).scrollHeight
                         }, 10);
-
                     }
                 }, error: function (response) {
                     console.error(response.responseText);
@@ -391,7 +390,7 @@ $(document).ready(function () {
 
 
     $("#changePassForm").submit(function (event) {
-        
+
         event.preventDefault();
         $.ajax({
             url: "changePassProcess.php",
@@ -469,7 +468,7 @@ $(document).ready(function () {
                 // console.log(response.content);
                 var content = ``;
                 var dateTime = '';
-                
+
                 $.each(response.content, function (indexInArray, val) {
                     // dateTime = ;
                     var d = new Date(val.dateTime);
@@ -489,7 +488,7 @@ $(document).ready(function () {
                     </tr>`;
                 });
                 $('#costEstiTable').html(content);
-                $('.fileBtn').click(function(e) {
+                $('.fileBtn').click(function (e) {
                     e.preventDefault();
                     var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
                     var url = path.concat(splitBack);
@@ -512,7 +511,7 @@ $(document).ready(function () {
         },
         dataType: "JSON",
         success: function (response) {
-            
+
         }
     });
 
@@ -538,7 +537,7 @@ $(document).ready(function () {
                                         
                                         </div>`;
                     });
-                    
+
                     content += `
                     <div class="col">
                             <div class="card">
@@ -570,15 +569,15 @@ $(document).ready(function () {
                      `;
                 });
                 $("#portfolioOnsite").html(content);
-                console.log(images);
-
 
                 $(".portfolioBtn").click(function (e) {
                     e.preventDefault();
-                    let id = $(this).data("client_id");
-                    var selected = response.client_id(function (data) {
+                    let id = $(this).data("id");
+                    console.log(id);
+                    var selected = response.filter(function (data) {
                         return data == id;
                     })[0];
+                    console.log(selected);
                     let images = ``;
                     $.each(selected.image, function (indexInArray, path) {
                         let active = '';
@@ -607,7 +606,7 @@ $(document).ready(function () {
                     `;
 
 
-                    
+
                     $("#portfolioContent").html(content);
                 });
 

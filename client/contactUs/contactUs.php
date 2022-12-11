@@ -224,19 +224,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1" value="1">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios1"> <img src="../../images/1.jpg" alt="" class="img-fit rounded-3"> </label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios1"> <img src="../../images/contactUsImg/1.jpg" alt="" class="img-fit rounded-3"> </label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios2" value="2">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios2"><img src="../../images/2.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios2"><img src="../../images/contactUsImg/2.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios3" value="3">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios3"> <img src="../../images/3.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios3"> <img src="../../images/contactUsImg/3.png" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -247,19 +247,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios4" value="4">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios4"> <img src="../../images/4.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios4"> <img src="../../images/contactUsImg/4.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios5" value="5">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios5"> <img src="../../images/5.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios5"> <img src="../../images/contactUsImg/5.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios6" value="6">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios6"> <img src="../../images/6.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios6"> <img src="../../images/contactUsImg/6.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -270,19 +270,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios7" value="7">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios7"> <img src="../../images/7.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios7"> <img src="../../images/contactUsImg/7.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios8" value="8">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios8"> <img src="../../images/8.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios8"> <img src="../../images/contactUsImg/8.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios9" value="9">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios9"> <img src="../../images/9.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios9"> <img src="../../images/contactUsImg/9.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -293,19 +293,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios10" value="10">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios10"> <img src="../../images/10.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios10"> <img src="../../images/contactUsImg/10.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios11" value="11">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios11"> <img src="../../images/11.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios11"> <img src="../../images/contactUsImg/11.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios12" value="12">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios12"> <img src="../../images/12.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios12"> <img src="../../images/contactUsImg/12.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -316,19 +316,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios13" value="13">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios13"> <img src="../../images/13.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios13"> <img src="../../images/contactUsImg/13.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios14" value="14">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios14"> <img src="../../images/14.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios14"> <img src="../../images/contactUsImg/14.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios15" value="15">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios15"> <img src="../../images/15.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios15"> <img src="../../images/contactUsImg/15.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -339,19 +339,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios16" value="16">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios16"> <img src="../../images/16.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios16"> <img src="../../images/contactUsImg/16.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios17" value="17">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios17"> <img src="../../images/17.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios17"> <img src="../../images/contactUsImg/17.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios18" value="18">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios18"> <img src="../../images/18.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios18"> <img src="../../images/contactUsImg/18.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>

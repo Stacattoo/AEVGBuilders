@@ -3,23 +3,34 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler();
 
 $trimmed_array1 = '';
-
+$trimmed_array2 = '';
 if (isset($_FILES['filesEmployee'])) {
     if ($_FILES['filesEmployee']['size'][0] != 0) {
+        $file_type = '';
+        $imageType = array('gif', 'png', 'jpg', 'jpeg');
+        $docType =  array('pdf', 'xlsx', 'doc', 'docx', 'txt');
         $imageCount = count($_FILES['filesEmployee']['name']);
         $paths = "";
+        $path2 = "";
         for ($i = 0; $i < $imageCount; $i++) {
             $file_name = $_FILES['filesEmployee']['name'][$i];
+            $ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $file_tmp = $_FILES["filesEmployee"]["tmp_name"][$i];
             $img_path = "../../clientEmployeeFiles/" . basename($file_name);
-            $paths .= $img_path . ",";
+            $paths .= $img_path . "&&^%$%$";
+            if (in_array($ext, $imageType)) {
+                $file_type .= 'image' . '&^%$%$';
+            }
+            if(in_array($ext, $docType)){
+                $file_type .= 'file';
+            }
             if (!move_uploaded_file($file_tmp, $img_path)) {
                 $paths = "";
             }
         }
 
-        $trimmed_array1 = trim($paths, ",");
 
+        $trimmed_array1 = trim($paths, "&&^%$%$");
         $clientID = $_POST['clientID'];
         $date = date('Y-m-d H:i:s');
 
@@ -27,7 +38,8 @@ if (isset($_FILES['filesEmployee'])) {
             (object)[
                 "content" => $trimmed_array1,
                 "dateTime" => $date,
-                "sender" => "employee"
+                "sender" => "employee",
+                "type" => $file_type
             ]
         );
 
@@ -58,7 +70,8 @@ if (isset($_FILES['costEstimate'])) {
             (object)[
                 "content" => $img_path,
                 "dateTime" => $date,
-                "sender" => "employee"
+                "sender" => "employee",
+                "type" => "costEstimate"
             ]
         );
 
@@ -80,7 +93,8 @@ if (isset($_POST['employeeMessage']) && $_POST['employeeMessage'] != '') {
         (object)[
             "content" => $_POST['employeeMessage'],
             "dateTime" => $date,
-            "sender" => "employee"
+            "sender" => "employee",
+            "type" => "text"
         ]
     );
     // }
@@ -93,7 +107,6 @@ if (isset($_POST['employeeMessage']) && $_POST['employeeMessage'] != '') {
             "msg" => 'Profile Update Successfully.'
         ));
     }
-
 }
 
 if (isset($_POST['getMessage'])) {

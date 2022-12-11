@@ -73,9 +73,14 @@ class dbHandler
 
     function checkIfEmailExist($email)
     {
-        $sql = "SELECT id FROM client WHERE email='$email'";
+        $message = "success";
+        $sql = "SELECT * FROM client WHERE email='$email'";
         $result = mysqli_query($this->conn, $sql);
-        return mysqli_num_rows($result);
+        if(mysqli_num_rows($result) > 0){
+            $message = "error";
+        }
+        return $message;
+        
     }
 
     // function checkIfUsernameExist($username)

@@ -308,7 +308,8 @@ class dbHandler
     function getAllClientPendingSched()
     {
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
-        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, 
+        client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $user = array();
@@ -367,6 +368,7 @@ class dbHandler
 
 
                 $empName = "";
+                $empclistatus = "";
                 $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status as empclistatus  FROM employee_client 
                 INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
@@ -374,6 +376,10 @@ class dbHandler
                     if ($row2 = mysqli_fetch_assoc($res)) {
                         $empName = $row2['fullname'];
                     }
+                }
+                
+                if(isset($row2['empclistatus'])){
+                    $empclistatus = $row2['empclistatus'];
                 }
 
                 return (object)[
@@ -384,7 +390,7 @@ class dbHandler
                     'password' => $row['password'],
                     'address' => $row['address'],
                     'employeeName' => $empName,
-                    'status' => $row2['empclistatus']
+                    'status' => $empclistatus
                 ];
             }
         }
@@ -465,7 +471,43 @@ class dbHandler
 
         $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
-        $sched = array();
+        // $sched = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $businessType = explode(", ", $row['businessType']);
+                $imgExplode = explode(",", $row['imageApp']);
+                $fullName = $row['firstName'] . " " . $row['lastName'];
+                return (object)[
+                    "id" => $row['appID'],
+                    "client_id" => $row["client_id"],
+                    'fullName' => $fullName,
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'projLocation' => $row['projectLocation'],
+                    'projImage' => $row['projectImage'],
+                    'targetDate' => $row['targetConsDate'],
+                    'projectType' => $row['projectType'],
+                    'lotArea' => $row['lotArea'],
+                    'noFloors' => $row['numberFloors'],
+                    'businessType' => $businessType,
+                    'meetType' => $row['meetingType'],
+                    'meetLoc' => $row['meetingLocation'],
+                    'image' => $imgExplode,
+                    'appointmentDate' => $row['meetingDate'],
+                    'appointmentTime' => $row['meetingTime'],
+                    'status' => $row['statusCheck']
+                ];
+            }
+        }
+        // return $sched;
+    }
+
+    function getAppDetailsStatus($id)
+    {
+
+        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $sched = (object)[];
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $businessType = explode(", ", $row['businessType']);

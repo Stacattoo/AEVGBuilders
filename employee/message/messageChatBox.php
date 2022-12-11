@@ -58,9 +58,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <!-- <button type="file" class="ms-1 text-muted btn" id="filesEmployee">
                     <i class="fas fa-paperclip"></i>
                 </button> -->
-                <button type="submit" id="subBtn" class="ms-3 btn btn-primary btn-sm px-3">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+                
+                <input type="submit"></input> 
 
             </div>
         </form>
@@ -95,13 +94,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         $('#messageBubble').hide();
         $('#errorFiles').hide();
         displayMessage();
-        setTimeout(()=>{
+        setTimeout(() => {
             $("#messageRetrieve").animate({
-                        scrollTop: $("#messageRetrieve").get(0).scrollHeight
-                    }, 1000);
-        },1000)
-       
+                scrollTop: $("#messageRetrieve").get(0).scrollHeight
+            }, 1000);
+        }, 1000)
+
         setInterval(displayMessage, 1000);
+
         $("#subBtn").click(function(e) {
             // e.preventDefault();
             console.log("subBtn");
@@ -188,25 +188,21 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         if (val.sender == "employee") {
                             isEmployee = true;
                         }
+
                         var contentMsgDisplay = '';
-                        var imgArr = val.content.split(',');
-                        console.log(imgArr);
+                        var imgArr = val.content.split('&&^%$%$');
+                        var fileArr = val.type.split("&^%$%$")
+
 
                         for (let i in imgArr) {
                             contentMsgDisplay = imgArr[i];
-                            
-                            var dotIndex = contentMsgDisplay.lastIndexOf('.');
-                            var ext = contentMsgDisplay.substring(dotIndex);
 
+                            //console.log(contentMsgDisplay);
                             //--- para sa mga files ---
-                            
-                            if (contentMsgDisplay != ext) {
-                                if (ext == '.jpg' || ext == '.png') {
-                                    console.log(contentMsgDisplay);
 
-                                    if (isEmployee) {
-                                        content += `
-                                <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                            if (isEmployee) {
+                                if (fileArr[i] == "image") {
+                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
                                             <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
@@ -218,8 +214,46 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
-                                    } else {
-                                        content += `
+                                } else if (fileArr[i] == "file") {
+                                    splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
+
+                                    filesContMsg += `
+                                            <div class="form-control">
+                                            <div>${splitBack}</div>
+                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
+                                            </div>`;
+
+                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6t" title="${val.dateTime}" style="background-color: #00a6fb;">
+                                            <div>${splitBack}</div>
+                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative avatar">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
+                                    </div>
+                                </div> `;
+                                } else if (fileArr[i] == "text") {
+                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            ${contentMsgDisplay}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative avatar">
+                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
+                                    </div>
+                                </div> `;
+                                }
+
+                            } else {
+                                if (fileArr[i] == "image") {
+                                    content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
                             <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle rounded-4" alt="">
@@ -234,69 +268,31 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                         </div>
                     `;
-                                    }
-                                } else if (ext == '.doc' || ext == '.docx') {
+                                } else if (fileArr[i] == "file") {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
 
                                     filesContMsg += `
-                                            <div class="form-control">
-                                            <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
-                                            </div>`;
+                                    <div class="form-control">
+                                    <div>${splitBack}</div>
+                                    <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
+                                    </div>`;
 
-
-                                    // console.log(filesContMsg);
-                                    if (isEmployee) {
-                                        content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                                    <div class="pe-2">
-                                        <div>
-                                            <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6t" title="${val.dateTime}" style="background-color: #00a6fb;">
-                                            <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1">Download</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    content += `
+                                    <div class="d-flex align-items-baseline mb-4">
                                     <div class="position-relative avatar">
                                         <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
-                                </div> `;
-                                    } else {
-                                        content += `
-                            <div class="d-flex align-items-baseline mb-4">
-                            <div class="position-relative avatar">
-                                <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
-                            </div>
-                            <div class="pe-2">
-                                <div>
-                                    <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
-                                    <div>${splitBack}</div>
-                                            <button type="button" class="fileBtn btn btn-dark btn-sm mt-1" >Download</button>
+                                    <div class="pe-2">
+                                        <div>
+                                            <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
+                                            <div>${splitBack}</div>
+                                                    <button type="button" class="fileBtn btn btn-dark btn-sm mt-1" >Download</button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-                    `;
-                                    }
-                                }
-
-                            } else {
-
-                                //para sa text content
-
-                                if (isEmployee) {
-                                    content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
-                                    <div class="pe-2">
-                                        <div>
-                                            <div class="card text-white d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #00a6fb">
-                                            ${contentMsgDisplay}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="position-relative avatar">
-                                        <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
-                                    </div>
-                                </div> `;
+                            `;
                                 } else {
                                     content += `
                             <div class="d-flex align-items-baseline mb-4">
@@ -315,9 +311,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     `;
                                 }
                             }
+
+                        
                         }
 
+
                     });
+
                     $("#messageRetrieve").html(content);
                     $("#filesRetrieve").html(filesContMsg);
 

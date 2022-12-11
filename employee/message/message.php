@@ -93,6 +93,7 @@ $dbh = new dbHandler;
                 $("#listBtn").removeClass("active");
                 $("#pending").show();
                 $("#list").hide();
+                generalClient();
 
             });
         });

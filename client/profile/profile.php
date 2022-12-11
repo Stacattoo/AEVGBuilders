@@ -268,7 +268,7 @@ $dbh = new dbHandler;
 
             </div>
     </div>
-    <!-- MODAL PROJECTS -->
+    <!-- MODAL PORTFOLIO ONSITE IMAGESS -->
 	<div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content rounded-4 shadow">
@@ -278,139 +278,8 @@ $dbh = new dbHandler;
 			</div>
 		</div>
 	</div>
-    <!-- modal for quotation
-    <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-bottom-0">
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <img src="../../images/aevg-nobg.png" class="" height="40" style=" margin-top: -30px;">
-
-                    <div class="display-6 text-center mb-4">
-                        Quotation
-                    </div>
-                    <div class="container">
-                        <div class="row  gx-5">
-                            <div class="col-7">
-                                <address>
-                                    <div> <strong>AEVG BUILDERS</strong></div>
-                                    <div> 002 San Pablo</div>
-                                    <div>Hagonoy, Bulacan</div>
-                                    <div> +63 977 852 7307 </div>
-                                </address>
-                            </div>
-
-                            <div class="col-5">
-                                <div class="h6">Date: </div>
-                                <div class="h6">Quotation No: </div>
-
-                            </div>
-
-                            <div class="col-7">
-                                <address>
-                                    <div> <strong>Quatation for:</strong></div>
-                                    <div>Name: britneymacahilig </div>
-                                    <div>Address: 1362 Magsana homes sta.rita guiguinto bulacan</div>
-                                    <div> Email Address: britneymacahilig@gmail.com</div>
-                                    <div> Mobile number: 0648785624</div>
-
-                                </address>
-                            </div>
-
-                            <div class="col-5">
-                                <div> <strong>Mode of Payment:</strong></div>
-                                <div> Bank Transfer</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <table class="table table-striped-columns mt-4 table table-bordered border-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">QUANTITY</th>
-                                <th scope="col">DESCRIPTION</th>
-                                <th scope="col">UNIT PRICE</th>
-                                <th scope="col">TOTAL</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">001</th>
-                                <td>0/14/2022</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">002</th>
-                                <td>08/26/2022</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">003</th>
-                                <td>11/1/2022</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-7 mt-3">
-                                <strong>TERMS AND CONDITION:</strong><br>
-                                1.Customers will be billed after indicating acceptance of this quote. <br>
-                                2.Payment will be due prior to delivery of the service and goods.<br>
-                            </div>
-
-                            <div class="col-5">
-                                <div class="table-responsive">
-                                    <table class="table   table-bordered " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                                        <tbody>
-                                        <tbody data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                                            <tr>
-                                                <th>SUBTOTAL:</th>
-                                                <td>001</td>
-
-
-                                            </tr>
-                                            <tr class="table-dark">
-                                                <th>TOTAL:</th>
-                                                <td>002</td>
-
-
-                                            </tr>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="text-center mt-5">
-
-                        If you have any concerns about this qoutation please contact us.
-                    </div>
-
-                    </figure>
-                </div>
-
-                <div class="text-center mt-4 mb-2">
-                    <strong>THANKYOU FOR YOUR BUSINESS!</strong><br>
-                </div>
-            </div>
-
-        </div> -->
+    
 
 
 
