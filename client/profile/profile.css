@@ -20,8 +20,21 @@
     cursor: pointer;
 }
 
+.img-modal {
+    height: 600px;
+    object-fit: cover;
+}
+
+.img {
+    width: 450px;
+    height: 300px;
+    object-fit: cover;
+}
+
 .popover {
+
     transform: translate(-89px, 607px) !important;
+    position: fixed !important;
 }
 
 .popover-msg {

@@ -130,7 +130,7 @@ $dbh = new dbHandler;
       </div>
     </div>
     <div class="row mb-2">
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary">Architect</strong>
@@ -156,6 +156,20 @@ $dbh = new dbHandler;
             <img src="../../images/37ea903719dc841b2a2aa03693256b8a.jpg" width="200" height="250" alt="">
           </div>
         </div>
+      </div> -->
+
+      <hr>
+      <div class="row mb-2">
+
+        <div class="row d-flex align-items-center">
+          <div class="col-md-4">
+            <img class="img-fluid" src="../../images/archi.jpg">
+          </div>
+          <div class="col-md-6">
+            <h2 class="fw-normal lh-1"> Architect Yel Villalon Galang</h2>
+            <p class="lead">Architect Galang began his professional career in Singapore. After 2 years of working in Singapore Architect Galang decided to start his design and construction company in San Pablo, Hagonoy Bulacan. </p>
+          </div>
+        </div>
       </div>
     </div>
     <hr class="featurette-divider">
@@ -177,7 +191,7 @@ $dbh = new dbHandler;
       </div>
     </div>
 
-    
+
     <div class="container">
       <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
