@@ -283,7 +283,7 @@ class dbHandler
                     'meetType' => $row['meetingType'],
                     'meetLoc' => $row['meetingLocation'],
                     'image' => $imgExplode,
-                    'appointmentDate' => $row['meetingDate'],
+                    'displayAppDate' => $row['meetingDate'],
                     'appointmentTime' => $row['meetingTime'],
                     'status' => $row['statusCheck']
                 ];
@@ -560,6 +560,23 @@ class dbHandler
             while ($row = mysqli_fetch_assoc($result)) {
                 $time[] = (object) [
                     'date' => $row['meetingDate']
+                ];
+            }
+            return $time;
+        }
+
+    }
+    function checkSchedDate($id)
+    {
+
+        $sql = "SELECT * FROM appointment WHERE client_id='$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $time = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $time[] = (object) [
+                    'date' => $row['meetingDate'],
+                    'time' => $row['meetingTime']
                 ];
             }
             return $time;

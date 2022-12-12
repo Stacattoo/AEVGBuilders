@@ -3,6 +3,7 @@ $(document).ready(function () {
     appStatus();
     showCostEstimate();
     filterPortfolio();
+    displayDateApp();
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
@@ -179,9 +180,10 @@ $(document).ready(function () {
                 $('#mesBody').html(mesContent);
 
 
-            }, error: function (response) {
-                console.error(response);
             }
+            // , error: function (response) {
+            //     console.error(response);
+            // }
         });
     }
 
@@ -455,7 +457,7 @@ $(document).ready(function () {
             success: function (response) {
                 var content = ``;
                 var dateTime = '';
-
+                $('#hideMe').hide();
                 $.each(response.content, function (indexInArray, val) {
                     var d = new Date(val.dateTime);
                     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -508,6 +510,7 @@ $(document).ready(function () {
             success: function (response) {
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
+                    $('#hidePortDiv').hide();
                     let images = ``;
                     $.each(data.image, function (indexInArray, path) {
                         let active = '';
@@ -549,6 +552,7 @@ $(document).ready(function () {
                         </div>
                      `;
                 });
+                
                 $("#portfolioOnsite").html(content);
 
                 $(".portfolioBtn").click(function (e) {
@@ -595,6 +599,34 @@ $(document).ready(function () {
             },
             error: function (response) {
                 console.error(response.responseText);
+            }
+        });
+    }
+    
+    function displayDateApp(){
+
+        $.ajax({
+            type: "POST",
+            url: "profileProcess.php",
+            data: {
+                checkClientSched: true
+            },
+            dataType: "JSON",
+            success: function (response) {
+                // console.log(response);
+                var dateTime = '';
+                var comb = response.date + ' '  +response.time;
+                console.log(comb);
+                    var d = new Date(comb);
+                    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                    var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
+                    var time = d.toLocaleTimeString().toLowerCase();
+                    dateTime = date + " at " + time;
+                    // splitBack = val.content.replace("../../clientEmployeeFiles/", '');
+                
+                // console.log(content);
+                $('#displayAppDate').html(dateTime);
             }
         });
     }
