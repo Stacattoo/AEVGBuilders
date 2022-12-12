@@ -34,19 +34,10 @@ $pendingUserData = $dbh->getClientScheduleDetails($_POST['id']);
             <?php if ($userData->status != '' && $pendingUserData->status != '') {
             ?>
                 <div class="col-4">
-                    <div >Client Status: <strong id="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
+                    <div>Client Status: <strong id="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
                     <div>Change Status:
                         <div class="dropdown">
-                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                        </button>
-                        <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" id="ongoing" value="ongoing" href="#">Ongoing</a></li>
-                            <li><a class="dropdown-item" id="onhold" value="onhold" href="#">Onhold</a></li>
-                            <li><a class="dropdown-item" id="stop" value="stop" href="#">Stopped</a></li>
-                            <li><a class="dropdown-item" id="finish" value="finish" href="#">Finished</a></li>
-                        </ul>
-                            </button>
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
                             <ul class="dropdown-menu">
                                 <li><button type="button" class="dropdown-item statusBtn" data-status="Ongoing">Ongoing</button></li>
                                 <li><button type="button" class="dropdown-item statusBtn" data-status="Onhold">Onhold</button></li>

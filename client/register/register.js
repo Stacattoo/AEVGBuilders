@@ -45,7 +45,6 @@ $(document).ready(function () {
             alert("Contact Number should be numbers only");
         }
 
-        /*
         var form = $("#registerForm")[0];
         console.log($("#registerForm"));
         if (form[0].checkValidity()) {
@@ -71,7 +70,6 @@ $(document).ready(function () {
             form[0].reportValidity();
         }
 
-*/
     });
 
     $("#prev1Btn").click(function (e) {
