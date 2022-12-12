@@ -85,6 +85,7 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+
     function updateAttempt($key, $attempt)
     {
         $query = "UPDATE employee SET attempt=$attempt WHERE email='$key' OR username='$key'";
@@ -261,14 +262,14 @@ class dbHandler
 
     //client getting info mysql
 
-    function getApprovedClientData($id)
+    function getClientData($id)
     {
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
         CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
         FROM client INNER JOIN employee_client ON client.id=employee_client.client_id WHERE employee_client.employee_id = $id";
+        $user = array();
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
-            $user = array();
             while ($row = mysqli_fetch_assoc($result)) {
                 $user[] = (object) [
                     "id" => $row['client_id'],
@@ -276,11 +277,27 @@ class dbHandler
                     "email" => $row['email'],
                     "contact" => $row['contact_no'],
                     "address" => $row['address'],
-
+                    "status" => "active"
                 ];
             }
-            return $user;
         }
+
+        $sql2 = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
+        $result2 = mysqli_query($this->conn, $sql2);
+        if (mysqli_num_rows($result2)) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
+                $user[] = (object) [
+                    "id" => $row2['client_id'],
+                    "fullName" => $row2['fullName'],
+                    "email" => $row2['email'],
+                    "contact" => $row2['contact_no'],
+                    "address" => $row2['address'],
+                    "status" => 'pending'
+                ];
+            }
+        }
+        return $user;
     }
 
     function getAllUserClientData()
@@ -304,29 +321,6 @@ class dbHandler
             return $user;
         }
     }
-
-    function getAllClientPendingSched()
-    {
-        $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
-        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, 
-        client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_num_rows($result)) {
-            $user = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                $user[] = (object) [
-                    "id" => $row['client_id'],
-                    "fullName" => $row['fullName'],
-                    "email" => $row['email'],
-                    "contact" => $row['contact_no'],
-                    "address" => $row['address'],
-
-                ];
-            }
-            return $user;
-        }
-    }
-
 
     function getAllUserData()
     {
@@ -368,13 +362,14 @@ class dbHandler
 
 
                 $empName = "";
-                $empclistatus = "";
+                $status = "";
                 $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status as empclistatus  FROM employee_client 
                 INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
-                if (mysqli_num_rows($result)) {
+                if (mysqli_num_rows($res)) {
                     if ($row2 = mysqli_fetch_assoc($res)) {
                         $empName = $row2['fullname'];
+                        $status = $row2['empclistatus'];
                     }
                 }
                 
@@ -390,7 +385,7 @@ class dbHandler
                     'password' => $row['password'],
                     'address' => $row['address'],
                     'employeeName' => $empName,
-                    'status' => $empclistatus
+                    'status' => $status
                 ];
             }
         }
@@ -444,8 +439,15 @@ class dbHandler
 
     function updateClientStatus($id, $status)
     {
-        $query = "UPDATE employee_client SET status='$status', where id='$id'";
-        return mysqli_query($this->conn, $query);
+        $query = "UPDATE employee_client SET status='$status' where client_id='$id'";
+        $result = mysqli_query($this->conn, $query);
+        if($result){
+            
+            $this->insertActivity($id, "Change Transaction Status into: $status");
+            
+        }
+
+        return $result;
     }
 
     function activities($id)
@@ -712,7 +714,6 @@ class dbHandler
             }
         }
     }
-
 
 
     // INSERT INTO activity_log (status_message) VALUES ("Registration Date: ")
