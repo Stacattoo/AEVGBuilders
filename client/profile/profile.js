@@ -284,9 +284,11 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (response) {
+                    console.log(response);
                     if (response.status == 'success') {
                         $('#messageForm').trigger("reset");
                         $('#contentID').html("");
+                        $('#mesBody').html(mesContent);
                         $("#mesBody").animate({
                             scrollTop: $("#mesBody").get(0).scrollHeight
                         }, 10);

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     // console.log("alert");
     var userid = $(this).data("id");
     $.ajax({
@@ -24,25 +24,27 @@ $(document).ready(function () {
             });
             $("#handledClientContent").html(content);
 
-            
+
             $('.clientReport').click(function () {
                 // pag ciniclick si table, nailaw.
                 // $(this).find('tr id:clientid').prop('checked', true);
                 // $('.tr').removeClass("table-primary");
                 // $(this).addClass("table-primary");
+
                 var id = $(this).data("id");
                 console.log($(this).html());
                 $.ajax({
                     type: "POST",
                     url: "../reports/reportProcess.php",
-                    data: {getActivities: true, 
-                    clientId: id
+                    data: {
+                        getActivities: true,
+                        clientId: id
                     },
                     dataType: "JSON",
                     success: function (activities) {
                         console.log(activities);
                         var content = ``;
-                        $.each(activities, function (indexInArray, act) { 
+                        $.each(activities, function (indexInArray, act) {
                             console.log(act);
                             content += `
                                 <tr>
@@ -54,7 +56,12 @@ $(document).ready(function () {
                         console.log(content);
                         $("#activities").html(content);
                         $("#activitiesModal").modal("show");
-                    }, error: function(error){
+
+                        $('#printBtn').click(function (e) {
+                            e.preventDefault();
+                            print();
+                        })
+                    }, error: function (error) {
                         //
                     }
                 });

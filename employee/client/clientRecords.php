@@ -31,13 +31,6 @@ $pendingUserData = $dbh->getClientScheduleDetails($_POST['id']);
                 <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
             </div>
 
-            <?php if ($pendingUserData->status != 'pending') {
-                     ?>
-            <div class="col-4">
-                <div>Client Status: <strong><?php echo $pendingUserData->status; ?></strong></div> <!-- dito yung status grr -->
-                <div>Change Status:
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if ($userData->status != '' && $pendingUserData->status != '') {
             ?>
                 <div class="col-4">

@@ -3,6 +3,7 @@ include_once('../include/dbh.inc.php');
 $dbh = new dbHandler();
 $trimmed_array1 = '';
 $trimmed_array2 = '';
+
 if (isset($_POST['clientMessage']) && $_POST['clientMessage'] != '') {
 
     $date = date('Y-m-d H:i:s');
@@ -21,7 +22,7 @@ if (isset($_POST['clientMessage']) && $_POST['clientMessage'] != '') {
             "msg" => 'Profile Update Successfully.'
         ));
     }
-    // var_dump("kahit ano");
+
 }
 if (isset($_FILES['filesEmployee'])) {
     if ($_FILES['filesEmployee']['size'][0] != 0) {

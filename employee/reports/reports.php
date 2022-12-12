@@ -26,6 +26,7 @@ $dbh = new dbHandler;
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">ACTIVITY LOG</h1>
+                    <button id="printBtn" type="button" class="btn btn-black" >Print Report</button>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

@@ -7,10 +7,17 @@ function portfolioDisplay(searchQuery = '') {
 			dataType: "JSON",
 			success: function (response) {
 				var content = ``;
+                
 				var filtered = response.filter(function (data) {
+                    console.log(data);
+
 					searchQuery = searchQuery.toLowerCase();
+                    if(data.status == 'active'){
 					return data.email.includes(searchQuery)
 						|| data.fullName.toLowerCase().includes(searchQuery);
+                    }else{
+                        return false;
+                    }
 				});
 				$.each(filtered, function (i, data) {
 					content += `
