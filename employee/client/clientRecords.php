@@ -3,8 +3,7 @@ include('../include/dbh.employee.php');
 $dbh = new dbHandler();
 
 $userData = $dbh->getAllClientInfoByID($_POST['id']);
-$pendingUserData = $dbh->getClientScheduleDetails($_POST['id']);
-// $status = $dbh->getStatus($_POST['clientid']);
+$pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 

@@ -118,6 +118,8 @@ $(document).ready(function () {
 
                 console.log(response);
                 var businessVar = '';
+                var time = '';
+                var dateTime = '';
                 $.each(response.businessType, function (indexInArray, data) {
                     businessVar = response.businessType.join(', ');
                 });
@@ -135,12 +137,19 @@ $(document).ready(function () {
                 $('#meetLoc_id').val(response.meetLoc);
                 $('#meetDate_id').val(response.appointmentDate);
                 $('#meetTime_id').val(response.appointmentTime);
+                // time = response.appointmentTime;
                 valueEdit = response;
 
+                    // var addTime = time + ':00';
+                    // var d = new Date(addTime);
+                    // var time = d.toLocaleTimeString();
+                    // dateTime = time;
+
+                    // console.log(dateTime);
             }
         });
     });
-
+    var appDateDisplay = '';
     const params = new URLSearchParams(location.search);
     if (params.has('editing')) {
 
@@ -163,6 +172,8 @@ $(document).ready(function () {
                 $('#meetType').val(response.meetType);
                 $('#meetLoc').val(response.meetLoc);
                 $('#appointmentDate').val(response.appointmentDate);
+                appDateDisplay = response.appointmentDate;
+                // console.log(appDateDisplay);
                 $('#appointmentTime').val(response.appointmentTime);
                 $('#edit-image1').val(response.image);
                 console.log(response.projectType);
@@ -195,6 +206,8 @@ $(document).ready(function () {
 
     }
 
+    $('#displayAppDate').html(appDateDisplay);
+    console.log($('#displayAppDate').html(appDateDisplay));
     $('#editBtnSched').click(function (e) {
         e.preventDefault();
         console.log($(this).attr('data-id'));
@@ -257,9 +270,9 @@ $(document).ready(function () {
                 let toString = `${data.date}`;
 
                 dateVar = toString;
-               
 
-                
+
+
                 $("#appointmentDate").change(function (event) {
 
                     event.preventDefault();
@@ -267,11 +280,17 @@ $(document).ready(function () {
                     if ($(this).val() == dateVar) {
                         // $("#alertErrorApp").show();
                         // $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
-                        alert("This date has been occupied");
+                        // alert("This date has been occupied");
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'This date has been occupied',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        })
                         $("#appointmentDate").val('');
-                        
+
                     } else {
-                        
+
                         $.ajax({
                             type: "POST",
                             url: "../contactUs/getData.php",
@@ -280,7 +299,7 @@ $(document).ready(function () {
                             },
                             dataType: "json",
                             success: function (response) {
-                                
+
                             }
                         });
                     }

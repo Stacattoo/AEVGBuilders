@@ -6,6 +6,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 <script src="../message/message.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
 <div class="card" style="background-color:#f8f9fa;">
     <div class="card-body h-100">
         <div class="d-flex justify-content-between">
@@ -118,7 +120,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 scrollTop: $("#messageRetrieve").get(0).scrollHeight
             }, 1000);
         }, 1000)
-
         setInterval(displayMessage, 1000);
 
         $("#subBtn").click(function(e) {
@@ -127,6 +128,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         });
         $('#messageEmployee').submit(function(e) {
             e.preventDefault();
+            
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
@@ -154,14 +156,16 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             e.preventDefault();
             var $fileUpload = $("input[name='filesEmployee']");
             if (parseInt($fileUpload.get(0).files.length) > 5) {
-
-                $('#errorFiles').show();
-                $('#errorFiles').html("You can only upload a maximum of 5 files. Please Try again!");
                 $('#filesEmployee').trigger("reset");
+                Swal.fire({
+                            title: 'Error!',
+                            text: 'File Upload Exceeded, try uploading less than 5 files.',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        })
 
-            } else {
-                $('#errorFiles').hide();
-            }
+            } 
+
         });
 
         // $('#costEstimate').change(function(e){

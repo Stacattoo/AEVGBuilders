@@ -3,6 +3,7 @@ $(document).ready(function () {
     appStatus();
     showCostEstimate();
     filterPortfolio();
+    displayDateApp();
     $('[data-bs-toggle="tooltip"]').tooltip();
     $("#alertError").hide();
     $("#alertSuccess").hide();
@@ -179,17 +180,18 @@ $(document).ready(function () {
                 $('#mesBody').html(mesContent);
 
 
-            }, error: function (response) {
-                console.error(response);
             }
+            // , error: function (response) {
+            //     console.error(response);
+            // }
         });
     }
 
     setInterval(messagePopover, 1000);
 
     var messageContent =
-        `<form id="messageForm" class="mb-0">
-                <div class="card mx-auto" style="width:400px">
+        `<form id="messageForm" class="mb-0 ">
+                <div class="card mx-auto " style="width:400px">
                     <div class="card-header bg-transparent">
                         <div class="navbar navbar-expand p-0">
                             <ul class="navbar-nav me-auto align-items-center">
@@ -254,6 +256,7 @@ $(document).ready(function () {
                 }, error: function (response) {
                     console.error(response);
                 }
+
             });
         });
     });
@@ -272,31 +275,30 @@ $(document).ready(function () {
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
         
-        $('#messageForm').submit(function (e) {
+        $('#filesEmployee').click()
 
+        $('#messageForm').submit(function (e) {
             e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "messageProcess.php",
-                data: new FormData(this),
-                dataType: "json",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (response) {
-                    console.log(response);
-                    if (response.status == 'success') {
-                        $('#messageForm').trigger("reset");
-                        $('#contentID').html("");
-                        $('#mesBody').html(mesContent);
-                        $("#mesBody").animate({
-                            scrollTop: $("#mesBody").get(0).scrollHeight
-                        }, 10);
-                    }
-                }, error: function (response) {
-                    console.error(response.responseText);
-                }
-            });
+            // $.ajax({
+            //     type: "POST",
+            //     url: "messageProcess.php",
+            //     data: new FormData(this),
+            //     dataType: "json",
+            //     contentType: false,
+            //     cache: false,
+            //     processData: false,
+            //     success: function (response) {
+            //         if (response.status == 'success') {
+            //             $('#messageForm').trigger("reset");
+            //             $('#contentID').html("");
+            //             $("#mesBody").animate({
+            //                 scrollTop: $("#mesBody").get(0).scrollHeight
+            //             }, 10);
+            //         }
+            //     }, error: function (response) {
+            //         console.error(response.responseText);
+            //     }
+            // });
         });
         $('.fileBtnClient').click(function (e) {
             e.preventDefault();
@@ -351,13 +353,11 @@ $(document).ready(function () {
         var file = $("input[type=file]").get(0).files[0];
 
         if (file) {
-
             var reader = new FileReader();
 
             reader.onload = function () {
                 $("#profileImg").attr("src", reader.result);
             }
-
             reader.readAsDataURL(file);
         }
 
@@ -397,7 +397,6 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (result) {
-                console.log(result);
                 if (result.status == "error") {
                     $("#errorPass").html(result.msg);
                     $("#errorPass").show();
@@ -459,9 +458,8 @@ $(document).ready(function () {
             success: function (response) {
                 var content = ``;
                 var dateTime = '';
-
+                $('#hideMe').hide();
                 $.each(response.content, function (indexInArray, val) {
-                    // dateTime = ;
                     var d = new Date(val.dateTime);
                     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -471,7 +469,6 @@ $(document).ready(function () {
                     splitBack = val.content.replace("../../clientEmployeeFiles/", '');
                     content += `
                     <tr>
-
                         <td>${dateTime}</td>
                         <td>${splitBack}</td>
                         <td><button type="button" class="fileBtn btn btn-info btn-sm">Download</button></td>
@@ -484,7 +481,6 @@ $(document).ready(function () {
                     var url = path.concat(splitBack);
                     var docuFilesMsg = window.open(url);
                     docuFilesMsg.location;
-
                 });
             },
             error: function (responseError) {
@@ -515,6 +511,7 @@ $(document).ready(function () {
             success: function (response) {
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
+                    $('#hidePortDiv').hide();
                     let images = ``;
                     $.each(data.image, function (indexInArray, path) {
                         let active = '';
@@ -556,6 +553,7 @@ $(document).ready(function () {
                         </div>
                      `;
                 });
+                
                 $("#portfolioOnsite").html(content);
 
                 $(".portfolioBtn").click(function (e) {
@@ -602,6 +600,34 @@ $(document).ready(function () {
             },
             error: function (response) {
                 console.error(response.responseText);
+            }
+        });
+    }
+    
+    function displayDateApp(){
+
+        $.ajax({
+            type: "POST",
+            url: "profileProcess.php",
+            data: {
+                checkClientSched: true
+            },
+            dataType: "JSON",
+            success: function (response) {
+                // console.log(response);
+                var dateTime = '';
+                var comb = response.date + ' '  +response.time;
+                console.log(comb);
+                    var d = new Date(comb);
+                    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                    var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
+                    var time = d.toLocaleTimeString().toLowerCase();
+                    dateTime = date + " at " + time;
+                    // splitBack = val.content.replace("../../clientEmployeeFiles/", '');
+                
+                // console.log(content);
+                $('#displayAppDate').html(dateTime);
             }
         });
     }

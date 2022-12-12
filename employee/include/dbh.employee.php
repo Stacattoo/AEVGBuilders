@@ -507,7 +507,8 @@ class dbHandler
     function getAppDetailsStatus($id)
     {
 
-        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment 
+        INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
         $sched = (object)[];
         if (mysqli_num_rows($result)) {

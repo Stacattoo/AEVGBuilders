@@ -1,6 +1,10 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+$userData = $dbh->getAllClientStatusByID($_SESSION['id']);
+$pendingUserData = $dbh->PgetAllClientInfoByID($_SESSION['id']);
+$getSched = $dbh->getSched($_SESSION['id']);
+
 ?>
 <html>
 
@@ -15,8 +19,8 @@ $dbh = new dbHandler;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-replace-svg></script>
-    <script src="profile.js"></script>
     <script src="../contactUs/contactUs.js"></script>
+    <script src="profile.js"></script>
 </head>
 
 <body>
@@ -111,7 +115,8 @@ $dbh = new dbHandler;
                         <!-- if there is no appointment -->
                         <h2>You already have an appointment!</h2>
                         <p>Kindly check your messages, and view your submitted appointment information.</p>
-                        <!-- <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button> -->
+                        <h3>Date and Time of Schedule:</h3>
+                        <p id="displayAppDate" class="fs-4 fw-4"></p>
                     </div>
                 </div>
             </div>
@@ -247,10 +252,14 @@ $dbh = new dbHandler;
                 <thead>
                     <tr>
                         <th scope="col">Date & Time</th>
-                        <!-- <th scope="col">Date</th> -->
 
                         <th scope="col">Status</th>
                     </tr>
+                    <tr class="bg-light" id="hideMe">
+                        <td>No Cost Estimate</td>
+                        <td></td>
+                        <td></td>
+                    </tr>`;
                 </thead>
 
 
@@ -263,9 +272,39 @@ $dbh = new dbHandler;
     </div>
     
     <div class="container mt-3">
-        <hr>
-        <h2>On site portfolio </h2>
+        <h2>On site portfolio.</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
+        </div>
+        <div id="hidePortDiv" class="mt-5">
+            <div class="card mb-2  rounded-3">
+                <div class="card-body rounded-3 " style="background-color:#f8f9fa;">
+                    <div class="d-flex justify-content-between">
+                        <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+                        <div class="mb-2 mx-3 " style="height: 40px; width: 200px; background-color:#e9ecef;"></div>
+                    </div>
+                    <hr>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mx-5">
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -435,13 +474,26 @@ $dbh = new dbHandler;
     </div>
 
     <div class="fixed-bottom  d-flex justify-content-end m-3 ">
-        <div>
 
-            <div class=" ">
-                <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
-                    <i class="fal fa-comment-alt-lines fs-2"></i>
-                </button>
-            </div>
+        <div>
+            <?php if ($userData->status != '' && $pendingUserData->status != '') {
+            ?>
+                <div class=" ">
+
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class=" ">
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" disabled>
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+
+            <?php } ?>
             <div class="mt-2">
                 <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
                     <i class="fal fa-bullhorn fs-3"></i>

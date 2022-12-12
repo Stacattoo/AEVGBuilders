@@ -9,20 +9,39 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 <div class="card mb-2">
     <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
-            <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
+
             <div class=" m-0">
-                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                <!-- <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
                     <i class="fas fa-edit fs-5"></i>
                 </button>
                 <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">
                     <i class="fas fa-trash fs-5"></i>
-                </button>
+                </button> -->
 
             </div>
         </div>
-        <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
-        <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
-        <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
+
+
+
+        <div class="row">
+            <div class="col-8">
+                <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
+                <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
+                <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
+                <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
+            </div>
+            <div class="col-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" id="statusId" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose Status</button> <!-- dito dapat magdisplay kung resigned or active -->
+                    <ul class="dropdown-menu">
+                        <li><button type="button" class="dropdown-item statusBtn" data-status="Active">Active</button></li>
+                        <li><button type="button" class="dropdown-item statusBtn" data-status="Resigned">Resigned</button></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

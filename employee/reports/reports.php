@@ -11,9 +11,9 @@ $dbh = new dbHandler;
     <div class="d-flex justify-content-between">
 
         <h5>List of Handled Clients <i class="fw-light fs-5"> (* Note: Click a row to view log history.)</i></h5>
-        <button id="printBtn" type="button" class="btn btn-dark flex-row-reverse mb-4" onclick="window.print()" >Print Report</button>
+        <button id="printBtn" type="button" class="btn btn-dark flex-row-reverse mb-4" onclick="window.print()">Print Report</button>
     </div>
-        <table class="table table-bordered table-striped" id="handledClientTable">
+    <table class="table table-bordered table-striped" id="handledClientTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -33,7 +33,7 @@ $dbh = new dbHandler;
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">ACTIVITY LOG</h1>
-                    
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

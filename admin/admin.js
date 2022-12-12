@@ -32,9 +32,9 @@ $(document).ready(function () {
         $("#content").load("projects/preProjects.php");
     });
 
-    $("#scheduleNav").click(function (e) {
+    $("#projectStats").click(function (e) {
         e.preventDefault();
-        $("#content").load("schedule/schedule.php");
+        $("#content").load("projectStatus/projectStats.php");
     });
 
     // $("#materialsNav").click(function (e) {

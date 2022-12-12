@@ -101,7 +101,7 @@ $dbh = new dbHandler;
               <img src="../../images/contactUsImg/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
             </div>
             <div class="carousel-item">
-              <img src="../../images/contactUsImg/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+              <img src="../../images/contactUsImg/6.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
             </div>
           </div>
 

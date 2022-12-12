@@ -67,8 +67,7 @@ $dbh = new dbHandler();
 					});
 					$('#table').html(content);
 				},
-				error: function(errorres) {
-				}
+				error: function(errorres) {}
 			});
 		}
 	});
