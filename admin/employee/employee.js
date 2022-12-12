@@ -106,5 +106,22 @@ $(document).ready(function () {
 		});
 	});
 
+	$('.statusBtn').click(function(e) {
+		e.preventDefault();
+		var status = $(this).data("status");
+		var id = $('#idClient').html();
+		debugger
+		$.ajax({
+			url: "../employee/employeeProcess.php",
+			type: "POST",
+			data: {
+				updateStatus: id,
+				employeeStatus: status 
+			},
+			success: function(dataResult) {
+				$('#statusId').html(status);
+			},
+		});
+	});
 
 });

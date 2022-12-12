@@ -82,7 +82,8 @@ class dbHandler
     }
 
 
-    function getPendingProjects(){
+    function getPendingProjects()
+    {
         $sql = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullname FROM projects INNER JOIN employee ON employee.id = projects.employee_id WHERE project_status = 'pending'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
@@ -121,10 +122,14 @@ class dbHandler
             CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
             FROM employee WHERE id=$id";
         $result = mysqli_query($this->conn, $query);
+        
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
+
+
                 $id = $row["id"];
-                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status
+                FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
                 $res = mysqli_query($this->conn, $sql);
                 $client = array();
                 if (mysqli_num_rows($res)) {
@@ -161,6 +166,7 @@ class dbHandler
             }
         }
     }
+
 
 
     function getAllClientInfoByID($id)
@@ -379,6 +385,12 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
+    function archiveClient($id)
+    {
+        $query = "UPDATE client SET status='active' where id='$id'";
+        return mysqli_query($this->conn, $query);
+    }
+
     function displayAllResult()
     {
         $sql = "SELECT client.*, employee.* ";
@@ -439,7 +451,7 @@ class dbHandler
         return mysqli_query($this->conn, $query);
     }
 
-   
+
 
     function getAllClients()
     {
@@ -484,24 +496,28 @@ class dbHandler
         return $data;
     }
 
-    
 
-    function approveFeedback($id){
+
+    function approveFeedback($id)
+    {
         $query = "UPDATE feedback SET feedback_status='approved' where id='$id'";
         return mysqli_query($this->conn, $query);
     }
 
-    function approveProjects($id){
+    function approveProjects($id)
+    {
         $query = "UPDATE projects SET project_status='active' where id='$id'";
         return mysqli_query($this->conn, $query);
     }
 
-    function disapprovedProjects($id){
+    function disapprovedProjects($id)
+    {
         $query = "UPDATE projects SET project_status='disapproved' where id='$id'";
         return mysqli_query($this->conn, $query);
     }
 
-    function disapprovedFeedback($id){
+    function disapprovedFeedback($id)
+    {
         $query = "UPDATE feedback SET feedback_status='disapproved' where id='$id'";
         return mysqli_query($this->conn, $query);
     }
@@ -528,7 +544,8 @@ class dbHandler
         }
     }
 
-    function getProjStats2(){
+    function getProjStats2()
+    {
         $query = "SELECT CONCAT(client.lastName, ',', client.firstName) AS clientName, employee.id, 
         CONCAT(employee.lastName, ',', employee.firstName) AS empName, 
         employee_client.status, employee_client.transaction_date FROM employee_client 

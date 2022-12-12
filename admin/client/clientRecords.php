@@ -10,12 +10,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         <div class="d-flex justify-content-between ">
             <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id ?></h5>
             <div class="m-0">
-                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">
-                    <i class="fas fa-trash fs-5"></i>
-                </button>
-                <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                <!-- <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="">
                     <i class="fas fa-edit fs-5"></i>
-                </button>
+                </button> -->
+
+                <!-- <button class=" border-0  btn btn-outline-light" type="button" href="#deleteClientModal">
+                    <i class="fas fa-trash fs-5"></i>
+                </button> -->
+
             </div>
         </div>
         <h1 class="text-capitalize"><?php echo $userData->fullname; ?></h1>
@@ -31,47 +33,21 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     </div>
 </div>
 
-<!-- EDIT Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+<!-- block modal -->
+<div class="modal" id="deleteClientModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Information</h5>
+                <h5 class="modal-title">Delete Client Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="editForm">
-
-                <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="1234" required>
-                        <label for="firstName">First Name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="middleName" name="middleName" placeholder="1234">
-                        <label for="middleName">Middle Name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="1234" required>
-                        <label for="lastName">Last Name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="1234" email required>
-                        <label for="email">Emaill Address</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="1234" required>
-                        <label for="contact">Contact Number</label>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <p>Are you sure you want to delete client data?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
@@ -157,8 +133,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     clientID: clientID
                 },
                 dataType: "JSON",
-                success: function(response) {
-                }
+                success: function(response) {}
             });
         });
 
@@ -213,8 +188,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         $("#errorAlert").show();
                     }
                 },
-                error: function(response) {
-                }
+                error: function(response) {}
             });
         });
 

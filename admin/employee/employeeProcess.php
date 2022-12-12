@@ -72,3 +72,7 @@ function generateRandomPassword(): string
     $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz!@#$%&*';
     return substr(str_shuffle($data), 0, 8);
 }
+
+if (isset($_POST['updateStatus'])) {
+    echo json_encode((array)$dbh->updateClientStatus($_POST['updateStatus'], $_POST['employeeStatus'])); // employeestatus dapat
+}
