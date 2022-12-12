@@ -261,25 +261,26 @@ $dbh = new dbHandler;
             </table>
         </div>
     </div>
-
+    
     <div class="container mt-3">
-        <h2>On site portfolio.</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
+        <hr>
+        <h2>On site portfolio </h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
 
-            </div>
+        </div>
     </div>
     <!-- MODAL PORTFOLIO ONSITE IMAGESS -->
-	<div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content rounded-4 shadow">
-				<div class="modal-body p-5" id="portfolioContent">
-					
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-5" id="portfolioContent">
 
-    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
@@ -457,7 +458,7 @@ $dbh = new dbHandler;
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
             </ul>
-            <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+            <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
         </footer>
     </div>

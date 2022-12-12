@@ -176,7 +176,7 @@ $dbh = new dbHandler;
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
         </ul>
-        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+        <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
     </footer>
 </div>

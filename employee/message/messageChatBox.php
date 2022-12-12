@@ -46,17 +46,32 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             <div class="card-footer d-flex justify-content-start align-items-center px-0" style="background-color:#f8f9fa;">
                 <textarea type="text" class="form-control " id="contentID" name="employeeMessage" placeholder="Type message..." style="height: 20px;"></textarea>
                 <div class="dropdown m-0">
-                    <button class="btn ms-1 text-muted" type="button" data-bs-toggle="dropdown" id="filesEmployee aria-expanded=" false>
+                    <button class="btn ms-1 text-muted" type="button" data-bs-toggle="dropdown">
                         <i class="fas fa-paperclip"></i>
                     </button>
                     <!-- <input type="text"> -->
                     <ul class="dropdown-menu">
-                        <input type="file" class="filesEmp" id="filesEmployee" name="filesEmployee[]" multiple>
-                        <input type="file" class="costEst btn btn-success" id="costEstimate" name="costEstimate">
+                        <input type="file" class="filesEmp d-none" id="filesEmployee" name="filesEmployee[]">
+                        <input type="file" class="costEst d-none" id="costEstimate" name="costEstimate">
+                        <li>
+                            <button class="dropdown-item" type="button" id="filesEmployeeBtn">
+                                <i class="fas fa-file-pdf"></i> Upload File
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" id="costEstimateBtn">
+                                <i class="fas fa-dollar-sign"></i> Upload Cost Estimate
+                            </button>
+                        </li>
                     </ul>
                 </div>
-                
-                <input type="submit"></input> 
+
+                <button class="btn ms-1 btn-primary" type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <!-- <input type="submit">
+                <i class="fa-solid fa-paper-plane-top"></i>
+                </input> -->
 
             </div>
         </form>
@@ -68,6 +83,14 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 <script>
     $(document).ready(function() {
 
+        $("#filesEmployeeBtn").click(function(e) {
+            e.preventDefault();
+            $("#filesEmployee").trigger("click");
+        });
+        $("#costEstimateBtn").click(function(e) {
+            e.preventDefault();
+           $("#costEstimate").trigger("click");
+        });
         $("#filesContent").hide();
         $("#messageTab").click(function() {
 
@@ -305,7 +328,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                 }
                             }
 
-                        
+
                         }
 
 

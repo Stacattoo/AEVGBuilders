@@ -545,8 +545,8 @@ $(document).ready(function () {
                                 </div>
                                 <div class="card-body">
 
-                                    <h6 class="card-text text-truncate">${data.title}</h6> 
-                                    <p class="card-text text-truncate">${data.description}</p> 
+                                    <h6 class="card-text text-truncate border-0">${data.title}</h6> 
+                                    <p class="card-text text-truncate border-0">${data.description}</p> 
                                     <div class= "d-flex justify-content-between"> 
                                     
                                     <button class="btn btn-link text-secondary text-decoration-none portfolioBtn" data-bs-toggle="modal" data-bs-target="#openPortfolioModal" data-id="${data.id}">See more...</button>
