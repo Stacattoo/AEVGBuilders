@@ -15,41 +15,39 @@ $dbh = new dbHandler;
         <div class="col-4 mx-4">
             <input type="search" name="search" id="search" class="form-control mb-2" placeholder="Search">
 
-            <ul class="nav nav-pills mt-3 mb-3">
-                
-                    <h4 class="fw-bold fs-4 mt-2 mx-2">List of Clients</h3>
-                
-                <!-- <li class="nav-item">
-                    <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
-                </li> -->
-            </ul>
-            
-            <div id="list" class="list-group"></div>
+            <h2 class="text-center mt-3 mb-4">List of Clients</h2>
+            <div class="card mb-2 rounded-2 sticky-top" style="background-color:#f8f9fa; height: 100vh; overflow:scroll;">
+                <div id="list" class="list-group"></div>
+            </div>
             <!-- <div id="pending" class="list-group"></div> -->
         </div>
         <div id="records" class="col">
             <div class="card mb-2  rounded-3">
-                <div class="card-body rounded-3" style="background-color:#f8f9fa;">
-                    <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+                <div class="card-body rounded-3 " style="background-color:#f8f9fa;">
+                    <div class="d-flex justify-content-between">
+                        <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+                        <div class="mb-2 mx-3 " style="height: 40px; width: 200px; background-color:#e9ecef;"></div>
+                    </div>
                     <hr>
-                    <div class="d-flex align-items-baseline text-end justify-content-start mb-4">
-                        <div class="mb-2 mx-3 rounded-4" style="height: 80px; width: 500px; background-color:#e9ecef;"></div>
-                    </div>
-                    <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                        <div class="mb-2 mx-3 rounded-4" style="height: 70px; width: 500px; background-color:#e9ecef;"></div>
-                    </div>
-                    <div class="mb-2 mx-3 rounded-4" style="height: 90px; width: 300px; background-color:#e9ecef;"></div>
-                    <div class="d-flex align-items-baseline text-end justify-content-end mb-1">
-                        <div class="mb-2 mx-3 rounded-4" style="height: 100px; width: 500px; background-color:#e9ecef;"></div>
-                    </div>
-                    <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                        <div class="mb-2 mx-3 rounded-4" style="height: 40px; width: 300px; background-color:#e9ecef;"></div>
-                    </div>
-                    <div class="mb-2 mx-3 rounded-4" style="height: 100px; width: 600px; background-color:#e9ecef;"></div>
-                    <div class="d-flex align-items-baseline text-end justify-content-center mb-1">
-                        <div class=" mt-4 rounded-4" style="height: 30px; width: 900px; background-color:#e9ecef;"></div>
-                        <div class=" mt-4 rounded-2" style="height: 20px; width: 30px; background-color:#e9ecef;"></div>
-                        <div class=" mt-4 mx-2 rounded-2" style="height: 20px; width: 30px; background-color:#e9ecef;"></div>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mx-5">
+                        <div class="col">
+                        <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                        <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                        <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                        <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                        <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                        <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -68,7 +66,7 @@ $dbh = new dbHandler;
         $("#search").change(function(e) {
             e.preventDefault();
             portfolioDisplay($(this).val());
-            generalClient($(this).val());
+            // generalClient($(this).val());
         });
 
         // $("#listBtn").click(function() {

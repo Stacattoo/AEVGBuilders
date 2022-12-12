@@ -55,7 +55,6 @@ $(document).ready(function () {
                     var imgArr = val.content.split(',');
                     for (let i in imgArr) {
                         contentMsgDisplay = imgArr[i];
-                        // console.log(contentMsgDisplay);
 
                         var dotIndex = contentMsgDisplay.lastIndexOf('.');
                         var ext = contentMsgDisplay.substring(dotIndex);

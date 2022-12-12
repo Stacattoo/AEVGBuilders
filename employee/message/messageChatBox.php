@@ -190,7 +190,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         }
                         var contentMsgDisplay = '';
                         var imgArr = val.content.split(',');
-                        console.log(imgArr);
 
                         for (let i in imgArr) {
                             contentMsgDisplay = imgArr[i];
@@ -202,7 +201,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             
                             if (contentMsgDisplay != ext) {
                                 if (ext == '.jpg' || ext == '.png') {
-                                    console.log(contentMsgDisplay);
 
                                     if (isEmployee) {
                                         content += `
@@ -245,7 +243,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                             </div>`;
 
 
-                                    // console.log(filesContMsg);
+                                
                                     if (isEmployee) {
                                         content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
@@ -325,7 +323,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         e.preventDefault();
                         var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
                         var url = path.concat(splitBack);
-                        console.log(url);
                         var docuFilesMsg = window.open(url);
                         docuFilesMsg.location;
 
