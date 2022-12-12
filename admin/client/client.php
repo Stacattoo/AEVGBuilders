@@ -8,8 +8,8 @@
     <hr>
     <div class="row g-2 ">
         <div class="col-4 ">
-            <input type="search" name="search" id="search" class="form-control mb-2 " placeholder="Search">
-            <div id="list" class="list-group ">
+            <input type="search" name="search" id="search" class="form-control mb-2 " placeholder="Search" >
+            <div id="list" class="list-group sticky-top" style="background-color:#f8f9fa; height: 100vh; overflow:scroll;">
 
             </div>
         </div>

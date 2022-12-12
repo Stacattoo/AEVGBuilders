@@ -18,11 +18,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 </button>
             </div>
         </div>
-        <h1><?php echo $userData->fullname; ?></h1>
+        <h1 class="text-capitalize"><?php echo $userData->fullname; ?></h1>
         <div>Email Address: <a href="mailto:<?php echo $userData->email; ?>" class="text-reset fw-bolder"><?php echo $userData->email; ?></a></div>
         <div>Contact Number: <span class="fw-bolder"><?php echo $userData->contactNo; ?></span></div>
-        <div>Address: <span class="fw-bolder"><?php echo $userData->address; ?></span></div>
-        <div>Assigned Employee: <span class="text-reset fw-bolder">
+        <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
+        <div>Assigned Employee: <span class="text-reset fw-bolder ">
                 <?php if ($userData->employeeName == "") {
                     echo '<a id="choose" data-bs-toggle="modal" class="text-warning" href="#chooseModal">Choose an Employee </a>';
                 } else {
