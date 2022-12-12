@@ -463,7 +463,9 @@ class dbHandler
 
     function getFeedback()
     {
-        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.email, client.contact_no FROM feedback INNER JOIN client ON client.id=feedback.client_id WHERE feedback_status = 'pending'";
+        $sql = "SELECT feedback.*, CONCAT(client.firstName, ' ', client.lastName) as fullname, client.email, client.contact_no 
+        FROM feedback 
+        INNER JOIN client ON client.id=feedback.client_id WHERE feedback_status = 'pending'";
         $result = mysqli_query($this->conn, $sql);
         $data = array();
         if (mysqli_num_rows($result)) {
@@ -523,6 +525,30 @@ class dbHandler
                 ];
             }
             return $projects;
+        }
+    }
+
+    function getProjStats2(){
+        $query = "SELECT CONCAT(client.lastName, ',', client.firstName) AS clientName, employee.id, 
+        CONCAT(employee.lastName, ',', employee.firstName) AS empName, 
+        employee_client.status, employee_client.transaction_date FROM employee_client 
+        INNER JOIN client ON employee_client.client_id=client.id 
+        INNER JOIN employee ON employee_client.employee_id=employee.id";
+        $result =  mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            $projStats = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projectStats[] = (object)[
+                    'id' => $row['id'],
+                    'empName' => $row['empName'],
+                    'clientName' => $row['clientName'],
+                    // 'employee_id' => $row['employee_id'],
+                    'status' => $row['status'],
+                    'transaction_date' => $row['transaction_date']
+
+                ];
+            }
+            return $projectStats;
         }
     }
 
