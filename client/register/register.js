@@ -50,7 +50,6 @@ $(document).ready(function () {
               })
         }
 
-        
         var form = $("#registerForm")[0];
         console.log($("#registerForm"));
         if (form[0].checkValidity()) {
@@ -75,7 +74,6 @@ $(document).ready(function () {
         } else {
             form[0].reportValidity();
         }
-
 
     });
 
