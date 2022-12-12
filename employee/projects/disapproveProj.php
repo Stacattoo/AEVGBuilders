@@ -11,8 +11,7 @@ $dbh = new dbHandler;
 <div class="container-fluid">
     <div class="d-flex justify-content-between mx-4">
 
-        <h3><i class="fal fa-city me-2"></i></i>Upload Projects</h3>
-        <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button>
+        <h3><i class="fal fa-city me-2"></i></i>Disapproved Projects</h3>
     </div>
     <hr>
     <div class="container-fluid">

@@ -64,7 +64,7 @@ $dbh = new dbHandler;
                                 <a href="#" class="nav-link text-white" id="projectNav">
 
                                     <i class="fas fa-city bi me-2"></i>
-                                    Projects
+                                    Finished Projects
                                 </a>
                             </li>
                             <li>

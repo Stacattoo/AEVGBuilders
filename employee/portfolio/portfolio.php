@@ -8,7 +8,7 @@ $dbh = new dbHandler;
     <div class="d-flex justify-content-between mx-4">
 
         <h3><i class="fal fa-file-alt me-2"></i></i>Portfolio</h3>
-        <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button>
+        <!-- <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button> -->
     </div>
     <hr>
     <div class="row g-2">
