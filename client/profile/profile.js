@@ -27,18 +27,15 @@ $(document).ready(function () {
     var splitBack = '';
     var filesContMsg = "";
     function messagePopover() {
-        // var id = '';
         $.ajax({
             type: "POST",
             url: "messageProcess.php",
             data: {
                 getMessage: true,
-                // clientID: id
             },
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
-                // console.log(response);
                 var contentMsgDisplay = '';
                 mesContent = "<></>"
                 $.each(response.content, function (indexInArray, val) {
@@ -252,7 +249,7 @@ $(document).ready(function () {
                 url: "profileProcess.php",
                 data: { insertFeedback: $("#feedbackArea").val() },
                 success: function (response) {
-                    console.log(response);
+
                     alert("Feedback Successfully Sent!")
                 }, error: function (response) {
                     console.error(response);
@@ -262,7 +259,7 @@ $(document).ready(function () {
     });
 
     $("#msg").popover({
-        // setInterval(messagePopover, 1000);
+
         placement: "left",
         html: true,
         sanitize: false,
@@ -301,7 +298,6 @@ $(document).ready(function () {
         });
         $('.fileBtnClient').click(function (e) {
             e.preventDefault();
-            console.log("ayos naman");
             var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
             var url = path.concat(splitBack);
             console.log(url);
@@ -314,7 +310,6 @@ $(document).ready(function () {
 
 
     $("#profileForm").submit(function (event) {
-        // console.log('test lang');
         event.preventDefault();
         $.ajax({
             url: "profileProcess.php",
@@ -325,8 +320,7 @@ $(document).ready(function () {
             processData: false,
             dataType: 'json',
             success: function (result) {
-                console.log(result);
-                //alert("Record successfully updated");
+
                 if (result.status == 'error') {
                     $("#alertError").html(result.msg);
                     $("#alertError").fadeIn();
@@ -421,9 +415,6 @@ $(document).ready(function () {
         $("#errorPass").hide();
     });
 
-
-    //     $("#scheduleForm").submit(function (event) {
-    //         event.preventDefault();
     function appStatus() {
         $.ajax({
             url: "../contactUs/getData.php",
@@ -433,7 +424,6 @@ $(document).ready(function () {
                 checkAppointmentProfile: true
             },
             success: function (result) {
-                // console.log(result.status);
                 if (result.status == 'pending') {
                     $("#schedAppProfile").hide();
                     $("#haveASchedule").hide();
@@ -465,7 +455,6 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                // console.log(response.content);
                 var content = ``;
                 var dateTime = '';
 
@@ -477,7 +466,6 @@ $(document).ready(function () {
                     var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
                     var time = d.toLocaleTimeString().toLowerCase();
                     dateTime = date + " at " + time;
-                    // console.log(val.content);
                     splitBack = val.content.replace("../../clientEmployeeFiles/", '');
                     content += `
                     <tr>
@@ -492,7 +480,6 @@ $(document).ready(function () {
                     e.preventDefault();
                     var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
                     var url = path.concat(splitBack);
-                    console.log(url);
                     var docuFilesMsg = window.open(url);
                     docuFilesMsg.location;
 
@@ -573,11 +560,9 @@ $(document).ready(function () {
                 $(".portfolioBtn").click(function (e) {
                     e.preventDefault();
                     let id = $(this).data("id");
-                    console.log(id);
                     var selected = response.filter(function (data) {
                         return data == id;
                     })[0];
-                    console.log(selected);
                     let images = ``;
                     $.each(selected.image, function (indexInArray, path) {
                         let active = '';

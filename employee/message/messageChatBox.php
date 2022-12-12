@@ -55,9 +55,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         <input type="file" class="costEst btn btn-success" id="costEstimate" name="costEstimate">
                     </ul>
                 </div>
-                <!-- <button type="file" class="ms-1 text-muted btn" id="filesEmployee">
-                    <i class="fas fa-paperclip"></i>
-                </button> -->
                 
                 <input type="submit"></input> 
 
@@ -86,7 +83,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             $(this).addClass("active");
             $("#messageTab").removeClass("active");
             $("#filesContent").show();
-            // $("#messageEmployee").hide();
 
         });
 
@@ -107,7 +103,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
             console.log("subBtn");
         });
         $('#messageEmployee').submit(function(e) {
-            // console.log(e);
             e.preventDefault();
             $.ajax({
                 type: "POST",
@@ -118,13 +113,11 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 cache: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
                     $('#contentID').html("");
                     if (response.status == 'success') {
                         $('#messageEmployee').trigger("reset");
                         $('#filesEmployee').trigger("reset");
                         $('#costEstimate').trigger("reset");
-                        // displayMessage();
                     }
                 },
                 error: function(response) {
