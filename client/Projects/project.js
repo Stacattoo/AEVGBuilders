@@ -106,7 +106,7 @@ $(document).ready(function () {
                     <div class="d-flex justify-content-between w-100 mt-3">
 						<h2 class="fw-normal">${selected.title} </h2>
 						<div>
-                        <i class="${(selected.reaction) ? "fas" : "far"} fa-heart react" data-react="${(selected.reaction)}" data-id="${selected.id}"></i> <span> ${selected.reactionCtr}</span>
+                        <i id="clickHart" class="${(selected.reaction) ? "fas" : "far"} fa-heart react" data-react="${(selected.reaction)}" data-id="${selected.id}"></i> <span> ${selected.reactionCtr}</span>
 
 						</div>
                     </div>
@@ -116,6 +116,11 @@ $(document).ready(function () {
 
                     $("#projectModalBody").html(content);
                     clickReact();
+
+                    $('#clickHart').click(function(e){
+                        e.preventDefault();
+                        console.log("na click");
+                    });
                 });
 
                 clickReact();

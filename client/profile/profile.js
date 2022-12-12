@@ -188,8 +188,8 @@ $(document).ready(function () {
     setInterval(messagePopover, 1000);
 
     var messageContent =
-        `<form id="messageForm" class="mb-0">
-                <div class="card mx-auto" style="width:400px">
+        `<form id="messageForm" class="mb-0 ">
+                <div class="card mx-auto " style="width:400px">
                     <div class="card-header bg-transparent">
                         <div class="navbar navbar-expand p-0">
                             <ul class="navbar-nav me-auto align-items-center">
@@ -254,6 +254,7 @@ $(document).ready(function () {
                 }, error: function (response) {
                     console.error(response);
                 }
+
             });
         });
     });
@@ -284,11 +285,9 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
                     if (response.status == 'success') {
                         $('#messageForm').trigger("reset");
                         $('#contentID').html("");
-                        $('#mesBody').html(mesContent);
                         $("#mesBody").animate({
                             scrollTop: $("#mesBody").get(0).scrollHeight
                         }, 10);
@@ -351,13 +350,11 @@ $(document).ready(function () {
         var file = $("input[type=file]").get(0).files[0];
 
         if (file) {
-
             var reader = new FileReader();
 
             reader.onload = function () {
                 $("#profileImg").attr("src", reader.result);
             }
-
             reader.readAsDataURL(file);
         }
 
@@ -397,7 +394,6 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (result) {
-                console.log(result);
                 if (result.status == "error") {
                     $("#errorPass").html(result.msg);
                     $("#errorPass").show();
@@ -461,7 +457,6 @@ $(document).ready(function () {
                 var dateTime = '';
 
                 $.each(response.content, function (indexInArray, val) {
-                    // dateTime = ;
                     var d = new Date(val.dateTime);
                     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -471,7 +466,6 @@ $(document).ready(function () {
                     splitBack = val.content.replace("../../clientEmployeeFiles/", '');
                     content += `
                     <tr>
-
                         <td>${dateTime}</td>
                         <td>${splitBack}</td>
                         <td><button type="button" class="fileBtn btn btn-info btn-sm">Download</button></td>
@@ -484,7 +478,6 @@ $(document).ready(function () {
                     var url = path.concat(splitBack);
                     var docuFilesMsg = window.open(url);
                     docuFilesMsg.location;
-
                 });
             },
             error: function (responseError) {

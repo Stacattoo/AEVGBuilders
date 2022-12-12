@@ -1,6 +1,9 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+$userData = $dbh->getAllClientStatusByID($_SESSION['id']);
+$pendingUserData = $dbh->PgetAllClientInfoByID($_SESSION['id']);
+
 ?>
 <html>
 
@@ -264,22 +267,22 @@ $dbh = new dbHandler;
 
     <div class="container mt-3">
         <h2>On site portfolio.</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
 
-            </div>
+        </div>
     </div>
     <!-- MODAL PORTFOLIO ONSITE IMAGESS -->
-	<div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content rounded-4 shadow">
-				<div class="modal-body p-5" id="portfolioContent">
-					
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-5" id="portfolioContent">
 
-    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
@@ -434,13 +437,26 @@ $dbh = new dbHandler;
     </div>
 
     <div class="fixed-bottom  d-flex justify-content-end m-3 ">
-        <div>
 
-            <div class=" ">
+        <div>
+            <?php if ($userData->status != '' && $pendingUserData->status != '') {
+            ?>
+               <div class=" ">
+                
                 <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
                     <i class="fal fa-comment-alt-lines fs-2"></i>
                 </button>
             </div>
+            <?php
+            } else {
+            ?>
+             <div class=" ">
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" disabled>
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+               
+            <?php } ?>
             <div class="mt-2">
                 <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
                     <i class="fal fa-bullhorn fs-3"></i>

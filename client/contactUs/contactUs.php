@@ -1,6 +1,7 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,8 @@ $dbh = new dbHandler;
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
   <script src="contactUs.js"></script>
 </head>
 
@@ -385,7 +388,7 @@ $dbh = new dbHandler;
                 </div>
 
                 <div class="col-sm-3">
-                  <label for="cc-name" class="form-label">Lot Area</label>
+                  <label for="cc-name" class="form-label">Lot Area<p class="fw-light">(ex. sqm)</p></label>
                   <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="" required>
                 </div>
 

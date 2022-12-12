@@ -267,7 +267,13 @@ $(document).ready(function () {
                     if ($(this).val() == dateVar) {
                         // $("#alertErrorApp").show();
                         // $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
-                        alert("This date has been occupied");
+                        // alert("This date has been occupied");
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'This date has been occupied',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                          })
                         $("#appointmentDate").val('');
                         
                     } else {

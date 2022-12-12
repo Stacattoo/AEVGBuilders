@@ -8,6 +8,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src="register.js"></script>
 </head>
 
@@ -35,7 +37,7 @@
                                 <input type="email" class="form-control mt-2" name="email" id="emailRegister" placeholder="Email" required>
                                 <input type="text" class="form-control mt-2" name="contact" id="contactNo" placeholder="Contact Number" required>
                                 <div class="alert alert-danger mt-3" role="alert" id="alertErrorbtn1">
-                            </div>
+                                </div>
                                 <div class="d-flex justify-content-evenly mt-4">
                                     <a href="../../index.php">Already Have an Account?</a>
                                 </div>
@@ -70,7 +72,7 @@
                         <div id="step3">
 
                             <div class="d-flex flex-column mb-3 mt-5">
-                                <input type="password" class="form-control mt-2" name="password"  minlength="8" placeholder="Password" required>
+                                <input type="password" class="form-control mt-2" name="password" minlength="8" placeholder="Password" required>
                                 <input type="password" class="form-control mt-2" name="confirmPassword" placeholder="Confirm Password" required>
                             </div>
                             <div class="alert alert-danger mt-3" role="alert" id="alertError">
@@ -80,7 +82,7 @@
                             <button type="submit" class="btn btn-primary form-control mt-3">Sign Up</button>
                             <div class="d-flex justify-content-between ">
                                 <button type="button" id="prev2Btn" class="btn btn-outline-dark btn-sm mt-5"><i class="fas fa-chevron-left"></i> Back</button>
-                               
+
                             </div>
                         </div>
 

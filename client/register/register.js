@@ -42,10 +42,15 @@ $(document).ready(function () {
             if (checkContactValue != parseInt(checkContactValue)){
 
             $('#contactNo').val('');
-            alert("Contact Number should be numbers only");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Contact Number is Invalid, please try again.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+              })
         }
 
-        /*
+        
         var form = $("#registerForm")[0];
         console.log($("#registerForm"));
         if (form[0].checkValidity()) {
@@ -71,7 +76,7 @@ $(document).ready(function () {
             form[0].reportValidity();
         }
 
-*/
+
     });
 
     $("#prev1Btn").click(function (e) {

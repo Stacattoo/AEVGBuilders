@@ -95,7 +95,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 scrollTop: $("#messageRetrieve").get(0).scrollHeight
             }, 1000);
         }, 1000)
-
         setInterval(displayMessage, 1000);
 
         $("#subBtn").click(function(e) {
