@@ -325,7 +325,6 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         e.preventDefault();
                         var path = 'http://localhost:/AEVGBuilders/clientEmployeeFiles/';
                         var url = path.concat(splitBack);
-                        console.log(url);
                         var docuFilesMsg = window.open(url);
                         docuFilesMsg.location;
 

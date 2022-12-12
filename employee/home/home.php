@@ -82,9 +82,8 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="portfolio">
-
-                                    <i class="fas fa-file bi me-2"></i>
+                                <a href="#" class="nav-link  text-white" id="portfolio">
+                                    <i class="fas fa-file-image me-2 "></i>
                                     Portfolio
                                 </a>
                             </li>

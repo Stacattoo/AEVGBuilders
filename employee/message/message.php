@@ -3,7 +3,7 @@ include("../include/dbh.employee.php");
 $dbh = new dbHandler;
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script src="../message/message.js"></script>
+
 <div class="container-fluid">
     <h3><i class="fad fa-calendar-alt bi me-2"></i></i>Message</h3>
     <hr>
@@ -19,8 +19,10 @@ $dbh = new dbHandler;
                     <button type="button" id="pendingBtn" class="nav-link" aria-current="page">Pending</button>
                 </li>
             </ul>
-            <div id="list" class="list-group"></div>
-            <div id="pending" class="list-group"></div>
+            <div class="card mb-2 rounded-2 sticky-top" style="background-color:#f8f9fa; height: 100vh; overflow:scroll;">
+                <div id="list" class="list-group"></div>
+            </div>
+            <!-- <div id="pending" class="list-group"></div> -->
         </div>
         <div id="records" class="col">
             <div class="card mb-2  rounded-3">
@@ -53,47 +55,27 @@ $dbh = new dbHandler;
         </div>
 
     </div>
-
+    <script src="../message/message.js"></script>
 
     <script>
         $(document).ready(function() {
 
             $("#list").show();
-            $("#pending").hide();
-
-            messageClient();
-            // generalClient();
-
-            $("#search").change(function(e) {
-                e.preventDefault();
-                messageClient($(this).val());
-                generalClient($(this).val());
-            });
-
+            messageClient('active');
             $("#listBtn").click(function() {
                 $(this).addClass("active");
                 $("#pendingBtn").removeClass("active");
-                $("#list").show();
-                $("#pending").hide();
-                messageClient();
-                generalClient();
-
-
-                $("#listBtn").click(function() {
-                    $(this).addClass("active");
-                    $("#pendingBtn").removeClass("active");
-                    $("#list").show();
-                    $("#pending").hide();
-                });
-
-
+                messageClient('active');
             });
             $("#pendingBtn").click(function() {
                 $(this).addClass("active");
                 $("#listBtn").removeClass("active");
-                $("#pending").show();
-                $("#list").hide();
-                generalClient();
-
+                messageClient('pending');
             });
+            $("#search").change(function(e) {
+                e.preventDefault();
+                messageClient($(this).val());
+            });
+
+           
         });

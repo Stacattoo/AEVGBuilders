@@ -12,8 +12,10 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     <div class="card-body h-100">
         <div class="d-flex justify-content-between">
             <h5 class="text-capitalize mx-3 mt-1"><?php echo $userData->fullname; ?></h5>
-            <button type="button" class="btn btn-black" data-bs-target="#newProjectModal" data-bs-toggle="modal">Upload Portfolio</button>
+            <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">Upload Portfolio</button>
         </div>
+        
+        <hr>
         <div class="container-fluid">
             <div class=" mt-5">
                 <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4">
@@ -23,12 +25,12 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         </div>
     </div>
 </div>
-<!-- button add new project -->
+<!-- button add new portfolio -->
 <div class="modal fade" id="newProjectModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered  modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Add New Project</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Add New Portfolio</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="uploadProjects">
@@ -85,7 +87,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 <div class="modal-footer">
 
                     <div class="text-end">
-                        <button type="submit" class="btn btn-dark">Upload Project</button>
+                        <button type="submit" class="btn btn-dark">Upload Portfolio</button>
                     </div>
                 </div>
             </form>
@@ -93,12 +95,13 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
     </div>
 </div> 
 <!-- upload of edit modal -->
+
 <!-- Edit Project Modal -->
 <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="projectTitle">Edit Projects</h1>
+                <h1 class="modal-title fs-5" id="projectTitle">Edit Portfolio</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="editUploadProjects">
