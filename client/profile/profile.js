@@ -519,11 +519,10 @@ $(document).ready(function () {
                                         
                                         </div>`;
                     });
-
+                    console.log(data);
                     content += `
-                    <div class="col">
+                        <div class="col">
                             <div class="card">
-    
                                 <div id="carouselExampleInterval${indexInArray}" class="carousel slide">
                                     <div class="carousel-inner">
                                         ${images}
@@ -539,11 +538,11 @@ $(document).ready(function () {
                                 </div>
                                 <div class="card-body">
 
-                                    <h6 class="card-text">${data.title}</h6> 
+                                    <h6 class="card-text text-truncate">${data.title}</h6> 
                                     <p class="card-text text-truncate">${data.description}</p> 
                                     <div class= "d-flex justify-content-between"> 
                                     
-                                    <button class="btn btn-link text-secondary text-decoration-none portfolioBtn" data-bs-toggle="modal" data-bs-target="#openPortfolioModal" data-id="${data.client_id}">See more...</button>
+                                    <button class="btn btn-link text-secondary text-decoration-none portfolioBtn" data-bs-toggle="modal" data-bs-target="#openPortfolioModal" data-id="${data.id}">See more...</button>
                                     </div>
                                 </div>
                             </div>
@@ -556,8 +555,9 @@ $(document).ready(function () {
                     e.preventDefault();
                     let id = $(this).data("id");
                     var selected = response.filter(function (data) {
-                        return data == id;
+                        return data.id == id;
                     })[0];
+                    console.log(selected);
                     let images = ``;
                     $.each(selected.image, function (indexInArray, path) {
                         let active = '';
@@ -582,6 +582,7 @@ $(document).ready(function () {
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+                    <h2 class="fw-normal">${selected.title} </h2>
                     <p>${selected.description}</p>
                     `;
 

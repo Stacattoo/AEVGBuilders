@@ -535,7 +535,7 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $projects[] = (object)[
-
+                    "id" => $row["id"],
                     "client_id" => $row["client_id"],
                     "employee_id" => $row["employee_id"],
                     "title" => $row["title"],
