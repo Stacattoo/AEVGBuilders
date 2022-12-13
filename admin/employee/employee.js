@@ -109,8 +109,10 @@ $(document).ready(function () {
 	$('.statusBtn').click(function(e) {
 		e.preventDefault();
 		var status = $(this).data("status");
-		var id = $('#idClient').html();
-		debugger
+		var id = $('#empStatusID').html();
+		console.log(status);
+		console.log(id);
+		// debugger
 		$.ajax({
 			url: "../employee/employeeProcess.php",
 			type: "POST",
@@ -120,8 +122,12 @@ $(document).ready(function () {
 			},
 			success: function(dataResult) {
 				$('#statusId').html(status);
-			},
+			}, error: function (error) {
+				console.error(error);
+			}
 		});
 	});
+
+
 
 });

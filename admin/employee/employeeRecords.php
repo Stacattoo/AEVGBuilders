@@ -25,7 +25,7 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 
         <div class="row">
             <div class="col-8">
-                <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
+                <h5 class="card-subtitle text-muted align-bottom m-0" id="empStatusID"><?php echo $userData->id; ?></h5>
                 <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
                 <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
                 <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>

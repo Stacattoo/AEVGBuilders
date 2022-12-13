@@ -302,9 +302,9 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
 
                     if (response.status == 'success') {
                         console.log("dsplay");
-                        displayApproveClient();
-                        displayPendingClient();
-                        $('#chooseModal').modal("hide");
+                        // displayClient();
+                        // displayPendingClient();
+                        // $('#chooseModal').modal("hide");
                         location.reload(); //RELOAD NG PAGE
 
                     }
