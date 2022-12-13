@@ -582,9 +582,10 @@ class dbHandler
 
     function insertEmployeeMessage($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
+        $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
+            
             if ($row = mysqli_fetch_assoc($result)) {
                 $msg = json_decode($row["content"]);
                 array_push($msg, json_decode($content)[0]);
@@ -600,7 +601,7 @@ class dbHandler
 
     function insertEmployeeFiles($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
+        $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $msg = array();
@@ -624,7 +625,7 @@ class dbHandler
     function insertEmployeeCostEstimate($content, $client, $id)
     {
 
-        $sql = "UPDATE `message` SET costEstimate='$content' WHERE client_id='$client' AND employee_id='$id'";
+        $sql = "UPDATE `message` SET costEstimate='$content', employee_id='$id' WHERE client_id='$client'";
         $result = mysqli_query($this->conn, $sql);
         if ($result) {
             $date = date('Y-m-d H:i:s');
@@ -653,7 +654,7 @@ class dbHandler
     function getContent($client_id, $id)
 
     {
-        $sql = "SELECT * FROM message WHERE employee_id='$id' AND client_id='$client_id'";
+        $sql = "SELECT * FROM message WHERE client_id='$client_id'";
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {

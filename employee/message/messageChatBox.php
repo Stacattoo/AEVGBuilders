@@ -51,7 +51,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                     </button>
                     <!-- <input type="text"> -->
                     <ul class="dropdown-menu">
-                        <input type="file" class="filesEmp d-none" id="filesEmployee" name="filesEmployee[]">
+                        <input type="file" class="filesEmp d-none" id="filesEmployee" name="filesEmployee[]" multiple>
                         <input type="file" class="costEst d-none" id="costEstimate" name="costEstimate">
                         <li>
                             <button class="dropdown-item" type="button" id="filesEmployeeBtn">
@@ -149,19 +149,19 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         });
 
 
-        $('#filesEmployee').change(function(e) {
-            e.preventDefault();
-            var $fileUpload = $("input[name='filesEmployee']");
-            if (parseInt($fileUpload.get(0).files.length) > 5) {
+        // $('#filesEmployee').change(function(e) {
+        //     e.preventDefault();
+        //     var $fileUpload = $("input[name='filesEmployee']");
+        //     if (parseInt($fileUpload.get(0).files.length) > 5) {
 
-                $('#errorFiles').show();
-                $('#errorFiles').html("You can only upload a maximum of 5 files. Please Try again!");
-                $('#filesEmployee').trigger("reset");
+        //         $('#errorFiles').show();
+        //         $('#errorFiles').html("You can only upload a maximum of 5 files. Please Try again!");
+        //         $('#filesEmployee').trigger("reset");
 
-            } else {
-                $('#errorFiles').hide();
-            }
-        });
+        //     } else {
+        //         $('#errorFiles').hide();
+        //     }
+        // });
 
         // $('#costEstimate').change(function(e){
         //     e.preventDefault();
@@ -180,7 +180,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
         function displayMessage() {
 
             var id = $('#clientID').val();
-
+            console.log(id);
             $.ajax({
                 type: "POST",
                 url: "../message/messageProcess.php",
@@ -191,6 +191,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                 dataType: "JSON",
                 success: function(response) {
+                    console.log(response);
                     var splitBack = '';
                     var content = ``;
                     var filesContMsg = ``;
