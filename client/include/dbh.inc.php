@@ -479,33 +479,11 @@ class dbHandler
                 return mysqli_query($this->conn, $sql);
             }
         } else {
-            $sql = "INSERT INTO message(files, client_id) VALUES ('$content', '$id')";
+            $sql = "INSERT INTO message(files) VALUES ('$content')";
             return mysqli_query($this->conn, $sql);
         }
     }
-    function insertClientFilesQuery($content, $id)
-    {
-        $sql = "SELECT * FROM message WHERE client_id = '$id'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_num_rows($result)) {
-            $msg = array();
-            if ($row = mysqli_fetch_assoc($result)) {
-                if ($row["files"] != '') {
-                    $msg = json_decode($row["files"]);
-                } else {
-                    $msg = array();
-                }
-                array_push($msg, json_decode($content)[0]);
-                $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$id'";
-                return mysqli_query($this->conn, $sql);
-            }
-        } else {
-            $content = json_encode($content);
-            $sql = "INSERT INTO message(client_id , files) VALUES ('$id', '$content')";
-            return mysqli_query($this->conn, $sql);
-        }
-    }
+   
 
 
     function getContent($id)

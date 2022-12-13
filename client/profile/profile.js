@@ -275,30 +275,29 @@ $(document).ready(function () {
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
         
-        $('#filesEmployee').click()
-
         $('#messageForm').submit(function (e) {
+
             e.preventDefault();
-            // $.ajax({
-            //     type: "POST",
-            //     url: "messageProcess.php",
-            //     data: new FormData(this),
-            //     dataType: "json",
-            //     contentType: false,
-            //     cache: false,
-            //     processData: false,
-            //     success: function (response) {
-            //         if (response.status == 'success') {
-            //             $('#messageForm').trigger("reset");
-            //             $('#contentID').html("");
-            //             $("#mesBody").animate({
-            //                 scrollTop: $("#mesBody").get(0).scrollHeight
-            //             }, 10);
-            //         }
-            //     }, error: function (response) {
-            //         console.error(response.responseText);
-            //     }
-            // });
+            $.ajax({
+                type: "POST",
+                url: "messageProcess.php",
+                data: new FormData(this),
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.status == 'success') {
+                        $('#messageForm').trigger("reset");
+                        $('#contentID').html("");
+                        $("#mesBody").animate({
+                            scrollTop: $("#mesBody").get(0).scrollHeight
+                        }, 10);
+                    }
+                }, error: function (response) {
+                    console.error(response.responseText);
+                }
+            });
         });
         $('.fileBtnClient').click(function (e) {
             e.preventDefault();
