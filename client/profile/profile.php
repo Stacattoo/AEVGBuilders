@@ -270,7 +270,7 @@ $getSched = $dbh->getSched($_SESSION['id']);
             </table>
         </div>
     </div>
-
+    
     <div class="container mt-3">
         <h2>On site portfolio.</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
@@ -511,7 +511,7 @@ $getSched = $dbh->getSched($_SESSION['id']);
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
             </ul>
-            <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+            <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
         </footer>
     </div>
