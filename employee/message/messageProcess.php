@@ -19,7 +19,7 @@ if (isset($_FILES['filesEmployee'])) {
             $img_path = "../../clientEmployeeFiles/" . basename($file_name);
             $paths .= $img_path . "&&^%$%$";
             if (in_array($ext, $imageType)) {
-                $file_type .= 'image' . '&^%$%$';
+                $file_type .= 'image';
             }
             if(in_array($ext, $docType)){
                 $file_type .= 'file';
@@ -99,7 +99,6 @@ if (isset($_POST['employeeMessage']) && $_POST['employeeMessage'] != '') {
     );
     // }
     $jsonContent = json_encode($jsonContent);
-    // var_dump($_POST);
     // echo"textmsg";
     if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
         echo json_encode(array(

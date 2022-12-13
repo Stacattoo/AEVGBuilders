@@ -38,7 +38,7 @@ $(document).ready(function () {
             success: function (response) {
                 // $('#contentID').trigger("reset");
                 var contentMsgDisplay = '';
-                mesContent = "<></>"
+                mesContent = ""
                 $.each(response.content, function (indexInArray, val) {
 
                     response.content.sort(function (a, b) {
@@ -167,7 +167,7 @@ $(document).ready(function () {
                             }
                         }
                     }
-                   
+
 
                 });
                 // $("#mesBody").animate({
@@ -212,16 +212,12 @@ $(document).ready(function () {
                         <div class="d-flex justify-content-between">
                             <input class="card-subtitle text-muted align-bottom m-0" name="clientID" id="clientID" value="" hidden>
                             <textarea class="form-control border-0" type="text" name="clientMessage" style="height: 20px;" placeholder="Write a message..."></textarea>
-                            <div class="dropdown m-0">
-                                <button class="btn btn-light text-secondary  fas fa-paperclip text-primary" data-bs-toggle="dropdown" id="aria-expanded=" false>
-                                    
-                                </button>
-                                <ul class="dropdown-menu">
-                                <input type="file" class="filesEmp" id="filesEmployee" name="filesEmployee[]" multiple>
-                                </ul>
-                            </div>
-                            <button class="btn btn-light text-secondary">
-                                <i class="far fa-paper-plane text-primary"></i>
+                            <input type="file" class="filesEmp d-none" id="filesEmployee" name="filesEmployee[]" multiple>
+                            <button class="btn ms-1 text-muted" type="button" id="sendFile">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-paper-plane"></i>
                             </button>
                         </div>
                     </div>    
@@ -274,7 +270,11 @@ $(document).ready(function () {
         var popover = $("#" + $("#msg").attr("aria-describedby"));
         $(popover).addClass("popover-msg");
         $('#mesBody').html(mesContent);
-        
+        $("#sendFile").click(function (e) { 
+            e.preventDefault();
+            $("#filesEmployee").trigger('click');
+        });
+
         $('#messageForm').submit(function (e) {
 
             e.preventDefault();
@@ -552,7 +552,7 @@ $(document).ready(function () {
                         </div>
                      `;
                 });
-                
+
                 $("#portfolioOnsite").html(content);
 
                 $(".portfolioBtn").click(function (e) {
@@ -602,8 +602,8 @@ $(document).ready(function () {
             }
         });
     }
-    
-    function displayDateApp(){
+
+    function displayDateApp() {
 
         $.ajax({
             type: "POST",
@@ -615,16 +615,16 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log(response);
                 var dateTime = '';
-                var comb = response.date + ' '  +response.time;
+                var comb = response.date + ' ' + response.time;
                 console.log(comb);
-                    var d = new Date(comb);
-                    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var d = new Date(comb);
+                var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-                    var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
-                    var time = d.toLocaleTimeString().toLowerCase();
-                    dateTime = date + " at " + time;
-                    // splitBack = val.content.replace("../../clientEmployeeFiles/", '');
-                
+                var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
+                var time = d.toLocaleTimeString().toLowerCase();
+                dateTime = date + " at " + time;
+                // splitBack = val.content.replace("../../clientEmployeeFiles/", '');
+
                 // console.log(content);
                 $('#displayAppDate').html(dateTime);
             }

@@ -206,8 +206,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                         var contentMsgDisplay = '';
                         var imgArr = val.content.split('&&^%$%$');
-                        var fileArr = val.type.split("&^%$%$")
-
+                        var fileArr = val.type;
+                        // debugger
 
                         for (let i in imgArr) {
                             contentMsgDisplay = imgArr[i];
@@ -216,7 +216,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             //--- para sa mga files ---
 
                             if (isEmployee) {
-                                if (fileArr[i] == "image") {
+                                if (fileArr == "image") {
                                     content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
                                     <div class="pe-2">
                                         <div>
@@ -229,7 +229,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
-                                } else if (fileArr[i] == "file") {
+                                } else if (fileArr == "file") {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
 
                                     filesContMsg += `
@@ -251,7 +251,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                         <img src="../../images/defaultUserImage.jpg" style="max-height: 40px;" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div> `;
-                                } else if (fileArr[i] == "text") {
+                                } else if (fileArr == "text") {
                                     content += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4 ">
                                     <div class="pe-2">
                                         <div>
@@ -267,7 +267,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                 }
 
                             } else {
-                                if (fileArr[i] == "image") {
+                                if (fileArr == "image") {
                                     content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
@@ -283,7 +283,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                         </div>
                     `;
-                                } else if (fileArr[i] == "file") {
+                                } else if (fileArr == "file") {
                                     splitBack = contentMsgDisplay.replace("../../clientEmployeeFiles/", '');
 
                                     filesContMsg += `

@@ -259,7 +259,7 @@ $getSched = $dbh->getSched($_SESSION['id']);
                         <td>No Cost Estimate</td>
                         <td></td>
                         <td></td>
-                    </tr>`;
+                    </tr>
                 </thead>
 
 
@@ -272,7 +272,8 @@ $getSched = $dbh->getSched($_SESSION['id']);
     </div>
     
     <div class="container mt-3">
-        <h2>On site portfolio.</h2>
+        <hr>
+        <h2>On site portfolio</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
         </div>
         <div id="hidePortDiv" class="mt-5">

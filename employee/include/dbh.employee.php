@@ -632,7 +632,8 @@ class dbHandler
                 (object)[
                     "content" => "Cost Estimate has been sent! Kindly Check your profile to view and download",
                     "dateTime" => $date,
-                    "sender" => "employee"
+                    "sender" => "employee",
+                    "type" => "text"
                 ]
 
             );
