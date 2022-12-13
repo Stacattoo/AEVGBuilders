@@ -37,6 +37,7 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 // $('#contentID').trigger("reset");
+                // console.log(response);
                 var contentMsgDisplay = '';
                 mesContent = "<></>"
                 $.each(response.content, function (indexInArray, val) {

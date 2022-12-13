@@ -99,8 +99,7 @@ if (isset($_POST['employeeMessage']) && $_POST['employeeMessage'] != '') {
     );
     // }
     $jsonContent = json_encode($jsonContent);
-    // var_dump($_POST);
-    // echo"textmsg";
+
     if ($dbh->insertEmployeeMessage($jsonContent, $clientID, $_SESSION['id'])) {
         echo json_encode(array(
             "status" => 'success',
