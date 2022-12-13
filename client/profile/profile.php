@@ -276,6 +276,7 @@ $getSched = $dbh->getSched($_SESSION['id']);
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
         </div>
         <div id="hidePortDiv" class="mt-5">
+            <!-- <div class="bg-light mt-5 fs-5">No Uploaded Progess yet.</div> -->
             <div class="card mb-2  rounded-3">
                 <div class="card-body rounded-3 " style="background-color:#f8f9fa;">
                     <div class="d-flex justify-content-between">

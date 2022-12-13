@@ -479,13 +479,14 @@ class dbHandler
                 return mysqli_query($this->conn, $sql);
             }
         } else {
-            $sql = "INSERT INTO message(files, client_id) VALUES ('$content', '$id')";
+            $sql = "INSERT INTO message(files, id) VALUES ('$content', '$id')";
             return mysqli_query($this->conn, $sql);
         }
     }
-    function insertClientFilesQuery($content, $id)
+   
+    function insertClientMesFiles($content, $client)
     {
-        $sql = "SELECT * FROM message WHERE client_id = '$id'";
+        $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $msg = array();
@@ -497,16 +498,15 @@ class dbHandler
                 }
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$id'";
+                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
         } else {
             $content = json_encode($content);
-            $sql = "INSERT INTO message(client_id , files) VALUES ('$id', '$content')";
+            $sql = "INSERT INTO message(client_id , files) VALUES ('$client', '$content')";
             return mysqli_query($this->conn, $sql);
         }
     }
-
 
     function getContent($id)
     {

@@ -69,7 +69,7 @@ if (isset($_FILES['filesEmployee'])) {
 
         $jsonFiles = json_encode($jsonFiles);
 
-        if ($dbh->insertClientFilesQuery($jsonFiles, $_SESSION['id'])) {
+        if ($dbh->insertClientMesFiles($jsonFiles, $_SESSION['id'])) {
             echo json_encode(array(
                 "status" => 'success',
                 "msg" => 'Profile Update Successfully.'
