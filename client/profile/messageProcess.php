@@ -43,7 +43,7 @@ if (isset($_FILES['filesEmployee'])) {
             $img_path = "../../clientEmployeeFiles/" . basename($file_name);
             $paths .= $img_path . "&&^%$%$";
             if (in_array($ext, $imageType)) {
-                $file_type .= 'image' . '&^%$%$';
+                $file_type .= 'image';
             }
             if(in_array($ext, $docType)){
                 $file_type .= 'file';

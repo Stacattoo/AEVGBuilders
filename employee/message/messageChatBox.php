@@ -207,7 +207,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                         var contentMsgDisplay = '';
                         var imgArr = val.content.split('&&^%$%$');
-                        var fileArr = val.type;
+                        var fileArr = val.type.split("&^%$%$");
+                        // var fileArr = val.type;
                         // debugger
 
                         for (let i in imgArr) {
@@ -222,7 +223,7 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                                     <div class="pe-2">
                                         <div>
                                             <div class="card text-white d-inline-block p-1  border-0 rounded-4" title="${val.dateTime}" style="background-color: #00a6fb">
-                                            <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;">
+                                            <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -269,6 +270,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
                             } else {
                                 if (fileArr == "image") {
+                                    // fileArr = val.type.split("&^%$%$");
+                                    // splitBack = contentMsgDisplay.replace("&^%$%$", '');
                                     content += `
                             <div class="d-flex align-items-baseline mb-4">
                             <div class="position-relative avatar">
@@ -276,8 +279,8 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                             </div>
                             <div class="pe-2">
                                 <div>
-                                    <div class="card  text-white d-inline-block p-1  border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
-                                    <img src="${contentMsgDisplay}" class="d-block img-fluid img" style="max-height: 150px;"><a href="${contentMsgDisplay}" target="_blank">
+                                    <div class="card text-white d-inline-block p-1  border-0 rounded-4 fs-6" title="${val.dateTime}" style="background-color: #0582ca">
+                                    <a href="${contentMsgDisplay}" target="_blank"><img src="${contentMsgDisplay}" class="d-block img-fluid img rounded-4 fs-6" style="max-height: 300px;"></a>
                                     </div>
                                 </div>
 
