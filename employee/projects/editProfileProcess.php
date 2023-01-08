@@ -1,6 +1,5 @@
 <?php
 include('../include/dbh.employee.php');
-//C:\xampp\htdocs\AEVGBuilders\employee\include\dbh.employee.php
 $dbh = new dbHandler;
 
 $trimmed_array = "";
@@ -28,7 +27,6 @@ if (isset($_FILES['imageEdit']['name']) && $_FILES['imageEdit']['name'] != '') {
 
 
 if (isset($_POST['titleEdit'])) {
-    //echo "asd";
 
     $oldImgImp =  trim($oldImgImp, ",");
 

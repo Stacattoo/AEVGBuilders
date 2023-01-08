@@ -1,7 +1,5 @@
-
 function displayUsers(searchQuery='') {
 	$(document).ready(function () {
-		$("#records").html("");
 		$.ajax({
 			type: "POST",
 			url: "employee/employeeProcess.php",
@@ -18,9 +16,9 @@ function displayUsers(searchQuery='') {
 				$.each(filtered, function (i, data) {
 					content += `
 					<button type="button" class="client list-group-item list-group-item-action" data-id='`+ data.id + `'>
-						<div class="row d-flex align-items-center">
-							<div class="col-3">
-								<img id="view_profile" src="../employee/profile/${data.profile_picture}" class="img-fluid rounded-circle border p-1">
+						<div class="row d-flex align-items-center" >
+							<div class="col-3 text-center">
+								<img id="view_profile" src="../employee/profile/${data.profile_picture}" class="rounded-circle border-0 " style=" height:70px; width:70px;">
 							</div>
 							<div class="col ">
 								<div id="view-fullName" class="mb-1 text-capitalize h5"><b>${data.fullName}</b></div>
@@ -31,12 +29,7 @@ function displayUsers(searchQuery='') {
 					</button>`;
 				});
 				$('#list').html(content);
-			},
-			error: function (dataResult) {
-				console.log(dataResult);
-				$("#error").html(dataResult.responseText);
-			},
-			complete: function () {
+
 				$(".client").click(function (e) {
 					e.preventDefault();
 					$(".client").removeClass("active");
@@ -51,19 +44,22 @@ function displayUsers(searchQuery='') {
 
 						},
 						error: function (result) {
-							console.log(result);
 						}
 					});
 				});
+			},
+			error: function (dataResult) {
+				$("#error").html(dataResult.responseText);
 			}
 		});
 	});
 }
 
 $(document).ready(function () {
+	$("#addSpinner").hide();
 	$("#addEmployeeForm").submit(function (e) { 
 		e.preventDefault();
-		var data = $(this).serializeArray();  // Form Data
+		var data = $(this).serializeArray();
         data.push({ name: 'ADD_EMPLOYEE_REQ', value: true });
 		$.ajax({
 			type: "POST",
@@ -71,23 +67,26 @@ $(document).ready(function () {
 			data: data,
 			dataType: "JSON",
 			success: function (ADD_EMPLOYEE_RESP) {
-				console.log(ADD_EMPLOYEE_RESP);
 				if (ADD_EMPLOYEE_RESP) {
 					displayUsers();
 					$("#addEmployeeModal").modal("hide");
 				} else {
-					console.error(ADD_EMPLOYEE_RESP);
 					$("#error").html(ADD_EMPLOYEE_RESP.msg);
 				}
+				$("#addBtn").removeAttr("disabled");
+				$("#addSpinner").hide();
 			}, error: function(response) {
 				$("#error").html(response.responseText);
+			}, beforeSend: function() {
+				$("#addBtn").attr("disabled", true);
+				$("#addSpinner").show();
 			}
 		});
 	});
 
 	$("#editEmployeeForm").submit(function (e) { 
 		e.preventDefault();
-		var data = $(this).serializeArray();  // Form Data
+		var data = $(this).serializeArray();
         data.push({ name: 'EDIT_EMPLOYEE_REQ', value: true });
 		$.ajax({
 			type: "POST",
@@ -95,12 +94,10 @@ $(document).ready(function () {
 			data: data,
 			dataType: "JSON",
 			success: function (EDIT_EMPLOYEE_RESP) {
-				console.log(EDIT_EMPLOYEE_RESP);
 				if (EDIT_EMPLOYEE_RESP) {
 					displayUsers();
 					$("#editEmployeeModal").modal("hide");
 				} else {
-					console.error(EDIT_EMPLOYEE_RESP);
 					$("#error").html(EDIT_EMPLOYEE_RESP.msg);
 				}
 			}, error: function(response) {
@@ -108,6 +105,29 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	$('.statusBtn').click(function(e) {
+		e.preventDefault();
+		var status = $(this).data("status");
+		var id = $('#empStatusID').html();
+		console.log(status);
+		console.log(id);
+		// debugger
+		$.ajax({
+			url: "../employee/employeeProcess.php",
+			type: "POST",
+			data: {
+				updateStatus: id,
+				employeeStatus: status 
+			},
+			success: function(dataResult) {
+				$('#statusId').html(status);
+			}, error: function (error) {
+				console.error(error);
+			}
+		});
+	});
+
 
 
 });

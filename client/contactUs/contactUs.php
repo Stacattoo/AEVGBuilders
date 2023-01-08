@@ -1,6 +1,7 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,9 @@ $dbh = new dbHandler;
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  <script src="contactUS.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
+  <script src="contactUs.js"></script>
 </head>
 
 
@@ -30,7 +33,7 @@ $dbh = new dbHandler;
         <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
         <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-        <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
+        <!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
         <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-secondary">Appointment</a></li>
       </ul>
 
@@ -53,10 +56,6 @@ $dbh = new dbHandler;
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
               </ul>
             </div>
@@ -74,20 +73,20 @@ $dbh = new dbHandler;
   </div>
   <main class="container ">
     <div>
-      <!-- Step1 -->
-      <div id="step1">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+      <form id="appointForm">
+        <!-- Step1 -->
+        <div id="step1">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
             </div>
-          </div>
 
-          <div class="card-body mx-auto">
+            <div class="card-body mx-auto">
 
-            <h2 class="mb-3">Set an Appointment</h2>
-            <p class="h6 text-muted">Please check your information.</p>
-            <form id="appointForm">
+              <h2 class="mb-3">Set an Appointment</h2>
+              <p class="h6 text-muted">Please check your information.</p>
 
               <div class="row g-3">
                 <div class="col-sm-6">
@@ -108,31 +107,31 @@ $dbh = new dbHandler;
                 <div class="col-sm-4">
                   <label for="contactNo" class="form-label">Contact Number</label>
                   <div class="input-group has-validation">
-                    <input type="text" class="form-control" name="contactNo" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" readonly>
+                    <input type="text" class="form-control" name="contactNo" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
                   </div>
                 </div>
               </div>
-            </form>
 
-          </div>
-          <div class="d-flex justify-content-end mx-3 my-3 px-3">
-            <button type="button" id="step1Btn" class="btn btn-outline-dark btn-lg ">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Step 2 -->
-      <div id="step2">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-end mx-3 my-3 px-3">
+              <button type="button" id="step1Btn" class="btn btn-outline-dark btn-lg ">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
-            <h2 class="mb-3">Set an Appointment</h2>
-            <form id="appointForm">
+        <!-- Step 2 -->
+        <div id="step2">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <div class="card-body mx-auto">
+              <h2 class="mb-3">Set an Appointment</h2>
+
               <div class="row g-3">
                 <div class="col-sm-6">
                   <h5 class="form-label mb-4">Project Type</h5>
@@ -161,6 +160,11 @@ $dbh = new dbHandler;
                   <div class="form-check">
                     <input id="projectType6" name="projectType" type="radio" value="Interior" class="form-check-input">
                     <label class="form-check-label" for="projectType6">Interior</label>
+                  </div>
+                  <div class="form-check">
+                    <input id="projectType8" name="projectType" type="radio" value="Renovation" class="form-check-input">
+                    <label class="form-check-label" for="projectType8">Renovation</label>
+
                   </div>
                   <div class="form-check">
                     <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input">
@@ -223,19 +227,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1" value="1">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios1"> <img src="../../images/1.jpg" alt="" class="img-fit rounded-3"> </label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios1"> <img src="../../images/contactUsImg/1.jpg" alt="" class="img-fit rounded-3"> </label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios2" value="2">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios2"><img src="../../images/2.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios2"><img src="../../images/contactUsImg/2.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios3" value="3">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios3"> <img src="../../images/3.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios3"> <img src="../../images/contactUsImg/3.png" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -246,19 +250,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios4" value="4">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios4"> <img src="../../images/4.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios4"> <img src="../../images/contactUsImg/4.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios5" value="5">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios5"> <img src="../../images/5.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios5"> <img src="../../images/contactUsImg/5.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios6" value="6">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios6"> <img src="../../images/6.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios6"> <img src="../../images/contactUsImg/6.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -269,19 +273,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios7" value="7">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios7"> <img src="../../images/7.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios7"> <img src="../../images/contactUsImg/7.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios8" value="8">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios8"> <img src="../../images/8.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios8"> <img src="../../images/contactUsImg/8.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios9" value="9">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios9"> <img src="../../images/9.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios9"> <img src="../../images/contactUsImg/9.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -292,19 +296,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios10" value="10">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios10"> <img src="../../images/10.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios10"> <img src="../../images/contactUsImg/10.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios11" value="11">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios11"> <img src="../../images/11.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios11"> <img src="../../images/contactUsImg/11.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios12" value="12">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios12"> <img src="../../images/12.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios12"> <img src="../../images/contactUsImg/12.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -315,19 +319,19 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios13" value="13">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios13"> <img src="../../images/13.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios13"> <img src="../../images/contactUsImg/13.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios14" value="14">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios14"> <img src="../../images/14.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios14"> <img src="../../images/contactUsImg/14.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios15" value="15">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios15"> <img src="../../images/15.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios15"> <img src="../../images/contactUsImg/15.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
@@ -338,45 +342,45 @@ $dbh = new dbHandler;
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios16" value="16">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios16"> <img src="../../images/16.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios16"> <img src="../../images/contactUsImg/16.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios17" value="17">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios17"> <img src="../../images/17.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios17"> <img src="../../images/contactUsImg/17.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                       <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios18" value="18">
-                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios18"> <img src="../../images/18.jpg" alt="" class="img-fit rounded-3"></label>
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios18"> <img src="../../images/contactUsImg/18.jpg" alt="" class="img-fit rounded-3"></label>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="d-flex justify-content-between mx-3 my-3 px-3">
-            <button type="button" id="prev1Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
-            <button type="button" id="step2Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- STEP 3 -->
-      <div id="step3">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-between mx-3 my-3 px-3">
+              <button type="button" id="prev1Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
+              <button type="button" id="step2Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
+        <!-- STEP 3 -->
+        <div id="step3">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
 
-            <h2 class="mb-3">Set an Appointment</h2>
-            <form id="appointForm">
+            <div class="card-body mx-auto">
+
+              <h2 class="mb-3">Set an Appointment</h2>
+
               <div class="row g-3">
                 <div class="col-sm-9">
                   <label for="projLocation" class="form-label">Project Location</label>
@@ -384,7 +388,7 @@ $dbh = new dbHandler;
                 </div>
 
                 <div class="col-sm-3">
-                  <label for="cc-name" class="form-label">Lot Area</label>
+                  <label for="cc-name" class="form-label">Lot Area<p class="fw-light">(ex. sqm)</p></label>
                   <input type="text" class="form-control" name="lotArea" id="cc-name" placeholder="" required>
                 </div>
 
@@ -413,26 +417,26 @@ $dbh = new dbHandler;
                 </div>
               </div>
 
-            </form>
-          </div>
-          <div class="d-flex justify-content-between mx-3 my-3 px-3">
-            <button type="button" id="prev2Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
-            <button type="button" id="step3Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
 
-      <!-- STEP 4 -->
-      <div id="step4">
-        <div class="card ">
-          <div class="card-header">
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+            </div>
+            <div class="d-flex justify-content-between mx-3 my-3 px-3">
+              <button type="button" id="prev2Btn" class="btn btn-outline-dark btn-lg"><i class="fas fa-chevron-left"></i> Back</button>
+              <button type="button" id="step3Btn" class="btn btn-outline-dark btn-lg">Next <i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="card-body mx-auto">
-            <form id="appointForm">
+        <!-- STEP 4 -->
+        <div id="step4">
+          <div class="card ">
+            <div class="card-header">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <div class="card-body mx-auto">
+
               <div class="row g-2">
                 <h4 class="mb-3">Set your Appointment</h4>
                 <div class="col-md">
@@ -465,39 +469,34 @@ $dbh = new dbHandler;
                   <label for="address2" class="form-label">Preferred Time</label>
                   <input type="time" class="form-control" name="appointmentTime" id="appointmentTime" placeholder="" required>
                 </div>
-                <div class="alert alert-danger" role="alert" id="alertError">
-                  Error!
+                <div class="col-6">
+                  <div class="alert alert-danger mt-2" role="alert" id="alertErrorApp">
+                  </div>
                 </div>
 
                 <button class="btn btn-primary mt-4" type="submit">Set an Appointment</button>
               </div>
 
-            </form>
-          </div>
-          <div class="d-flex justify-content-start mx-3 my-3 px-3">
-            <button type="button" id="prev3Btn" class="btn btn-outline-dark btn-lg "><i class="fas fa-chevron-left"></i> Back</button>
+
+            </div>
+            <div class="d-flex justify-content-start mx-3 my-3 px-3">
+              <button type="button" id="prev3Btn" class="btn btn-outline-dark btn-lg "><i class="fas fa-chevron-left"></i> Back</button>
+            </div>
           </div>
         </div>
-        </div>
+      </form>
     </div>
 
     <!-- <input class="form-control mx-4" type="text" name="businessTypeName" id="flexCheckChecked7"> -->
 
-
-
-
-
-
-
-
     <div class="container">
       <footer class="py-3 my-4">
         <hr>
-        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+        <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
       </footer>
     </div>
-
+  </main>
 
 </body>
 

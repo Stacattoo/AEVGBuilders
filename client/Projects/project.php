@@ -30,10 +30,10 @@ $dbh = new dbHandler;
 				<li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
 				<li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
 				<li><a href="../projects/project.php" class="nav-link px-2 link-secondary">Projects</a></li>
-				<li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-				<?php if (isset($_SESSION['id'])) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
-                <?php }  ?>
+				<!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
+				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+				<?php }  ?>
 			</ul>
 
 			<div class="col-md-3 text-end">
@@ -43,7 +43,7 @@ $dbh = new dbHandler;
 
 
 					<a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-					<a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+					<a href="../../index.php" class="btn btn-outline-dark me-2">Login</a>
 
 				<?php } else { ?>
 
@@ -56,10 +56,6 @@ $dbh = new dbHandler;
 							</a>
 							<ul class="dropdown-menu text-small shadow">
 								<li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-								<li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
 								<li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
 							</ul>
 						</div>
@@ -81,14 +77,17 @@ $dbh = new dbHandler;
 	<div class="nav-scroller py-1 mb-2">
 		<nav class="nav d-flex justify-content-center">
 			<button class="p-2 link-secondary btn btn-link category">All</button>
-			<button class="p-2 link-secondary btn btn-link category">Building</button>
-			<button class="p-2 link-secondary btn btn-link category">Commercial</button>
-			<button class="p-2 link-secondary btn btn-link category">Design</button>
-			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
-			<button class="p-2 link-secondary btn btn-link category">Blueprints</button>
 			<button class="p-2 link-secondary btn btn-link category">Residentials</button>
+			<button class="p-2 link-secondary btn btn-link category">Commercial</button>
+			<button class="p-2 link-secondary btn btn-link category">Mixed-Use</button>
+			<button class="p-2 link-secondary btn btn-link category">Institutional</button>
+			<button class="p-2 link-secondary btn btn-link category">Industrial</button>
+			<button class="p-2 link-secondary btn btn-link category">Interior</button>
+			<button class="p-2 link-secondary btn btn-link category">Renovation</button>
+
 
 		</nav>
+		
 
 		<div class="container mt-5">
 
@@ -99,7 +98,7 @@ $dbh = new dbHandler;
 			<div class="container">
 				<footer class="py-3 my-4">
 					<hr>
-					<p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+					<p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
 				</footer>
 			</div>

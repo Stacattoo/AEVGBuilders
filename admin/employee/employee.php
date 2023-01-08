@@ -15,7 +15,23 @@
 
             </div>
         </div>
-        <div id="records" class="col"></div>
+        <div id="records" class="col">
+            <div class="card mb-2   ">
+                <div class="" style="background-color:#343a40;">
+                    <div class="mt-4 mb-2 mx-3 rounded" style="height: 20px; width: 30px; background-color:#495057;"></div>
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 50px; width: 700px; background-color:#495057;"></div>
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class="mt-2 mb-4 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="background-color:#f8f9fa;">
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#e9ecef;"></div>
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 70px; width: 1000px; background-color:#e9ecef;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -98,7 +114,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                    <button type="submit" class="btn btn-primary" id="addBtn">
+                        Add Employee
+                        <span class="spinner-border spinner-border-sm" id="addSpinner" role="status"></span>
+                    </button>
                 </div>
             </form>
         </div>

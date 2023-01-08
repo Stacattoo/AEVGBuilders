@@ -8,34 +8,78 @@ $(document).ready(function () {
         data: { getTop5Reaction: true },
         dataType: "JSON",
         success: function (response) {
-            $.each(response, function (indexInArray, project) { 
-                let content = `
+            let content = ``;
+            $.each(response, function (indexInArray, project) {
+                content += `
+                
                     <tr>
+                        <td class="text-center"><img src="../employee/profile/${project.profile_picture}" class="rounded-circle" width="50px" height="50px" alt=""></td>
+                        <td>${project.fullName}</td>
                         <td>${project.ctr}</td>
                         <td>${project.title}</td>
-                        <td>${project.image}</td>
                         <td>${project.category}</td>
-                        <td>${project.description}</td>
-                        <td></td>
+                        <td class="text-center"><button type="button" class="viewBtn btn btn-dark" data-id="${project.id}" data-bs-toggle="modal" data-bs-target="#viewModal">View</button></td>
                     </tr>
                 `;
-                 $("#popularProject").append(content);
             });
+            $("#popularProject").html(content);
+            $(".viewBtn").click(function (e) {
+                e.preventDefault();
+                let id = $(this).data("id");
+                var selected = response.filter(function (data) {
+                    return data.id == id;
+                })[0];
+                let images = ``;
+                $.each(selected.image, function (indexInArray, path) {
+                    let active = '';
+                    if (indexInArray == 0) {
+                        active = "active";
+                    }
+                    images += `<div class="carousel-item ${active}">
+                                <img src="../employee/projects/${path}" class="d-block w-100 img-fluid img-modal">
+                                </div>`;
+                });
+                let content = `
+                <div id="carouselExampleIntervalModal" class="carousel slide">
+                    <div class="carousel-inner">
+                        ${images}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalModal" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="d-flex justify-content-between w-100 mt-3">
+                    <h2 class="fw-normal">${selected.title} </h2>
+                </div>
+                <p>${selected.description}</p>
+                `;
+
+
+                $("#projectModalBody").html(content);
+
+            });
+
         }, error: function (response) {
-            // console.error(response); 4
         }
     });
 
     // CLIENTS FEEDBACK
-    $.ajax({
-        type: "POST",
-        url: "dashboard/dashboardProcess.php",
-        data: { getClientsFeedback: true },
-        dataType: "JSON",
-        success: function (response) {
-            let content = ``;
-            $.each(response, function (indexInArray, feedback) { 
-                content += `
+    displayFeedback();
+    function displayFeedback() {
+        $.ajax({
+            type: "POST",
+            url: "dashboard/dashboardProcess.php",
+            data: { getClientsFeedback: true },
+            dataType: "JSON",
+            success: function (response) {
+                let content = ``;
+                $.each(response, function (indexInArray, feedback) {
+                    content += `
                     <tr>
                         <td>${feedback.id}</td>
                         <td>${feedback.fullname}</td>
@@ -43,16 +87,111 @@ $(document).ready(function () {
                         <td>${feedback.contact_no}</td>
                         <td>${feedback.feedback}</td>
                         <td>${feedback.date}</td>
-                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${feedback.id}">Post</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="${feedback.id}">Remove</button>
+                        </td>
                     </tr>
                 `;
-            });
-            $("#feedbackContent").html(content);
-        }, error: function (response) {
-            // console.error(response); 3
-        }
-    });
 
+                });
+                $("#feedbackContent").html(content);
+
+                $(".post-feedback").click(function (e) {
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: { changeClientsFeedback: true, feedbackId: id },
+                        dataType: "JSON",
+                        success: function (response) {
+                            displayFeedback();
+                        }
+                    });
+                });
+
+                $(".remove-feedback").click(function (e) { 
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: {disapprovedFeedback: true, feedbackId2: id},
+                        dataType: "JSON",
+                        success: function (response) {
+                            displayFeedback();
+                        }
+                    });
+                    
+                });
+            }, error: function (response) {
+            }
+        });
+    }
+
+    //PROJECT APPROVAL
+    displayProjects();
+    function displayProjects() {
+        $.ajax({
+            type: "POST",
+            url: "dashboard/dashboardProcess.php",
+            data: { getPendingProjects: true },
+            dataType: "JSON",
+            success: function (response) {
+                let content = ``;
+                $.each(response, function (indexInArray, project) {
+                    content += `
+                     <tr>
+                        <td>${project.id}</td>
+                        <td>${project.fullname}</td>
+                        <td>${project.employee_id}</td>
+                        <td>${project.title}</td>
+                        <td>${project.category}</td>
+                        <td>${project.description}</td>
+                        <td>${project.date_time}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success post-project" data-id="${project.id}">Approve</button>
+                            <button type="button" class="btn btn-sm btn-warning remove-project" data-id="${project.id}">Disapprove</button>
+                        </td>
+                    </tr>
+                     `
+                });
+
+                $("#projectContent").html(content);
+
+                $(".post-project").click(function (e) {
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: { approveProjects: true, projectId: id },
+                        dataType: "JSON",
+                        success: function (response) {
+                            displayProjects();
+                        }
+                    });
+
+                });
+
+                $(".remove-project").click(function (e) { 
+                    e.preventDefault();
+                    var id = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "dashboard/dashboardProcess.php",
+                        data: {disapprovedProjects: true, projectId2: id},
+                        dataType: "JSON",
+                        success: function (response) {
+                            displayProjects();
+                        }
+                    });
+                    
+                });
+            }
+        });
+    }
     // PROJECT COUNT
     $.ajax({
         type: "POST",
@@ -60,10 +199,8 @@ $(document).ready(function () {
         data: { getProjects: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalProjects").html(response.length);
-        }, error: function(error){
-            console.log(error);
+        }, error: function (error) {
         }
     });
 
@@ -74,10 +211,8 @@ $(document).ready(function () {
         data: { getRegisteredUsers: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalRegisteredUser").html(response.length);
-        }, error: function(error){
-            console.log(error);
+        }, error: function (error) {
         }
     });
 
@@ -88,14 +223,12 @@ $(document).ready(function () {
         data: { getEmployees: true },
         dataType: "JSON",
         success: function (response) {
-            console.log(response);
             $("#totalEmployees").html(response.length);
-        }, error: function(error){
-            console.log(error);
+        }, error: function (error) {
         }
     });
 
-    
+
 
 
     function displayTotalNumOfClients(year) {
@@ -116,7 +249,6 @@ $(document).ready(function () {
                     var formattedDate = new Date(val.transaction_date);
                     var y = formattedDate.getFullYear();
                     var m = formattedDate.getMonth();
-                    // console.log(); 2
                     if (year == y) {
                         ctr[m]++;
                     }
@@ -137,7 +269,6 @@ $(document).ready(function () {
                 myChart.update();
             },
             error: function (error) {
-                // console.error(error); 1
             }
         });
     }

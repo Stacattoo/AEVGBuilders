@@ -34,11 +34,18 @@ if (isset($_POST['firstName'])) {
 
 
     if ($dbh->profileUpdate($info, $_SESSION['id'])) {
-        // echo $img_path;
-        // move_uploaded_file($_FILES['image']['tmp_name'], $img_path);
+
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Profile Update Successfully.'
         ));
     }
+}
+if (isset($_POST['getCostEstimate'])) {
+    echo json_encode((array)$dbh->getCostEstimate($_SESSION['id'])[0]);
+    // echo "cost estimate";
+}
+if (isset($_POST['checkClientSched'])) {
+    echo json_encode((array)$dbh->checkSchedDate($_SESSION['id'])[0]);
+    // echo "echo";
 }

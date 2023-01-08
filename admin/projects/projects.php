@@ -12,12 +12,11 @@ $dbh = new dbHandler;
     <div class="d-flex justify-content-between mx-4">
 
         <h3><i class="fal fa-city me-2"></i></i>Finished Projects</h3>
-        <!-- <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button> -->
     </div>
     <hr>
     <div class="container-fluid">
         <div class="container mt-5">
-            <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4">
+            <div id="projects" class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-4">
             </div>
         </div>
 
@@ -51,11 +50,14 @@ $dbh = new dbHandler;
                         <div class="col-sm-10">
 
                             <select class="form-select" aria-label="Default select example" id="edit-category" name="categoryEdit">
-                                <option selected disabled>Catergory</option>
+                            <option selected disabled>Catergory</option>
+                                <option value="Residentials">Residentials</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Mixed-Use">Mixed-Use</option>
+                                <option value="Institutional">Institutional</option>
+                                <option value="Industrial">Industrial</option>
                                 <option value="Interior">Interior</option>
-                                <option value="Renovate">Renovate</option>
-                                <option value="Bungalo">Bungalo</option>
-                                <option value="Modern">Modern</option>
+                                <option value="Renovation">Renovation</option>
                             </select>
                         </div>
                     </div>
@@ -79,7 +81,7 @@ $dbh = new dbHandler;
                     <div class="alert alert-success mt-3" role="alert" id="alertSuccessEdit">
                     </div>
                     <button type="button" class="btn  btn-outline-danger" id="deleteBtn" data-id="alertErrorEdit">Delete</a>
-                        <button type="button" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
+                        <button type="submit" class="btn  btn-outline-success " data-id="alertSuccessEdit">Save changes</button>
                         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

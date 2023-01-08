@@ -47,7 +47,7 @@ $dbh = new dbHandler;
         <?php if (!isset($_SESSION['id'])) { ?>
 
           <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-          <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+          <a href="../../index.php" class="btn btn-outline-dark me-2">Login</a>
 
         <?php } else { ?>
 
@@ -60,10 +60,6 @@ $dbh = new dbHandler;
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
               </ul>
             </div>
@@ -192,6 +188,8 @@ $dbh = new dbHandler;
         </div>
 
       </div>
+      
+
 </body>
 <div class="container">
   <footer class="py-3 my-4">

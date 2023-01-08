@@ -11,7 +11,7 @@ $dbh = new dbHandler;
 <div class="container-fluid">
     <div class="d-flex justify-content-between mx-4">
 
-        <h3><i class="fal fa-city me-2"></i></i>Upload Projects</h3>
+        <h3><i class="fal fa-city me-2"></i></i>Finished Projects</h3>
         <button type="button" class="btn btn-dark" data-bs-target="#newProjectModal" data-bs-toggle="modal">New Project</button>
     </div>
     <hr>
@@ -51,10 +51,13 @@ $dbh = new dbHandler;
                             <div class="col-sm-10">
                                 <select class="form-select" aria-label="Default select example" name="category" required>
                                     <option selected disabled>Catergory</option>
+                                    <option value="Residentials">Residentials</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Mixed-Use">Mixed-Use</option>
+                                    <option value="Institutional">Institutional</option>
+                                    <option value="Industrial">Industrial</option>
                                     <option value="Interior">Interior</option>
-                                    <option value="Renovate">Renovate</option>
-                                    <option value="Bungalo">Bungalo</option>
-                                    <option value="Modern">Modern</option>
+                                    <option value="Renovation">Renovation</option>
                                 </select>
                             </div>
                         </div>
@@ -77,13 +80,16 @@ $dbh = new dbHandler;
                                             <span class="select" role="button">Browse</span>
                                         </span>
                                         <span class="on-drop">Drop images here</span>
-                                        <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                                        <input type="file" id="imgBtn" class="form-control" name="image[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple require>
                                     </div>
 
                                     <!-- IMAGE PREVIEW CONTAINER -->
                                     <div class="container " id="imgCon"></div>
                                 </div>
-
+                                <div class="alert alert-danger mt-3" role="alert" id="alertError">
+                                </div>
+                                <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
+                                </div>
 
 
                             </div>
@@ -92,10 +98,7 @@ $dbh = new dbHandler;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="alert alert-danger mt-3" role="alert" id="alertError">
-                    </div>
-                    <div class="alert alert-success mt-3" role="alert" id="alertSuccess">
-                    </div>
+
                     <div class="text-end">
                         <button type="submit" class="btn btn-dark">Upload Project</button>
                     </div>
@@ -132,17 +135,22 @@ $dbh = new dbHandler;
 
                             <select class="form-select" aria-label="Default select example" id="edit-category" name="categoryEdit">
                                 <option selected disabled>Catergory</option>
+                                <option value="Residentials">Residentials</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Mixed-Use">Mixed-Use</option>
+                                <option value="Institutional">Institutional</option>
+                                <option value="Industrial">Industrial</option>
                                 <option value="Interior">Interior</option>
-                                <option value="Renovate">Renovate</option>
-                                <option value="Bungalo">Bungalo</option>
-                                <option value="Modern">Modern</option>
+                                <option value="Renovation">Renovation</option>
+
                             </select>
                         </div>
                     </div>
+
                     <div class="mb-3 row">
                         <h5 class="col-sm-2 ">Add Image: &nbsp;</h5>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                            <input type="file" class="form-control" id="unset" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple require>
                             <input type="hidden" id="edit-image" name="imageEditStore" value="">
                         </div>
                     </div>

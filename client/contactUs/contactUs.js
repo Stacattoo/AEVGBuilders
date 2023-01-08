@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
+
     $("#alertError").hide();
+    $("#alertErrorApp").hide();
     $("#projectID").hide();
     // $("#step1").hide();
     $("#step2").hide();
@@ -8,52 +10,57 @@ $(document).ready(function () {
     $("#step4").hide();
     $("#meetLoc").prop('disabled', true);
     $(".projectTypeListImages").hide();
+
+    var dateVar = ``;
     const params1 = new URLSearchParams(location.search);
 
-    $("#step1Btn").click(function (e) { 
+    $("#step1Btn").click(function (e) {
         e.preventDefault();
         $("#step1").hide();
         $("#step2").show();
         $(".progress-bar").width("40%");
     });
 
-    $("#prev1Btn").click(function (e) { 
+    $("#prev1Btn").click(function (e) {
         e.preventDefault();
         $("#step1").show();
         $("#step2").hide();
         $(".progress-bar").width("20%");
     });
 
-    $("#step2Btn").click(function (e) { 
+    $("#step2Btn").click(function (e) {
         e.preventDefault();
         $("#step2").hide();
         $("#step3").show();
         $(".progress-bar").width("70%");
     });
 
-    $("#prev2Btn").click(function (e) { 
+    $("#prev2Btn").click(function (e) {
         e.preventDefault();
         $("#step2").show();
         $("#step3").hide();
         $(".progress-bar").width("30%");
     });
-    $("#step3Btn").click(function (e) { 
+    $("#step3Btn").click(function (e) {
         e.preventDefault();
         $("#step3").hide();
         $("#step4").show();
         $(".progress-bar").width("100%");
     });
-  
-    $("#prev3Btn").click(function (e) { 
+
+    $("#prev3Btn").click(function (e) {
         e.preventDefault();
         $("#step3").show();
         $("#step4").hide();
         $(".progress-bar").width("70%");
     });
+
+
     $("#appointForm").submit(function (event) {
-        console.log("okey naman huehue");
+
         event.preventDefault();
         if (params1.has('editing')) {
+            console.log("sa una");
             $.ajax({
                 url: "../contactUs/getData.php",
                 type: "POST",
@@ -63,7 +70,7 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (result) {
-                    console.log(result);
+
                     if (result.status == 'error') {
                         $("#alertError").html(result.msg);
                         $("#alertError").fadeIn();
@@ -74,6 +81,7 @@ $(document).ready(function () {
                 }
             });
         } else {
+
             $.ajax({
                 url: "../contactUs/appointmentProcess.php",
                 type: "POST",
@@ -92,16 +100,15 @@ $(document).ready(function () {
 
                     }
                 }
-                // , error: function (response) {
-                //     console.error(response);
-                // }
+                , error: function (response) {
+                    console.error(response);
+                }
             });
         }
     });
     var valueEdit = {};
     $('#viewAppModal').click(function (e) {
         e.preventDefault();
-        // projectId = $(this).data("id");
         $.ajax({
             type: "post",
             url: "../contactUs/getData.php",
@@ -111,10 +118,11 @@ $(document).ready(function () {
 
                 console.log(response);
                 var businessVar = '';
+                var time = '';
+                var dateTime = '';
                 $.each(response.businessType, function (indexInArray, data) {
                     businessVar = response.businessType.join(', ');
                 });
-                console.log(businessVar);
                 $('#editBtnID').attr("data-id", response.client_id);
                 $('#name_id').val(response.fullName);
                 $('#contact_id').val(response.contactNo);
@@ -129,12 +137,19 @@ $(document).ready(function () {
                 $('#meetLoc_id').val(response.meetLoc);
                 $('#meetDate_id').val(response.appointmentDate);
                 $('#meetTime_id').val(response.appointmentTime);
+                // time = response.appointmentTime;
                 valueEdit = response;
 
+                    // var addTime = time + ':00';
+                    // var d = new Date(addTime);
+                    // var time = d.toLocaleTimeString();
+                    // dateTime = time;
+
+                    // console.log(dateTime);
             }
         });
     });
-
+    var appDateDisplay = '';
     const params = new URLSearchParams(location.search);
     if (params.has('editing')) {
 
@@ -149,7 +164,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                console.log("hehe");
+                console.log(response);
                 $('#projLoc_id').val(response.projLocation);
                 $('#targetDate').val(response.targetDate);
                 $('#cc-name').val(response.lotArea);
@@ -157,6 +172,8 @@ $(document).ready(function () {
                 $('#meetType').val(response.meetType);
                 $('#meetLoc').val(response.meetLoc);
                 $('#appointmentDate').val(response.appointmentDate);
+                appDateDisplay = response.appointmentDate;
+                // console.log(appDateDisplay);
                 $('#appointmentTime').val(response.appointmentTime);
                 $('#edit-image1').val(response.image);
                 console.log(response.projectType);
@@ -174,7 +191,7 @@ $(document).ready(function () {
                 $("input[name=listGroupCheckableRadios][value='" + response.projImage + "']").attr('checked', 'checked');
 
                 $.each(response.businessType, function (indexInArray, data) {
-                    console.log($("input[value='" + data + "']").val());
+                    // console.log($("input[value='" + data + "']").val());
                     $("input[value='" + data + "']").attr('checked', 'checked');
                     // $("input[name=businessTypeName].val(data);
                     if (typeof $("input[value='" + data + "']").val() == 'undefined') {
@@ -189,6 +206,8 @@ $(document).ready(function () {
 
     }
 
+    $('#displayAppDate').html(appDateDisplay);
+    console.log($('#displayAppDate').html(appDateDisplay));
     $('#editBtnSched').click(function (e) {
         e.preventDefault();
         console.log($(this).attr('data-id'));
@@ -199,7 +218,7 @@ $(document).ready(function () {
     $("[name='projectType']").change(function (event) {
         event.preventDefault();
         let type = $(this).val();
-        console.log($("[data-name='" + type + "']").val());
+        // console.log($("[data-name='" + type + "']").val());
         if (typeof $("[data-name='" + type + "']").val() == 'undefined') {
             $(".projectTypeListImages").show();
         } else {
@@ -220,7 +239,6 @@ $(document).ready(function () {
 
     $("#meetType").change(function (event) {
         event.preventDefault();
-        // console.log("gumana naman");
         var type = $(this).val();
         if (type == "virtual") {
             $("#meetLoc").prop('disabled', true);
@@ -234,5 +252,65 @@ $(document).ready(function () {
     $("#appointmentDate").attr('min', today);
     var today = new Date().toISOString().split('T')[0];
     $("#targetDate").attr('min', today);
+
+
+
+    // function disableDate() {
+    $.ajax({
+        type: "POST",
+        url: "../contactUs/getData.php",
+        data: {
+            checkSched: true
+        },
+        dataType: "json",
+        success: function (response) {
+
+            $.each(response, function (indexInArray, data) {
+                // console.log(data);
+                let toString = `${data.date}`;
+
+                dateVar = toString;
+
+
+
+                $("#appointmentDate").change(function (event) {
+
+                    event.preventDefault();
+                    // console.log("pasok");
+                    if ($(this).val() == dateVar) {
+                        // $("#alertErrorApp").show();
+                        // $('#alertErrorApp').html("This date has been occupied! Select Another Date.");
+                        // alert("This date has been occupied");
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'This date has been occupied',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        })
+                        $("#appointmentDate").val('');
+
+                    } else {
+
+                        $.ajax({
+                            type: "POST",
+                            url: "../contactUs/getData.php",
+                            data: {
+                                checkSched: true
+                            },
+                            dataType: "json",
+                            success: function (response) {
+
+                            }
+                        });
+                    }
+
+                });
+                // }
+            });
+        }
+    });
+    // }
+
+
 
 });

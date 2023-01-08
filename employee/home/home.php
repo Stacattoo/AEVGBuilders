@@ -1,6 +1,6 @@
 <?php
 include_once("../include/dbh.employee.php");
-$dbh = new dbHandler;   
+$dbh = new dbHandler;
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,15 +32,15 @@ $dbh = new dbHandler;
                         </div>
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
 
                                     <i class="fad fa-analytics bi me-2"></i>
                                     Dashboard
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a href="#" class="nav-link text-white" id="clientsNav">
+                                <a href="#" class="nav-link active text-white" id="clientsNav">
 
                                     <i class="far fa-user-alt bi me-2"></i>
                                     Clients
@@ -54,7 +54,7 @@ $dbh = new dbHandler;
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" >
+                                <a href="#" class="nav-link text-white" id="reportNav">
 
                                     <i class="fal fa-paperclip bi me-2"></i>
                                     Report
@@ -64,11 +64,38 @@ $dbh = new dbHandler;
                                 <a href="#" class="nav-link text-white" id="projectNav">
 
                                     <i class="fas fa-city bi me-2"></i>
-                                    Projects
+                                    Finished Projects
                                 </a>
                             </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="preProjectNav">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Pre-Posted Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white" id="disProjectNav">
+
+                                    <i class="fas fa-city bi me-2"></i>
+                                    Disapproved Post Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link  text-white" id="portfolio">
+                                    <i class="fas fa-file-image me-2 "></i>
+                                    Portfolio
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" class="nav-link active text-white" id="fclientsNav">
+
+                                    <i class="far fa-user-alt bi me-2"></i>
+                                    Finished Transactions
+                                </a>
+                            </li> -->
                         </ul>
-                        <medium id="timeNow"></medium>             
+                        <medium id="timeNow"></medium>
                         <hr>
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -149,7 +176,7 @@ $dbh = new dbHandler;
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
         </ul>
-        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+        <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
     </footer>
 </div>

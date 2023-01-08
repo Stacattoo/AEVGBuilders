@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // $("#content").load("dashboard/dashboard.php");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $(".nav-link").click(function (e) {
@@ -28,15 +27,20 @@ $(document).ready(function () {
         $("#content").load("projects/projects.php");
     });
 
-    $("#scheduleNav").click(function (e) {
+    $("#preprojectNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("schedule/schedule.php");
+        $("#content").load("projects/preProjects.php");
     });
 
-    $("#materialsNav").click(function (e) {
+    $("#projectStats").click(function (e) {
         e.preventDefault();
-        $("#content").load("materials/materials.php");
+        $("#content").load("projectStatus/projectStats.php");
     });
+
+    // $("#materialsNav").click(function (e) {
+    //     e.preventDefault();
+    //     $("#content").load("materials/materials.php");
+    // });
 
     $("#blockedNav").click(function (e) {
         e.preventDefault();
@@ -70,7 +74,6 @@ $(document).ready(function () {
                 $("#email").val(data.email);
             },
             error: function (response) {
-                console.error(response.responseText);
                 alert("SESSION expired login again");
                 window.location.href = 'login/login.php';
             }
@@ -81,14 +84,13 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             type: "POST",
-            url: "profileProcess.php", //wala pa to
+            url: "profileProcess.php",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
                 if (response.status == 'error') {
                     $("#errorAlert").html(response.msg);
                     $("#errorAlert").show();
@@ -97,9 +99,12 @@ $(document).ready(function () {
                 }
             },
             error: function (response) {
-                console.log(response.responseText);
             }
         });
+    });
+
+    $('#logOut').click(function (e){
+        e.preventDefault();
     });
 
 });

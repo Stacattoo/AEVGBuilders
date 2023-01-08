@@ -1,6 +1,10 @@
 <?php
 include_once("../include/dbh.inc.php");
 $dbh = new dbHandler;
+$userData = $dbh->getAllClientStatusByID($_SESSION['id']);
+$pendingUserData = $dbh->PgetAllClientInfoByID($_SESSION['id']);
+$getSched = $dbh->getSched($_SESSION['id']);
+
 ?>
 <html>
 
@@ -15,8 +19,8 @@ $dbh = new dbHandler;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-replace-svg></script>
-    <script src="profile.js"></script>
     <script src="../contactUs/contactUs.js"></script>
+    <script src="profile.js"></script>
 </head>
 
 <body>
@@ -35,8 +39,10 @@ $dbh = new dbHandler;
                 <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-                <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-
+                <!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
+                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+                    <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <?php }  ?>
             </ul>
 
 
@@ -44,7 +50,7 @@ $dbh = new dbHandler;
 
                 <!-- Checking if the session is set -->
 
-                <?php if (!isset($_SESSION['id'])) { ?>
+                <?php if (!isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
 
                     <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
                     <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
@@ -60,16 +66,12 @@ $dbh = new dbHandler;
                             </a>
                             <ul class="dropdown-menu text-small shadow">
                                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
                             </ul>
                         </div>
                         <?php if (!$dbh->getSched($_SESSION['id']) >= '1') { ?>
                             <div>
-                                <a href="../contactUs/contactUs.php" class="nav-link mt-1 mx-3 px-2 link-dark">Contact Us</a>
+
                             </div>
                         <?php } ?>
                     </div>
@@ -113,7 +115,8 @@ $dbh = new dbHandler;
                         <!-- if there is no appointment -->
                         <h2>You already have an appointment!</h2>
                         <p>Kindly check your messages, and view your submitted appointment information.</p>
-                        <!-- <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" href="#exampleModal1">View Appointment Details</button> -->
+                        <h3>Date and Time of Schedule:</h3>
+                        <p id="displayAppDate" class="fs-4 fw-4"></p>
                     </div>
                 </div>
             </div>
@@ -245,183 +248,80 @@ $dbh = new dbHandler;
     <div class="container mt-5 ">
         <h2>List of Previous Quotation</h2>
         <div class="table-responsive ">
-            <table class="table table-striped table-hover" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Quotation #</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Date & Time</th>
 
                         <th scope="col">Status</th>
+                    </tr>
+                    <tr class="bg-light" id="hideMe">
+                        <td>No Cost Estimate</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </thead>
 
 
                 <tbody>
-                <tbody id="qoute-table" class="table table-striped table-hover " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                    <tr>
-                        <td>001</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Blk</td>
-                        <td>Blocks</td>
-
-                    </tr>
-
+                <tbody id="costEstiTable" class="table table-striped table-hover">
 
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- modal for quotation -->
-    <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <img src="../../images/aevg-nobg.png" class="" height="40" style=" margin-top: -30px;">
-
-                    <div class="display-6 text-center mb-4">
-                        Quotation
+    
+    <div class="container mt-3">
+        <hr>
+        <h2>On site portfolio</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
+        </div>
+        <div id="hidePortDiv" class="mt-5">
+            <!-- <div class="bg-light mt-5 fs-5">No Uploaded Progess yet.</div> -->
+            <div class="card mb-2  rounded-3">
+                <div class="card-body rounded-3 " style="background-color:#f8f9fa;">
+                    <div class="d-flex justify-content-between">
+                        <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+                        <div class="mb-2 mx-3 " style="height: 40px; width: 200px; background-color:#e9ecef;"></div>
                     </div>
-                    <div class="container">
-                        <div class="row  gx-5">
-                            <div class="col-7">
-                                <address>
-                                    <div> <strong>AEVG BUILDERS</strong></div>
-                                    <div> 002 San Pablo</div>
-                                    <div>Hagonoy, Bulacan</div>
-                                    <div> +63 977 852 7307 </div>
-                                </address>
-                            </div>
-
-                            <div class="col-5">
-                                <div class="h6">Date: </div>
-                                <div class="h6">Quotation No: </div>
-
-                            </div>
-
-                            <div class="col-7">
-                                <address>
-                                    <div> <strong>Quatation for:</strong></div>
-                                    <div>Name: britneymacahilig </div>
-                                    <div>Address: 1362 Magsana homes sta.rita guiguinto bulacan</div>
-                                    <div> Email Address: britneymacahilig@gmail.com</div>
-                                    <div> Mobile number: 0648785624</div>
-
-                                </address>
-                            </div>
-
-                            <div class="col-5">
-                                <div> <strong>Mode of Payment:</strong></div>
-                                <div> Bank Transfer</div>
-                            </div>
+                    <hr>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mx-5">
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2  rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2 rounded-4" style="height: 300px; width: 250px; background-color:#e9ecef;"></div>
                         </div>
                     </div>
-
-                    <table class="table table-striped-columns mt-4 table table-bordered border-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">QUANTITY</th>
-                                <th scope="col">DESCRIPTION</th>
-                                <th scope="col">UNIT PRICE</th>
-                                <th scope="col">TOTAL</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">001</th>
-                                <td>0/14/2022</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">002</th>
-                                <td>08/26/2022</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">003</th>
-                                <td>11/1/2022</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-7 mt-3">
-                                <strong>TERMS AND CONDITION:</strong><br>
-                                1.Customers will be billed after indicating acceptance of this quote. <br>
-                                2.Payment will be due prior to delivery of the service and goods.<br>
-                            </div>
-
-                            <div class="col-5">
-                                <div class="table-responsive">
-                                    <table class="table   table-bordered " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                                        <tbody>
-                                        <tbody data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-
-                                            <tr>
-                                                <th>SUBTOTAL:</th>
-                                                <td>001</td>
-
-
-                                            </tr>
-                                            <tr class="table-dark">
-                                                <th>TOTAL:</th>
-                                                <td>002</td>
-
-
-                                            </tr>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="text-center mt-5">
-
-                        If you have any concerns about this qoutation please contact us.
-                    </div>
-
-                    </figure>
-                </div>
-
-                <div class="text-center mt-4 mb-2">
-                    <strong>THANKYOU FOR YOUR BUSINESS!</strong><br>
                 </div>
             </div>
 
         </div>
+    </div>
+    <!-- MODAL PORTFOLIO ONSITE IMAGESS -->
+    <div class="modal fade" id="openPortfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-5" id="portfolioContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
@@ -576,27 +476,43 @@ $dbh = new dbHandler;
     </div>
 
     <div class="fixed-bottom  d-flex justify-content-end m-3 ">
+
         <div>
-            <div class=" ">
-                <button type="button" class="btn text-white  p-3 rounded-circle " id="msg" style="background-color: #843b62" >
-                <i class="fal fa-comment-alt-lines fs-2"></i>
-                </button>
-            </div>
+            <?php if ($userData->status != '' && $pendingUserData->status != '') {
+            ?>
+                <div class=" ">
+
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d">
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class=" ">
+                    <button type="button" class="btn text-black  p-3 rounded-circle " id="msg" style="background-color: #fccc5d" disabled>
+                        <i class="fal fa-comment-alt-lines fs-2"></i>
+                    </button>
+                </div>
+
+            <?php } ?>
             <div class="mt-2">
-                <button type="button" class="btn text-white p-3 rounded-circle " id="fb" style="background-color: #843b62">
-                <i class="fal fa-bullhorn fs-3"></i>
+                <button type="button" class="btn text-black p-3 rounded-circle " id="fb" style="background-color: #fccc5d">
+                    <i class="fal fa-bullhorn fs-3"></i>
                 </button>
             </div>
+
         </div>
     </div>
 
 
     <div class="container">
+
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
             </ul>
-            <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+            <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
         </footer>
     </div>

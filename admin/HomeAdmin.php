@@ -15,12 +15,6 @@ $dbh = new dbHandler();
     <link rel="stylesheet" href="include/style.css">
     <link rel="stylesheet" href="admin.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-    <script src="moment.js"></script>
-    <script src="admin.js"></script>
 
 </head>
 
@@ -63,17 +57,23 @@ $dbh = new dbHandler();
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white" id="scheduleNav">
-                                    <i class="fad fa-calendar-alt bi me-2"></i>
-                                    <span class="d-none d-lg-inline">Project Activity Log/Status</span>
+                                <a href="#" class="nav-link text-white" id="preprojectNav">
+                                    <i class="fad fa-folder-open bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Pre-Posted Projects</span>
                                 </a>
                             </li>
                             <li>
+                                <a href="#" class="nav-link text-white" id="projectStats">
+                                    <i class="fad fa-calendar-alt bi me-2"></i>
+                                    <span class="d-none d-lg-inline">Project Status</span>
+                                </a>
+                            </li>
+                            <!-- <li>
                                 <a href="#" class="nav-link text-white" id="materialsNav">
                                     <i class="fal fa-paperclip bi me-2"></i>
                                     <span class="d-none d-lg-inline">Materials</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="#" class="nav-link text-white" id="blockedNav">
                                     <i class="fas fa-ban bi me-2"></i>
@@ -82,21 +82,23 @@ $dbh = new dbHandler();
                             </li>
                         </ul>
 
+
                         <medium id="timeNow"></medium>
                         <hr>
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" id="logOut" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fal fa-user me-2"></i>
-                                <strong class="d-none d-lg-inline text-uppercase">Admin</strong>
+                                <strong> ADMIN</strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="login/login.php">Sign out</a></li>
+                                <li><a class="dropdown-item" href="../logout/logout.php">Sign out</a></li>
                             </ul>
                         </div>
+
 
                     </div>
                 </div>
@@ -108,90 +110,6 @@ $dbh = new dbHandler();
         </div>
 
     </div>
-
-    <!-- <div class="container-fluid m-0 p-0">
-        <div class="position-fixed d-print-none">
-            <main>
-                <div class="d-flex flex-column flex-nowrap p-3 text-white bg-dark">
-                    <a class="d-none d-lg-inline d-flex my-3 mb-md-0 me-auto align-items-center text-white text-decoration-none">
-                        <i class="fs-4 fad fa-shield bi me-2"></i>
-                        <span class="">AEVG Builders</span>
-                    </a>
-                    <div class="text-uppercase fw-bold fs-6 ms-1 d-none d-lg-inline mt-3 text-info">
-                        Admin
-                    </div>
-                    <hr>
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <li>
-                            <button type="button" id="dashboardNav" class="nav-link text-white active">
-                                <i class="fad fa-analytics bi me-2"></i>
-                                <span class="d-none d-lg-inline">Dashboard</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="employeeNav" class="nav-link text-white">
-                                <i class="far fa-user-alt bi me-2"></i>
-                                <span class="d-none d-lg-inline">Employee</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="clientNav" class="nav-link text-white">
-                               
-                                <i class="far fa-user-alt bi me-2"></i>
-                                <span class="d-none d-lg-inline">Client</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="projectNav" class="nav-link text-white">
-                                <i class="fad fa-folder-open bi me-2"></i>
-                                <span class="d-none d-lg-inline">Project</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="scheduleNav" class="nav-link text-white">
-                                <i class="fad fa-calendar-alt bi me-2"></i>
-                                <span class="d-none d-lg-inline">Schedule</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="materialsNav" class="nav-link text-white">
-                                <i class="fal fa-paperclip bi me-2"></i>
-                                <span class="d-none d-lg-inline">Materials</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" id="blockedNav" class="nav-link text-white">
-                                <i class="fas fa-ban bi me-2"></i>
-                                <span class="d-none d-lg-inline">Blocked Users</span>
-                            </button>
-                        </li>
-                    </ul>
-                    <small id="timeNow"></small>
-                    <hr>
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fad fa-shield me-2"></i>
-                            <strong class="d-none d-lg-inline text-uppercase">Admin</strong>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="login/login.php">Sign out</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="b-example-divider"></div>
-            </main>
-        </div>
-
-        <div id="content" class="pt-3">
-
-        </div>
-
-    </div> -->
 
     <!-- UPDATE PROFILE -->
     <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -238,6 +156,13 @@ $dbh = new dbHandler();
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="moment.js"></script>
+    <script src="admin.js"></script>
 </body>
 
 </html>

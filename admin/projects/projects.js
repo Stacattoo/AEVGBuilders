@@ -15,7 +15,6 @@ $(document).ready(function () {
             processData: false,
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
                 if (response.status == 'error') {
                     $("#alertError").html(response.msg);
                     $("#alertError").show();
@@ -69,18 +68,19 @@ $(document).ready(function () {
             success: function (response) {
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
+                    
                     content += `
                     <div class="col">
                         <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
-                            <div class="card-img-top" style="height: 220px; background-image: url('projects/${data.image[0]}'); background-size: cover; ">
+                            <div class="card-img-top" style="height: 220px; background-image: url('../employee/projects/${data.image[0]}'); background-size: cover; ">
                             </div>
-
+                            
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">                       
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
                                 <small class="text-muted">${data.category}</small>
                                 </div>
-                                <p class="card-text">${data.description}</p>
+                                <p class="card-text text-truncate">${data.description}</p>
                             </div>
                         </div>
                     </div>    
@@ -94,19 +94,15 @@ $(document).ready(function () {
                     projectId = $(this).data("id");
                     $('#hiddenId').val(projectId);
                     dataFilter = response.filter(function (eachEditInfo) {
-                        //console.log(eachEditInfo);
                         return eachEditInfo.id == projectId;
                     })[0];
                     function imageRefresh() {
                         let contentEdit = ``;
                         $.each(dataFilter.image, function (indexInArray, data) {
-
-                            // removeItem = dataFilter.image.splice()
-                            console.log(data);
                             contentEdit += `
                                 <div class="col">
                                     <div class="border position-relative">
-                                        <img src="projects/${data}" class="d-block img-fluid img">
+                                        <img src="../employee/projects/${data}" class="d-block img-fluid img">
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                                             id="imageDeleteBtn"  data-id="${indexInArray}">
                                             X
@@ -140,7 +136,6 @@ $(document).ready(function () {
                         e.preventDefault();
                         deleteId = $(this).attr('data-id');
                         imageSplice = dataFilter.image.splice(deleteId, 1);
-                        console.log(imageSplice);
                         imageRefresh();
 
                     });
@@ -148,17 +143,15 @@ $(document).ready(function () {
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
                         e.preventDefault();
-                        //var dataform = $(this).serializeArray(); // Form Data Ginawang variable
                         $.ajax({
                             type: 'post',
-                            url: '../projects/editProfileProcess.php',
+                            url: '../admin/projects/editProfileProcess.php',
                             data: new FormData(this),
                             contentType: false,
                             cache: false,
                             processData: false,
                             dataType: "JSON",
                             success: function (response) {
-                                console.log(response);
                                 if (response.status == 'error') {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
@@ -171,18 +164,14 @@ $(document).ready(function () {
                                    
                                 }
                             }, error: function (response) {
-                                console.error(response);
                             }
                         });
                     });
 
                 });
-
-                // console.log(response);
             }
             ,
             error: function (response) {
-                console.error(response.responseText);
             }
 
 
@@ -193,22 +182,19 @@ $(document).ready(function () {
     $('#deleteBtn').click(function (e) {
         e.preventDefault();
         deleteId = $(this).attr("data-id");
-        console.log(deleteId);
         $.ajax({
             type: "post",
-            url: "../projects/deleteProject.php",
+            url: "projects/deleteProject.php",
             data: {
                 deleteProjects_req: true,
                 id: deleteId
             },
             dataType: "json",
             success: function (response) {
-                console.log(response);
                 $('#editProjectModal').modal("hide");
                 refreshTable();
             },
             error: function (response) {
-                console.error(response.responseText);
             }
 
         });

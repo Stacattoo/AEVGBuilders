@@ -58,6 +58,10 @@ class dbHandler
         } else {
             $total_count = $this->getAttempt($key, 'employee') - 1;
             $this->updateAttempt($key, $total_count);
+            // echo json_encode(array(
+            //     "status" => 'error',
+            //     'msg' => "Email and Password not match. Remaining attempts: " . $total_count
+            // ));
             // echo "Email and Password not match. Remaining attempts: " . $total_count;
             return false;
         }
@@ -74,6 +78,13 @@ class dbHandler
             return 0;
         }
     }
+
+    function updateStatusToBlock($key, $table)
+    {
+        $query = "UPDATE $table SET status='block' WHERE email='$key'";
+        return mysqli_query($this->conn, $query);
+    }
+
 
     function updateAttempt($key, $attempt)
     {
@@ -96,6 +107,12 @@ class dbHandler
     function updateProject($value)
     {
         $query = "UPDATE `projects` SET title='$value->title', category='$value->category', 
+        image='$value->image',  description='$value->description', project_status='pending' WHERE id='$value->id'";
+        return mysqli_query($this->conn, $query);
+    }
+    function updatePortfolio($value)
+    {
+        $query = "UPDATE `portfolio` SET title='$value->title', 
         image='$value->image',  description='$value->description' WHERE id='$value->id'";
         return mysqli_query($this->conn, $query);
     }
@@ -104,6 +121,13 @@ class dbHandler
     {
         $query = "INSERT INTO projects(employee_id, title, image, category, description) 
         VALUES ($id, '$info->title' ,'$info->image', '$info->category', '$info->description')";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function uploadPortfolio($info, $clientId, $id)
+    {
+        $query = "INSERT INTO portfolio(employee_id, client_id, title, image, description) 
+        VALUES ($id, $clientId,'$info->title' ,'$info->image', '$info->description')";
         return mysqli_query($this->conn, $query);
     }
 
@@ -127,6 +151,11 @@ class dbHandler
             return 0;
         }
     }
+    function updateSpecificInfo($id, $col, $value)
+    {
+        $sql = "UPDATE `employee` SET $col='$value' WHERE id=$id";
+        return mysqli_query($this->conn, $sql);
+    }
 
     function checkIfSomeAlrExist($key, $table, $col)
     {
@@ -140,11 +169,16 @@ class dbHandler
         $sql = "DELETE FROM `projects` WHERE `id`=$id";
         return mysqli_query($this->conn, $sql);
     }
-
-
-    function getAllProjects()
+    function deletePortfolio($id)
     {
-        $query = "SELECT * FROM projects";
+        $sql = "DELETE FROM `portfolio` WHERE `id`=$id";
+        return mysqli_query($this->conn, $sql);
+    }
+
+
+    function getSpecificProjects($id, $status)
+    {
+        $query = "SELECT * FROM projects WHERE employee_id = $id AND project_status='$status'";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
@@ -154,6 +188,46 @@ class dbHandler
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "category" => $row["category"],
+                    "status" => $row["project_status"],
+                    "image" => explode(",", $row["image"]),
+                ];
+            }
+        }
+        return $projects;
+    }
+    function getAllProjects($id)
+    {
+        $query = "SELECT * FROM projects WHERE employee_id = $id AND( project_status='active' OR (project_status = 'pending'))";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
+                    "category" => $row["category"],
+                    // "status" => $row["project_status"],
+                    "image" => explode(",", $row["image"]),
+                ];
+            }
+        }
+        return $projects;
+    }
+
+    function getAllPortfolio($client, $empID)
+    {
+        $query = "SELECT * FROM portfolio WHERE client_id='$client' AND employee_id ='$empID'";
+        $result = mysqli_query($this->conn, $query);
+        $projects = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $projects[] = (object)[
+                    "id" => $row["id"],
+                    "client_id" => $row["client_id"],
+                    "employee_id" => $row["employee_id"],
+                    "title" => $row["title"],
+                    "description" => $row["description"],
                     "image" => explode(",", $row["image"]),
                 ];
             }
@@ -188,14 +262,14 @@ class dbHandler
 
     //client getting info mysql
 
-    function getApprovedClientData($id)
+    function getClientData($id)
     {
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
         CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
         FROM client INNER JOIN employee_client ON client.id=employee_client.client_id WHERE employee_client.employee_id = $id";
+        $user = array();
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
-            $user = array();
             while ($row = mysqli_fetch_assoc($result)) {
                 $user[] = (object) [
                     "id" => $row['client_id'],
@@ -203,11 +277,27 @@ class dbHandler
                     "email" => $row['email'],
                     "contact" => $row['contact_no'],
                     "address" => $row['address'],
-
+                    "status" => "active"
                 ];
             }
-            return $user;
         }
+
+        $sql2 = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
+        $result2 = mysqli_query($this->conn, $sql2);
+        if (mysqli_num_rows($result2)) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
+                $user[] = (object) [
+                    "id" => $row2['client_id'],
+                    "fullName" => $row2['fullName'],
+                    "email" => $row2['email'],
+                    "contact" => $row2['contact_no'],
+                    "address" => $row2['address'],
+                    "status" => 'pending'
+                ];
+            }
+        }
+        return $user;
     }
 
     function getAllUserClientData()
@@ -231,28 +321,6 @@ class dbHandler
             return $user;
         }
     }
-
-    function getAllClientPendingSched()
-    {
-        $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
-        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_num_rows($result)) {
-            $user = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                $user[] = (object) [
-                    "id" => $row['client_id'],
-                    "fullName" => $row['fullName'],
-                    "email" => $row['email'],
-                    "contact" => $row['contact_no'],
-                    "address" => $row['address'],
-
-                ];
-            }
-            return $user;
-        }
-    }
-
 
     function getAllUserData()
     {
@@ -294,6 +362,47 @@ class dbHandler
 
 
                 $empName = "";
+                $status = "";
+                $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname, employee_client.status as empclistatus  FROM employee_client 
+                INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
+                $res = mysqli_query($this->conn, $sql);
+                if (mysqli_num_rows($res)) {
+                    if ($row2 = mysqli_fetch_assoc($res)) {
+                        $empName = $row2['fullname'];
+                        $status = $row2['empclistatus'];
+                    }
+                }
+                
+                if(isset($row2['empclistatus'])){
+                    $empclistatus = $row2['empclistatus'];
+                }
+
+                return (object)[
+                    'id' => $row['id'],
+                    'fullname' => $row['fullname'],
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address'],
+                    'employeeName' => $empName,
+                    'status' => $status
+                ];
+            }
+        }
+    }
+
+    function PgetAllClientInfoByID($id)
+    {
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address
+        FROM client WHERE id='$id'";
+        $result = mysqli_query($this->conn, $query);
+        // $info = array();
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+
+
+                $empName = "";
                 $sql = "SELECT CONCAT(employee.lastName, ', ' , employee.firstName) as fullname FROM employee_client INNER JOIN employee ON employee.id = employee_client.employee_id WHERE employee_client.client_id = $id";
                 $res = mysqli_query($this->conn, $sql);
                 if (mysqli_num_rows($result)) {
@@ -308,18 +417,100 @@ class dbHandler
                     'email' => $row['email'],
                     'password' => $row['password'],
                     'address' => $row['address'],
+                    'status' => $row['status'],
                     'employeeName' => $empName
                 ];
             }
         }
     }
 
+    function getStatus($clientId)
+    {
+        $sql = "SELECT * from employee_client WHERE client_id = $clientId"; // employee_id = $empId AND 
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                return (object)[
+                    "status" => $row['status']
+                ];
+            }
+        }
+    }
 
-    function getClientScheduleDetails($id){
+    function updateClientStatus($id, $status)
+    {
+        $query = "UPDATE employee_client SET status='$status' where client_id='$id'";
+        $result = mysqli_query($this->conn, $query);
+        if($result){
+            
+            $this->insertActivity($id, "Change Transaction Status into: $status");
+            
+        }
+
+        return $result;
+    }
+
+    function activities($id)
+    {
+        $sql = "SELECT client.*, activity_log.* from client INNER JOIN activity_log 
+        ON client.id = activity_log.client_id WHERE client.id = $id ORDER BY date_time DESC";
+        $result = mysqli_query($this->conn, $sql);
+        $data = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = (object)[
+                    "date_time" => $row['date_time'],
+                    "status" => $row['status_message']
+
+                ];
+            }
+        }
+        return $data;
+    }
+
+    function getClientScheduleDetails($id)
+    {
 
         $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
-        $sched = array();
+        // $sched = array();
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $businessType = explode(", ", $row['businessType']);
+                $imgExplode = explode(",", $row['imageApp']);
+                $fullName = $row['firstName'] . " " . $row['lastName'];
+                return (object)[
+                    "id" => $row['appID'],
+                    "client_id" => $row["client_id"],
+                    'fullName' => $fullName,
+                    'contactNo' => $row['contact_no'],
+                    'email' => $row['email'],
+                    'projLocation' => $row['projectLocation'],
+                    'projImage' => $row['projectImage'],
+                    'targetDate' => $row['targetConsDate'],
+                    'projectType' => $row['projectType'],
+                    'lotArea' => $row['lotArea'],
+                    'noFloors' => $row['numberFloors'],
+                    'businessType' => $businessType,
+                    'meetType' => $row['meetingType'],
+                    'meetLoc' => $row['meetingLocation'],
+                    'image' => $imgExplode,
+                    'appointmentDate' => $row['meetingDate'],
+                    'appointmentTime' => $row['meetingTime'],
+                    'status' => $row['statusCheck']
+                ];
+            }
+        }
+        // return $sched;
+    }
+
+    function getAppDetailsStatus($id)
+    {
+
+        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment 
+        INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $sched = (object)[];
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $businessType = explode(", ", $row['businessType']);
@@ -348,32 +539,32 @@ class dbHandler
             }
         }
         return $sched;
-
     }
 
     function assignEmployee($employeeID, $clientID)
     {
-        $query = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
-        // $sql = "INSERT INTO `message`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','delivered')";
-        return mysqli_query($this->conn, $query);
-        // return mysqli_query($this->conn, $sql);
-        
-
+        $query1 = "INSERT INTO `employee_client`(`employee_id`, `client_id`, `status`) VALUES ('$employeeID','$clientID','ongoing')";
+        if (mysqli_query($this->conn, $query1)) {
+            $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
+            if (mysqli_query($this->conn, $sql)) {
+                $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
+                if (mysqli_query($this->conn, $query)) {
+                    return (object)[
+                        "status" => 'success',
+                        "msg" => 'Profile Update Successfully.'
+                    ];
+                }
+            } else {
+                return (object)[
+                    "status" => 'error'
+                ];
+            }
+        } else {
+            return (object)[
+                "status" => 'error'
+            ];
+        }
     }
-    function updateAppDetails($employeeID, $clientID)
-    {
-        $sql = "UPDATE `appointment` SET status='ongoing' WHERE client_id=$clientID";
-        return mysqli_query($this->conn, $sql);
-
-    }
-
-    function updateMessageDetails($employeeID, $clientID)
-    {
-        $query = "UPDATE `message` SET employee_id='$employeeID' WHERE client_id=$clientID";
-        return mysqli_query($this->conn, $query);
-
-    }
-
 
     function isClientUserAccountExist($id, $username, $email)
     {
@@ -391,9 +582,10 @@ class dbHandler
 
     function insertEmployeeMessage($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
+        $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
+            
             if ($row = mysqli_fetch_assoc($result)) {
                 $msg = json_decode($row["content"]);
                 array_push($msg, json_decode($content)[0]);
@@ -401,44 +593,76 @@ class dbHandler
                 $sql = "UPDATE `message` SET content='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
+        } else {
+            $sql = "INSERT INTO message(employee_id, client_id ,content) VALUES ('$id', '$client','$content')";
+            return mysqli_query($this->conn, $sql);
         }
     }
 
     function insertEmployeeFiles($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id = '$id' AND client_id = '$client'";
+        $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
             $msg = array();
             if ($row = mysqli_fetch_assoc($result)) {
-                // $msg = json_decode($row["files"]);
+                if ($row["files"] != '') {
+                    $msg = json_decode($row["files"]);
+                } else {
+                    $msg = array();
+                }
                 array_push($msg, json_decode($content)[0]);
                 $msg = json_encode($msg);
-                $sql = "UPDATE `message` SET files='$msg' WHERE client_id='$client'";
+                $sql = "UPDATE `message` SET files='$msg', employee_id='$id' WHERE client_id='$client'";
                 return mysqli_query($this->conn, $sql);
             }
+        } else {
+            $content = json_encode($content);
+            $sql = "INSERT INTO message(employee_id, client_id , files) VALUES ('$id', '$client', '$content')";
+            return mysqli_query($this->conn, $sql);
         }
     }
-
-
-    // ../../clientEmployeeFiles/0b7b018678e29c0c27f6a6aa967f3544.jpg,../../clientEmployeeFiles/0e9625a1104c9fd8f79929dcd698d35a.jpg
-    function getContent($client_id, $id)
-    
+    function insertEmployeeCostEstimate($content, $client, $id)
     {
-        $sql = "SELECT * FROM message WHERE employee_id='$id' AND client_id='$client_id'";
+
+        $sql = "UPDATE `message` SET costEstimate='$content', employee_id='$id' WHERE client_id='$client'";
+        $result = mysqli_query($this->conn, $sql);
+        if ($result) {
+            $date = date('Y-m-d H:i:s');
+            $jsonContent = array(
+                (object)[
+                    "content" => "Cost Estimate has been sent! Kindly Check your profile to view and download",
+                    "dateTime" => $date,
+                    "sender" => "employee",
+                    "type" => "text"
+                ]
+
+            );
+            $jsonContent = json_encode($jsonContent);
+            $this->insertEmployeeMessage($jsonContent, $client, $id);
+            $this->insertActivity($client, "Send a Cost Estimate ");
+        }
+        return $result;
+    }
+
+    function insertActivity($clientId, $statusMessage)
+    {
+        $query = "INSERT INTO `activity_log`(`client_id`, `status_message`) VALUES ('$clientId','$statusMessage')";
+        return mysqli_query($this->conn, $query);
+    }
+
+    function getContent($client_id, $id)
+
+    {
+        $sql = "SELECT * FROM message WHERE client_id='$client_id'";
         $result = mysqli_query($this->conn, $sql);
         $message = array();
         if (mysqli_num_rows($result)) {
-            // $filesobj = '';
             while ($row = mysqli_fetch_assoc($result)) {
-                // $filesobj = json_decode($row['files']);
-                // $filesobj = json_encode($filesobj);
-                // $filesobj = explode(",", $filesobj);
-                // $filesobj = json_encode($filesobj);
+                $arrayObj = array_merge((array) json_decode($row['content']), (array) json_decode($row['files']));
                 $message[] = (object) [
                     'id' => $row['employee_id'],
-                    'content' => json_decode($row['content']),
-                    'files' => json_decode($row['files']),
+                    'content' => $arrayObj,
                     'date' => $row['dateTime'],
                     'status' => $row['status']
                 ];
@@ -446,4 +670,54 @@ class dbHandler
         }
         return $message;
     }
+
+    function getAllInfoById($id)
+    {
+        $query = "SELECT *, CONCAT(lastname, ', ', firstname) AS fullname, 
+            CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
+            FROM employee WHERE id=$id";
+        $result = mysqli_query($this->conn, $query);
+        if (mysqli_num_rows($result)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"];
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $res = mysqli_query($this->conn, $sql);
+                $client = array();
+                if (mysqli_num_rows($res)) {
+                    while ($row_client = mysqli_fetch_assoc($res)) {
+                        $client[] = (object)[
+                            'id' => $row_client["id"],
+                            'name' => $row_client["fullname"],
+                            'email' => $row_client["email"],
+                            'contact_no' => $row_client["contact_no"],
+                            'status' => $row_client["status"],
+                        ];
+                    }
+                }
+                return (object)[
+                    'id' => $id,
+                    'firstName' => $row['firstName'],
+                    'lastName' => $row['lastName'],
+                    'middleName' => $row['middleName'],
+                    'fullName' => $row['fullname'],
+                    'username' => $row['username'],
+                    'contactNo' => $row['contactNo'],
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'address' => $row['address'],
+                    'houseNo' => $row['houseNo'],
+                    'street' => $row['street'],
+                    'barangay' => $row['barangay'],
+                    'municipality' => $row['municipality'],
+                    'province' => $row['province'],
+                    'attempt' => $row['attempt'],
+                    'status' => $row['status'],
+                    'clients' => $client
+                ];
+            }
+        }
+    }
+
+
+    // INSERT INTO activity_log (status_message) VALUES ("Registration Date: ")
 }

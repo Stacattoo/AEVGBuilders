@@ -15,7 +15,6 @@ if (isset($_POST["fpEmail"])) {
         
         $mail = new Mail($email, $subject, $emailBody);
         if($mail) {
-            //echo "Registered";
             echo json_encode(array(
                 "status" => 'success',
                 'msg' => "A new password was successfully sent on your email."

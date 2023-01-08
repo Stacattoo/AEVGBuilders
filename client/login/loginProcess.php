@@ -18,10 +18,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 ));
             }
         
-    } else {
-        echo json_encode(array(
-            "status" => 'error',
-            'msg' => "Incorrect Email or Password!"
-        ));
-    }
+    } 
+    // else {
+    //     echo json_encode(array(
+    //         "status" => 'error',
+    //         'msg' => "Incorrect Email or Password!"
+    //     ));
+    // }
 }

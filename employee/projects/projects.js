@@ -3,32 +3,44 @@ $(document).ready(function () {
     $("#alertError").hide();
     $("#alertSuccess").hide();
 
+    // $('#imgBtn').change(function(e){
+    //     $("#alertError").show();
+    // });
+
     refreshTable();
     $("#uploadProjects").submit(function (event) {
         event.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: '../projects/projectsProcess.php',
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            dataType: "JSON",
-            success: function (response) {
-                console.log(response);
-                if (response.status == 'error') {
-                    $("#alertError").html(response.msg);
-                    $("#alertError").show();
-                } else {
-                    $("#alertSuccess").html(response.msg);
-                    $("#imgCon").html("");
-                    $("#alertSuccess").show();
-                    $("#uploadProjects").trigger("reset");
+        console.log($('#imgBtn').val());
+        if ($('#imgBtn').val() == '') {
+            $("#alertError").show();
+            $("#alertError").html("Image Required!");
+        } 
+        else {
+            $.ajax({
+                type: 'post',
+                url: '../projects/projectsProcess.php',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response);
                     refreshTable();
+                    if (response.status == 'error') {
+                        $("#alertError").html(response.msg);
+                        $("#alertError").show();
+                    } else {
+                        // imageRefresh();
+                        $("#alertSuccess").html(response.msg);
+                        $("#imgCon").html("");
+                        $("#alertSuccess").show();
+                        $("#uploadProjects").trigger("reset");
 
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
 
@@ -82,7 +94,7 @@ $(document).ready(function () {
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
                                 <small class="text-muted">${data.category}</small>
                                 </div>
-                                <p class="card-text">${data.description}</p>
+                                <p class="card-text text-truncate">${data.description}</p>
                             </div>
                         </div>
                     </div>    
@@ -131,8 +143,16 @@ $(document).ready(function () {
 
                         $('#view-editImage').html(contentEdit);
                         $('#edit-image').val(dataFilter.image);
+                        $('.deleteImgBtn').click(function (e) {
+                            e.preventDefault();
+                            deleteId = $(this).attr('data-id');
+                            imageSplice = dataFilter.image.splice(deleteId, 1);
+                            console.log(imageSplice);
+                            imageRefresh();
+    
+                        });
                     }
-                    
+
                     imageRefresh();
                     $('#deleteBtn').attr("data-id", dataFilter.id);
                     $('#hiddenId').data("id", dataFilter.id);
@@ -141,14 +161,7 @@ $(document).ready(function () {
                     $('#edit-description').html(dataFilter.description);
                     $('#editProjectModal').modal("show");
 
-                    $('.deleteImgBtn').click(function (e) {
-                        e.preventDefault();
-                        deleteId = $(this).attr('data-id');
-                        imageSplice = dataFilter.image.splice(deleteId, 1);
-                        console.log(imageSplice);
-                        imageRefresh();
-
-                    });
+                    
                     $("#alertErrorEdit").hide();
                     $("#alertSuccessEdit").hide();
                     $('#editUploadProjects').submit(function (e) {
@@ -163,7 +176,6 @@ $(document).ready(function () {
                             processData: false,
                             dataType: "JSON",
                             success: function (response) {
-                                console.log(response);
                                 if (response.status == 'error') {
                                     $("#alertErrorEdit").html(response.msg);
                                     $("#alertErrorEdit").show();
@@ -173,7 +185,7 @@ $(document).ready(function () {
                                     $("#editUploadProjects").trigger("reset");
                                     $('#editProjectModal').modal("hide");
                                     refreshTable();
-                                   
+
                                 }
                             }, error: function (response) {
                                 console.error(response);

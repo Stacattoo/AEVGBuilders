@@ -28,7 +28,6 @@ $(document).ready(function () {
             error: function (response) {
                 $("#errorAlert").html("We encounter a problem when logging your account. Contact admin for more info");
                 $("#errorAlert").show();
-                console.error(response.responseText);
                 $("#registerSpinner").hide();
             }
         });

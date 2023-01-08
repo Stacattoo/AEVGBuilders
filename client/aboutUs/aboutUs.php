@@ -30,8 +30,8 @@ $dbh = new dbHandler;
         <li><a href="../home/home.php" class="nav-link px-2 link-dark">Home</a></li>
         <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-secondary">About Us</a></li>
         <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-        <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-        <?php if (isset($_SESSION['id'])) { ?>
+        <!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
+        <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
           <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
         <?php }  ?>
       </ul>
@@ -42,7 +42,7 @@ $dbh = new dbHandler;
         <?php if (!isset($_SESSION['id'])) { ?>
 
           <a href="../register/register.php" class="btn btn-dark">Sign-up</a>
-          <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+          <a href="../../index.php" class="btn btn-outline-dark me-2">Login</a>
 
         <?php } else { ?>
 
@@ -55,10 +55,6 @@ $dbh = new dbHandler;
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
               </ul>
             </div>
@@ -94,23 +90,23 @@ $dbh = new dbHandler;
 
 
     <div class="background-img mb-4">
-      
-      <div class="blur-effect ">
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner" data-bs-interval="1500">
-          <div class="carousel-item active">
-            <img src="../../images/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="../../images/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
-          </div>
-          <div class="carousel-item">
-            <img src="../../images/3.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
-          </div>
-        </div>
 
-      </div>
-        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect">
+      <div class="blur-effect ">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner" data-bs-interval="1500">
+            <div class="carousel-item active">
+              <img src="../../images/contactUsImg/10.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="../../images/contactUsImg/2.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            </div>
+            <div class="carousel-item">
+              <img src="../../images/contactUsImg/6.jpg" class="d-block w-100 img-fluid bg-carousel" style="height: 435px;">
+            </div>
+          </div>
+
+        </div>
+        <div class="p-4 p-md-5 mb-4 rounded text-light position-absolute top-0 left-0 blur-effect h-100">
 
           <div class="col-md-6 px-0">
             <h1 class="display-4">AEVG BUILDERS</h1>
@@ -124,16 +120,17 @@ $dbh = new dbHandler;
             </div>
             </p>
 
-            <p class="lead mb-0"><a type="button" id="schedBtn" class="btn btn-warning" href="../contactUs/contactUs.php">
+            <p class="lead mb-0"><button type="button" id="schedBtn" class="btn btn-warning">
+                <!-- REMOVE SI href -->
                 Schedule an Appointment.
-              </a></p>
+              </button></p>
 
           </div>
         </div>
       </div>
     </div>
     <div class="row mb-2">
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary">Architect</strong>
@@ -142,11 +139,11 @@ $dbh = new dbHandler;
 
           </div>
           <div class="col-auto d-none d-lg-block">
-            <img src="../../images/3bb1db2fc1454432143e08cd67e2126b.jpg" width="200" height="250" alt="">   
+            <img src="../../images/3bb1db2fc1454432143e08cd67e2126b.jpg" width="200" height="250" alt="">
           </div>
         </div>
       </div>
-      
+
 
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -156,7 +153,21 @@ $dbh = new dbHandler;
             <p class="mb-auto">Is capable of bringing any 2D plans to a realistic 3D Model. She originated in Bulacan. With an eye for details, she assists the team in presenting any design concept thru meticulous 3D model which usually amazes the clients.</p>
           </div>
           <div class="col-auto d-none d-lg-block">
-            <img src="../../images/37ea903719dc841b2a2aa03693256b8a.jpg" width="200" height="250" alt="">   
+            <img src="../../images/37ea903719dc841b2a2aa03693256b8a.jpg" width="200" height="250" alt="">
+          </div>
+        </div>
+      </div> -->
+
+      <hr>
+      <div class="row mb-2">
+
+        <div class="row d-flex align-items-center">
+          <div class="col-md-4">
+            <img class="img-fluid" src="../../images/archi.jpg">
+          </div>
+          <div class="col-md-6">
+            <h2 class="fw-normal lh-1"> Architect Yel Villalon Galang</h2>
+            <p class="lead">Architect Galang began his professional career in Singapore. After 2 years of working in Singapore Architect Galang decided to start his design and construction company in San Pablo, Hagonoy Bulacan. </p>
           </div>
         </div>
       </div>
@@ -186,11 +197,29 @@ $dbh = new dbHandler;
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
         </ul>
-        <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+        <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
       </footer>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="loginPrompt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">You must Log-in First</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Would you like to log-in?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a type="button" href="../login/login.php" class="btn btn-primary">Log-in</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal -->
 

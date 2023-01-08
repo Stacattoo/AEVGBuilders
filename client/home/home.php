@@ -20,6 +20,7 @@ $dbh = new dbHandler;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="home.js"></script>
+    
 </head>
 
 <body>
@@ -37,9 +38,9 @@ $dbh = new dbHandler;
                 <li><a href="../home/home.php" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="../aboutUs/aboutUs.php" class="nav-link px-2 link-dark">About Us</a></li>
                 <li><a href="../projects/project.php" class="nav-link px-2 link-dark">Projects</a></li>
-                <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li>
-                <?php if (isset($_SESSION['id'])) { ?>
-                <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+                <!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
+                <?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
+                    <li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
                 <?php }  ?>
             </ul>
 
@@ -51,7 +52,7 @@ $dbh = new dbHandler;
 
                     <!-- <div class=""></div> -->
                     <a href="../register/register.php" class="btn btn-dark mx-2">Sign-up</a>
-                    <a href="../login/login.php" class="btn btn-outline-dark me-2">Login</a>
+                    <a href="../../index.php" class="btn btn-outline-dark me-2">Login</a>
 
                 <?php } else { ?>
 
@@ -64,10 +65,6 @@ $dbh = new dbHandler;
                             </a>
                             <ul class="dropdown-menu text-small shadow">
                                 <li><a class="dropdown-item active" href="../profile/profile.php">Profile</a></li>
-                                <li><a class="dropdown-item" href="../message/message.php">Message</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                                 <li><a class="dropdown-item" href="../../logout/logout.php">Logout</a></li>
                             </ul>
                         </div>
@@ -113,7 +110,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" >
+                <div class="carousel-item">
                     <img src="../../images/pool.jpg" class="d-block w-100 img-fluid bg-carousel vh-100">
                     <div class="container">
                         <div class="container">
@@ -198,18 +195,19 @@ $dbh = new dbHandler;
                 </header>
                 <div class="swiper">
                     <div class="swiper-wrapper" id="feedbackContent">
-                        
+
                     </div>
                 </div>
             </div>
         </div>
         
+
         <div class="container">
             <footer class="py-3 my-4">
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 
                 </ul>
-                <p class="text-center text-muted">&copy; 2017 AEVG BUILDERS</p>
+                <p class="text-center text-muted">&copy; 2020 AEVG BUILDERS</p>
 
             </footer>
         </div>

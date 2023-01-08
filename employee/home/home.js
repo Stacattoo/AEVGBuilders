@@ -19,6 +19,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#content").load("../client/client.php");
     });
+    $("#fclientsNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../client/finishedClients.php");
+    });
     //Materials
     $("#materialsNav").click(function (e) {
         e.preventDefault();
@@ -32,16 +36,28 @@ $(document).ready(function () {
     //Report
     $("#reportNav").click(function (e) {
         e.preventDefault();
-        $("#content").load("../report/report.php");
+        $("#content").load("../reports/reports.php");
     });
     //Projects
     $("#projectNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../projects/projects.php");
     });
+    $("#preProjectNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../projects/preProject.php");
+    });
+    $("#disProjectNav").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../projects/disapproveProj.php");
+    });
     $("#profileNav").click(function (e) {
         e.preventDefault();
         $("#content").load("../profile/profile.php");
+    });
+    $("#portfolio").click(function (e) {
+        e.preventDefault();
+        $("#content").load("../portfolio/portfolio.php");
     });
 
 

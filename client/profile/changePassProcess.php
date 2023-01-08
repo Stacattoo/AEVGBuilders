@@ -24,7 +24,8 @@ if ($oldPass !== $dbh->getSpecificInfo($id, 'password')) {
 
     if($dbh->updateSpecificInfo($id, 'password', $newPass)){
         echo json_encode(array(
-            "status" => "success"
+            "status" => "success",
+            "msg" => "Change password successfully!"
         ));
     }
     

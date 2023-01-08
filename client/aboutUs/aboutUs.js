@@ -4,7 +4,6 @@ $(document).ready(function () {
     $("#appAlert").hide();
     //     $("#scheduleForm").submit(function (event) {
     //         event.preventDefault();
-    console.log("pasok");
     $.ajax({
         url: "../contactUs/getData.php",
         type: "POST",
@@ -13,10 +12,34 @@ $(document).ready(function () {
             checkAppointment: true
         },
         success: function (result) {
-            $("#schedBtn").hide();
-            $("#appAlert").show();
+            if (result.status == "canceled") {
+                $("#schedBtn").show();
+                $("#appAlert").hide();
+            } else {
+                $("#schedBtn").hide();
+                $("#appAlert").show();
+            }
 
         }
+    });
+
+    $("#schedBtn").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "../aboutUs/aboutUsProcess.php",
+            data: { checkLogin: true },
+            // dataType: "",
+            success: function (response) {
+                console.log(response);
+                if (response == "banana") {
+                    $("#loginPrompt").modal("show")
+
+                } else if (response == "hanna") {
+                    window.location.href = "../contactUs/contactUs.php";
+                } 
+            }
+        });
     });
     //     });
 

@@ -2,33 +2,51 @@
 include('../include/dbh.admin.php');
 $dbh = new dbHandler();
 $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
-// var_dump($userData);
 ?>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 <div class="card mb-2">
-    <div class="card-body">
+    <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
-            <h5 class="card-subtitle text-muted align-bottom m-0"><?php echo $userData->id; ?></h5>
-            <div class="dropdown m-0">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+
+            <div class=" m-0">
+                <!-- <button class="border-0  btn btn-outline-light" type="button" id="edit" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-edit fs-5"></i>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="edit" data-bs-toggle="modal" href="#editEmployeeModal" data-id="<?php echo $userData->id; ?>">Edit</a></li>
-                    <li><a class="dropdown-item" id="delete" data-bs-toggle="modal" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">Delete</a></li>
-                </ul>
+                <button class=" border-0  btn btn-outline-light" type="button" id="delete" href="#removeEmployeeModal" data-id="<?php echo $userData->id; ?>">
+                    <i class="fas fa-trash fs-5"></i>
+                </button> -->
+
             </div>
         </div>
-        <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
-        <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder"><?php echo $userData->email; ?></a></div>
-        <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
+
+
+
+        <div class="row">
+            <div class="col-8">
+                <h5 class="card-subtitle text-muted align-bottom m-0" id="empStatusID"><?php echo $userData->id; ?></h5>
+                <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
+                <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
+                <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
+            </div>
+            <div class="col-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" id="statusId" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose Status</button> <!-- dito dapat magdisplay kung resigned or active -->
+                    <ul class="dropdown-menu">
+                        <li><button type="button" class="dropdown-item statusBtn" data-status="Active">Active</button></li>
+                        <li><button type="button" class="dropdown-item statusBtn" data-status="Resigned">Resigned</button></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" style="background-color:#f8f9fa;">
         <h5>List of Handled Clients</h5>
         <table class="table table-bordered table-striped" id="handledClientTable">
             <thead>
@@ -68,14 +86,12 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                 <p class="mb-1">Are you sure you want to remove this employee?</p>
             </div>
             <div class="modal-footer flex-nowrap p-0">
-                <button type="button" id="remove-yes-btn" data-id="<?php echo $userData->id; ?>"
-                    class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></button>
-                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0"
-                    data-bs-dismiss="modal">No</button>
+                <button type="button" id="remove-yes-btn" data-id="<?php echo $userData->id; ?>" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes</strong></button>
+                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>
-</div><!-- END OF DELETE EMPLOYEE MODAL -->
+</div>
 
 <!-- Edit Employee Modal -->
 <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeLabel" aria-hidden="true">
@@ -165,20 +181,21 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
 
 <script>
     $(document).ready(function() {
-        $("#remove-yes-btn").click(function (e) { 
+        $("#remove-yes-btn").click(function(e) {
             e.preventDefault();
             var id = $(this).data("id");
             $.ajax({
                 type: "POST",
                 url: "employee/employeeProcess.php",
-                data: {REMOVE_EMPLOYEE_REQ: id},
+                data: {
+                    REMOVE_EMPLOYEE_REQ: id
+                },
                 dataType: "JSON",
-                success: function (REMOVE_EMPLOYEE_RESP) {
+                success: function(REMOVE_EMPLOYEE_RESP) {
                     if (REMOVE_EMPLOYEE_RESP) {
                         displayUsers();
                         $("#removeEmployeeModal").modal("hide");
                     } else {
-                        console.error(REMOVE_EMPLOYEE_RESP);
                         $("#error").html(REMOVE_EMPLOYEE_RESP.msg);
                     }
                 },
@@ -210,7 +227,6 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                         displayUsers();
                         $("#editEmployeeModal").modal("hide");
                     } else {
-                        console.error(EDIT_EMPLOYEE_RESP);
                         $("#error").html(EDIT_EMPLOYEE_RESP.msg);
                     }
                 },
@@ -218,7 +234,6 @@ $userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
                     $("#error").html(response.responseText);
                 }
             });
-            console.log("edit");
         });
     });
 </script>
