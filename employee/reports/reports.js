@@ -1,5 +1,6 @@
 $(document).ready(function () {
-document.title="Reports";
+    document.title = "Reports";
+    // displayEmpName();
     // console.log("alert");
     var userid = $(this).data("id");
     $.ajax({
@@ -69,5 +70,27 @@ document.title="Reports";
             })
         }
     });
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "../reports/reportProcess.php",
+            data: {
+                empID: userid,
+                displayName: true
+            },
+            dataType: "JSON",
+            success: function (response) {
+                
+                fullName = response.lastName + ", " + response.firstName;
+                $('#printEmpName').html(fullName);
+                // console.log(fullName);
+                
+            }
+        });
+
+
+    
 
 });

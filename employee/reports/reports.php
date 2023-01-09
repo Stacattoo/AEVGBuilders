@@ -29,8 +29,11 @@ $dbh = new dbHandler;
             </tr>
         </thead>
         <tbody id="handledClientContent">
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end  d-none d-print-block">
+            Printed by: <b id="printEmpName"></b>
+        </div>
 
     <!-- activities modal -->
     <div class="modal fade" id="activitiesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,7 +56,9 @@ $dbh = new dbHandler;
 
                         </tbody>
                     </table>
+
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
