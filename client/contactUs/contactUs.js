@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#alertError").hide();
     $("#alertErrorApp").hide();
     $("#projectID").hide();
-    // $("#step1").hide();
+    $("#otherRef").hide();
     $("#step2").hide();
     $("#step3").hide();
     $("#step4").hide();
@@ -140,12 +140,12 @@ $(document).ready(function () {
                 // time = response.appointmentTime;
                 valueEdit = response;
 
-                    // var addTime = time + ':00';
-                    // var d = new Date(addTime);
-                    // var time = d.toLocaleTimeString();
-                    // dateTime = time;
+                // var addTime = time + ':00';
+                // var d = new Date(addTime);
+                // var time = d.toLocaleTimeString();
+                // dateTime = time;
 
-                    // console.log(dateTime);
+                // console.log(dateTime);
             }
         });
     });
@@ -180,6 +180,7 @@ $(document).ready(function () {
                 //radio button sa project type
                 if (typeof $("input[value='" + response.projectType + "']").val() == 'undefined') {
                     $('#projectID').show();
+                    // $('#otherRef').show();
                     $('#projectType7').attr('checked', 'checked');
                     $("input[name=projectTypeOthers]").val(response.projectType);
                 } else {
@@ -230,9 +231,9 @@ $(document).ready(function () {
     $("[name='projectType']").change(function (event) {
         event.preventDefault();
         if ($(this).val() == "Others") {
-            $("#projectID").show();
+            $("#otherRef").show();
         } else {
-            $("#projectID").hide();
+            $("#otherRef").hide();
         }
     });
 
@@ -309,8 +310,4 @@ $(document).ready(function () {
             });
         }
     });
-    // }
-
-
-
 });

@@ -164,12 +164,18 @@ $dbh = new dbHandler;
                   <div class="form-check">
                     <input id="projectType8" name="projectType" type="radio" value="Renovation" class="form-check-input">
                     <label class="form-check-label" for="projectType8">Renovation</label>
-
                   </div>
-                  <div class="form-check">
+                  <div class="form-check" id="othersBtn">
                     <input id="projectType7" name="projectType" type="radio" value="Others" class="form-check-input">
                     <label class="form-check-label" for="projectType7">Others</label>
-                    <input type="text" class="form-control" name="projectTypeOthers" id="projectID">
+
+                    <div class="" id="otherRef">
+                      <label for="area-img" id="sketch" class="form-label">Provide site images and sketches (if available)</label>
+                      <input type="file" class="form-control" id="sketch" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
+                      <input type="hidden" id="edit-image1" name="imageEditStore" value="">
+                    </div>
+
+                    <!-- <input type="text" class="form-control" name="projectTypeOthers" id="projectID"> -->
                   </div>
                 </div>
 
@@ -359,6 +365,29 @@ $dbh = new dbHandler;
                   </div>
                 </div>
               </div>
+              <div id="div7" class="projectTypeListImages" data-name="Renovation">
+                <h5 class="form-label ">Renovation</h5>
+                <div class="row row-cols-1 row-cols-3 align-items-stretch g-2 ">
+                  <div class="col">
+                    <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+                      <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios19" value="16">
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios19"> <img src="../../images/contactUsImg/19.jpg" alt="" class="img-fit rounded-3"></label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+                      <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios20" value="17">
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios20"> <img src="../../images/contactUsImg/20.jpg" alt="" class="img-fit rounded-3"></label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+                      <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios21" value="18">
+                      <label class="list-group-item rounded-3 p-0" for="listGroupCheckableRadios21"> <img src="../../images/contactUsImg/21.jpg" alt="" class="img-fit rounded-3"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             </div>
             <div class="d-flex justify-content-between mx-3 my-3 px-3">
@@ -394,7 +423,7 @@ $dbh = new dbHandler;
 
                 <div class="col-sm-9">
                   <label for="cc-number" class="form-label">Number of Floors</label>
-                  <select class="form-select form-select" name="noFloors" id="cc-number" aria-label=".form-select-lg example" required>
+                  <!-- <select class="form-select form-select" name="noFloors" id="cc-number" aria-label=".form-select-lg example" required>
                     <option selected disabled>Select</option>
                     <option value="One-Storey">(1) One-Storey</option>
                     <option value="Two-Storey">(2) Two-Storey</option>
@@ -402,7 +431,8 @@ $dbh = new dbHandler;
                     <option value="Four-Storey">(4) Four-Storey</option>
                     <option value="Mid-rise Storey">(5-6) Mid-rise Storey</option>
                     <option value="High-rise Storey">(7-9) High-rise Storey</option>
-                  </select>
+                  </select> -->
+                  <input type="text" name="noFloors"  id="cc-number" required>
                 </div>
 
                 <div class="col-sm-3">
@@ -411,9 +441,9 @@ $dbh = new dbHandler;
                 </div>
 
                 <div class="col-sm-9">
-                  <label for="area-img" id="sketch" class="form-label">Provide site images and sketches (if available)</label>
+                  <!-- <label for="area-img" id="sketch" class="form-label">Provide site images and sketches (if available)</label>
                   <input type="file" class="form-control" id="sketch" name="imageEdit[]" placeholder="image" aria-label="image" aria-describedby="basic-addon1" multiple>
-                  <input type="hidden" id="edit-image1" name="imageEditStore" value="">
+                  <input type="hidden" id="edit-image1" name="imageEditStore" value=""> -->
                 </div>
               </div>
 

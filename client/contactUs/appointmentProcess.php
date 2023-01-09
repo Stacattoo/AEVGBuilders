@@ -4,15 +4,22 @@ $dbh = new dbHandler;
 
 $projectOthers = '';
 $businessOthers = '';
+$projectImg = '';
 $trimmed_array = '';
 $location = '';
 $bstypename = $_POST['businessTypeName'];
 $bstype = $_POST['businessType'];
 
 if ($_POST['projectType'] == 'Others') {
-    $projectOthers = $_POST['projectTypeOthers'];
+    if(isset($_POST['projectTypeOthers'])){
+
+        $projectOthers = 'Others';
+        $projectImg = '';
+    }
+
 } else {
     $projectOthers = $_POST['projectType'];
+    $projectImg = $_POST['listGroupCheckableRadios'];
 }
 
 if (!empty($bstype)) {
@@ -22,6 +29,7 @@ if (!empty($bstype)) {
         }
     }
 }
+
 $businessOthers = implode(", ", $bstype);
 if (isset($_POST['meetLoc'])) {
 
@@ -58,7 +66,7 @@ if (isset($_POST['firstName'])) {
         'projLocation' => $_POST['projLocation'],
         'targetDate' => $_POST['targetDate'],
         'projectType' => $projectOthers,
-        'projectImage' => $_POST['listGroupCheckableRadios'],
+        'projectImage' => $projectImg,
         'lotArea' => $_POST['lotArea'],
         'noFloors' => $_POST['noFloors'],
         'businessType' => $businessOthers,
