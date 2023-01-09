@@ -21,7 +21,7 @@ $dbh = new dbHandler;
             <div class="mt-5">
                 <div class="row my-3">
                     <div class="col">
-                        <div class="card h-100 mb-3 border-0 " style="background-color:#c4fff9;">
+                        <div class="card h-100 mb-3 border-0" style="background-color:#c4fff9; cursor: pointer;" id="clientDash">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -31,14 +31,13 @@ $dbh = new dbHandler;
                                     <div class="col text-end">
                                         <h1 class="card-title"><span id="totalClients1"></span></h1>
                                         <h6>Total number of Clients</h6>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 mb-3 border-0 " style="background-color:#90e0ef;">
+                        <div class="card h-100 mb-3 border-0 " style="background-color:#90e0ef; cursor: pointer;" id="projectDash">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -46,14 +45,14 @@ $dbh = new dbHandler;
                                     </div>
                                     <div class="col text-end">
                                         <h1 class="card-title"><span id="totalProjects"></span></h1>
-                                        <h6> Finished Projects</h6>
+                                        <a href="#" class="stretched-link h6 text-dark text-decoration-none">Finished Projects</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 mb-3 border-0 " style="background-color:#fcb9b2;">
+                        <div class="card h-100 mb-3 border-0 " style="background-color:#fcb9b2; cursor: pointer;" id="userDash">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
@@ -68,7 +67,7 @@ $dbh = new dbHandler;
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 mb-3 border-0  " style="background-color:#a0c4ff;">
+                        <div class="card h-100 mb-3 border-0  " style="background-color:#a0c4ff; cursor: pointer;" id="employeeDash">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
