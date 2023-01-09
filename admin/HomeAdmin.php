@@ -37,7 +37,7 @@ $dbh = new dbHandler();
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link text-white" aria-current="page" id="dashboardNav">
+                                <a href="#" class="nav-link text-white active" aria-current="page" id="dashboardNav">
                                     <i class="fad fa-analytics bi me-2"></i>
                                     <span class="d-none d-lg-inline">Dashboard</span>
                                 </a>

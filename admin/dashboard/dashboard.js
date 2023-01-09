@@ -1,4 +1,27 @@
 $(document).ready(function () {
+
+    $("#clientDash, #userDash").click(function (e) { 
+        e.preventDefault();
+        $("#content").load("client/client.php");
+        $(".nav-link").removeClass("active");
+        $("#clientNav").addClass("active");
+    });
+
+    $("#projectDash").click(function (e) { 
+        e.preventDefault();
+        $("#content").load("projects/projects.php");
+        $(".nav-link").removeClass("active");
+        $("#projectNav").addClass("active");
+    });
+
+    $("#employeeDash").click(function (e) { 
+        e.preventDefault();
+        $("#content").load("employee/employee.php");
+        $(".nav-link").removeClass("active");
+        $("#employeeNav").addClass("active");
+    });
+
+   
     displayTotalNumOfClients(new Date().getFullYear());
 
     // TOP 5 MOST POPULAR PROJECT
