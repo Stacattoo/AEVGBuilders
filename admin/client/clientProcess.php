@@ -7,7 +7,7 @@ if (isset($_POST['displayUsers'])) {
 }
 
 if(isset($_POST['getEmployee'])){
-    echo json_encode((array)$dbh->getAllUserData());
+    echo json_encode((array)$dbh->getEmployeeProjectCount());
 }
 
 if(isset($_POST['employeeID'])){

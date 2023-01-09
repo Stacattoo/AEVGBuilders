@@ -54,14 +54,32 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
 
 <!-- choose modal -->
 <div class="modal fade" id="chooseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Employee</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="table" class="table table-sm table-hover">
+                <style>
+                    tr {
+                        cursor: pointer;
+                    }
+
+                    td {
+                        text-align: center;
+                    }
+                </style>
+                <table class="table table-sm table-hover table-stripped" id="employeeList">
+                    <thead>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Ongoing</th>
+                        <th class="text-center">On-Hold</th>
+                    </thead>
+                    <tbody id="chooseEmployee"></tbody>
+                </table>
+                <!-- <table id="table" class="table table-sm table-hover">
                     <thead>
                         <tr id="first-tr">
                             <th>Select</th>
@@ -70,9 +88,9 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                         </tr>
                     </thead>
                     <tbody id="chooseEmployee">
-
+                        
                     </tbody>
-                </table>
+                </table> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -100,31 +118,32 @@ $userData = $dbh->getAllClientInfoByID($_POST['id']);
                 var content = ``;
                 $.each(response, function(i, val) {
                     content += `
-                    <tr>
-                            <td><input type="radio" id="empChoose" value="${val.id}" name="select"></td>
+                        <tr data-id="${val.id}">
                             <td>${val.id}</td>
-                            <td>${val.fullName}</td>
-                            
-
+                            <td class="text-capitalize">${val.fullName}</td>
+                            <td>${val.ongoing}</td>
+                            <td>${val.onhold}</td>
                         </tr>
                     `;
                 });
                 $('#chooseEmployee').html(content);
-
-                $('#table tr').click(function() {
-
-                    $(this).find('td input:radio').prop('checked', true);
-                    $('#table tr').removeClass("table-primary");
+                $('#employeeList').DataTable();
+                $('#employeeList tr').click(function() {
+                    var id = $(this).data("id");
+                    $("#chooseBtn").data("id", id);
+                    $('#employeeList tr').removeClass("table-primary");
                     $(this).addClass("table-primary");
                 })
+            },
+            error: function(response) {
+                console.error(response.responseText);
             }
         });
 
         $("#chooseBtn").click(function(e) {
             e.preventDefault();
-            var employeeID = $('input[name="select"]:checked').val();
+            var employeeID = $(this).data("id");
             var clientID = <?php echo ($userData->id); ?>;
-
             $.ajax({
                 type: "POST",
                 url: "client/clientProcess.php",

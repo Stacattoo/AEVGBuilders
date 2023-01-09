@@ -38,7 +38,7 @@ function displayUsers(searchQuery='') {
 					$.ajax({
 						url: "employee/employeeRecords.php",
 						type: "POST",
-						data: { STUDENT_ID: userid },
+						data: { EMPLOYEE_ID: userid },
 						success: function (dataResult) {
 							$("#records").html(dataResult);
 

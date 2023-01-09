@@ -122,7 +122,7 @@ class dbHandler
             CONCAT(houseNo, ' ', street, ' ', barangay, ' ', municipality, ', ', province) AS address
             FROM employee WHERE id=$id";
         $result = mysqli_query($this->conn, $query);
-        
+
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
 
@@ -225,6 +225,31 @@ class dbHandler
             return $user;
         }
     }
+
+    function getEmployeeProjectCount()
+    {
+        $sql = "SELECT id, CONCAT(lastname, ', ', firstname) AS fullName, 
+        (SELECT COUNT(id) FROM employee_client WHERE employee_id=employee.id and status='Finished') as finished, 
+        (SELECT COUNT(id) FROM employee_client WHERE employee_id=employee.id and status='Ongoing') as ongoing,
+        (SELECT COUNT(id) FROM employee_client WHERE employee_id=employee.id and status='Cancelled') as cancelled,
+        (SELECT COUNT(id) FROM employee_client WHERE employee_id=employee.id and status='Onhold') as onhold FROM `employee`";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result)) {
+            $user = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $user[] = (object) [
+                    "id" => $row['id'],
+                    "fullName" => $row['fullName'],
+                    "finished" => $row['finished'],
+                    "ongoing" => $row['ongoing'],
+                    "cancelled" => $row['cancelled'],
+                    "onhold" => $row['onhold'],
+                ];
+            }
+            return $user;
+        }
+    }
+
     function getAllUserClientData()
     {
         $sql = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
