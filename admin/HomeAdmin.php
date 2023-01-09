@@ -14,7 +14,11 @@ $dbh = new dbHandler();
 
     <link rel="stylesheet" href="include/style.css">
     <link rel="stylesheet" href="admin.css">
-
+    <style media="print">
+        #content {
+            margin-left: 0px;
+        }
+    </style>
 
 </head>
 

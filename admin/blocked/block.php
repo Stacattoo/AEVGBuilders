@@ -4,6 +4,9 @@ $dbh = new dbHandler();
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
+<div class="text-center d-none  d-print-block mb-3">
+        <img src="../images/aevg-nobg.png" class="" height="50">
+    </div>
 <div class="container-fluid">
 	<div class="d-flex justify-content-between mx-4">
 		<h3><i class="fal fa-ban me-2"></i>Account Management</h3>

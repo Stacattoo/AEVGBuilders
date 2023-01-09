@@ -2,7 +2,12 @@
 include("../include/dbh.employee.php");
 $dbh = new dbHandler;
 ?>
+
 <div class="container-fluid">
+
+    <div class="text-center d-none  d-print-block ">
+        <img src="../../images/aevg-nobg.png" class="" height="50">
+    </div>
     <h3><i class="fad fa-file-alt bi me-2"></i></i>Reports</h3>
     <hr>
     <!-- <div class="alert alert-warning px-5" role="alert">
@@ -11,9 +16,9 @@ $dbh = new dbHandler;
     <div class="d-flex justify-content-between">
 
         <h5>List of Handled Clients <i class="fw-light fs-5"> (* Note: Click a row to view log history.)</i></h5>
-        <button id="printBtn" type="button" class="btn btn-dark flex-row-reverse mb-4" onclick="window.print()">Print Report</button>
+        <button id="printBtn" type="button" class="btn btn-dark flex-row-reverse mb-4 d-print-none" onclick="window.print()">Print Report</button>
     </div>
-    <table class="table table-bordered table-striped" id="handledClientTable">
+    <table class="table table-bordered table-striped " id="handledClientTable">
         <thead>
             <tr>
                 <th>ID</th>
