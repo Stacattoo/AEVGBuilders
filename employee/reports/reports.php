@@ -23,6 +23,7 @@ $dbh = new dbHandler;
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Address</th>
                 <th>Email</th>
                 <th>Contact No</th>
                 <th>Status</th>
