@@ -283,7 +283,7 @@ class dbHandler
         }
 
         $sql2 = "SELECT *, CONCAT(lastName,', ', firstName) AS fullName,
-        CONCAT(house_no, ' ', street, ' ', barangay, ' ', municipality, ' ', province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
+        CONCAT(client.house_no, ' ', client.street, ' ', client.barangay, ' ', client.municipality, ' ', client.province) AS address, client.id AS client_id FROM client  INNER JOIN appointment ON client.id=appointment.client_id WHERE appointment.status='pending'";
         $result2 = mysqli_query($this->conn, $sql2);
         if (mysqli_num_rows($result2)) {
             while ($row2 = mysqli_fetch_assoc($result2)) {

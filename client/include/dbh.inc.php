@@ -158,9 +158,9 @@ class dbHandler
 
     function setAppointment($value, $id)
     {
-
-        $sql = "INSERT INTO appointment(client_id, projectLocation, targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
-        VALUES ('$id', '$value->projLocation', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
+        //location
+        $sql = "INSERT INTO appointment(client_id, barangay, province, municipality targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
+        VALUES ('$id', '$value->barangay', '$value->municipality', '$value->province', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
         '$value->meetLoc', '$value->image', '$value->appointmentDate', '$value->appointmentTime')";
         $result =  mysqli_query($this->conn, $sql);
         if ($result){
@@ -259,7 +259,7 @@ class dbHandler
     
     function getSched($id)
     {
-        $sql = "SELECT *, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
+        $sql = "SELECT *, appointment.province AS appProvince, appointment.municipality AS appMunicipality, appointment.barangay AS appBarangay, appointment.id AS appID, appointment.image AS imageApp, appointment.status AS statusCheck FROM appointment INNER JOIN client ON appointment.client_id = client.id WHERE client_id = '$id'";
         $result = mysqli_query($this->conn, $sql);
         $sched = array();
         if (mysqli_num_rows($result)) {
@@ -273,7 +273,9 @@ class dbHandler
                     'fullName' => $fullName,
                     'contactNo' => $row['contact_no'],
                     'email' => $row['email'],
-                    'projLocation' => $row['projectLocation'],
+                    'municipality' => $row['appMunicipality'],
+                    'province' => $row['appProvince'],
+                    'projLocation' => $row['appBarangay'],
                     'projImage' => $row['projectImage'],
                     'targetDate' => $row['targetConsDate'],
                     'projectType' => $row['projectType'],
@@ -283,7 +285,7 @@ class dbHandler
                     'meetType' => $row['meetingType'],
                     'meetLoc' => $row['meetingLocation'],
                     'image' => $imgExplode,
-                    'displayAppDate' => $row['meetingDate'],
+                    'appointmentDate' => $row['meetingDate'],
                     'appointmentTime' => $row['meetingTime'],
                     'status' => $row['statusCheck']
                 ];
@@ -297,11 +299,15 @@ class dbHandler
     function editSetAppointment($value, $id)
     {
 
-        $sql = "UPDATE `appointment` SET  projectLocation = '$value->projLocation', targetConsDate = '$value->targetDate', projectType = '$value->projectType', projectImage = '$value->projectImage',
+        $sql = "UPDATE `appointment` SET  municipality = '$value->municipality', province = '$value->province', barangay = '$value->projLocation', targetConsDate = '$value->targetDate', projectType = '$value->projectType', projectImage = '$value->projectImage',
         lotArea = '$value->lotArea', numberFloors = '$value->noFloors', businessType = '$value->businessType', meetingType = '$value->meetType',
         meetingLocation = '$value->meetLoc', image= '$value->image',  meetingDate = '$value->appointmentDate', meetingTime = '$value->appointmentTime' WHERE client_id='$id'";
         $result = mysqli_query($this->conn, $sql);
         return $result;
+        // return (object)[
+        //     'status' => $result, 
+        //     'sql' => $sql
+        // ];
     }
     function insertProjectReaction($clientId, $projectId)
     {

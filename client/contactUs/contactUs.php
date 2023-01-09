@@ -413,7 +413,17 @@ $dbh = new dbHandler;
               <div class="row g-3">
                 <div class="col-sm-9">
                   <label for="projLocation" class="form-label">Project Location</label>
-                  <input type="text" class="form-control" id="projLoc_id" name="projLocation" placeholder="Example: 1234 Main St" required>
+
+                  <select name="province" class="form-select mt-1" id="province" required>
+                    <option selected disabled>Select Province</option>
+                  </select>
+
+                  <select name="municipality" class="form-select mt-1" id="municipality" required>
+                    <option value="">Select Municipality</option>
+                  </select>
+
+                  <!-- <input type="text" name="barangay" value="Barangay" class="form-control mt-1" id="barangay" required> -->
+                  <input type="text" class="form-control" id="projLoc_id" name="projLocation" placeholder="House no. & Barangay Example: 1234 Main St" required>
                 </div>
 
                 <div class="col-sm-3">

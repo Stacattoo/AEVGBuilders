@@ -10,7 +10,6 @@ if (isset($_POST['getSchedEdit']) == $_SESSION['id']) {
 }
 if (isset($_POST['checkSched'])) {
     echo json_encode((array)$dbh->checkSched());
-
 }
 if (isset($_POST['checkAppointment'])) {
     echo json_encode((array)$dbh->getSched($_SESSION['id'])[0]);
@@ -74,11 +73,27 @@ if (isset($_POST['firstName'])) {
 
 
     $oldImgImp =  trim($oldImgImp, ",");
-
+    $province = [
+        'Abra', 'Agusan del Norte', 'Agusan del Sur', 'Aklan', 'Albay', 'Antique', 'Apayao',
+        'Aurora', 'Basilan', 'Bataan', 'Batanes', 'Batangas', 'Benguet', 'Biliran', 'Bohol',
+        'Bukidnon', 'Bulacan', 'Cagayan', 'Camarines Norte', 'Camarines Sur', 'Camiguin',
+        'Capiz', 'Catanduanes', 'Cavite', 'Cebu', 'Cotabato', 'Davao de Oro', 'Davao del Norte',
+        'Davao del Sur', 'Davao Occidental', 'Davao Oriental', 'Dinagat Islands', 'Eastern Samar',
+        'Guimaras', 'Ifugao', 'Ilocos Norte', 'Ilocos Sur', 'Iloilo', 'Isabela', 'Kalinga',
+        'La Union', 'Laguna', 'Lanao del Norte', 'Lanao del Sur', 'Leyte', 'Maguindanao',
+        'Marinduque', 'Masbate', 'Metro Manila', 'Misamis Occidental', 'Misamis Oriental',
+        'Mountain Province', 'Negros Occidental', 'Negros Oriental', 'Northern Samar', 'Nueva Ecija',
+        'Nueva Vizcaya', 'Occidental Mindoro', 'Oriental Mindoro', 'Palawan', 'Pampanga',
+        'Pangasinan', 'Quezon', 'Quirino', 'Rizal', 'Romblon', 'Samar', 'Sarangani', 'Siquijor',
+        'Sorsogon', 'South Cotabato', 'Southern Leyte', 'Sultan Kudarat', 'Sulu', 'Surigao del Norte',
+        'Surigao del Sur', 'Tarlac', 'Tawi-Tawi', 'Zambales', 'Zamboanga del Norte', 'Zamboanga del Sur', 'Zamboanga Sibugay'
+    ];
     $info = (object) [
         'firstName' => $_POST['firstName'],
         'lastName' => $_POST['lastName'],
         'projLocation' => $_POST['projLocation'],
+        'province' => $province[$_POST['province']],
+        'municipality' => $_POST['municipality'],
         'targetDate' => $_POST['targetDate'],
         'projectType' => $projectOthers,
         'projectImage' => $_POST['listGroupCheckableRadios'],
@@ -91,11 +106,20 @@ if (isset($_POST['firstName'])) {
         'appointmentDate' => $_POST['appointmentDate'],
         'appointmentTime' => $_POST['appointmentTime']
     ];
-
+    // var_dump($info);
     if ($dbh->editSetAppointment($info, $_SESSION['id'])) {
         echo json_encode(array(
             "status" => 'success',
             "msg" => 'Profile Update Successfully.'
         ));
+    }else{
+        echo json_encode(array(
+            "status" => 'error',
+            "msg" => 'Error.'
+        ));
     }
+    // echo json_encode(
+    //     (array)
+    //     $dbh->editSetAppointment($info, $_SESSION['id'])
+    // );
 }
