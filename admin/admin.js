@@ -1,6 +1,9 @@
 $(document).ready(function () {
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
+    $("#savePassBtn").hide();
+    $("#pass").hide();
+
     $(".nav-link").click(function (e) {
         e.preventDefault();
         $(".nav-link").removeClass("active");
@@ -47,15 +50,22 @@ $(document).ready(function () {
         $("#content").load("blocked/block.php");
     });
 
-    $("#pass").on("show.bs.collapse", function () {
+    $("#changePassBtn").click(function () {
         $("#confirmPassword").removeAttr("disabled");
         $("#newPassword").removeAttr("disabled");
+        $("#pass").show();
+        $("#savePassBtn").show();
     });
 
-    $("#pass").on("hidden.bs.collapse", function () {
-        $("#newPassword").attr("disabled", "disabled");
-        $("#confirmPassword").attr("disabled", "disabled");
+
+    $('#savePassBtn').click(function () {
+        $("#errorPass").hide();
     });
+
+    // $("#pass").on("hidden.bs.collapse", function () {
+    //     $("#newPassword").attr("disabled", "disabled");
+    //     $("#confirmPassword").attr("disabled", "disabled");
+    // });
 
     setInterval(() => {
         $("#timeNow").html(moment().format('llll'));
@@ -91,19 +101,24 @@ $(document).ready(function () {
             processData: false,
             dataType: "JSON",
             success: function (response) {
+                // console.log(response);
                 if (response.status == 'error') {
                     $("#errorAlert").html(response.msg);
                     $("#errorAlert").show();
                 } else {
+                    $("#newPassword").attr("disabled", "disabled");
+                    $("#confirmPassword").attr("disabled", "disabled");
+                    $("#pass").hide();
                     $("#updateProfileModal").modal('hide');
                 }
             },
             error: function (response) {
+                console.error(response);
             }
         });
     });
 
-    $('#logOut').click(function (e){
+    $('#logOut').click(function (e) {
         e.preventDefault();
     });
 

@@ -21,7 +21,14 @@ if ($oldPass !== $dbh->getSpecificInfo($id, 'password')) {
         "msg" => "New Password and Confirm Password does not match"
     ));
     
-} else {
+} else if($newPass == $dbh->getSpecificInfo($id, 'password')){
+    echo json_encode(array(
+        "status" => "error",
+        "msg" => "The password that you entered already exist, enter new password."
+    ));
+}
+
+else {
 
     if($dbh->updateSpecificInfo($id, 'password', $newPass)){
         echo json_encode(array(

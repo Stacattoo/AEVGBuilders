@@ -401,7 +401,12 @@ $(document).ready(function () {
                     $("#errorPass").html(result.msg);
                     $("#errorPass").show();
                 } else {
-                    alert("Password Changed Succesfully");
+                    // alert("Password Changed Succesfully");
+                    Swal.fire(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                      )
                     $("#changePass").hide();
                     $("#errorPass").hide();
                     $('#changePassForm').trigger("reset");
@@ -624,9 +629,6 @@ $(document).ready(function () {
                 var date = d.getDate() + " " + month[d.getMonth()] + ", " + d.getFullYear();
                 var time = d.toLocaleTimeString().toLowerCase();
                 dateTime = date + " at " + time;
-                // splitBack = val.content.replace("../../clientEmployeeFiles/", '');
-
-                // console.log(content);
                 $('#displayAppDate').html(dateTime);
             }
         });

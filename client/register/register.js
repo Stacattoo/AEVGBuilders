@@ -12,33 +12,28 @@ $(document).ready(function () {
         e.preventDefault();
         var checkContactValue = $('#contactNo').val();
         var checkEmailValue = $('#emailRegister').val();
-        // checkEmailExist();
+        checkEmailExist();
             
             
-        //     function checkEmailExist(){
-        //         $.ajax({
-        //             type: 'post',
-        //             url: 'registerProcess.php',
-        //             data: {
-        //                 email: checkEmailValue,
-        //             },
-        //             dataType: "JSON",
-        //             success: function (response) {
-        //                 console.log(response);
-        //                 if (response.status == 'error') {
-        //                     $('#emailRegister').val('');
-        //                     // $("#alertErrorbtn1").html(response.msg);
-        //                     // $("#alertErrorbtn1").show();
-        //                     alert("Email Address already exist, please enter another email address.");
-        //                 } 
-        //                 // else {
-        //                 //     $("#alertErrorbtn1").hide();
-        //                 // }
-        //             }, error: function (response) {
-        //                 console.error(response);
-        //             }
-        //         });
-        //     }
+            function checkEmailExist(){
+                $.ajax({
+                    type: 'post',
+                    url: 'registerProcess.php',
+                    data: {
+                        email: checkEmailValue,
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 'error') {
+                            $('#emailRegister').val('');
+                            alert("Email Address already exist, please enter another email address.");
+                        } 
+                    }, error: function (response) {
+                        console.error(response);
+                    }
+                });
+            }
             if (checkContactValue != parseInt(checkContactValue)){
 
             $('#contactNo').val('');

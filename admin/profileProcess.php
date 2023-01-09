@@ -17,14 +17,22 @@ if (isset($_POST['username'])) {
     if ($password == $info->password) {
         if (isset($_POST['newPassword'])) {
             $newPassword = $_POST['newPassword'];
-            if ($newPassword == $_POST['confirmPassword']) {
-                $dbh->updateSpecificInfo($id, 'password', $newPassword);
-            } else {
+            if ($newPassword !== $_POST['confirmPassword']) {
+
                 echo json_encode(array(
                     "status" => 'error',
                     "msg" => 'Incorrect Password'
                 ));
                 exit();
+
+            } else if ($newPassword == $password) {
+                echo json_encode(array(
+                    "status" => "error",
+                    "msg" => "New password should not be same as your old password, enter new password."
+                ));
+                exit();
+            } else {
+                $dbh->updateSpecificInfo($id, 'password', $newPassword);
             }
         }
         $dbh->updateSpecificInfo($id, 'username', $_POST['username']);

@@ -2,10 +2,10 @@
 include_once('../include/dbh.inc.php');
 $dbh = new dbHandler;
 
-if(isset($_POST['emailCheck'])){
-    if ($dbh->checkIfEmailExist($_POST['emailCheck'])) {
+if(isset($_POST['email'])){
+    if ($dbh->checkIfEmailExist($_POST['email'])) {
 
-        echo $dbh->checkIfEmailExist($_POST['emailCheck']);
+        echo $dbh->checkIfEmailExist($_POST['email']);
     }
 }
 

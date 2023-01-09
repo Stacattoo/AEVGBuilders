@@ -19,7 +19,9 @@ $getSched = $dbh->getSched($_SESSION['id']);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-replace-svg></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../contactUs/contactUs.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src="profile.js"></script>
 </head>
 
@@ -115,8 +117,11 @@ $getSched = $dbh->getSched($_SESSION['id']);
                         <!-- if there is no appointment -->
                         <h2>You already have an appointment!</h2>
                         <p>Kindly check your messages, and view your submitted appointment information.</p>
-                        <h3>Date and Time of Schedule:</h3>
-                        <p id="displayAppDate" class="fs-4 fw-4"></p>
+                        <div class="alert alert-info text-center">
+                        <h5>Date and Time of Schedule:</h5>
+                        <p id="displayAppDate" class="fs-4 fw-4 ">
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -252,8 +257,7 @@ $getSched = $dbh->getSched($_SESSION['id']);
                 <thead>
                     <tr>
                         <th scope="col">Date & Time</th>
-
-                        <th scope="col">Status</th>
+                        <th scope="col">File Name</th>
                     </tr>
                     <tr class="bg-light" id="hideMe">
                         <td>No Cost Estimate</td>
@@ -277,7 +281,6 @@ $getSched = $dbh->getSched($_SESSION['id']);
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="portfolioOnsite">
         </div>
         <div id="hidePortDiv" class="mt-5">
-            <!-- <div class="bg-light mt-5 fs-5">No Uploaded Progess yet.</div> -->
             <div class="card mb-2  rounded-3">
                 <div class="card-body rounded-3 " style="background-color:#f8f9fa;">
                     <div class="d-flex justify-content-between">
@@ -320,9 +323,6 @@ $getSched = $dbh->getSched($_SESSION['id']);
             </div>
         </div>
     </div>
-
-
-
 
 
     </div>

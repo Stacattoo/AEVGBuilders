@@ -133,11 +133,11 @@ $dbh = new dbHandler();
                             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" email required>
                             <label for="email">Email address</label>
                         </div>
-                        <div class="form-floating mb-2">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" required>
-                            <label for="password">Password</label>
-                        </div>
-                        <div id="pass" class="collapse">
+                        <div id="pass">
+                            <div class="form-floating mb-2">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" required>
+                                <label for="password">Old Password</label>
+                            </div>
                             <div class="form-floating mb-2">
                                 <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required disabled>
                                 <label for="newPassword">New Password</label>
@@ -147,14 +147,15 @@ $dbh = new dbHandler();
                                 <label for="confirmPassword">Re-type New Password</label>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="collapse" data-bs-target="#pass">Change Password</button>
+                        <!-- <button type="submit" class="btn btn-sm btn-danger w-100 mb-2" id="savePassBtn">Save Changes</button> -->
+                        <button type="button" class="btn btn-sm btn-primary w-100" id="changePassBtn">Change Password</button>
                         <div class="alert alert-danger mt-2 py-2 text-center" role="alert" id="errorAlert">
                             {{ errorMessage }}
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-danger">Save changes</button>
                     </div>
                 </form>
             </div>
