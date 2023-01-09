@@ -30,8 +30,8 @@ $dbh = new dbHandler;
         <div id="records" class="col-8">
             <div class="card mb-2  rounded-5">
                 <div class="card-body text-white rounded-3" style="background-color:#343a40;">
-                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 40px; width: 90%; background-color:#495057;"></div>
-                    <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 500px; background-color:#495057;"></div>
+                    <div class="mt-2 mb-2 mx-3 rounded-4" style="height: 30px; width: 90%; background-color:#495057;"></div>
+                    <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 300px; background-color:#495057;"></div>
                     <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 300px; background-color:#495057;"></div>
                     <div class="mb-2 mx-3 rounded-4" style="height: 20px; width: 600px; background-color:#495057;"></div>
                     <div class=" mb-2 mx-3 rounded-4" style="height: 20px; width: 400px; background-color:#495057;"></div>

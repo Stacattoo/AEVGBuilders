@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    document.title = "Reports";
+    // displayEmpName();
     // console.log("alert");
     var userid = $(this).data("id");
     $.ajax({
@@ -11,11 +12,11 @@ $(document).ready(function () {
             // console.log(dataResult);
             var content = ``;
             $.each(dataResult.clients, function (indexInArray, c) {
-                console.log(c.id);
                 content += `
                         <tr id="clientid" class="clientReport" data-id="${c.id}">
                             <td id="reportclientid">${c.id}</td>
                             <td>${c.name}</td>
+                            <td>${c.address}</td>
                             <td>${c.email}</td>
                             <td>${c.contact_no}</td>
                             <td>${c.status}</td>
@@ -69,5 +70,27 @@ $(document).ready(function () {
             })
         }
     });
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "../reports/reportProcess.php",
+            data: {
+                empID: userid,
+                displayName: true
+            },
+            dataType: "JSON",
+            success: function (response) {
+                
+                fullName = response.lastName + ", " + response.firstName;
+                $('#printEmpName').html(fullName);
+                // console.log(fullName);
+                
+            }
+        });
+
+
+    
 
 });

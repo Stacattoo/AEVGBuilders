@@ -9,6 +9,9 @@ $dbh = new dbHandler;
 <script src="projectStatus/projectStats.js"></script>
 <!-- <script src="projects/app.js"></script> -->
 
+<div class="text-center d-none  d-print-block ">
+    <img src="../images/aevg-nobg.png" class="" height="50">
+</div>
 <div class="container-fluid">
     <div class="d-flex justify-content-between mx-4">
 

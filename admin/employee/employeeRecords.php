@@ -22,15 +22,16 @@ $userData = $dbh->getAllInfoByID($_POST['EMPLOYEE_ID']);
         </div>
 
 
-
+        <h5 class="card-subtitle text-muted align-bottom m-0" id="empStatusID"><?php echo $userData->id; ?></h5>
+        <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
         <div class="row">
             <div class="col-8">
-                <h5 class="card-subtitle text-muted align-bottom m-0" id="empStatusID"><?php echo $userData->id; ?></h5>
-                <h1 class="text-capitalize"><?php echo $userData->fullName; ?></h1>
                 <div>Email: <a href="mailto:<?php echo $userData->email; ?>" class="fw-bolder text-white"><?php echo $userData->email; ?></a></div>
                 <div>Address: <span class="fw-bolder text-capitalize"><?php echo $userData->address; ?></span></div>
             </div>
             <div class="col-4">
+
+                <div>Client Status: <strong id="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
                 <div class="dropdown">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" id="statusId" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose Status</button> <!-- dito dapat magdisplay kung resigned or active -->
                     <ul class="dropdown-menu">

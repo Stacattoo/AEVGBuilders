@@ -24,4 +24,7 @@ if(isset($_POST['updateToStopped'])){
 if(isset($_POST['updateToFinished'])){
     echo json_encode((array)$dbh->updateClientStatus($_POST['id'], 'Finished'));
 }
+if(isset($_POST['displayName'])){
+    echo json_encode((array)$dbh->getAllInfoByID($_SESSION['id']));
+}
 ?>

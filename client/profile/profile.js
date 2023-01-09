@@ -79,7 +79,7 @@ $(document).ready(function () {
                                         </div>`;
 
                                 mesContent += `<div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                                <div class="pe-2">
+                                <div class="pe-2">zzzz
                                     <div>
                                         <div class="card d-inline-block p-2 px-3 m-1 border-0 rounded-4 fs-6t" title="${val.dateTime}" style="background-color: #00a6fb;">
                                         <div>${splitBack}</div>

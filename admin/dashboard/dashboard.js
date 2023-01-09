@@ -88,10 +88,13 @@ $(document).ready(function () {
                         <td>${feedback.feedback}</td>
                         <td>${feedback.date}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success post-feedback" data-id="${feedback.id}">Post</button>
-                            <button type="button" class="btn btn-sm btn-warning remove-feedback" data-id="${feedback.id}">Remove</button>
+                        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <button type="button" class="btn btn-sm btn-info post-feedback mb-1" data-id="${feedback.id}">Post</button>
+                            <button type="button" class="btn btn-sm btn-secondary  remove-feedback" data-id="${feedback.id}">Remove</button>
+                            </div> 
                         </td>
                     </tr>
+                   
                 `;
 
                 });
@@ -151,8 +154,10 @@ $(document).ready(function () {
                         <td>${project.description}</td>
                         <td>${project.date_time}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success post-project" data-id="${project.id}">Approve</button>
-                            <button type="button" class="btn btn-sm btn-warning remove-project" data-id="${project.id}">Disapprove</button>
+                        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <button type="button" class="btn btn-sm btn-success post-project mb-1" data-id="${project.id}">Approved</button>
+                            <button type="button" class="btn btn-sm btn-danger remove-project" data-id="${project.id}">Disapproved</button>
+                            </div>
                         </td>
                     </tr>
                      `

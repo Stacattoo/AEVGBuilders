@@ -27,7 +27,7 @@ $dbh = new dbHandler;
         <div id="records" class="col">
             <div class="card mb-2  rounded-3">
                 <div class="card-body rounded-3" style="background-color:#f8f9fa;">
-                    <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 400px; background-color:#e9ecef;"></div>
+                    <div class="mb-2 mx-3 rounded-4" style="height: 30px; width: 90%; background-color:#e9ecef;"></div>
                     <hr>
                     <div class="d-flex align-items-baseline text-end justify-content-start mb-4">
                         <div class="mb-2 mx-3 rounded-4" style="height: 80px; width: 500px; background-color:#e9ecef;"></div>

@@ -680,7 +680,7 @@ class dbHandler
         if (mysqli_num_rows($result)) {
             if ($row = mysqli_fetch_assoc($result)) {
                 $id = $row["id"];
-                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
+                $sql = "SELECT client.id, CONCAT(client.lastName, ', ' , client.firstName) as fullname, CONCAT(client.house_No, ' ', client.street, ' ', client.barangay, ' ', client.municipality, ', ', client.province) AS address, client.email, client.contact_no, employee_client.status FROM employee_client INNER JOIN client ON employee_client.client_id=client.id WHERE employee_client.employee_id=$id";
                 $res = mysqli_query($this->conn, $sql);
                 $client = array();
                 if (mysqli_num_rows($res)) {
@@ -691,6 +691,7 @@ class dbHandler
                             'email' => $row_client["email"],
                             'contact_no' => $row_client["contact_no"],
                             'status' => $row_client["status"],
+                            'address' => $row_client["address"],
                         ];
                     }
                 }
