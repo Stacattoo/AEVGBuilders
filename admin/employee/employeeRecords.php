@@ -1,7 +1,7 @@
 <?php
 include('../include/dbh.admin.php');
 $dbh = new dbHandler();
-$userData = $dbh->getAllInfoByID($_POST['STUDENT_ID']);
+$userData = $dbh->getAllInfoByID($_POST['EMPLOYEE_ID']);
 ?>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
