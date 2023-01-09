@@ -372,8 +372,8 @@ class dbHandler
                         $status = $row2['empclistatus'];
                     }
                 }
-                
-                if(isset($row2['empclistatus'])){
+
+                if (isset($row2['empclistatus'])) {
                     $empclistatus = $row2['empclistatus'];
                 }
 
@@ -441,10 +441,16 @@ class dbHandler
     {
         $query = "UPDATE employee_client SET status='$status' where client_id='$id'";
         $result = mysqli_query($this->conn, $query);
-        if($result){
-            
-            $this->insertActivity($id, "Change Transaction Status into: $status");
-            
+        if ($result) {
+            if ($status == "Finished") {
+                $sql = "UPDATE appointment SET status='$status' where client_id='$id'";
+                $output = mysqli_query($this->conn, $sql);
+                if ($output) {
+                    $this->insertActivity($id, "Change Transaction Status into: $status");
+                }
+
+                return $output;
+            }
         }
 
         return $result;
@@ -585,7 +591,7 @@ class dbHandler
         $sql = "SELECT * FROM message WHERE client_id = '$client'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($result)) {
-            
+
             if ($row = mysqli_fetch_assoc($result)) {
                 $msg = json_decode($row["content"]);
                 array_push($msg, json_decode($content)[0]);

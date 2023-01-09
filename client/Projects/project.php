@@ -33,7 +33,9 @@ $dbh = new dbHandler;
 				<!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
 				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
 					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
-				<?php }  ?>
+				<?php } elseif ($dbh->getSched($_SESSION['id'])[0]->status == "Finished") { ?>
+					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
+				<?php } ?>
 			</ul>
 
 			<div class="col-md-3 text-end">
@@ -87,7 +89,7 @@ $dbh = new dbHandler;
 
 
 		</nav>
-		
+
 
 		<div class="container mt-5">
 

@@ -68,7 +68,10 @@ $('.statusBtn').click(function(e) {
 		},
 		success: function(dataResult) {
 			$('#statusId').html(status);
-		},
+			console.log(dataResult);
+		}, error: function (error) {
+			console.error(error);
+		}
 	});
 });
 });

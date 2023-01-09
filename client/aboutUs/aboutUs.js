@@ -12,7 +12,7 @@ $(document).ready(function () {
             checkAppointment: true
         },
         success: function (result) {
-            if (result.status == "canceled") {
+            if (result.status == "canceled" || result.status == "Finished") {
                 $("#schedBtn").show();
                 $("#appAlert").hide();
             } else {

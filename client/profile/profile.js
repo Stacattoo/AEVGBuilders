@@ -435,7 +435,7 @@ $(document).ready(function () {
                     $("#haveASchedule").hide();
                     $("#viewAppModal").show();
                     $("#viewModBtn").show();
-                } else if (result.status == 'canceled') {
+                } else if (result.status == 'canceled' || result.status=='Finished') {
                     $("#schedAppProfile").show();
                     $("#haveASchedule").hide();
                     $("#viewAppModal").hide();
