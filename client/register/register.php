@@ -35,7 +35,7 @@
                                 <input type="text" class="form-control mt-2 p-2" name="middleName" placeholder="Middle Name (optional)">
                                 <input type="text" class="form-control mt-2 p-2" name="lastName" placeholder="Last Name" required>
                                 <input type="email" class="form-control mt-2" name="email" id="emailRegister" placeholder="Email" required>
-                                <input type="text" class="form-control mt-2" name="contact" id="contactNo" placeholder="Contact Number" required>
+                                <input type="text" class="form-control mt-2" name="contact" id="contactNo" minlength="11" maxlength="11" placeholder="Contact Number" required>
                                 <div class="alert alert-danger mt-3" role="alert" id="alertErrorbtn1">
                                 </div>
                                 <div class="d-flex justify-content-evenly mt-4">
@@ -60,9 +60,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control mt-2" name="barangay" placeholder="Barangay" required>
-                                <input type="text" class="form-control mt-2" name="municipality" placeholder="Municipality" required>
-                                <input type="text" class="form-control mt-2" name="province" placeholder="Province" required>
+
+                                <select name="province" class="form-select mt-1" id="province" required>
+                                    <option selected disabled >Select Province</option>
+                                </select>
+
+                                <select name="municipality" class="form-select mt-1" id="municipality" required>
+                                    <option value="">Select Municipality</option>
+                                </select>
+
+                                <input type="text" name="barangay" value="Barangay" class="form-control mt-1" id="barangay" required>
+
+                                
                             </div>
                             <div class="d-flex justify-content-between ">
                                 <button type="button" id="prev1Btn" class="btn btn-outline-dark btn-sm"><i class="fas fa-chevron-left"></i> Back</button>
