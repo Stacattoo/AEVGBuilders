@@ -19,7 +19,7 @@
 
         <div class="col-md-5 ">
 
-            <div class="form-container  glass-effect text-center p-5">
+            <div class="form-container glass-effect text-center p-5">
                 <div class="display-4 mb-1">
                     <div>AEVG BUILDERS</div>
                     <h5 class="mt-4"> Create an Account</h5>
@@ -27,9 +27,6 @@
                 <form id="registerForm">
                     <div id="">
                         <div id="step1">
-
-
-
                             <div class="d-flex flex-column mb-3">
                                 <input type="text" class="form-control mt-5 p-2" name="firstName" placeholder="First Name" required>
                                 <input type="text" class="form-control mt-2 p-2" name="middleName" placeholder="Middle Name (optional)">
@@ -69,7 +66,7 @@
                                     <option value="">Select Municipality</option>
                                 </select>
 
-                                <input type="text" name="barangay" value="Barangay" class="form-control mt-1" id="barangay" required>
+                                <input type="text" name="barangay" placeholder="Barangay" class="form-control mt-1" id="barangay" required>
 
                                 
                             </div>

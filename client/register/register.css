@@ -1,33 +1,29 @@
 .form-container {
-
     width: 600px;
-    height: 600px;
+    height: auto;
     font-size: 15px;
     margin-bottom: 0px;
-    background: #f7f7f7;    
-   margin-left: auto;
-    
+    background: #f7f7f7;
+    margin-left: auto;
     background: rgba(255, 255, 255, 0.5);
 }
-
-
 
 html {
     height: 100%;
 }
-body{
 
-    background-image:url(../../images/reg.jpg);
+body {
+
+    background-image: url(../../images/reg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    
 }
 
-.glass-effect{
+.glass-effect {
     background: linear-gradient(149deg, rgb(225 225 225 / 10%), rgb(183 177 177 / 66%));
--webkit-backdrop-filter: blur(20px);
-box-shadow: 0 8px 32px 0 rgb(0 0 0 / 11%);
-border: 1px solig rgba(255, 255, 255, 0.18);
-border-radius: 26px;
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 11%);
+    border: 1px solig rgba(255, 255, 255, 0.18);
+    border-radius: 26px;
 }
