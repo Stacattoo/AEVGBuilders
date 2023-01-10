@@ -80,6 +80,7 @@ $(document).ready(function () {
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
                                 <small class="text-muted">${data.category}</small>
                                 </div>
+                                <small class="text-muted mb-1">${data.fullName} </small>
                                 <p class="card-text text-truncate">${data.description}</p>
                             </div>
                         </div>

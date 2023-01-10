@@ -68,7 +68,7 @@ $(document).ready(function () {
             success: function (response) {
                 let content = ``;
                 $.each(response, function (indexInArray, data) {
-                    
+                    console.log(data);
                     content += `
                     <div class="col">
                         <div class="projectEditDiv card shadow-sm" data-id="${data.id}" style="cursor: pointer;">
@@ -76,10 +76,11 @@ $(document).ready(function () {
                             </div>
                             
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">                       
+                                <div class="d-flex justify-content-between align-items-center mb-1">                       
                                 <div class="fw-bold text-capitalize">${data.title}</div> 
                                 <small class="text-muted">${data.category}</small>
                                 </div>
+                                <small class="text-muted mb-1">${data.fullName} </small>
                                 <p class="card-text text-truncate">${data.description}</p>
                             </div>
                         </div>
@@ -161,7 +162,7 @@ $(document).ready(function () {
                                     $("#editUploadProjects").trigger("reset");
                                     $('#editProjectModal').modal("hide");
                                     refreshTable();
-                                   
+
                                 }
                             }, error: function (response) {
                             }
@@ -199,5 +200,7 @@ $(document).ready(function () {
 
         });
     });
+
+
 
 });

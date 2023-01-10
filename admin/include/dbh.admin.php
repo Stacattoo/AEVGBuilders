@@ -45,8 +45,8 @@ class dbHandler
 
     function getAllProjects()
     {
-        $query = "SELECT * FROM projects where project_status = 'active' || project_status = 'pending'";
-        $result = mysqli_query($this->conn, $query);
+        $query = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullName FROM projects INNER JOIN employee ON projects.employee_id=employee.id where project_status = 'active' OR project_status = 'pending'";
+        $result = mysqli_query($this->conn, $query); 
         $projects = array();
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -55,6 +55,7 @@ class dbHandler
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "category" => $row["category"],
+                    "fullName" => $row["fullName"],
                     "image" => explode(",", $row["image"]),
                 ];
             }
@@ -64,7 +65,7 @@ class dbHandler
 
     function getAdminPendingProjects()
     {
-        $query = "SELECT * FROM projects where project_status = 'pending'";
+        $query = "SELECT projects.*, CONCAT(employee.firstName, ' ', employee.lastName) as fullName FROM projects INNER JOIN employee ON projects.employee_id=employee.id where project_status = 'pending'";
         $result = mysqli_query($this->conn, $query);
         $projects = array();
         if (mysqli_num_rows($result)) {
@@ -74,6 +75,7 @@ class dbHandler
                     "title" => $row["title"],
                     "description" => $row["description"],
                     "category" => $row["category"],
+                    "fullName" => $row["fullName"],
                     "image" => explode(",", $row["image"]),
                 ];
             }
