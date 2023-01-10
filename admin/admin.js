@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    fetchLogo();
+    fetchSettings();
     $("#settings").modal("show");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
@@ -126,13 +126,29 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    function fetchLogo() {
+    function fetchSettings() {
         $.ajax({
             type: "POST",
             url: "../settings/settings.php",
             data: { GET_LOGO: true },
+            dataType: "JSON",
             success: function (response) {
-                $(".img-logo").attr("src", response);
+                console.log(response);
+                $(".img-logo").attr("src", response.logo);
+            }, error: function (response) {
+                console.error(response);
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "../settings/settings.php",
+            data: { GET_ABOUTUS: true },
+            dataType: "JSON",
+            success: function (response) {
+                console.log(response);
+                $("#editAddress").val(response.address);
+                $("#editContact").val(response.contact);
+                $("#editEmail").val(response.email);
             }, error: function (response) {
                 console.error(response);
             }
@@ -165,9 +181,10 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             processData: false,
+            dataType: "JSON",
             success: function (response) {
                 console.log(response);
-                fetchLogo();
+                fetchSettings();
                 $("#spinnerSettings").hide();
                 $("#successAlert").fadeIn();
             }, beforeSend: function () {

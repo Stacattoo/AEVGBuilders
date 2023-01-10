@@ -30,8 +30,10 @@ $(document).ready(function () {
         type: "POST",
         url: "../../settings/settings.php",
         data: { GET_LOGO: true },
+        dataType: "JSON",
         success: function (response) {
-            $(".img-logo").attr("src", "../" + response);
+            console.log(response);
+            $(".img-logo").attr("src", "../" + response.logo);
         }, error: function (response) {
             console.error(response);
         }
