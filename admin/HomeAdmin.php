@@ -169,15 +169,40 @@ $dbh = new dbHandler();
             <div class="modal-content text-bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title">Settings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div>Edit Logo</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form id="settingsForm">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+                                Save Successfully
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div id="error"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Logo</h5>
+                                    <img src="" alt="Logo" class="img-logo border bg-dark rounded-top" id="editLogoImg" width="300px">
+                                    <button class="btn btn-primary d-block rounded-bottom" style="width: 300px; border-radius: 0px;" id="editLogo">Upload New Logo</button>
+                                    <input type="file" name="logo" class="d-none" id="logoFile" accept="image/*">
+                                    <input type="hidden" name="old_logo" id="old_logo">
+                                </div>
+                                <div class="col">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes
+                            <div class="spinner-border spinner-border-sm" role="status" id="spinnerSettings">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

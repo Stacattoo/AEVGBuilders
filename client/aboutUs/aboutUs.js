@@ -75,4 +75,14 @@ $(document).ready(function () {
 
     // });
 
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_LOGO: true },
+        success: function (response) {
+            $(".img-logo").attr("src", "../" + response);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
 });

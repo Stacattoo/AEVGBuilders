@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <logo>../images/waevg.png</logo>
+    <aboutUs>
+        <address>002 San Pablo, Hagonoy Bulacan</address>
+        <contactNum>+639778527307</contactNum>
+        <email>evgalangdesign@gmail.com</email>
+        <addressLink><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"/></addressLink>
+    </aboutUs>
+    <appointment>
+        <meetUpLoc>Shangri-la</meetUpLoc>
+        <meetUpLoc>SM Megamall</meetUpLoc>
+        <meetUpLoc>Preferred Meet-up Location</meetUpLoc>
+    </appointment>
+</settings>

@@ -1,9 +1,11 @@
 $(document).ready(function () {
-
+    fetchLogo();
     $("#settings").modal("show");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $("#savePassBtn").hide();
+    $("#spinnerSettings").hide();
+    $("#successAlert").hide();
     $("#pass").hide();
 
     $(".nav-link").click(function (e) {
@@ -124,17 +126,57 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    $.ajax({
-        type: "get",
-        url: "settings/settings.xml",
-        dataType: "xml",
-        success: function (response) {
-            console.log(response);
-            var logo = $(response).find('logo').html();
-            
-            $(".img-logo").attr("src", logo);
-        }, error: function(response) {
-            console.error(response);
+    function fetchLogo() {
+        $.ajax({
+            type: "POST",
+            url: "../settings/settings.php",
+            data: { GET_LOGO: true },
+            success: function (response) {
+                $(".img-logo").attr("src", response);
+            }, error: function (response) {
+                console.error(response);
+            }
+        });
+    }
+
+    $("#editLogo").click(function (e) {
+        e.preventDefault();
+        $("#logoFile").trigger("click");
+    });
+
+    $('#logoFile').change(function () {
+        var file = $("#logoFile").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                // console.log(reader.result);
+                $("#editLogoImg").attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
         }
+    });
+
+    $("#settingsForm").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "../settings/settings.php",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (response) {
+                console.log(response);
+                fetchLogo();
+                $("#spinnerSettings").hide();
+                $("#successAlert").fadeIn();
+            }, beforeSend: function () {
+                $("#spinnerSettings").show();
+            },
+            error: function (response) {
+                $("#error").html(response);
+                console.error(response);
+            }
+        });
     });
 });
