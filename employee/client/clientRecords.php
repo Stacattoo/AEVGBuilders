@@ -422,15 +422,19 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                             // imgAppDetails = data;
                             // projTypeImg = details.projImage;
                             if (data == '') {
-                                imgAppDetails = `
-                            <div class="col">
-                                    <div class="border position-relative" style="height: 300px;">
-                                        
-                                    <p class="position-absolute top-50 start-50 translate-middle">No Image reference.</p>
-                                    </div>
-                                </div>
-                            `;
+                                projTypeImg = `<div class="col">
+                            <div class="border position-relative">
+                                <img src="../../images/contactUsImg/${details.projImage}.jpg" class="d-block img-fluid img">
+                            </div>
+                        </div>
+                        `;
                             } else {
+                                projTypeImg = `<div class="col">
+                            <div class="border position-relative">
+                                <img src="../../images/contactUsImg/${details.projImage}.jpg" class="d-block img-fluid img">
+                            </div>
+                        </div>
+                        `;
                                 imgAppDetails += `
                                 <div class="col">
                                     <div class="border position-relative">
@@ -446,12 +450,7 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                             }
                         });
 
-                        projTypeImg = `<div class="col">
-                            <div class="border position-relative">
-                                <img src="../../images/contactUsImg/${details.projImage}.jpg" class="d-block img-fluid img">
-                            </div>
-                        </div>
-                        `;
+
 
                         mergeImg = imgAppDetails + projTypeImg;
 
