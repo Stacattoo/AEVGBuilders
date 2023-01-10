@@ -33,7 +33,7 @@ $dbh = new dbHandler;
 				<!-- <li><a href="../materials/materials.php" class="nav-link px-2 link-dark">Materials</a></li> -->
 				<?php if (isset($_SESSION['id']) && !$dbh->getSched($_SESSION['id']) >= '1') { ?>
 					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
-				<?php } elseif ($dbh->getSched($_SESSION['id'])[0]->status == "Finished") { ?>
+				<?php } elseif (isset($_SESSION['id']) && $dbh->getSched($_SESSION['id'])[0]->status == "Finished") { ?>
 					<li><a href="../contactUs/contactUs.php" class="nav-link px-2 link-dark">Appointment</a></li>
 				<?php } ?>
 			</ul>
