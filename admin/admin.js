@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    $("#settings").modal("show");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $("#savePassBtn").hide();
@@ -122,4 +124,17 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    $.ajax({
+        type: "get",
+        url: "settings/settings.xml",
+        dataType: "xml",
+        success: function (response) {
+            console.log(response);
+            var logo = $(response).find('logo').html();
+            
+            $(".img-logo").attr("src", logo);
+        }, error: function(response) {
+            console.error(response);
+        }
+    });
 });

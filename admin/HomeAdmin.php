@@ -29,7 +29,7 @@ $dbh = new dbHandler();
                 <div class="d-flex flex-nowrap">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
                         <a href="/" class="d-flex mx-auto align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <img src="../images/waevg.png" class="text-center" height="45">
+                            <img src="../images/waevg.png" class="text-center img-logo" height="45">
                         </a>
                         <div class="text-uppercase text-center fw-bold fs-6 d-none d-lg-inline mt-3 text-info">
                             Admin
@@ -95,6 +95,7 @@ $dbh = new dbHandler();
                                 <strong> ADMIN</strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" href="#settings">Settings</a></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal" href="#updateProfileModal">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -158,6 +159,25 @@ $dbh = new dbHandler();
                         <button type="submit" class="btn btn-danger">Save changes</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="modal" id="settings" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content text-bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>Edit Logo</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
