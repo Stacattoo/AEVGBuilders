@@ -60,6 +60,17 @@ $(document).ready(function () {
         $("#content").load("../portfolio/portfolio.php");
     });
 
-
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_LOGO: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $(".img-logo").attr("src", "../" + response.logo);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
 
 });

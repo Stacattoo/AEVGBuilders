@@ -37,7 +37,7 @@ $(document).ready(function () {
 
                 } else if (response == "hanna") {
                     window.location.href = "../contactUs/contactUs.php";
-                } 
+                }
             }
         });
     });
@@ -75,4 +75,31 @@ $(document).ready(function () {
 
     // });
 
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_LOGO: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $(".img-logo").attr("src", "../" + response.logo);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_ABOUTUS: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $("#aboutUsAddress").html(response.address);
+            $("#aboutUsContact").html(response.contact);
+            $("#aboutUsEmail").html(response.email);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
 });

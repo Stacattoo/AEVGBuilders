@@ -131,7 +131,7 @@ $dbh = new dbHandler();
                             <label for="text">Username</label>
                         </div>
                         <div class="form-floating mb-2">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" email required>
+                            <input type="email" class="form-control" id="email" name="email" email required>
                             <label for="email">Email address</label>
                         </div>
                         <div id="pass">
@@ -165,19 +165,69 @@ $dbh = new dbHandler();
 
     <!-- Settings -->
     <div class="modal" id="settings" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content text-bg-dark">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Settings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div>Edit Logo</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form id="settingsForm">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+                                Save Successfully
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div id="error"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Logo</h5>
+                                    <img src="" alt="Logo" class="img-logo border bg-dark rounded-top" id="editLogoImg" width="300px">
+                                    <button class="btn btn-primary d-block rounded-bottom" style="width: 300px; border-radius: 0px;" id="editLogo">Upload New Logo</button>
+                                    <input type="file" name="logo" class="d-none" id="logoFile" accept="image/*">
+                                    <input type="hidden" name="old_logo" id="old_logo">
+
+
+                                </div>
+                                <div class="col">
+                                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.164121913461!2d120.7510418682818!3d14.836823687455547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396504a57883527%3A0xb11f1fe4dbc458eb!2sSan%20Pablo%2C%20Hagonoy%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1663689346417!5m2!1sen!2sph" class="w-100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>About Us</h5>
+                                        <div class="mb-3">
+                                            <label for="editAddress" class="form-label fs-5">Address</label>
+                                            <input type="text" class="form-control" id="editAddress" name="editAddress">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editContact" class="form-label fs-5">Contact Number</label>
+                                            <input type="text" class="form-control" id="editContact" name="editContact">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editEmail" class="form-label fs-5">Email address</label>
+                                            <input type="email" class="form-control" id="editEmail" name="editEmail">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes
+                            <div class="spinner-border spinner-border-sm" role="status" id="spinnerSettings">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

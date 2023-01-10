@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_LOGO: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            $(".img-logo").attr("src", "../" + response.logo);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
+    
     var provinces = [
         'Abra', 'Agusan del Norte', 'Agusan del Sur', 'Aklan', 'Albay', 'Antique', 'Apayao',
         'Aurora', 'Basilan', 'Bataan', 'Batanes', 'Batangas', 'Benguet', 'Biliran', 'Bohol',
@@ -572,7 +585,5 @@ $(document).ready(function () {
             });
         }
     });
-
-    console.log($("#appointForm"));
 
 });
