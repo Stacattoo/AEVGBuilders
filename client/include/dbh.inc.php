@@ -159,8 +159,8 @@ class dbHandler
     function setAppointment($value, $id)
     {
         //location
-        $sql = "INSERT INTO appointment(client_id, barangay, province, municipality targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
-        VALUES ('$id', '$value->barangay', '$value->municipality', '$value->province', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
+        $sql = "INSERT INTO appointment(client_id, barangay, province, municipality, targetConsDate, projectType, projectImage, lotArea, numberFloors, businessType, meetingType, meetingLocation, image, meetingDate, meetingTime)
+        VALUES ('$id', '$value->projLocation', '$value->municipality', '$value->province', '$value->targetDate', '$value->projectType', '$value->projectImage','$value->lotArea', '$value->noFloors', '$value->businessType', '$value->meetType', 
         '$value->meetLoc', '$value->image', '$value->appointmentDate', '$value->appointmentTime')";
         $result =  mysqli_query($this->conn, $sql);
         if ($result){

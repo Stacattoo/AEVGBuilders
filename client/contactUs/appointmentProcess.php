@@ -64,6 +64,8 @@ if (isset($_POST['firstName'])) {
         'contactNo' => $_POST['contactNo'],
         'email' => $_POST['email'],
         'projLocation' => $_POST['projLocation'],
+        'municipality' => $_POST['municipality'],
+        'province' => $_POST['province'],
         'targetDate' => $_POST['targetDate'],
         'projectType' => $projectOthers,
         'projectImage' => $projectImg,
