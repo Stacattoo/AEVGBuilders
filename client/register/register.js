@@ -147,9 +147,6 @@ $(document).ready(function () {
                     $("#alertError").hide();
                     $("#alertSuccess").show();
                     $('#registerForm').trigger("reset");
-
-
-
                 }
             }, error: function (response) {
                 console.error(response);
