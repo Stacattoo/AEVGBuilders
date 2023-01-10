@@ -107,7 +107,7 @@ $dbh = new dbHandler;
                 <div class="col-sm-4">
                   <label for="contactNo" class="form-label">Contact Number</label>
                   <div class="input-group has-validation">
-                    <input type="text" class="form-control" name="contactNo" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>">
+                    <input type="text" class="form-control" name="contactNo" id="contactNumber" placeholder="Contact Number" value="<?php echo $dbh->getValueByID('contact_no', $_SESSION['id']); ?>" required>
                   </div>
                 </div>
               </div>
@@ -415,7 +415,7 @@ $dbh = new dbHandler;
                   <label for="projLocation" class="form-label">Project Location</label>
 
                   <select name="province" class="form-select mt-1" id="province" required>
-                    <option selected disabled>Select Province</option>
+                    <option value ="" selected disabled>Select Province</option>
                   </select>
 
                   <select name="municipality" class="form-select mt-1" id="municipality" required>
@@ -482,7 +482,7 @@ $dbh = new dbHandler;
                 <div class="col-md">
                   <div class="form-floating">
                     <select class="form-select" name="meetType" id="meetType" required>
-                      <option selected disabled>SELECT A PREFERED TYPE OF MEETING </option>
+                      <option value ="" selected disabled>SELECT A PREFERED TYPE OF MEETING </option>
                       <option value="virtual">Virtual Meeting (Zoom)</option>
                       <option value="meetUp">Meet up</option>
                     </select>
@@ -492,7 +492,7 @@ $dbh = new dbHandler;
                 <div class="col-md">
                   <div class="form-floating">
                     <select class="form-select" name="meetLoc" id="meetLoc" required>
-                      <option selected disabled>SELECT LOCATION</option>
+                      <option value ="" selected disabled>SELECT LOCATION</option>
                       <option value="Shangri-la">Shangri-la</option>
                       <option value="SM Megamall">SM Megamall</option>
                     </select>
