@@ -423,7 +423,7 @@ $dbh = new dbHandler;
                   </select>
 
                   <!-- <input type="text" name="barangay" value="Barangay" class="form-control mt-1" id="barangay" required> -->
-                  <input type="text" class="form-control" id="projLoc_id" name="projLocation" placeholder="House no. & Barangay Example: 1234 Main St" required>
+                  <input type="text" class="form-control mt-1" id="projLoc_id" name="projLocation" placeholder="House no. & Barangay Example: 1234 Main St" required>
                 </div>
 
                 <div class="col-sm-3">
@@ -442,7 +442,7 @@ $dbh = new dbHandler;
                     <option value="Mid-rise Storey">(5-6) Mid-rise Storey</option>
                     <option value="High-rise Storey">(7-9) High-rise Storey</option>
                   </select> -->
-                  <input type="text" name="noFloors"  id="cc-number" required>
+                  <input type="text" class="form-control" name="noFloors"  id="cc-number" required>
                 </div>
 
                 <div class="col-sm-3">

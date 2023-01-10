@@ -66,13 +66,13 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                 } ?></span></div>
     </div>
 </div>
-<div class="card">
+<div class="card" >
 
-    <div class="card-body" style="background-color:#f8f9fa;">
+    <div class="card-body" style="background-color:#f8f9fa; ">
 
         <h4 class="text-capitalize text-bold mx-5 mt-2">Appointment Details</h4>
 
-        <div class="modal-body p-5">
+        <div class="modal-body p-5 ">
             <div class="row g-3">
                 <div class="col">
                     <h5><b>Name: </b></h5>
@@ -157,10 +157,9 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
             </div>
             <div class="row g-3">
                 <div class="col-sm-6">
-                    <h5><b>Reference Image/s:</b></h5>
-                    <div class="form-control" id="refImgClient"></div>
+                    <h5><b>Reference Image/s:</b></h5>   
                 </div>
-
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-2 h-auto"  id="refImgClient"></div>
             </div>
 
         </div>
@@ -438,7 +437,7 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                                 imgAppDetails += `
                                 <div class="col">
                                     <div class="border position-relative">
-                                        <img src="../projects/${data}" class="d-block img-fluid img">
+                                      <a href="../projects/${data}" target="_blank">  <img src="../projects/${data}"    style="height:200px;" class="d-block img-fluid img"> </a> 
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle"
                                         id="imageDeleteBtn"  data-id="${indexInArray}">
                                         -
