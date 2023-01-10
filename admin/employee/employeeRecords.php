@@ -5,7 +5,7 @@ $userData = $dbh->getAllInfoByID($_POST['EMPLOYEE_ID']);
 ?>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
+<link rel="stylesheet" href="employee/employee.js">
 <div class="card mb-2">
     <div class="card-body text-white" style="background-color:#343a40;">
         <div class="d-flex justify-content-between">
@@ -31,12 +31,12 @@ $userData = $dbh->getAllInfoByID($_POST['EMPLOYEE_ID']);
             </div>
             <div class="col-4">
 
-                <div>Client Status: <strong id="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
+                <div>Client Status: <strong class="statusId"><?php echo $userData->status; ?></strong></div> <!-- dito yung status grr -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" id="statusId" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose Status</button> <!-- dito dapat magdisplay kung resigned or active -->
+                    <button class="statusId btn btn-secondary btn-sm dropdown-toggle" id="" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose Status</button> <!-- dito dapat magdisplay kung resigned or active -->
                     <ul class="dropdown-menu">
-                        <li><button type="button" class="dropdown-item statusBtn" data-status="Active">Active</button></li>
-                        <li><button type="button" class="dropdown-item statusBtn" data-status="Resigned">Resigned</button></li>
+                        <li><button type="button" class="dropdown-item statusBtn" name="status" data-status="Active">Active</button></li>
+                        <li><button type="button" class="dropdown-item statusBtn" name="status" data-status="Resigned">Resigned</button></li>
                     </ul>
 
                 </div>
@@ -236,5 +236,30 @@ $userData = $dbh->getAllInfoByID($_POST['EMPLOYEE_ID']);
                 }
             });
         });
+        $('.statusBtn').click(function(e) {
+            e.preventDefault();
+            var status = $(this).data("status");
+            var id = $('#empStatusID').html();
+            console.log(status);
+            console.log(id);
+            debugger
+            $.ajax({
+                url: "employee/employeeProcess.php",
+                type: "POST",
+                data: {
+                    updateStatus: true,
+                    employeeStatus: status,
+                    id: id
+                },
+                success: function(dataResult) {
+                    $('.statusId').html(status);
+                    console.log(dataResult);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+
     });
 </script>

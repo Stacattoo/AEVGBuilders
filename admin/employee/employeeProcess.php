@@ -74,5 +74,5 @@ function generateRandomPassword(): string
 }
 
 if (isset($_POST['updateStatus'])) {
-    echo json_encode((array)$dbh->updateClientStatus($_POST['updateStatus'], $_POST['employeeStatus'])); // employeestatus dapat
+    echo json_encode((array)$dbh->updateEmployeeStatus($_POST['id'], $_POST['employeeStatus'])); // employeestatus dapat
 }

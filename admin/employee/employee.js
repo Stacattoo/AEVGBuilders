@@ -106,28 +106,7 @@ $(document).ready(function () {
 		});
 	});
 
-	$('.statusBtn').click(function(e) {
-		e.preventDefault();
-		var status = $(this).data("status");
-		var id = $('#empStatusID').html();
-		console.log(status);
-		console.log(id);
-		// debugger
-		$.ajax({
-			url: "../employee/employeeProcess.php",
-			type: "POST",
-			data: {
-				updateStatus: id,
-				employeeStatus: status 
-			},
-			success: function(dataResult) {
-				$('#statusId').html(status);
-			}, error: function (error) {
-				console.error(error);
-			}
-		});
-	});
-
+	
 
 
 });

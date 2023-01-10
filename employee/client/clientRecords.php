@@ -413,11 +413,14 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                         }
                         var businessVar = '';
                         var imgAppDetails = ``;
+                        var projTypeImg = ``;
+                        var mergeImg = ``;
                         $.each(details.businessType, function(indexInArray, data) {
                             businessVar = details.businessType.join(', ');
                         });
                         $.each(details.image, function(indexInArray, data) {
                             // imgAppDetails = data;
+                            // projTypeImg = details.projImage;
                             if (data == '') {
                                 imgAppDetails = `
                             <div class="col">
@@ -433,14 +436,24 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                                     <div class="border position-relative">
                                         <img src="../projects/${data}" class="d-block img-fluid img">
                                         <span class="deleteImgBtn position-absolute top-0 start-100 translate-middle"
-                                            id="imageDeleteBtn"  data-id="${indexInArray}">
-                                            -
+                                        id="imageDeleteBtn"  data-id="${indexInArray}">
+                                        -
                                         </span>
-                                    </div>
-                                </div>
-                            `;
+                                        </div>
+                                        </div>
+                                        `;
+
                             }
                         });
+
+                        projTypeImg = `<div class="col">
+                            <div class="border position-relative">
+                                <img src="../../images/contactUsImg/${details.projImage}.jpg" class="d-block img-fluid img">
+                            </div>
+                        </div>
+                        `;
+
+                        mergeImg = imgAppDetails + projTypeImg;
 
                         $('#editBtnID').attr("data-id", details.client_id);
                         $('#name_id').html(details.fullName);
@@ -456,7 +469,9 @@ $pendingUserData = $dbh->PgetAllClientInfoByID($_POST['id']);
                         $('#meetLoc_id').html(details.meetLoc);
                         $('#meetDate_id').html(details.appointmentDate);
                         $('#meetTime_id').html(details.appointmentTime);
-                        $('#refImgClient').html(imgAppDetails);
+                        $('#refImgClient').html(mergeImg);
+                        console.log(projTypeImg);
+                        // $('#refImgClient').html(projTypeImg);
                         valueEdit = details;
 
                     },

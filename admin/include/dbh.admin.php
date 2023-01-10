@@ -354,7 +354,7 @@ class dbHandler
 
     function getAllBlocked()
     {
-        $query = "SELECT *, CONCAT(lastName,', ', firstName, ' ', middleName) AS fullName FROM employee WHERE status = 'block' ";
+        $query = "SELECT *, CONCAT(lastName,', ', firstName, ' ', middleName) AS fullName FROM employee WHERE status = 'block' || status = 'Resigned'";
         $result = mysqli_query($this->conn, $query);
         if (mysqli_num_rows($result) > 0) {
             $blocked = array();
@@ -364,7 +364,7 @@ class dbHandler
                     "employee_id" => $row['employee_id'],
                     "fullName" => $row['fullName'],
                     "email" => $row['email'],
-
+                    "status" => $row['status']
                 ];
             }
             return $blocked;
@@ -606,6 +606,18 @@ class dbHandler
         } else {
             return 0;
         }
+    }
+    function updateEmployeeStatus($id, $status)
+    {
+        $query = "UPDATE employee SET status='$status' where id='$id'";
+        $result = mysqli_query($this->conn, $query);
+        if($result){
+            
+            $this->insertActivity($id, "Change Transaction Status into: $status");
+            
+        }
+
+        return $result;
     }
     // function getFullname($id)
     // {

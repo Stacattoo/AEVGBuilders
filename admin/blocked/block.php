@@ -65,15 +65,29 @@ $dbh = new dbHandler();
 				success: function(dataResult) {
 
 					$.each(dataResult, function(i, data) {
-						var content = `
-						<tr id='user$id'>
-							<td>` + data.fullName + `</td>
-							<td>` + data.employee_id + `</td>
-							<td>` + data.email + `</td>
-							<td><button type='button' onclick='unblock(` + data.id + `)' class='unblock btn btn-primary btn-sm'>
-								Unblock</button></td>
-						</tr>
-						`;
+						console.log(data.status);
+						if(data.status == 'block'){
+
+							var content = `
+							<tr id='user$id'>
+								<td>` + data.fullName + `</td>
+								<td>` + data.employee_id + `</td>
+								<td>` + data.email + `</td>
+								<td><button type='button' onclick='unblock(` + data.id + `)' class='unblock btn btn-primary btn-sm'>
+									Unblock</button></td>
+							</tr>
+							`;
+						}else if(data.status == 'Resigned'){
+							var content = `
+							<tr id='user$id'>
+								<td>` + data.fullName + `</td>
+								<td>` + data.employee_id + `</td>
+								<td>` + data.email + `</td>
+								<td><button type='button' onclick='unblock(` + data.id + `)' class='unblock btn btn-primary btn-sm'>
+									Resigned</button></td>
+							</tr>
+							`;
+						}
 						$("#table").append(content);
 					});
 				},
