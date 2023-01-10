@@ -149,53 +149,176 @@ $(document).ready(function () {
     var dateVar = ``;
     const params1 = new URLSearchParams(location.search);
 
+    // $("#step1Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step1").hide();
+    //     $("#step2").show();
+    //     $(".progress-bar").width("40%");
+    // });
+
+    // $("#prev1Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step1").show();
+    //     $("#step2").hide();
+    //     $(".progress-bar").width("20%");
+    // });
+
+    // $("#step2Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step2").hide();
+    //     $("#step3").show();
+    //     $(".progress-bar").width("70%");
+    // });
+
+    // $("#prev2Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step2").show();
+    //     $("#step3").hide();
+    //     $(".progress-bar").width("30%");
+    // });
+    // $("#step3Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step3").hide();
+    //     $("#step4").show();
+    //     $(".progress-bar").width("100%");
+    //     var meetType = $("#meetType").val();
+    //     if (meetType == "meetUp") {
+    //         $("#meetLoc").prop('disabled', false);
+    //     } else {
+    //         $("#meetLoc").prop('disabled', true);
+    //     }
+    // });
+
+    // $("#prev3Btn").click(function (e) {
+    //     e.preventDefault();
+    //     $("#step3").show();
+    //     $("#step4").hide();
+    //     $(".progress-bar").width("70%");
+    // });
     $("#step1Btn").click(function (e) {
         e.preventDefault();
-        $("#step1").hide();
-        $("#step2").show();
-        $(".progress-bar").width("40%");
+
+        var checkContactValue = $('#contactNumber').val();
+        if (checkContactValue != parseInt(checkContactValue)) {
+            $('#contactNumber').val('');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Contact Number is Invalid, please try again.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+        var form = $("#appointForm")[0];
+
+        if (form[3].checkValidity()) {
+            $("#step1").hide();
+            $("#step2").show();
+            $(".progress-bar").width("40%");
+        } else {
+            form[3].reportValidity();
+        }
     });
 
-    $("#prev1Btn").click(function (e) {
+    $('#prev1Btn').click(function (e) {
         e.preventDefault();
         $("#step1").show();
         $("#step2").hide();
         $(".progress-bar").width("20%");
     });
-
-    $("#step2Btn").click(function (e) {
+    $('#step2Btn').click(function (e) {
         e.preventDefault();
-        $("#step2").hide();
-        $("#step3").show();
-        $(".progress-bar").width("70%");
-    });
+        if ($("input[name='projectType']:checked").val()) {
+            if ($("input[name='businessType[]']:checked").val()) {
+                if ($("input[name='listGroupCheckableRadios']:checked").val()) {
 
-    $("#prev2Btn").click(function (e) {
+                    $("#step2").hide();
+                    $("#step3").show();
+                    $(".progress-bar").width("70%");
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Pick 1 reference image, thank you!',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
+                    return false;
+                }
+            } else {
+
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Pick atleast 1 business type, thank you!',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                })
+                return false;
+            }
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Pick 1 project type, thank you!',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+            return false;
+        }
+
+    });
+    $('#prev2Btn').click(function (e) {
         e.preventDefault();
         $("#step2").show();
         $("#step3").hide();
         $(".progress-bar").width("30%");
     });
-    $("#step3Btn").click(function (e) {
+    $('#step3Btn').click(function (e) {
         e.preventDefault();
-        $("#step3").hide();
-        $("#step4").show();
-        $(".progress-bar").width("100%");
-        var meetType = $("#meetType").val();
-        if (meetType == "meetUp") {
-            $("#meetLoc").prop('disabled', false);
-        } else {
-            $("#meetLoc").prop('disabled', true);
-        }
-    });
 
-    $("#prev3Btn").click(function (e) {
+        var form = $("#appointForm")[0];
+
+
+        if (form[46].checkValidity()) {
+                if (form[47].checkValidity()) {
+                    if (form[48].checkValidity()) {
+                        if (form[49].checkValidity()) {
+                            if (form[50].checkValidity()) {
+                                if (form[51].checkValidity()) {
+                                    $("#step3").hide();
+                                    $("#step4").show();
+                                    $(".progress-bar").width("100%");
+                                    var meetType = $("#meetType").val();
+                                    if (meetType == "meetUp") {
+                                        $("#meetLoc").prop('disabled', false);
+                                    } else {
+                                        $("#meetLoc").prop('disabled', true);
+                                    }
+                                } else {
+                                    form[51].reportValidity();
+                                }
+                            } else {
+                                form[50].reportValidity();
+                            }
+                        } else {
+                            form[49].reportValidity();
+                        }
+                    } else {
+                        form[48].reportValidity();
+                    }
+                } else {
+                    form[47].reportValidity();
+                }
+            } else {
+                form[46].reportValidity();
+                console.log("pasok sa una");
+            }
+        
+    });
+    $('#prev3Btn').click(function (e) {
         e.preventDefault();
         $("#step3").show();
         $("#step4").hide();
         $(".progress-bar").width("70%");
     });
-
 
     $("#appointForm").submit(function (event) {
 
@@ -269,7 +392,7 @@ $(document).ready(function () {
                 $('#name_id').val(response.fullName);
                 $('#contact_id').val(response.contactNo);
                 $('#email_id').val(response.email);
-                $('#projLoc_id').val(response.projLocation +' '+ response.municipality + ', ' + response.province);
+                $('#projLoc_id').val(response.projLocation + ' ' + response.municipality + ', ' + response.province);
                 $('#targetCons_id').val(response.targetDate);
                 $('#projType_id').val(response.projectType);
                 $('#lotArea_id').val(response.lotArea);
@@ -462,5 +585,5 @@ $(document).ready(function () {
             });
         }
     });
-    
+
 });

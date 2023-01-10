@@ -2,14 +2,16 @@
 include_once('../include/dbh.inc.php');
 $dbh = new dbHandler;
 
-if(isset($_POST['email'])){
+if (isset($_POST['email'])) {
     if ($dbh->checkIfEmailExist($_POST['email'])) {
 
-        echo $dbh->checkIfEmailExist($_POST['email']);
+        echo json_encode(array(
+            $dbh->checkIfEmailExist($_POST['email'])
+        ));
     }
 }
 
-if (isset($_POST['password'])) {
+else if (isset($_POST['password'])) {
     if ($_POST['password'] != $_POST['confirmPassword']) {
         echo json_encode(array(
             "status" => 'error',
@@ -31,6 +33,7 @@ if (isset($_POST['password'])) {
             'province' => $_POST['province'],
             'password' => $_POST['password']
         ];
+        // var_dump($account);
         if ($dbh->registerAccount($account)) {
             echo json_encode(array(
                 "status" => 'success',
