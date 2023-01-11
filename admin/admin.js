@@ -1,6 +1,5 @@
 $(document).ready(function () {
     fetchSettings();
-    $("#settings").modal("show");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $("#savePassBtn").hide();
@@ -181,7 +180,7 @@ $(document).ready(function () {
         $(this).attr("disabled", true);
         displayMeetUpLocation();
     });
-    
+
     $("#newLocation").keyup(function (e) {
         var value = $(this).val();
         if (value != "") {
