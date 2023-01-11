@@ -1,6 +1,5 @@
 $(document).ready(function () {
     fetchSettings();
-    $("#settings").modal("show");
     $("#content").load("dashboard/dashboard.php");
     $("#errorAlert").hide();
     $("#savePassBtn").hide();
@@ -126,6 +125,7 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    var meetUpLocation = [];
     function fetchSettings() {
         $.ajax({
             type: "POST",
@@ -142,18 +142,53 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "../settings/settings.php",
-            data: { GET_ABOUTUS: true },
+            data: { GET_SETTINGS_DETAILS: true },
             dataType: "JSON",
             success: function (response) {
                 console.log(response);
                 $("#editAddress").val(response.address);
                 $("#editContact").val(response.contact);
                 $("#editEmail").val(response.email);
+                meetUpLocation = response.appointment;
+                displayMeetUpLocation();
             }, error: function (response) {
                 console.error(response);
             }
         });
     }
+
+    function displayMeetUpLocation() {
+        var content = ``;
+        $.each(meetUpLocation, function (indexInArray, val) {
+            content += `<li>${val} <button type="button" data-index='${indexInArray}' class="btn btn-sm btn-dark ms-3 removeLocation" style="font-size: 10px;"><i class="fas fa-trash"></i></button></li>`
+        });
+        $("#editMeetUpLocation").html(content);
+
+        $(".removeLocation").click(function (e) {
+            e.preventDefault();
+            var index = $(this).data("index");
+            meetUpLocation.splice(index);
+            displayMeetUpLocation();
+        });
+    }
+
+    $("#addLocationBtn").click(function (e) {
+        e.preventDefault();
+        var newLocation = $("#newLocation").val();
+        meetUpLocation.push(newLocation);
+        $("#newLocation").val("");
+        $(this).attr("disabled", true);
+        displayMeetUpLocation();
+    });
+
+    $("#newLocation").keyup(function (e) {
+        var value = $(this).val();
+        if (value != "") {
+            $("#addLocationBtn").attr("disabled", false);
+        } else {
+            $("#addLocationBtn").attr("disabled", true);
+        }
+    });
 
     $("#editLogo").click(function (e) {
         e.preventDefault();
@@ -192,6 +227,18 @@ $(document).ready(function () {
             },
             error: function (response) {
                 $("#error").html(response);
+                console.error(response);
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "../settings/settings.php",
+            data: { editMeetUpLocation: true, location: meetUpLocation },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            }, error: function (response) {
                 console.error(response);
             }
         });

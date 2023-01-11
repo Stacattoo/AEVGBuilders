@@ -9,13 +9,27 @@ if (isset($_POST["GET_LOGO"])) {
         'logo' => $xml->getElementsByTagName("logo")->item(0)->nodeValue
     ));
 }
-if (isset($_POST["GET_ABOUTUS"])) {
+if (isset($_POST["GET_MEETUP_LOCATION"])) {
+    $location = array();
+    foreach ($xml->getElementsByTagName("location") as $key => $value) {
+        array_push($location, $value->nodeValue);
+    }
+    echo json_encode(array(
+        "status" => true,
+        'location' => $location
+    ));
+}
+if (isset($_POST["GET_SETTINGS_DETAILS"])) {
+    $appointment = array();
+    foreach ($xml->getElementsByTagName("location") as $key => $value) {
+        array_push($appointment, $value->nodeValue);
+    }
     echo json_encode(array(
         "status" => true,
         'address' => $xml->getElementsByTagName("address")->item(0)->nodeValue,
         'contact' => $xml->getElementsByTagName("contact")->item(0)->nodeValue,
         'email' => $xml->getElementsByTagName("email")->item(0)->nodeValue,
-        'link' => $xml->getElementsByTagName("link")->item(0)->nodeValue,
+        'appointment' => $appointment
     ));
 }
 if (isset($_FILES["logo"]["name"]) && $_FILES["logo"]["error"] == 0) {
@@ -43,3 +57,16 @@ if (isset($_POST["editAddress"])) {
         "status" => true,
     ));
 }
+if (isset($_POST["editMeetUpLocation"])) {
+    $xml->getElementsByTagName("appointment")->item(0)->nodeValue = "";
+    foreach ($_POST["location"] as $value) {
+        $location = $xml->createElement("location", $value);
+        $xml->getElementsByTagName("appointment")->item(0)->appendChild($location);
+    }
+    $xml->save($file);
+    echo json_encode(array(
+        "status" => true,
+    ));
+}
+
+

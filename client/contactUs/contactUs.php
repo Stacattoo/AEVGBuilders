@@ -492,11 +492,11 @@ $dbh = new dbHandler;
                 <div class="col-md">
                   <div class="form-floating">
                     <select class="form-select" name="meetLoc" id="meetLoc" required>
-                      <option value ="" selected disabled>SELECT LOCATION</option>
+                      <!-- <option value ="" selected disabled>SELECT LOCATION</option>
                       <option value="Shangri-la">Shangri-la</option>
-                      <option value="SM Megamall">SM Megamall</option>
+                      <option value="SM Megamall">SM Megamall</option> -->
                     </select>
-                    <label for="floatingSelemeetLocctGrid">Location</label>
+                    <label for="meetLoc">Location</label>
                   </div>
                 </div>
               </div>
