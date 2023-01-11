@@ -13,6 +13,23 @@ $(document).ready(function () {
         }
     });
     
+    $.ajax({
+        type: "POST",
+        url: "../../settings/settings.php",
+        data: { GET_MEETUP_LOCATION: true },
+        dataType: "JSON",
+        success: function (response) {
+            console.log(response);
+            var content = `<option selected disabled>SELECT LOCATION</option>`;
+            $.each(response.location, function (indexInArray, val) { 
+                content += `<option value="${val}">${val}</option>` 
+            });
+            $("#meetLoc").html(content);
+        }, error: function (response) {
+            console.error(response);
+        }
+    });
+
     var provinces = [
         'Abra', 'Agusan del Norte', 'Agusan del Sur', 'Aklan', 'Albay', 'Antique', 'Apayao',
         'Aurora', 'Basilan', 'Bataan', 'Batanes', 'Batangas', 'Benguet', 'Biliran', 'Bohol',
